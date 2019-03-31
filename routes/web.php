@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('/daftar', 'PendaftarController@create')->name('daftar');
 Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
+Route::get('/details/{id}', 'PendaftarController@show')->name('contoh');
 
 Auth::routes();
 

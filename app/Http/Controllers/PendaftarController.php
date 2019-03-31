@@ -146,7 +146,9 @@ class PendaftarController extends Controller
 
         $table_daftar->status_saat_mendaftar = $table_status_saat_mendaftar->id;
         $table_daftar->save();
-        return('ok');
+
+        $data = $table_daftar;
+        return view('kwitansi', compact('data'));
     }
 
     /**
@@ -155,9 +157,10 @@ class PendaftarController extends Controller
      * @param  \App\pendaftar  $pendaftar
      * @return \Illuminate\Http\Response
      */
-    public function show(pendaftar $pendaftar)
+    public function show($id)
     {
-        //
+        $data = pendaftar::find($id);
+        return view('kwitansi', compact('data'));
     }
 
     /**
