@@ -14,7 +14,7 @@ class CreatePendaftarsTable extends Migration
     public function up()
     {
         Schema::create('pendaftar', function (Blueprint $table) {
-            $table->increments('id')->unique();
+            $table->increments('id');
             $table->string('nomor_pendaftaran')->unique();
             $table->string('nama');
             $table->string('nama_gelar');
@@ -23,11 +23,12 @@ class CreatePendaftarsTable extends Migration
             $table->string('jenis_kelamin');
             $table->string('agama');
             $table->string('status_perkawinan');
-            $table->smallInteger('alamat_asal')->unique();
-            $table->smallInteger('alamat_surabaya')->unique();
             $table->string('nomor_handphone');
-            $table->text('pendidikan');
-            $table->smallInteger('status_saat_mendaftar')->unique();
+            $table->text('pendidikan_id');
+            $table->integer('alamat_asal_id');
+            $table->integer('alamat_surabaya_id');
+            $table->integer('status_saat_mendaftar_id');
+            $table->integer('sumber_informasi_id');
             $table->timestamps();
         });
     }

@@ -18,12 +18,6 @@ class CreateStatusSaatMendaftarsTable extends Migration
             $table->smallInteger('lulus_sma');
             $table->smallInteger('mahasiswa');
             $table->smallInteger('bekerja');
-            $table->smallInteger('koran');
-            $table->smallInteger('spanduk');
-            $table->smallInteger('brosur');
-            $table->smallInteger('teman_saudara');
-            $table->smallInteger('pameran');
-            $table->smallInteger('lainnya');
             $table->timestamps();
         });
     }

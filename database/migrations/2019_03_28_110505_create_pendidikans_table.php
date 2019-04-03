@@ -16,10 +16,10 @@ class CreatePendidikansTable extends Migration
         Schema::create('pendidikan', function (Blueprint $table) {
             $table->increments('id');
             $table->string('jenjang_pendidikan');
-            $table->string('institusi')->nullable();
-            $table->string('bidang_studi')->nullable();
-            $table->string('tahun_masuk')->nullable();
-            $table->string('tahun_lulus')->nullable();
+            $table->string('institusi');
+            $table->string('bidang_studi');
+            $table->string('tahun_masuk');
+            $table->string('tahun_lulus');
             $table->timestamps();
         });
     }

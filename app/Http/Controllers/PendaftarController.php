@@ -6,6 +6,7 @@ use App\pendaftar;
 use App\pendidikan;
 use App\statusSaatMendaftar;
 use App\alamat;
+use App\sumber_informasi;
 use Illuminate\Http\Request;
 
 class PendaftarController extends Controller
@@ -62,7 +63,7 @@ class PendaftarController extends Controller
         $table_alamat->kode_pos = $request->asal_kode_pos;
         $table_alamat->telepon = $request->asal_telepon;
         $table_alamat->save();
-        $table_daftar->alamat_asal = $table_alamat->id;
+        $table_daftar->alamat_asal_id = $table_alamat->id;
         ///alamat surabaya
         $table_alamat = new alamat();
         $table_alamat->jalan = $request->surabaya_jalan;
@@ -72,7 +73,7 @@ class PendaftarController extends Controller
         $table_alamat->kode_pos = $request->surabaya_kode_pos;
         $table_alamat->telepon = $request->surabaya_telepon;
         $table_alamat->save();
-        $table_daftar->alamat_surabaya = $table_alamat->id;
+        $table_daftar->alamat_surabaya_id = $table_alamat->id;
 
         //bagian pendidikan
         $table_pendidikan = new pendidikan();
@@ -129,22 +130,29 @@ class PendaftarController extends Controller
         $table_pendidikan->save();
         $data_pendidikan['lainnya'] = $table_pendidikan->id;
 
-        $table_daftar->pendidikan = serialize($data_pendidikan);
+        $table_daftar->pendidikan_id = serialize($data_pendidikan);
 
-        //bagian lainnya
+        //bagian status saat mendaftar
         $table_status_saat_mendaftar = new statusSaatMendaftar();
         $table_status_saat_mendaftar->lulus_sma = (isset($request->lulus_sma)) ? 1 : 0;
         $table_status_saat_mendaftar->mahasiswa = (isset($request->mahasiswa)) ? 1 : 0;
         $table_status_saat_mendaftar->bekerja = (isset($request->bekerja)) ? 1 : 0;
-        $table_status_saat_mendaftar->koran = (isset($request->koran)) ? 1 : 0;
-        $table_status_saat_mendaftar->spanduk = (isset($request->spanduk)) ? 1 : 0;
-        $table_status_saat_mendaftar->brosur = (isset($request->brosur)) ? 1 : 0;
-        $table_status_saat_mendaftar->teman_saudara = (isset($request->teman_saudara)) ? 1 : 0;
-        $table_status_saat_mendaftar->pameran = (isset($request->pameran)) ? 1 : 0;
-        $table_status_saat_mendaftar->lainnya = (isset($request->lainnya)) ? 1 : 0;
         $table_status_saat_mendaftar->save();
 
-        $table_daftar->status_saat_mendaftar = $table_status_saat_mendaftar->id;
+        $table_daftar->status_saat_mendaftar_id = $table_status_saat_mendaftar->id;
+
+        //bagian sumber informasi
+        $table_sumber_informasi = new sumber_informasi();
+        $table_sumber_informasi->koran = (isset($request->koran)) ? 1 : 0;
+        $table_sumber_informasi->spanduk = (isset($request->spanduk)) ? 1 : 0;
+        $table_sumber_informasi->brosur = (isset($request->brosur)) ? 1 : 0;
+        $table_sumber_informasi->teman_saudara = (isset($request->teman_saudara)) ? 1 : 0;
+        $table_sumber_informasi->pameran = (isset($request->pameran)) ? 1 : 0;
+        $table_sumber_informasi->lainnya = (isset($request->lainnya)) ? 1 : 0;
+        $table_sumber_informasi->save();
+
+        $table_daftar->sumber_informasi_id = $table_sumber_informasi->id;
+
         $table_daftar->save();
 
         $data = $table_daftar;
