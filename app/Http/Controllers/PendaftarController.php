@@ -6,7 +6,7 @@ use App\pendaftar;
 use App\pendidikan;
 use App\statusSaatMendaftar;
 use App\alamat;
-use App\sumber_informasi;
+use App\sumberInformasi;
 use Illuminate\Http\Request;
 
 class PendaftarController extends Controller
@@ -39,6 +39,7 @@ class PendaftarController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $data_pendidikan = array();
 
         //bagian data pribadi
@@ -142,7 +143,7 @@ class PendaftarController extends Controller
         $table_daftar->status_saat_mendaftar_id = $table_status_saat_mendaftar->id;
 
         //bagian sumber informasi
-        $table_sumber_informasi = new sumber_informasi();
+        $table_sumber_informasi = new sumberInformasi();
         $table_sumber_informasi->koran = (isset($request->koran)) ? 1 : 0;
         $table_sumber_informasi->spanduk = (isset($request->spanduk)) ? 1 : 0;
         $table_sumber_informasi->brosur = (isset($request->brosur)) ? 1 : 0;
@@ -167,8 +168,27 @@ class PendaftarController extends Controller
      */
     public function show($id)
     {
-        $data = pendaftar::find($id);
-        return view('kwitansi', compact('data'));
+        $data_utama = pendaftar::find($id);
+        $data_alamat_asal = alamat::find($data_utama->alamat_asal_id);
+        $data_alamat_surabaya = alamat::find($data_utama->alamat_surabaya_id);
+        $data_status_saat_mendaftar = statusSaatMendaftar::find($data_utama->status_saat_mendaftar_id);
+        $data_sumber_informasi = sumberInformasi::find($data_utama->sumber_informasi_id);
+
+        $pendidikan_id = unserialize($data_utama->pendidikan_id);
+        $data_pendidikan = array();
+        foreach($pendidikan_id as $key => $value)
+        {
+            $data_pendidikan[$key] = pendidikan::find($value);
+        }
+
+        $data = $data_utama;
+        $data['pendidikan'] = (object)$data_pendidikan;
+        $data['alamat_asal'] = $data_alamat_asal;
+        $data['alamat_surabaya'] = $data_alamat_surabaya;
+        $data['status_saat_mendaftar'] = $this->statusSaatMendaftarTranslator($data_status_saat_mendaftar);
+        $data['sumber_informasi'] = $this->sumberInformasiTranslator($data_sumber_informasi);
+
+        return view('show', compact('data'));
     }
 
     /**
@@ -203,5 +223,28 @@ class PendaftarController extends Controller
     public function destroy(pendaftar $pendaftar)
     {
         //
+    }
+
+    public function kwitansi($id)
+    {
+        $data = pendaftar::find($id);
+        return view('kwitansi', compact('data'));
+    }
+
+    private function statusSaatMendaftarTranslator($data)
+    {
+        if($data->lulus_sma){return "lulus_sma";}
+        if($data->mahasiswa){return "mahasiswa";}
+        if($data->bekerja){return "bekerja";}
+    }
+
+    private function sumberInformasiTranslator($data)
+    {
+        if($data->koran){return "koran";}
+        if($data->spanduk){return "spanduk";}
+        if($data->brosur){return "brosur";}
+        if($data->teman_saudara){return "teman/saudara";}
+        if($data->pameran){return "pameran";}
+        if($data->lainnya){return "lainnya";}
     }
 }

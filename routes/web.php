@@ -13,11 +13,12 @@
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+});
 
 Route::get('/daftar', 'PendaftarController@create')->name('daftar');
 Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
-Route::get('/details/{id}', 'PendaftarController@show')->name('contoh');
+Route::get('/show/{id}', 'PendaftarController@show')->name('show');
+Route::get('/kwitansi/{id}', 'PendaftarController@kwitansi')->name('contoh');
 
 Auth::routes();
 
