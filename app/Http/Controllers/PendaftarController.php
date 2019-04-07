@@ -77,59 +77,71 @@ class PendaftarController extends Controller
         $table_daftar->alamat_surabaya_id = $table_alamat->id;
 
         //bagian pendidikan
-        $table_pendidikan = new pendidikan();
-        $table_pendidikan->jenjang_pendidikan = 'sd';
-        $table_pendidikan->institusi = $request->sd_institusi;
-        $table_pendidikan->bidang_studi = $request->sd_bidang_studi;
-        $table_pendidikan->tahun_masuk = $request->sd_tahun_masuk;
-        $table_pendidikan->tahun_lulus = $request->sd_tahun_lulus;
-        $table_pendidikan->save();
-        $data_pendidikan['sd'] = $table_pendidikan->id;
+        if (isset($request->sd_institusi, $request->sd_bidang_studi, $request->sd_tahun_masuk, $request->sd_tahun_lulus)) {
+            $table_pendidikan = new pendidikan();
+            $table_pendidikan->jenjang_pendidikan = 'sd';
+            $table_pendidikan->institusi = $request->sd_institusi;
+            $table_pendidikan->bidang_studi = $request->sd_bidang_studi;
+            $table_pendidikan->tahun_masuk = $request->sd_tahun_masuk;
+            $table_pendidikan->tahun_lulus = $request->sd_tahun_lulus;
+            $table_pendidikan->save();
+            $data_pendidikan['sd'] = $table_pendidikan->id;
+        }
+        
+        if (isset($request->sltp_institusi, $request->sltp_bidang_studi, $request->sltp_tahun_masuk, $request->sltp_tahun_lulus)) {
+            $table_pendidikan = new pendidikan();
+            $table_pendidikan->jenjang_pendidikan = 'sltp';
+            $table_pendidikan->institusi = $request->sltp_institusi;
+            $table_pendidikan->bidang_studi = $request->sltp_bidang_studi;
+            $table_pendidikan->tahun_masuk = $request->sltp_tahun_masuk;
+            $table_pendidikan->tahun_lulus = $request->sltp_tahun_lulus;
+            $table_pendidikan->save();
+            $data_pendidikan['sltp'] = $table_pendidikan->id;
+        }
 
-        $table_pendidikan = new pendidikan();
-        $table_pendidikan->jenjang_pendidikan = 'sltp';
-        $table_pendidikan->institusi = $request->sltp_institusi;
-        $table_pendidikan->bidang_studi = $request->sltp_bidang_studi;
-        $table_pendidikan->tahun_masuk = $request->sltp_tahun_masuk;
-        $table_pendidikan->tahun_lulus = $request->sltp_tahun_lulus;
-        $table_pendidikan->save();
-        $data_pendidikan['sltp'] = $table_pendidikan->id;
+        if (isset($request->slta_institusi, $request->slta_bidang_studi, $request->slta_tahun_masuk, $request->slta_tahun_lulus)) {
+            $table_pendidikan = new pendidikan();
+            $table_pendidikan->jenjang_pendidikan = 'slta';
+            $table_pendidikan->institusi = $request->slta_institusi;
+            $table_pendidikan->bidang_studi = $request->slta_bidang_studi;
+            $table_pendidikan->tahun_masuk = $request->slta_tahun_masuk;
+            $table_pendidikan->tahun_lulus = $request->slta_tahun_lulus;
+            $table_pendidikan->save();
+            $data_pendidikan['slta'] = $table_pendidikan->id;
+        }
 
-        $table_pendidikan = new pendidikan();
-        $table_pendidikan->jenjang_pendidikan = 'slta';
-        $table_pendidikan->institusi = $request->slta_institusi;
-        $table_pendidikan->bidang_studi = $request->slta_bidang_studi;
-        $table_pendidikan->tahun_masuk = $request->slta_tahun_masuk;
-        $table_pendidikan->tahun_lulus = $request->slta_tahun_lulus;
-        $table_pendidikan->save();
-        $data_pendidikan['slta'] = $table_pendidikan->id;
+        if (isset($request->diploma_institusi, $request->diploma_bidang_studi, $request->diploma_tahun_masuk, $request->diploma_tahun_lulus)) {
+            $table_pendidikan = new pendidikan();
+            $table_pendidikan->jenjang_pendidikan = 'diploma';
+            $table_pendidikan->institusi = $request->diploma_institusi;
+            $table_pendidikan->bidang_studi = $request->diploma_bidang_studi;
+            $table_pendidikan->tahun_masuk = $request->diploma_tahun_masuk;
+            $table_pendidikan->tahun_lulus = $request->diploma_tahun_lulus;
+            $table_pendidikan->save();
+            $data_pendidikan['diploma'] = $table_pendidikan->id;
+        }
 
-        $table_pendidikan = new pendidikan();
-        $table_pendidikan->jenjang_pendidikan = 'diploma';
-        $table_pendidikan->institusi = $request->diploma_institusi;
-        $table_pendidikan->bidang_studi = $request->diploma_bidang_studi;
-        $table_pendidikan->tahun_masuk = $request->diploma_tahun_masuk;
-        $table_pendidikan->tahun_lulus = $request->diploma_tahun_lulus;
-        $table_pendidikan->save();
-        $data_pendidikan['diploma'] = $table_pendidikan->id;
+        if (isset($request->sarjana_institusi, $request->sarjana_bidang_studi, $request->sarjana_tahun_masuk, $request->sarjana_tahun_lulus)) {
+            $table_pendidikan = new pendidikan();
+            $table_pendidikan->jenjang_pendidikan = 'sarjana';
+            $table_pendidikan->institusi = $request->sarjana_institusi;
+            $table_pendidikan->bidang_studi = $request->sarjana_bidang_studi;
+            $table_pendidikan->tahun_masuk = $request->sarjana_tahun_masuk;
+            $table_pendidikan->tahun_lulus = $request->sarjana_tahun_lulus;
+            $table_pendidikan->save();
+            $data_pendidikan['sarjana'] = $table_pendidikan->id;
+        }
 
-        $table_pendidikan = new pendidikan();
-        $table_pendidikan->jenjang_pendidikan = 'sarjana';
-        $table_pendidikan->institusi = $request->sarjana_institusi;
-        $table_pendidikan->bidang_studi = $request->sarjana_bidang_studi;
-        $table_pendidikan->tahun_masuk = $request->sarjana_tahun_masuk;
-        $table_pendidikan->tahun_lulus = $request->sarjana_tahun_lulus;
-        $table_pendidikan->save();
-        $data_pendidikan['sarjana'] = $table_pendidikan->id;
-
-        $table_pendidikan = new pendidikan();
-        $table_pendidikan->jenjang_pendidikan = 'lainnya';
-        $table_pendidikan->institusi = $request->lainnya_institusi;
-        $table_pendidikan->bidang_studi = $request->lainnya_bidang_studi;
-        $table_pendidikan->tahun_masuk = $request->lainnya_tahun_masuk;
-        $table_pendidikan->tahun_lulus = $request->lainnya_tahun_lulus;
-        $table_pendidikan->save();
-        $data_pendidikan['lainnya'] = $table_pendidikan->id;
+        if (isset($request->lainnya_institusi, $request->lainnya_bidang_studi, $request->lainnya_tahun_masuk, $request->lainnya_tahun_lulus)) {
+            $table_pendidikan = new pendidikan();
+            $table_pendidikan->jenjang_pendidikan = 'lainnya';
+            $table_pendidikan->institusi = $request->lainnya_institusi;
+            $table_pendidikan->bidang_studi = $request->lainnya_bidang_studi;
+            $table_pendidikan->tahun_masuk = $request->lainnya_tahun_masuk;
+            $table_pendidikan->tahun_lulus = $request->lainnya_tahun_lulus;
+            $table_pendidikan->save();
+            $data_pendidikan['lainnya'] = $table_pendidikan->id;
+        }
 
         $table_daftar->pendidikan_id = serialize($data_pendidikan);
 
@@ -178,7 +190,8 @@ class PendaftarController extends Controller
         $data_pendidikan = array();
         foreach($pendidikan_id as $key => $value)
         {
-            $data_pendidikan[$key] = pendidikan::find($value);
+            array_push($data_pendidikan, pendidikan::find($value));
+            // $data_pendidikan[$key] = pendidikan::find($value);
         }
 
         $data = $data_utama;
@@ -187,7 +200,7 @@ class PendaftarController extends Controller
         $data['alamat_surabaya'] = $data_alamat_surabaya;
         $data['status_saat_mendaftar'] = $this->statusSaatMendaftarTranslator($data_status_saat_mendaftar);
         $data['sumber_informasi'] = $this->sumberInformasiTranslator($data_sumber_informasi);
-
+        // dd($data);
         return view('show', compact('data'));
     }
 

@@ -32,6 +32,6 @@ class CreateAlamatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alamats');
+        Schema::dropIfExists('alamat');
     }
 }

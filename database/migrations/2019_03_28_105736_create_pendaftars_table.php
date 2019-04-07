@@ -40,6 +40,6 @@ class CreatePendaftarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pendaftars');
+        Schema::dropIfExists('pendaftar');
     }
 }

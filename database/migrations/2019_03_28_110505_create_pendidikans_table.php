@@ -31,6 +31,6 @@ class CreatePendidikansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pendidikans');
+        Schema::dropIfExists('pendidikan');
     }
 }
