@@ -73,18 +73,18 @@
 					<input type="text" name="surabaya_jalan" placeholder="Jalan*"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="asal_kelurahan" placeholder="Kelurahan*">
+							<input type="text" name="surabaya_kelurahan" placeholder="Kelurahan*">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="asal_kecamatan" placeholder="Kecamatan*">
+							<input type="text" name="surabaya_kecamatan" placeholder="Kecamatan*">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="asal_kabupaten" placeholder="Kabupaten*">
+							<input type="text" name="surabaya_kabupaten" placeholder="Kabupaten*">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="asal_kode_pos" placeholder="Kode Pos*">
+							<input type="text" name="surabaya_kode_pos" placeholder="Kode Pos*">
 						</div>
 					</div>
 					<input type="text" name="surabaya_telepon" placeholder="Telepon*"><br>
@@ -94,60 +94,168 @@
 				</fieldset>
 				<fieldset>
 					<h2 class="fs-title">Jenjang Pendidikan</h2>
-					<h3></h3>
 
-					<table>
-						<tr>
-							<th>Jenjang Pendidikan</th>
-							<th>Nama Institusi</th>
-							<th>Bidang Studi</th>
-							<th>Tahun Masuk</th>
-							<th>Tahun Lulus</th>
-						</tr>
-						<tr>
-							<th>SD</th>
-							<th><input type="text" name="sd_institusi"></th>
-							<th><input type="text" name="sd_bidang_studi"></th>
-							<th><input type="text" name="sd_tahun_masuk"></th>
-							<th><input type="text" name="sd_tahun_lulus"></th>
-						</tr>
-						<tr>
-							<th>SLTP</th>
-							<th><input type="text" name="sltp_institusi"></th>
-							<th><input type="text" name="sltp_bidang_studi"></th>
-							<th><input type="text" name="sltp_tahun_masuk"></th>
-							<th><input type="text" name="sltp_tahun_lulus"></th>
-						</tr>
-						<tr>
-							<th>SLTA</th>
-							<th><input type="text" name="slta_institusi"></th>
-							<th><input type="text" name="slta_bidang_studi"></th>
-							<th><input type="text" name="slta_tahun_masuk"></th>
-							<th><input type="text" name="slta_tahun_lulus"></th>
-						</tr>
-						<tr>
-							<th>Diploma</th>
-							<th><input type="text" name="diploma_institusi"></th>
-							<th><input type="text" name="diploma_bidang_studi"></th>
-							<th><input type="text" name="diploma_tahun_masuk"></th>
-							<th><input type="text" name="diploma_tahun_lulus"></th>
-						</tr>
-						<tr>
-							<th>Sarjana</th>
-							<th><input type="text" name="sarjana_institusi"></th>
-							<th><input type="text" name="sarjana_bidang_studi"></th>
-							<th><input type="text" name="sarjana_tahun_masuk"></th>
-							<th><input type="text" name="sarjana_tahun_lulus"></th>
-						</tr>
-						<tr>
-							<th>Lain-lain</th>
-							<th><input type="text" name="lainnya_institusi"></th>
-							<th><input type="text" name="lainnya_bidang_studi"></th>
-							<th><input type="text" name="lainnya_tahun_masuk"></th>
-							<th><input type="text" name="lainnya_tahun_lulus"></th>
-						</tr>
-					</table>
+					<div class="form-group">
+						<select class="form-control" name="institusi">
+							<option id="sd">SD</option>
+							<option id="sltp">SLTP</option>
+							<option id="slta">SLTA</option>
+							<option id="diploma">Diploma</option>
+							<option id="sarjana">Sarjana</option>
+							<option id="lainnya">Lain-lain</option>
+						</select>
+					</div>
+					
+					<div id="sd_pendidikan">
+						<input type="text" name="sd_institusi" placeholder="Nama Institusi*"><br>
+						<input type="text" name="sd_bidang_studi" placeholder="Bidang Studi*"><br>
+						<div class="row">
+							<div class="col-sm-6">
+								<input type="number" name="sd_tahun_masuk" min="1850" max="2019" placeholder="Tahun Masuk*">
+							</div>
+							<div class="col-sm-6">
+								<input type="number" name="sd_tahun_lulus" min="1850" max="2019" placeholder="Tahun Lulus*">
+							</div>
+						</div>
+					</div>
 
+					<div id="sltp_pendidikan" style="display: none;">
+						<input type="text" name="sltp_institusi" placeholder="Nama Institusi*"><br>
+						<input type="text" name="sltp_bidang_studi" placeholder="Bidang Studi*"><br>
+						<div class="row">
+							<div class="col-sm-6">
+								<input type="number" name="sltp_tahun_masuk" min="1850" max="2019" placeholder="Tahun Masuk*">
+							</div>
+							<div class="col-sm-6">
+								<input type="number" name="sltp_tahun_lulus" min="1850" max="2019" placeholder="Tahun Lulus*">
+							</div>
+						</div>
+					</div>
+
+					<div id="slta_pendidikan" style="display: none;">
+						<input type="text" name="slta_institusi" placeholder="Nama Institusi*"><br>
+						<input type="text" name="slta_bidang_studi" placeholder="Bidang Studi*"><br>
+						<div class="row">
+							<div class="col-sm-6">
+								<input type="number" name="slta_tahun_masuk" min="1850" max="2019" placeholder="Tahun Masuk*">
+							</div>
+							<div class="col-sm-6">
+								<input type="number" name="slta_tahun_lulus" min="1850" max="2019" placeholder="Tahun Lulus*">
+							</div>
+						</div>
+					</div>
+
+					<div id="diploma_pendidikan" style="display: none;">
+						<input type="text" name="diploma_institusi" placeholder="Nama Institusi*"><br>
+						<input type="text" name="diploma_bidang_studi" placeholder="Bidang Studi*"><br>
+						<div class="row">
+							<div class="col-sm-6">
+								<input type="number" name="diploma_tahun_masuk" min="1850" max="2019" placeholder="Tahun Masuk*">
+							</div>
+							<div class="col-sm-6">
+								<input type="number" name="diploma_tahun_lulus" min="1850" max="2019" placeholder="Tahun Lulus*">
+							</div>
+						</div>
+					</div>
+
+					<div id="sarjana_pendidikan" style="display: none;">
+						<input type="text" name="sarjana_institusi" placeholder="Nama Institusi*"><br>
+						<input type="text" name="sarjana_bidang_studi" placeholder="Bidang Studi*"><br>
+						<div class="row">
+							<div class="col-sm-6">
+								<input type="number" name="sarjana_tahun_masuk" min="1850" max="2019" placeholder="Tahun Masuk*">
+							</div>
+							<div class="col-sm-6">
+								<input type="number" name="sarjana_tahun_lulus" min="1850" max="2019" placeholder="Tahun Lulus*">
+							</div>
+						</div>
+					</div>
+
+					<div id="lain_pendidikan" style="display: none;">
+						<input type="text" name="lainnya_institusi" placeholder="Nama Institusi*"><br>
+						<input type="text" name="lainnya_bidang_studi" placeholder="Bidang Studi*"><br>
+						<div class="row">
+							<div class="col-sm-6">
+								<input type="number" name="lainnya_tahun_masuk" min="1850" max="2019" placeholder="Tahun Masuk*">
+							</div>
+							<div class="col-sm-6">
+								<input type="number" name="lainnya_tahun_lulus" min="1850" max="2019" placeholder="Tahun Lulus*">
+							</div>
+						</div>
+					</div>
+
+					<!-- <h3 class="fs-subtitle" style="text-align: left;">SD</h3> 
+					<input type="text" name="sd_institusi" placeholder="Nama Institusi*"><br>
+					<input type="text" name="sd_bidang_studi" placeholder="Bidang Studi*"><br>
+					<div class="row">
+						<div class="col-sm-6">
+							<input type="text" name="sd_tahun_masuk" placeholder="Tahun Masuk*">
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="sd_tahun_lulus" placeholder="Tahun Lulus*">
+						</div>
+					</div>
+
+					<h3 class="fs-subtitle" style="text-align: left;">SLTP</h3> 
+					<input type="text" name="sltp_institusi" placeholder="Nama Institusi*"><br>
+					<input type="text" name="sltp_bidang_studi" placeholder="Bidang Studi*"><br>
+					<div class="row">
+						<div class="col-sm-6">
+							<input type="text" name="sltp_tahun_masuk" placeholder="Tahun Masuk*">
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="sltp_tahun_lulus" placeholder="Tahun Lulus*">
+						</div>
+					</div>
+
+					<h3 class="fs-subtitle" style="text-align: left;">SLTA</h3> 
+					<input type="text" name="slta_institusi" placeholder="Nama Institusi*"><br>
+					<input type="text" name="slta_bidang_studi" placeholder="Bidang Studi*"><br>
+					<div class="row">
+						<div class="col-sm-6">
+							<input type="text" name="slta_tahun_masuk" placeholder="Tahun Masuk*">
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="slta_tahun_lulus" placeholder="Tahun Lulus*">
+						</div>
+					</div>
+
+					<h3 class="fs-subtitle" style="text-align: left;">Diploma</h3> 
+					<input type="text" name="diploma_institusi" placeholder="Nama Institusi*"><br>
+					<input type="text" name="diploma_bidang_studi" placeholder="Bidang Studi*"><br>
+					<div class="row">
+						<div class="col-sm-6">
+							<input type="text" name="diploma_tahun_masuk" placeholder="Tahun Masuk*">
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="diploma_tahun_lulus" placeholder="Tahun Lulus*">
+						</div>
+					</div>
+
+					<h3 class="fs-subtitle" style="text-align: left;">Sarjana</h3> 
+					<input type="text" name="sarjana_institusi" placeholder="Nama Institusi*"><br>
+					<input type="text" name="sarjana_bidang_studi" placeholder="Bidang Studi*"><br>
+					<div class="row">
+						<div class="col-sm-6">
+							<input type="text" name="sarjana_tahun_masuk" placeholder="Tahun Masuk*">
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="sarjana_tahun_lulus" placeholder="Tahun Lulus*">
+						</div>
+					</div>
+
+					<h3 class="fs-subtitle" style="text-align: left;">Lain-lain</h3> 
+					<input type="text" name="lainnya_institusi" placeholder="Nama Institusi*"><br>
+					<input type="text" name="lainnya_bidang_studi" placeholder="Bidang Studi*"><br>
+					<div class="row">
+						<div class="col-sm-6">
+							<input type="text" name="lainnya_tahun_masuk" placeholder="Tahun Masuk*">
+						</div>
+						<div class="col-sm-6">
+							<input type="text" name="lainnya_tahun_lulus" placeholder="Tahun Lulus*">
+						</div>
+					</div>
+ -->
 					<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
 					<input type="button" name="next" class="next action-button" value="Next"/>
 				</fieldset>
@@ -182,15 +290,16 @@
 					</div>
 					<br><br>
 					<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-					<input type="submit" name="submit action-button" value="Submit"/>
+					<input type="submit" name="submit" class="action-button" value="Submit"/>
 				</fieldset>
 			</form>
 			<!-- {{ Form::close() }} -->
 		</div>
 	</div>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/sipikti.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	
 </body>
 </html>

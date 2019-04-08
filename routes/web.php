@@ -20,6 +20,10 @@ Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
 Route::get('/show/{id}', 'PendaftarController@show')->name('show');
 Route::get('/kwitansi/{id}', 'PendaftarController@kwitansi')->name('contoh');
 
+Route::get('/daftar2', function () {
+	return view('daftar2');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

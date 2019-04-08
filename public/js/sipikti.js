@@ -1,4 +1,58 @@
 
+$('#sd').click(function(){
+	$('#sltp_pendidikan').hide();
+	$('#slta_pendidikan').hide();
+	$('#diploma_pendidikan').hide();
+	$('#sarjana_pendidikan').hide();
+	$('#lain_pendidikan').hide();
+	$('#sd_pendidikan').show();
+});
+
+$('#sltp').click(function(){
+	$('#sd_pendidikan').hide();
+	$('#slta_pendidikan').hide();
+	$('#diploma_pendidikan').hide();
+	$('#sarjana_pendidikan').hide();
+	$('#lain_pendidikan').hide();
+	$('#sltp_pendidikan').show();
+});
+
+$('#slta').click(function(){
+	$('#sltp_pendidikan').hide();
+	$('#sd_pendidikan').hide();
+	$('#diploma_pendidikan').hide();
+	$('#sarjana_pendidikan').hide();
+	$('#lain_pendidikan').hide();
+	$('#slta_pendidikan').show();
+});
+
+$('#diploma').click(function(){
+	$('#sltp_pendidikan').hide();
+	$('#slta_pendidikan').hide();
+	$('#sd_pendidikan').hide();
+	$('#sarjana_pendidikan').hide();
+	$('#lain_pendidikan').hide();
+	$('#diploma_pendidikan').show();
+});
+
+$('#sarjana').click(function(){
+	$('#sltp_pendidikan').hide();
+	$('#slta_pendidikan').hide();
+	$('#diploma_pendidikan').hide();
+	$('#sd_pendidikan').hide();
+	$('#lain_pendidikan').hide();
+	$('#sarjana_pendidikan').show();
+});
+
+$('#lainnya').click(function(){
+	$('#sltp_pendidikan').hide();
+	$('#slta_pendidikan').hide();
+	$('#diploma_pendidikan').hide();
+	$('#sarjana_pendidikan').hide();
+	$('#sd_pendidikan').hide();
+	$('#lain_pendidikan').show();
+});
+
 //jQuery time
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
