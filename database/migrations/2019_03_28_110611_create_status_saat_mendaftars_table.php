@@ -29,6 +29,6 @@ class CreateStatusSaatMendaftarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('status_saat_mendaftars');
+        Schema::dropIfExists('status_saat_mendaftar');
     }
 }

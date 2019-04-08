@@ -32,6 +32,6 @@ class CreateSumberInformasisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sumber_informasis');
+        Schema::dropIfExists('sumber_informasi');
     }
 }
