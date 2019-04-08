@@ -29,6 +29,7 @@ class CreatePendaftarsTable extends Migration
             $table->integer('alamat_surabaya_id');
             $table->integer('status_saat_mendaftar_id');
             $table->integer('sumber_informasi_id');
+            $table->string('administrator');
             $table->timestamps();
         });
     }

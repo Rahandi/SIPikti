@@ -15,14 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/list', 'PendaftarController@index')->name('list');
 Route::get('/daftar', 'PendaftarController@create')->name('daftar');
 Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
-Route::get('/show/{id}', 'PendaftarController@show')->name('show');
+Route::get('/edit/{id}', 'PendaftarController@edit')->name('edit');
+Route::post('/edit/{id}', 'PendaftarController@update')->name('edit.update');
+Route::get('/detail/{id}', 'PendaftarController@show')->name('show');
 Route::get('/kwitansi/{id}', 'PendaftarController@kwitansi')->name('contoh');
-
-Route::get('/daftar2', function () {
-	return view('daftar2');
-});
 
 Auth::routes();
 

@@ -7,6 +7,7 @@ use App\pendidikan;
 use App\statusSaatMendaftar;
 use App\alamat;
 use App\sumberInformasi;
+use App\noPendaftaran;
 use Illuminate\Http\Request;
 
 class PendaftarController extends Controller
@@ -18,7 +19,8 @@ class PendaftarController extends Controller
      */
     public function index()
     {
-        //
+        $data = pendaftar::all();
+        return view('list', compact('data'));
     }
 
     /**
@@ -44,7 +46,8 @@ class PendaftarController extends Controller
 
         //bagian data pribadi
         $table_daftar = new pendaftar();
-        $table_daftar->nomor_pendaftaran = $request->nomor_pendaftaran;
+        $table_daftar->administrator = $request->administrator;
+        $table_daftar->nomor_pendaftaran = $this->generateNoPendaftaran();
         $table_daftar->nama = $request->nama;
         $table_daftar->nama_gelar = $request->nama_gelar;
         $table_daftar->tempat_lahir = $request->tempat_lahir;
@@ -191,7 +194,6 @@ class PendaftarController extends Controller
         foreach($pendidikan_id as $key => $value)
         {
             array_push($data_pendidikan, pendidikan::find($value));
-            // $data_pendidikan[$key] = pendidikan::find($value);
         }
 
         $data = $data_utama;
@@ -200,7 +202,6 @@ class PendaftarController extends Controller
         $data['alamat_surabaya'] = $data_alamat_surabaya;
         $data['status_saat_mendaftar'] = $this->statusSaatMendaftarTranslator($data_status_saat_mendaftar);
         $data['sumber_informasi'] = $this->sumberInformasiTranslator($data_sumber_informasi);
-        // dd($data);
         return view('show', compact('data'));
     }
 
@@ -244,6 +245,31 @@ class PendaftarController extends Controller
         return view('kwitansi', compact('data'));
     }
 
+    public function generateNoPendaftaran()
+    {
+        $current_year = date('Y');
+        $current_year = substr($current_year, 2, strlen($current_year));
+        $tahun_angkatan = date('Y', strtotime('+10 year'));
+        $tahun_angkatan = substr($tahun_angkatan, 2, strlen($tahun_angkatan));
+        $tahun_angkatan = $this->numberToRomanRepresentation((int)$tahun_angkatan);
+        $no_pendaftaran = $tahun_angkatan.'/'.$current_year.'/'.'PIKTI'.'/';
+        $no_urut = noPendaftaran::where('tahun', date('Y'))->take(1)->get();
+        if (count($no_urut)) {
+            $no_urut = $no_urut[0];
+            $no_pendaftaran = $no_pendaftaran.$no_urut->nomor;
+            $no_urut->nomor = (string)((int)$no_urut->nomor + 1);
+            $no_urut->save();
+        }
+        else {
+            $no_pendaftaran = $no_pendaftaran.'1';
+            $no_urut = new noPendaftaran();
+            $no_urut->tahun = date('Y');
+            $no_urut->nomor = '2';
+            $no_urut->save();
+        }
+        return $no_pendaftaran;
+    }
+
     private function statusSaatMendaftarTranslator($data)
     {
         if($data->lulus_sma){return "lulus_sma";}
@@ -259,5 +285,20 @@ class PendaftarController extends Controller
         if($data->teman_saudara){return "teman/saudara";}
         if($data->pameran){return "pameran";}
         if($data->lainnya){return "lainnya";}
+    }
+
+    private function numberToRomanRepresentation($number) {
+        $map = array('M' => 1000, 'CM' => 900, 'D' => 500, 'CD' => 400, 'C' => 100, 'XC' => 90, 'L' => 50, 'XL' => 40, 'X' => 10, 'IX' => 9, 'V' => 5, 'IV' => 4, 'I' => 1);
+        $returnValue = '';
+        while ($number > 0) {
+            foreach ($map as $roman => $int) {
+                if($number >= $int) {
+                    $number -= $int;
+                    $returnValue .= $roman;
+                    break;
+                }
+            }
+        }
+        return $returnValue;
     }
 }
