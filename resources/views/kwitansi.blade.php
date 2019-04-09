@@ -29,7 +29,7 @@
 				<tr>
 					<td>GUNA</td>
 					<td>:</td>
-					<td>Pembayaran Pendaftaran PIKTI tanggal 15 September 2018</td>
+					<td>Pembayaran Pendaftaran PIKTI tanggal {{date()}}</td>
 				</tr>
 				<tr>
 					<td>TERBILANG RP</td>
@@ -40,7 +40,7 @@
 		</div>
 		<br>
 		<div class="row" style="margin-left: 50%; text-align: center;">
-			Surabaya, 15 September 2018<br><br><br><br><br><br>
+			Surabaya, {{date()}}<br><br><br><br><br><br>
 			Rizki
 		</div>
 		<br><br><hr>
