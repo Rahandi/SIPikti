@@ -20,11 +20,14 @@
 			<div class="wizard-form">
 				<form class="form-register" id="form-register" action="{{route('daftar.store')}}" enctype="multipart/form-data" method="post">
 					{{ csrf_field() }}
+<<<<<<< HEAD
 					<!-- <div class="form-group">
 						<label>Administrator:</label>
 						<input type="text" name="administrator" placeholder="Nama Admin">
 						<input type="button" name="next" id="nextToForm" value="next">
 					</div> -->
+=======
+>>>>>>> edit front-end pendaftaran
 					<div id="form-total">
 						<!-- SECTION 1 -->
 						<h2>
@@ -76,11 +79,15 @@
 								<div class="form-row">
 									<div class="form-holder">
 										<label class="form-row-inner">
+<<<<<<< HEAD
 											<!-- <input type="text" name="jenis_kelamin" class="form-control" required> -->
 											<select class="form-control" name="jenis_kelamin">
 												<option value="Laki_laki">Laki-laki</option>
 												<option value="Perempuan">Perempuan</option>
 											</select>
+=======
+											<input type="text" name="jenis_kelamin" class="form-control" required>
+>>>>>>> edit front-end pendaftaran
 											<span class="label">Jenis Kelamin</span>
 										</label>
 									</div>
@@ -94,11 +101,15 @@
 								<div class="form-row">
 									<div class="form-holder">
 										<label class="form-row-inner">
+<<<<<<< HEAD
 											<!-- <input type="text" class="form-control" name="status_perkawinan" required> -->
 											<select class="form-control" name="status_perkawinan">
 												<option value="Kawin">Kawin</option>
 												<option value="Belum_Kawin">Belum Kawin</option>
 											</select>
+=======
+											<input type="text" class="form-control" name="status_perkawinan" required>
+>>>>>>> edit front-end pendaftaran
 											<span class="label">Status Perkawinan</span>
 										</label>
 									</div>
@@ -212,7 +223,11 @@
 									<h3>Jenjang Pendidikan</h3>
 									<span>2/3</span>
 								</div>
+<<<<<<< HEAD
 								<h3 style="color: #333;">SD</h3>
+=======
+								<h3 style="color: white;">SD</h3>
+>>>>>>> edit front-end pendaftaran
 								<div id="sd_pendidikan">
 									<div class="form-row">
 										<div class="form-holder">
@@ -243,7 +258,11 @@
 										</div>
 									</div>
 								</div>
+<<<<<<< HEAD
 								<h3 style="color: #333;">SLTP</h3>
+=======
+								<h3 style="color: white;">SLTP</h3>
+>>>>>>> edit front-end pendaftaran
 								<div id="sltp_pendidikan">
 									<div class="form-row">
 										<div class="form-holder">
@@ -274,7 +293,11 @@
 										</div>
 									</div>
 								</div>
+<<<<<<< HEAD
 								<h3 style="color: #333;">SLTA</h3>
+=======
+								<h3 style="color: white;">SLTA</h3>
+>>>>>>> edit front-end pendaftaran
 								<div id="slta_pendidikan">
 									<div class="form-row">
 										<div class="form-holder">
@@ -305,7 +328,11 @@
 										</div>
 									</div>
 								</div>
+<<<<<<< HEAD
 								<h3 style="color: #333;">Diploma</h3>
+=======
+								<h3 style="color: white;">Diploma</h3>
+>>>>>>> edit front-end pendaftaran
 								<div id="diploma_pendidikan">
 									<div class="form-row">
 										<div class="form-holder">
@@ -336,7 +363,11 @@
 										</div>
 									</div>
 								</div>
+<<<<<<< HEAD
 								<h3 style="color: #333;">Sarjana</h3>
+=======
+								<h3 style="color: white;">Sarjana</h3>
+>>>>>>> edit front-end pendaftaran
 								<div id="sarjana_pendidikan">
 									<div class="form-row">
 										<div class="form-holder">
@@ -367,7 +398,11 @@
 										</div>
 									</div>
 								</div>
+<<<<<<< HEAD
 								<h3 style="color: #333;">Lain-lain</h3>
+=======
+								<h3 style="color: white;">Lain-lain</h3>
+>>>>>>> edit front-end pendaftaran
 								<div id="lain_pendidikan">
 									<div class="form-row">
 										<div class="form-holder">
@@ -411,6 +446,7 @@
 									<h3>Informasi Tambahan</h3>
 									<span>3/3</span>
 								</div>
+<<<<<<< HEAD
 								<h3 style="color: #333;">Status pada saat mendaftar:</h3>
 								<div class="form-row" style="color: #333; width: 100%;">
 									<div class="form-check form-check-inline" style="width: 100%;">
@@ -424,6 +460,21 @@
 								</div>
 								<h3 style="color: #333;">Mengetahui program ini dari:</h3>
 								<div class="form-row" style="color: #333; width: 100%;">
+=======
+								<h3 style="color: white;">Status pada saat mendaftar:</h3>
+								<div class="form-row" style="color: white; width: 100%;">
+									<div class="form-check form-check-inline" style="width: 100%;">
+										<input class="form-check-input" type="checkbox" id="cb1" name="lulus_sma">
+										<label class="form-check-label" for="cb1">Lulus&nbsp;SMA</label>
+										<input class="form-check-input" type="checkbox" id="cb2" name="mahasiswa">
+										<label class="form-check-label" for="cb2">Mahasiswa</label>
+										<input class="form-check-input" type="checkbox" id="cb3" name="bekerja">
+										<label class="form-check-label" for="cb3">Bekerja</label>
+									</div>
+								</div>
+								<h3 style="color: white;">Mengetahui program ini dari:</h3>
+								<div class="form-row" style="color: white; width: 100%;">
+>>>>>>> edit front-end pendaftaran
 									<div class="form-check form-check-inline" style="width: 100%;">
 										<input class="form-check-input" type="checkbox" id="cb4" name="koran">
 										<label class="form-check-label" for="cb4">Koran</label>
@@ -447,12 +498,16 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 	<script type="text/javascript">
 		// $('#nextToForm').click(function(){
 		// 	$('#form-total').show();
 		// 	$('#myModal').hide()
 		// });
 	</script>
+=======
+	<script src="js/sipikti.js"></script>
+>>>>>>> edit front-end pendaftaran
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery.steps.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
