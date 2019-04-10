@@ -41,7 +41,7 @@
 		<br>
 		<div class="row" style="margin-left: 50%; text-align: center;">
 			Surabaya, {{date()}}<br><br><br><br><br><br>
-			Rizki
+			{{$data->administrator}}
 		</div>
 		<br><br><hr>
 		<div class="row">

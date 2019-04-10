@@ -827,7 +827,7 @@ function refreshPagination(wizard, options, state)
         if (!options.forceMoveForward)
         {
             var previous = wizard.find(".actions a[href$='#previous']").parent();
-            previous._showAria(state.currentIndex > 0);
+            previous._showAria(state.currentIndex > 1);
             previous._enableAria(state.currentIndex > 0);
         }
 
@@ -1427,6 +1427,9 @@ $.fn.steps.next = function ()
 {
     return goToNextStep(this, getOptions(this), getState(this));
 };
+$('#next').click(function(){
+    return goToNextStep(this, getOptions(this), getState(this));
+});
 
 /**
  * Routes to the previous step.
