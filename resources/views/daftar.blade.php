@@ -219,7 +219,6 @@
 									<h3>Jenjang Pendidikan</h3>
 									<span>2/3</span>
 								</div>
-
 								<h3 style="color: #333;">SD</h3>
 								<div id="sd_pendidikan">
 									<div class="form-row">
@@ -251,7 +250,6 @@
 										</div>
 									</div>
 								</div>
-
 								<h3 style="color: #333;">SLTP</h3>
 								<div id="sltp_pendidikan">
 									<div class="form-row">
@@ -444,8 +442,7 @@
 										<label class="form-check-label" for="cb5">Spanduk</label>
 										<input class="form-check-input" type="checkbox" id="cb6" name="brosur" style="margin-left: 5%;">
 										<label class="form-check-label" for="cb6">Brosur</label>
-
-										<input class="form-check-input" type="checkbox" id="cb7" name="teman_saudara">
+										<input class="form-check-input" type="checkbox" id="cb7" name="teman_saudara" style="margin-left: 5%;">
 										<label class="form-check-label" for="cb7">Teman&nbsp;/&nbsp;Saudara</label>
 										<input class="form-check-input" type="checkbox" id="cb8" name="pameran" style="margin-left: 5%;">
 										<label class="form-check-label" for="cb8">Pameran</label>
