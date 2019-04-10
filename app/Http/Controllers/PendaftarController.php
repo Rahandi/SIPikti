@@ -172,7 +172,7 @@ class PendaftarController extends Controller
         $table_daftar->save();
 
         $data = $table_daftar;
-        return view('kwitansi', compact('data'));
+        return $this->show($data->id);
     }
 
     /**
@@ -183,25 +183,7 @@ class PendaftarController extends Controller
      */
     public function show($id)
     {
-        $data_utama = pendaftar::find($id);
-        $data_alamat_asal = alamat::find($data_utama->alamat_asal_id);
-        $data_alamat_surabaya = alamat::find($data_utama->alamat_surabaya_id);
-        $data_status_saat_mendaftar = statusSaatMendaftar::find($data_utama->status_saat_mendaftar_id);
-        $data_sumber_informasi = sumberInformasi::find($data_utama->sumber_informasi_id);
-
-        $pendidikan_id = unserialize($data_utama->pendidikan_id);
-        $data_pendidikan = array();
-        foreach($pendidikan_id as $key => $value)
-        {
-            array_push($data_pendidikan, pendidikan::find($value));
-        }
-
-        $data = $data_utama;
-        $data['pendidikan'] = (object)$data_pendidikan;
-        $data['alamat_asal'] = $data_alamat_asal;
-        $data['alamat_surabaya'] = $data_alamat_surabaya;
-        $data['status_saat_mendaftar'] = $this->statusSaatMendaftarTranslator($data_status_saat_mendaftar);
-        $data['sumber_informasi'] = $this->sumberInformasiTranslator($data_sumber_informasi);
+        $data = $this.getPendaftarFullDetails($id);
         return view('show', compact('data'));
     }
 
@@ -211,9 +193,10 @@ class PendaftarController extends Controller
      * @param  \App\pendaftar  $pendaftar
      * @return \Illuminate\Http\Response
      */
-    public function edit(pendaftar $pendaftar)
+    public function edit($id)
     {
-        //
+        $data = $this.getPendaftarFullDetails($id);
+        return view('edit', compact('data'));
     }
 
     /**
@@ -234,9 +217,32 @@ class PendaftarController extends Controller
      * @param  \App\pendaftar  $pendaftar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(pendaftar $pendaftar)
+    public function destroy($id)
     {
-        //
+        $data_utama = pendaftar::find($id);
+        $data_alamat_asal = alamat::find($data_utama->alamat_asal_id);
+        $data_alamat_surabaya = alamat::find($data_utama->alamat_surabaya_id);
+        $data_status_saat_mendaftar = statusSaatMendaftar::find($data_utama->status_saat_mendaftar_id);
+        $data_sumber_informasi = sumberInformasi::find($data_utama->sumber_informasi_id);
+
+        $pendidikan_id = unserialize($data_utama->pendidikan_id);
+        $data_pendidikan = array();
+        foreach($pendidikan_id as $key => $value)
+        {
+            array_push($data_pendidikan, pendidikan::find($value));
+        }
+
+        $data_utama->delete();
+        $data_alamat_asal->delete();
+        $data_alamat_surabaya->delete();
+        $data_status_saat_mendaftar->delete();
+        $data_sumber_informasi->delete();
+        foreach($data_pendidikan as $pendidikan)
+        {
+            $pendidikan->delete();
+        }
+
+        return 'ok';
     }
 
     public function kwitansi($id)
@@ -300,5 +306,28 @@ class PendaftarController extends Controller
             }
         }
         return $returnValue;
+    }
+
+    private function getPendaftarFullDetails($id) {
+        $data_utama = pendaftar::find($id);
+        $data_alamat_asal = alamat::find($data_utama->alamat_asal_id);
+        $data_alamat_surabaya = alamat::find($data_utama->alamat_surabaya_id);
+        $data_status_saat_mendaftar = statusSaatMendaftar::find($data_utama->status_saat_mendaftar_id);
+        $data_sumber_informasi = sumberInformasi::find($data_utama->sumber_informasi_id);
+
+        $pendidikan_id = unserialize($data_utama->pendidikan_id);
+        $data_pendidikan = array();
+        foreach($pendidikan_id as $key => $value)
+        {
+            array_push($data_pendidikan, pendidikan::find($value));
+        }
+
+        $data = $data_utama;
+        $data['pendidikan'] = (object)$data_pendidikan;
+        $data['alamat_asal'] = $data_alamat_asal;
+        $data['alamat_surabaya'] = $data_alamat_surabaya;
+        $data['status_saat_mendaftar'] = $this->statusSaatMendaftarTranslator($data_status_saat_mendaftar);
+        $data['sumber_informasi'] = $this->sumberInformasiTranslator($data_sumber_informasi);
+        return $data;
     }
 }
