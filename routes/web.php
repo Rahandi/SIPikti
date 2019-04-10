@@ -23,6 +23,10 @@ Route::post('/edit/{id}', 'PendaftarController@update')->name('edit.update');
 Route::get('/detail/{id}', 'PendaftarController@show')->name('show');
 Route::get('/kwitansi/{id}', 'PendaftarController@kwitansi')->name('contoh');
 
+Route::get('/daftar2', function () {
+    return view('daftar2');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

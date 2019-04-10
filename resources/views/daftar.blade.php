@@ -16,19 +16,33 @@
 <body>
 	<div class="page-content">
 		<div class="wizard-heading">Form Pendaftaran PIKTI</div>
-		<div class="wizard-v6-content">
+		<div class="wizard-v6-content" style="width: 80%;">
 			<div class="wizard-form">
 				<form class="form-register" id="form-register" action="{{route('daftar.store')}}" enctype="multipart/form-data" method="post">
 					{{ csrf_field() }}
-					<!-- <div class="form-group">
-						<label>Administrator:</label>
-						<input type="text" name="administrator" placeholder="Nama Admin">
-						<input type="button" name="next" id="nextToForm" value="next">
-					</div> -->
 					<div id="form-total">
 						<!-- SECTION 1 -->
-						<h2>
+						<h2 style="display: none;">
 							<p class="step-icon"><span>1</span></p>
+							<span class="step-text">Administrator</span>
+						</h2>
+						<section>
+							<div class="form-heading">
+							</div>
+							<div class="inner">
+								<div class="form-row">
+									<div class="form-holder form-holder-2">
+										<label class="form-row-inner">
+											<input type="text" name="administrator" class="form-control" required>
+											<span class="label">Nama Administrator</span>
+										</label>
+									</div>
+								</div>
+							</div>
+							<!-- <input type="button" name="next" id="next" class="next action-button" value="Next"/> -->
+						</section>
+						<h2>
+							<p class="step-icon"><span>2</span></p>
 							<span class="step-text">Data Pribadi</span>
 						</h2>
 						<section>
@@ -40,19 +54,11 @@
 								<div class="form-row">
 									<div class="form-holder">
 										<label class="form-row-inner">
-											<input type="text" name="nomor_pendaftaran" class="form-control" required>
-											<span class="label">Nomor Pendaftaran</span>
-										</label>
-									</div>
-									<div class="form-holder">
-										<label class="form-row-inner">
 											<input type="text" class="form-control" name="nama" required>
 											<span class="label">Nama Lengkap</span>
 										</label>
 									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-holder form-holder-2">
+									<div class="form-holder">
 										<label class="form-row-inner">
 											<input type="text" class="form-control" name="nama_gelar" required>
 											<span class="label">Nama Lengkap dengan Gelar</span>
@@ -203,7 +209,7 @@
 						</section>
 						<!-- SECTION 2 -->
 						<h2>
-							<p class="step-icon"><span>2</span></p>
+							<p class="step-icon"><span>3</span></p>
 							<span class="step-text">Pendidikan</span>
 						</h2>
 						<section>
@@ -402,7 +408,7 @@
 						</section>
 						<!-- SECTION 3 -->
 						<h2>
-							<p class="step-icon"><span>3</span></p>
+							<p class="step-icon"><span>4</span></p>
 							<span class="step-text">Informasi</span>
 						</h2>
 						<section>
@@ -443,20 +449,17 @@
 							</div>
 						</section>
 					</div>
+					<input type="submit" name="submit" class="action-button" value="Submit"/>
 				</form>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		// $('#nextToForm').click(function(){
-		// 	$('#form-total').show();
-		// 	$('#myModal').hide()
-		// });
-	</script>
+
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery.steps.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/main.js"></script>
+	<!-- <script src="js/sipikti.js"></script> -->
 	
 </body>
 </html>

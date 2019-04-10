@@ -19,7 +19,10 @@ body {
 }
 
 /*form styles*/
-#msform {
+#msform label {
+	text-align: left;
+}
+#msform h2,h3,li,input placeholder, button, .action-button{
 	text-align: center;
 	position: relative;
 	margin-top: 30px;
