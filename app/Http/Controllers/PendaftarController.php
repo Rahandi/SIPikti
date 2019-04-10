@@ -183,7 +183,7 @@ class PendaftarController extends Controller
      */
     public function show($id)
     {
-        $data = $this.getPendaftarFullDetails($id);
+        $data = $this->getPendaftarFullDetails($id);
         return view('show', compact('data'));
     }
 
@@ -195,7 +195,7 @@ class PendaftarController extends Controller
      */
     public function edit($id)
     {
-        $data = $this.getPendaftarFullDetails($id);
+        $data = $this->getPendaftarFullDetails($id);
         return view('edit', compact('data'));
     }
 
