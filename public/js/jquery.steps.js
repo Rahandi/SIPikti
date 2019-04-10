@@ -827,6 +827,7 @@ function refreshPagination(wizard, options, state)
         if (!options.forceMoveForward)
         {
             var previous = wizard.find(".actions a[href$='#previous']").parent();
+            previous._showAria(state.currentIndex > 0);
             previous._enableAria(state.currentIndex > 0);
         }
 
