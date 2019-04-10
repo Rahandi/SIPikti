@@ -415,9 +415,13 @@ input::-ms-input-placeholder { /* Microsoft Edge */
 	font-size: 16px;
 	font-weight: 600;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	margin: 2%;
 =======
 >>>>>>> edit front-end pendaftaran
+=======
+	margin: 2%;
+>>>>>>> edit form pendaftaran
 }
 .actions ul li:hover {
 	background: #32998b
