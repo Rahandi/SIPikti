@@ -183,7 +183,7 @@ class PendaftarController extends Controller
      */
     public function show($id)
     {
-        $data = $this.getPendaftarFullDetails($id);
+        $data = $this->getPendaftarFullDetails($id);
         return view('show', compact('data'));
     }
 
@@ -195,7 +195,7 @@ class PendaftarController extends Controller
      */
     public function edit($id)
     {
-        $data = $this.getPendaftarFullDetails($id);
+        $data = $this->getPendaftarFullDetails($id);
         return view('edit', compact('data'));
     }
 
@@ -262,12 +262,12 @@ class PendaftarController extends Controller
         $no_urut = noPendaftaran::where('tahun', date('Y'))->take(1)->get();
         if (count($no_urut)) {
             $no_urut = $no_urut[0];
-            $no_pendaftaran = $no_pendaftaran.$no_urut->nomor;
+            $no_pendaftaran = $no_pendaftaran.str_pad($no_urut->nomor, 3, '0', STR_PAD_LEFT);
             $no_urut->nomor = (string)((int)$no_urut->nomor + 1);
             $no_urut->save();
         }
         else {
-            $no_pendaftaran = $no_pendaftaran.'1';
+            $no_pendaftaran = $no_pendaftaran.'001';
             $no_urut = new noPendaftaran();
             $no_urut->tahun = date('Y');
             $no_urut->nomor = '2';
@@ -276,9 +276,18 @@ class PendaftarController extends Controller
         return $no_pendaftaran;
     }
 
+    public function verifikasiPendaftar(Request $request)
+    {
+        $id = $request->$id;
+        $pendaftar = pendaftar::find($id);
+        $pendaftar->no_pendaftaran = $this->generateNoPendaftaran();
+        $pendaftar->save();
+        return 'ok';
+    }
+
     private function statusSaatMendaftarTranslator($data)
     {
-        if($data->lulus_sma){return "lulus_sma";}
+        if($data->lulus_sma){return "lulus sma";}
         if($data->mahasiswa){return "mahasiswa";}
         if($data->bekerja){return "bekerja";}
     }
@@ -310,6 +319,7 @@ class PendaftarController extends Controller
 
     private function getPendaftarFullDetails($id) {
         $data_utama = pendaftar::find($id);
+        $data_utama->tanggal_lahir = date('d F Y', strtotime($data_utama->tanggal_lahir));
         $data_alamat_asal = alamat::find($data_utama->alamat_asal_id);
         $data_alamat_surabaya = alamat::find($data_utama->alamat_surabaya_id);
         $data_status_saat_mendaftar = statusSaatMendaftar::find($data_utama->status_saat_mendaftar_id);

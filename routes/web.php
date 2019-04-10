@@ -17,11 +17,14 @@ Route::get('/', function () {
 
 Route::get('/list', 'PendaftarController@index')->name('list');
 Route::get('/daftar', 'PendaftarController@create')->name('daftar');
-Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
 Route::get('/edit/{id}', 'PendaftarController@edit')->name('edit');
-Route::post('/edit/{id}', 'PendaftarController@update')->name('edit.update');
 Route::get('/detail/{id}', 'PendaftarController@show')->name('show');
 Route::get('/kwitansi/{id}', 'PendaftarController@kwitansi')->name('contoh');
+Route::get('/coba', 'PendaftarController@generateNoPendaftaran');
+
+Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
+Route::post('/edit/{id}', 'PendaftarController@update')->name('edit.update');
+Route::post('/verif', 'PendaftarController@verifikasiPendaftar')->name('verif');
 
 Auth::routes();
 
