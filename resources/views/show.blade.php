@@ -102,6 +102,22 @@
 						<td>{{ $data->sumber_informasi }}</td>
 					</tr>
 				</table>
+				<table>
+					<tr>
+						<form action="{{route('verif')}}" method="POST">
+						{{ csrf_field() }}
+						<input type="hidden" name="id" value="{{$data->id}}">
+						<input type="submit">
+						</form>
+					</tr>
+					<tr>
+						<form action="{{route('delete')}}" method="POST">
+						{{ csrf_field() }}
+						<input type="hidden" name="id" value="{{$data->id}}">
+						<input type="submit">
+						</form>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>

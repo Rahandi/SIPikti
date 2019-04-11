@@ -34,9 +34,11 @@
 					<tr>
 						<th>{{ $individu->nomor_pendaftaran }}</th>
 						<th>{{ $individu->nama }}</th>
-						<th><a href="kwitansi/{{ $individu->id }}">kwitansi</a></th>
-						<th><a href="detail/{{ $individu->id }}">detail</a></th>
-						<th><a href="edit/{{ $individu->id }}">edit</a></th>
+						<th><a href="kwitansi/{{ $individu->id }}">kwitansi</a>
+						<a href="detail/{{ $individu->id }}">detail</a>
+						form
+						<input type="hidden" name="">
+						<a href="edit/{{ $individu->id }}">edit</a></th>
 					</tr>
 					@endforeach
 					</tbody>
