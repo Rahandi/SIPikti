@@ -22,7 +22,7 @@
 			<!-- {{ Form::open(array('route' => 'daftar.store')) }} -->
 			<form id="msform" method="POST" action="{{route('daftar.store')}}" enctype="multipart/form-data">
 				{{ csrf_field() }}
-				<div class="myModal" style="margin-top: 15%; text-align: center;">
+				<div class="myModal" style="margin-top: 15%;">
 					<h2 class="fs-title" style="color: white;">Administrator</h2>
 					<input type="text" name="administrator" style="width: 70%;"><br>
 					<input type="button" name="next" class="nextMyModal action-button" value="Next" id="nextMyModal" />
@@ -38,95 +38,77 @@
 				<fieldset>
 					<h2 class="fs-title">Data Pribadi</h2>
 					<h3 class="fs-subtitle">Isikan data pribadi Anda secara jelas dan benar</h3>
-					<label>Nama Lengkap</label>
-					<input type="text" name="nama"/><br>
-					<label>Nama Lengkap dengan gelar</label>
-					<input type="text" name="nama_gelar"><br>
+
+					<input type="text" name="nama" placeholder="Nama Lengkap*"/><br>
+					
+					<input type="text" name="nama_gelar" placeholder="Nama Lengkap dengan gelar*"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Tempat Lahir</label>
-							<input type="text" name="tempat_lahir">
+							<input type="text" name="tempat_lahir" placeholder="Tempat Lahir*">
 						</div>
 						<div class="col-sm-6">
-							<label>Tanggal Lahir</label>
-							<input type="date" name="tanggal_lahir">
+							<input type="date" name="tanggal_lahir" placeholder="Tanggal Lahir*">
 						</div>
 					</div>
-					<label>Jenis Kelamin</label>
 					<div class="form-group">
 						<select class="form-control" name="jenis_kelamin">
-							<option value="Laki-laki">Laki-laki</option>
-							<option value="Perempuan">Perempuan</option>
+							<option value="laki_laki">Laki-laki</option>
+							<option value="perempuan">Perempuan</option>
 						</select>
 					</div>
-					<label>Agama / Kepercayaan</label>
-					<input type="text" name="agama"><br>
-					<label>Status Perkawinan</label>
+					<input type="text" name="agama" placeholder="Agama / Kepercayaan*"><br>
 					<div class="form-group">
 						<select class="form-control" name="status_perkawinan">
-							<option value="Belum Kawin">Belum Kawin</option>
-							<option value="Kawin">Kawin</option>
+							<option value="belum_kawin">Belum Kawin</option>
+							<option value="kawin">Kawin</option>
 						</select>
 					</div>
 					<!-- <input type="text" name="jenis_kelamin" placeholder="Jenis Kelamin*"><br>
 					<input type="text" name="status_perkawinan" placeholder="Status Perkawinan*"><br> -->
 
 					<!-- <h2 class="fs-title">Alamat</h2> -->
-					<h3 class="fs-subtitle">Alamat Asal</h3>
-					<label>Jalan</label>
-					<input type="text" name="asal_jalan"><br>
+					<h3 class="fs-subtitle">Alamat Asal</h3> 
+					<input type="text" name="asal_jalan" placeholder="Jalan*"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Kelurahan</label>
-							<input type="text" name="asal_kelurahan">
+							<input type="text" name="asal_kelurahan" placeholder="Kelurahan*">
 						</div>
 						<div class="col-sm-6">
-							<label>Kecamatan</label>
-							<input type="text" name="asal_kecamatan">
+							<input type="text" name="asal_kecamatan" placeholder="Kecamatan*">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Kabupaten</label>
-							<input type="text" name="asal_kabupaten">
+							<input type="text" name="asal_kabupaten" placeholder="Kabupaten*">
 						</div>
 						<div class="col-sm-6">
-							<label>Kode Pos</label>
-							<input type="text" name="asal_kode_pos">
+							<input type="text" name="asal_kode_pos" placeholder="Kode Pos*">
 						</div>
 					</div>
-					<label>Telepon</label>
-					<input type="text" name="asal_telepon"><br>
+					<input type="text" name="asal_telepon" placeholder="Telepon*"><br>
 
-					<h3 class="fs-subtitle">Alamat Surabaya</h3>
-					<label>Jalan</label>
-					<input type="text" name="surabaya_jalan"><br>
+					<h3 class="fs-subtitle">Alamat Surabaya</h3> 
+					<input type="text" name="surabaya_jalan" placeholder="Jalan*"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Kelurahan</label>
-							<input type="text" name="surabaya_kelurahan">
+							<input type="text" name="surabaya_kelurahan" placeholder="Kelurahan*">
 						</div>
 						<div class="col-sm-6">
-							<label>Kecamatan</label>
-							<input type="text" name="surabaya_kecamatan">
+							<input type="text" name="surabaya_kecamatan" placeholder="Kecamatan*">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Kabupaten</label>
-							<input type="text" name="surabaya_kabupaten">
+							<input type="text" name="surabaya_kabupaten" placeholder="Kabupaten*">
 						</div>
 						<div class="col-sm-6">
-							<label>Kode Pos</label>
-							<input type="text" name="surabaya_kode_pos">
+							<input type="text" name="surabaya_kode_pos" placeholder="Kode Pos*">
 						</div>
 					</div>
-					<label>Telepon</label>
-					<input type="text" name="surabaya_telepon"><br>
-					<label>Nomor Handphone</label>
-					<input type="text" name="nomor_handphone"><br>
+					<input type="text" name="surabaya_telepon" placeholder="Telepon*"><br>
+					<input type="text" name="nomor_handphone" placeholder="Nomor Handphone*"><br>
 
-					<input type="button" name="next" class="next action-button" value="Next" style="text-align: center;"/>
+					<input type="button" name="next" class="next action-button" value="Next"/>
 				</fieldset>
 				<fieldset>
 					<h2 class="fs-title">Jenjang Pendidikan</h2>
@@ -202,10 +184,11 @@
 							<input type="text" name="lainnya_tahun_lulus" placeholder="Tahun Lulus*">
 						</div>
 					</div>
+
 					<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
 					<input type="button" name="next" class="next action-button" value="Next"/>
 				</fieldset>
-				<fieldset style="text-align: center;">
+				<fieldset>
 					<h2 class="fs-title">Informasi Tambahan</h2>
 					<h3 class="fs-subtitle">Status pada saat mendaftar</h3>
 					<div class="form-check form-check-inline" style="font-size: 14px;">
@@ -219,22 +202,22 @@
 					<br><br>
 					<h3 class="fs-subtitle">Mengetahui program ini dari:</h3>
 					<div style="width: 100%;">
-						<div class="form-check form-check-inline" style="font-size: 14px;">
-							<input class="form-check-input" type="checkbox" id="cb4" name="koran">
-							<label class="form-check-label" for="cb4">Koran</label>
-							<input class="form-check-input" type="checkbox" id="cb5" name="spanduk" style="margin-left: 5%;">
-							<label class="form-check-label" for="cb5">Spanduk</label>
-							<input class="form-check-input" type="checkbox" id="cb6" name="brosur" style="margin-left: 5%;">
-							<label class="form-check-label" for="cb6">Brosur</label>
-						</div>
-						<div class="form-check form-check-inline" style="font-size: 14px;">
-							<input class="form-check-input" type="checkbox" id="cb7" name="teman_saudara" style="margin-left: 5%;">
-							<label class="form-check-label" for="cb7">Teman&nbsp;/&nbsp;Saudara</label>
-							<input class="form-check-input" type="checkbox" id="cb8" name="pameran" style="margin-left: 5%;">
-							<label class="form-check-label" for="cb8">Pameran</label>
-							<input class="form-check-input" type="checkbox" id="cb9" name="lainnya" style="margin-left: 5%;">
-							<label class="form-check-label" for="cb9">Lainnya</label>
-						</div>
+					<div class="form-check form-check-inline" style="font-size: 14px;">
+						<input class="form-check-input" type="checkbox" id="cb4" name="koran">
+						<label class="form-check-label" for="cb4">Koran</label>
+						<input class="form-check-input" type="checkbox" id="cb5" name="spanduk" style="margin-left: 5%;">
+						<label class="form-check-label" for="cb5">Spanduk</label>
+						<input class="form-check-input" type="checkbox" id="cb6" name="brosur" style="margin-left: 5%;">
+						<label class="form-check-label" for="cb6">Brosur</label>
+					</div>
+					<div class="form-check form-check-inline" style="font-size: 14px;">
+						<input class="form-check-input" type="checkbox" id="cb7" name="teman_saudara" style="margin-left: 5%;">
+						<label class="form-check-label" for="cb7">Teman&nbsp;/&nbsp;Saudara</label>
+						<input class="form-check-input" type="checkbox" id="cb8" name="pameran" style="margin-left: 5%;">
+						<label class="form-check-label" for="cb8">Pameran</label>
+						<input class="form-check-input" type="checkbox" id="cb9" name="lainnya" style="margin-left: 5%;">
+						<label class="form-check-label" for="cb9">Lainnya</label>
+					</div>
 					</div>
 					<br><br>
 					<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>

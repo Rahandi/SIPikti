@@ -26,6 +26,10 @@ Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
 Route::post('/edit/{id}', 'PendaftarController@update')->name('edit.update');
 Route::post('/verif', 'PendaftarController@verifikasiPendaftar')->name('verif');
 
+Route::get('/daftar2', function () {
+    return view('daftar2');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
