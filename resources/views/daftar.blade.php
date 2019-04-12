@@ -24,7 +24,7 @@
 				{{ csrf_field() }}
 				<div class="myModal" style="margin-top: 15%; text-align: center;">
 					<h2 class="fs-title" style="color: white;">Administrator</h2>
-					<input type="text" name="administrator" style="width: 70%;"><br>
+					<input type="text" name="administrator" style="width: 70%;" placeholder="contoh: Rizki Wahyu"><br>
 					<input type="button" name="next" class="nextMyModal action-button" value="Next" id="nextMyModal" />
 				</div>
 				<div id="form_1" style="display: none;">
@@ -39,13 +39,16 @@
 					<h2 class="fs-title">Data Pribadi</h2>
 					<h3 class="fs-subtitle">Isikan data pribadi Anda secara jelas dan benar</h3>
 					<label>Nama Lengkap</label>
-					<input type="text" name="nama"/><br>
+					<input type="text" name="nama" placeholder="contoh: Fina Yunita" /><br>
+					<!-- <input type="text" name="nama" value="" data-mjf="copy_fields" data-mjf_cf_on="keyup" data-mjf_cf_slaves="copy_onkeyup" id="copy_from_keyup"> -->
+					
 					<label>Nama Lengkap dengan gelar</label>
-					<input type="text" name="nama_gelar"><br>
+					<input type="text" name="nama_gelar" placeholder="contoh: Fina Yunita, S.Kom"><br>
+					<!-- <input type="text" name="nama_gelar" value="" data-mjf_cf_slaves="copy_onkeyup" id="copy_to_keyup"> -->
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Tempat Lahir</label>
-							<input type="text" name="tempat_lahir">
+							<input type="text" name="tempat_lahir" placeholder="contoh: Kediri">
 						</div>
 						<div class="col-sm-6">
 							<label>Tanggal Lahir</label>
@@ -60,7 +63,16 @@
 						</select>
 					</div>
 					<label>Agama / Kepercayaan</label>
-					<input type="text" name="agama"><br>
+					<div class="form-group">
+						<select class="form-control" name="agama">
+							<option value="Islam">Islam</option>
+							<option value="Kristen Protestan">Kristen Protestan</option>
+							<option value="Kristen Katolik">Kristen Katolik</option>
+							<option value="Hindu">Hindu</option>
+							<option value="Buddha">Buddha</option>
+							<option value="Khonghucu">Khonghucu</option>
+						</select>
+					</div>
 					<label>Status Perkawinan</label>
 					<div class="form-group">
 						<select class="form-control" name="status_perkawinan">
@@ -74,57 +86,57 @@
 					<!-- <h2 class="fs-title">Alamat</h2> -->
 					<h3 class="fs-subtitle">Alamat Asal</h3>
 					<label>Jalan</label>
-					<input type="text" name="asal_jalan"><br>
+					<input type="text" name="asal_jalan" placeholder="contoh: Ahmad Yani 22"><br>
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Kelurahan</label>
-							<input type="text" name="asal_kelurahan">
+							<input type="text" name="asal_kelurahan" placeholder="contoh: Pare">
 						</div>
 						<div class="col-sm-6">
-							<label>Kecamatan</label>
-							<input type="text" name="asal_kecamatan">
+							<label>Desa/Kecamatan</label>
+							<input type="text" name="asal_kecamatan" placeholder="contoh: Pare">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Kabupaten</label>
-							<input type="text" name="asal_kabupaten">
+							<label>Kabupaten/Kota</label>
+							<input type="text" name="asal_kabupaten" placeholder="contoh: Kediri">
 						</div>
 						<div class="col-sm-6">
 							<label>Kode Pos</label>
-							<input type="text" name="asal_kode_pos">
+							<input type="text" name="asal_kode_pos" placeholder="contoh: 64210">
 						</div>
 					</div>
 					<label>Telepon</label>
-					<input type="text" name="asal_telepon"><br>
+					<input type="text" name="asal_telepon" placeholder="contoh: 08xxx"><br>
 
 					<h3 class="fs-subtitle">Alamat Surabaya</h3>
 					<label>Jalan</label>
-					<input type="text" name="surabaya_jalan"><br>
+					<input type="text" name="surabaya_jalan" placeholder="contoh: Kejawan Gebang 23A"><br>
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Kelurahan</label>
-							<input type="text" name="surabaya_kelurahan">
+							<input type="text" name="surabaya_kelurahan" placeholder="contoh: Gebang Putih">
 						</div>
 						<div class="col-sm-6">
-							<label>Kecamatan</label>
-							<input type="text" name="surabaya_kecamatan">
+							<label>Desa/Kecamatan</label>
+							<input type="text" name="surabaya_kecamatan" placeholder="contoh: Sukolilo">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Kabupaten</label>
-							<input type="text" name="surabaya_kabupaten">
+							<label>Kabupaten/Kota</label>
+							<input type="text" name="surabaya_kabupaten" placeholder="contoh: Surabaya">
 						</div>
 						<div class="col-sm-6">
 							<label>Kode Pos</label>
-							<input type="text" name="surabaya_kode_pos">
+							<input type="text" name="surabaya_kode_pos" placeholder="contoh: 60111">
 						</div>
 					</div>
 					<label>Telepon</label>
-					<input type="text" name="surabaya_telepon"><br>
+					<input type="text" name="surabaya_telepon" placeholder="contoh: 08xxx"><br>
 					<label>Nomor Handphone</label>
-					<input type="text" name="nomor_handphone"><br>
+					<input type="text" name="nomor_handphone" placeholder="contoh: 08xxx"><br>
 
 					<input type="button" name="next" class="next action-button" value="Next" style="text-align: center;"/>
 				</fieldset>
@@ -132,74 +144,74 @@
 					<h2 class="fs-title">Jenjang Pendidikan</h2>
 
 					<h3 class="fs-subtitle" style="text-align: left;">SD</h3> 
-					<input type="text" name="sd_institusi" placeholder="Nama Institusi*"><br>
-					<input type="text" name="sd_bidang_studi" placeholder="Bidang Studi*"><br>
+					<input type="text" name="sd_institusi" placeholder="contoh: SDN Pare 2"><br>
+					<input type="text" name="sd_bidang_studi" placeholder="contoh: -"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="sd_tahun_masuk" placeholder="Tahun Masuk*">
+							<input type="text" name="sd_tahun_masuk" placeholder="contoh: 2004">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="sd_tahun_lulus" placeholder="Tahun Lulus*">
+							<input type="text" name="sd_tahun_lulus" placeholder="contoh: 2010">
 						</div>
 					</div>
 
 					<h3 class="fs-subtitle" style="text-align: left;">SLTP</h3> 
-					<input type="text" name="sltp_institusi" placeholder="Nama Institusi*"><br>
-					<input type="text" name="sltp_bidang_studi" placeholder="Bidang Studi*"><br>
+					<input type="text" name="sltp_institusi" placeholder="contoh: SMPN 2 Pare"><br>
+					<input type="text" name="sltp_bidang_studi" placeholder="contoh: -"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="sltp_tahun_masuk" placeholder="Tahun Masuk*">
+							<input type="text" name="sltp_tahun_masuk" placeholder="contoh: 2010">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="sltp_tahun_lulus" placeholder="Tahun Lulus*">
+							<input type="text" name="sltp_tahun_lulus" placeholder="contoh: 2013">
 						</div>
 					</div>
 
 					<h3 class="fs-subtitle" style="text-align: left;">SLTA</h3> 
-					<input type="text" name="slta_institusi" placeholder="Nama Institusi*"><br>
-					<input type="text" name="slta_bidang_studi" placeholder="Bidang Studi*"><br>
+					<input type="text" name="slta_institusi" placeholder="contoh: SMAN 2 Pare"><br>
+					<input type="text" name="slta_bidang_studi" placeholder="contoh: IPA"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="slta_tahun_masuk" placeholder="Tahun Masuk*">
+							<input type="text" name="slta_tahun_masuk" placeholder="contoh: 2013">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="slta_tahun_lulus" placeholder="Tahun Lulus*">
+							<input type="text" name="slta_tahun_lulus" placeholder="contoh: 2016">
 						</div>
 					</div>
 
 					<h3 class="fs-subtitle" style="text-align: left;">Diploma</h3> 
-					<input type="text" name="diploma_institusi" placeholder="Nama Institusi*"><br>
-					<input type="text" name="diploma_bidang_studi" placeholder="Bidang Studi*"><br>
+					<input type="text" name="diploma_institusi" placeholder="contoh: D3 ITS"><br>
+					<input type="text" name="diploma_bidang_studi" placeholder="contoh: Statistika"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="diploma_tahun_masuk" placeholder="Tahun Masuk*">
+							<input type="text" name="diploma_tahun_masuk" placeholder="contoh: 2016">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="diploma_tahun_lulus" placeholder="Tahun Lulus*">
+							<input type="text" name="diploma_tahun_lulus" placeholder="contoh: 2019">
 						</div>
 					</div>
 
 					<h3 class="fs-subtitle" style="text-align: left;">Sarjana</h3> 
-					<input type="text" name="sarjana_institusi" placeholder="Nama Institusi*"><br>
-					<input type="text" name="sarjana_bidang_studi" placeholder="Bidang Studi*"><br>
+					<input type="text" name="sarjana_institusi" placeholder="contoh: S1 ITS"><br>
+					<input type="text" name="sarjana_bidang_studi" placeholder="contoh: Teknik Elektro"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="sarjana_tahun_masuk" placeholder="Tahun Masuk*">
+							<input type="text" name="sarjana_tahun_masuk" placeholder="contoh: 2016">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="sarjana_tahun_lulus" placeholder="Tahun Lulus*">
+							<input type="text" name="sarjana_tahun_lulus" placeholder="contoh: 2020">
 						</div>
 					</div>
 
 					<h3 class="fs-subtitle" style="text-align: left;">Lain-lain</h3> 
-					<input type="text" name="lainnya_institusi" placeholder="Nama Institusi*"><br>
-					<input type="text" name="lainnya_bidang_studi" placeholder="Bidang Studi*"><br>
+					<input type="text" name="lainnya_institusi" placeholder="contoh: Bukalapak"><br>
+					<input type="text" name="lainnya_bidang_studi" placeholder="contoh: HRD"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="lainnya_tahun_masuk" placeholder="Tahun Masuk*">
+							<input type="text" name="lainnya_tahun_masuk" placeholder="contoh: 2018">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="lainnya_tahun_lulus" placeholder="Tahun Lulus*">
+							<input type="text" name="lainnya_tahun_lulus" placeholder="contoh: 2019">
 						</div>
 					</div>
 					<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
