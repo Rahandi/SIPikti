@@ -36,7 +36,6 @@
 						<th>{{ $individu->nama }}</th>
 						<th><a href="kwitansi/{{ $individu->id }}">kwitansi</a>
 						<a href="detail/{{ $individu->id }}">detail</a>
-						form
 						<input type="hidden" name="">
 						<a href="edit/{{ $individu->id }}">edit</a></th>
 					</tr>

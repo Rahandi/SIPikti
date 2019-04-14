@@ -3,9 +3,16 @@
 <head>
 	<title>Kwitansi</title>
 	<link rel="stylesheet" type="text/css" href="css/style2.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.css">
+	<style>@page { size: A4 potrait }</style>
 </head>
-<body>
-	<div class="container" style="margin: 3% 6% 3% 6%;">
+<body onload="window.print()" class="A4 potrait">
+	<div class="container" style="margin: 2% 6% 3% 6%;">
+		<!-- <div id="overlay">
+			<button class="button-print" onclick="clickPrint()"><i class="fa fa-print" style="font-size: 20px;"></i></button>
+		</div> -->
 		<div class="row" style="text-align: center;">
 			<b>PIKTI - ITS</b><br>
 			<b>Pendidikan Informatika dan Komputer Terapan</b><br>
@@ -22,9 +29,9 @@
 					<td>Atas Nama {{$data->nama}} dengan No. Pend {{$data->nomor_pendaftaran}}</td>
 				</tr>
 				<tr>
-					<td>UANG</td>
+					<td>TERBILANG RP</td>
 					<td>:</td>
-					<td>Empat Ratus Ribu Rupiah</td>
+					<td>400.000</td>
 				</tr>
 				<tr>
 					<td>GUNA</td>
@@ -32,9 +39,9 @@
 					<td>Pembayaran Pendaftaran PIKTI tanggal {{date("d F Y")}}</td>
 				</tr>
 				<tr>
-					<td>TERBILANG RP</td>
+					<td>UANG</td>
 					<td>:</td>
-					<td>400.000</td>
+					<td>Empat Ratus Ribu Rupiah</td>
 				</tr>
 			</table>
 		</div>
@@ -43,10 +50,18 @@
 			Surabaya, {{date("d F Y")}}<br><br><br><br><br><br>
 			{{$data->administrator}}
 		</div>
-		<br><br><hr>
+		<br><hr>
 		<div class="row">
 			Kwitansi ini sah apabila disertai dengan stempel dan tanda tangan dari PIKTI-ITS
 		</div>
 	</div>
 </body>
+<script>
+	// $(".button-print").click(function(){
+	// 	window.print();
+	// });
+	function clickPrint() {
+		window.print();
+	}
+</script>
 </html>

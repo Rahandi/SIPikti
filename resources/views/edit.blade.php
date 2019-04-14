@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" style="background-image: url(images/bg5.png);	background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+<html lang="{{ app()->getLocale() }}" style="background-image: url(../images/bg5.png);	background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,55 +11,48 @@
     <title>Pendaftaran PIKTI</title>
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/form.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../css/form.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 
 </head>
 <body>
 	<div class="row" style="align-content: center; margin-top: 3%; margin-bottom: 5%;">
 		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;">
 			<!-- {{ Form::open(array('route' => 'daftar.store')) }} -->
-			<form id="msform" method="POST" action="{{route('daftar.store')}}" enctype="multipart/form-data">
+			<form id="msform" method="POST" action="{{route('edit.update')}}" enctype="multipart/form-data">
 				{{ csrf_field() }}
-				<div class="myModal" style="margin-top: 15%; text-align: center;">
-					<h2 class="fs-title" style="color: white;">Administrator</h2>
-					<input type="text" name="administrator" style="width: 70%;" placeholder="contoh: Rizki Wahyu"><br>
-					<input type="button" name="next" class="nextMyModal action-button" value="Next" id="nextMyModal" />
-				</div>
-				<div id="form_1" style="display: none;">
 				<ul id="progressbar">
 					<li class="active">Data Pribadi</li>
 					<li>Pendidikan</li>
 					<li>Lainnya</li>
 				</ul>
-			<!-- fieldsets -->
-				
 				<fieldset>
 					<h2 class="fs-title">Data Pribadi</h2>
 					<h3 class="fs-subtitle">Isikan data pribadi Anda secara jelas dan benar</h3>
 					<label>Nama Lengkap</label>
-					<input type="text" name="nama" placeholder="contoh: Fina Yunita" /><br>
+					<input type="text" name="nama" value="{{$data->nama}}" /><br>
 					<!-- <input type="text" name="nama" value="" data-mjf="copy_fields" data-mjf_cf_on="keyup" data-mjf_cf_slaves="copy_onkeyup" id="copy_from_keyup"> -->
 					
 					<label>Nama Lengkap dengan gelar</label>
-					<input type="text" name="nama_gelar" placeholder="contoh: Fina Yunita, S.Kom"><br>
+					<input type="text" name="nama_gelar" value="{{$data->nama_gelar}}"><br>
 					<!-- <input type="text" name="nama_gelar" value="" data-mjf_cf_slaves="copy_onkeyup" id="copy_to_keyup"> -->
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Tempat Lahir</label>
-							<input type="text" name="tempat_lahir" placeholder="contoh: Kediri">
+							<input type="text" name="tempat_lahir" value="{{ $data->tempat_lahir }}">
 						</div>
 						<div class="col-sm-6">
 							<label>Tanggal Lahir</label>
-							<input type="date" name="tanggal_lahir">
+							<input type="date" name="tanggal_lahir" value="{{$data->tanggal_lahir}}">
 						</div>
 					</div>
 					<label>Jenis Kelamin</label>
+					<!-- {{$data->jenis_kelamin}} -->
 					<div class="form-group">
 						<select class="form-control" name="jenis_kelamin">
 							<option value="Laki-laki">Laki-laki</option>
-							<option value="Perempuan">Perempuan</option>
+							<option value="Perempuan" selected="selected">Perempuan</option>
 						</select>
 					</div>
 					<label>Agama / Kepercayaan</label>
@@ -86,57 +79,57 @@
 					<!-- <h2 class="fs-title">Alamat</h2> -->
 					<h3 class="fs-subtitle">Alamat Asal</h3>
 					<label>Jalan</label>
-					<input type="text" name="asal_jalan" placeholder="contoh: Ahmad Yani 22"><br>
+					<input type="text" name="asal_jalan" placeholder="contoh: Ahmad Yani 22" value="{{$data->alamat_asal->jalan}}"><br>
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Kelurahan</label>
-							<input type="text" name="asal_kelurahan" placeholder="contoh: Pare">
+							<input type="text" name="asal_kelurahan" placeholder="contoh: Pare" value="{{$data->alamat_asal->kelurahan}}">
 						</div>
 						<div class="col-sm-6">
 							<label>Desa/Kecamatan</label>
-							<input type="text" name="asal_kecamatan" placeholder="contoh: Pare">
+							<input type="text" name="asal_kecamatan" placeholder="contoh: Pare" value="{{$data->asal_kecamatan}}">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Kabupaten/Kota</label>
-							<input type="text" name="asal_kabupaten" placeholder="contoh: Kediri">
+							<input type="text" name="asal_kabupaten" placeholder="contoh: Kediri" value="{{$data->asal_kabupaten}}">
 						</div>
 						<div class="col-sm-6">
 							<label>Kode Pos</label>
-							<input type="text" name="asal_kode_pos" placeholder="contoh: 64210">
+							<input type="text" name="asal_kode_pos" placeholder="contoh: 64210" value="{{$data->asal_kode_pos}}">
 						</div>
 					</div>
 					<label>Telepon</label>
-					<input type="text" name="asal_telepon" placeholder="contoh: 08xxx"><br>
+					<input type="text" name="asal_telepon" placeholder="contoh: 08xxx" value="{{$data->asal_telepon}}"><br>
 
 					<h3 class="fs-subtitle">Alamat Surabaya</h3>
 					<label>Jalan</label>
-					<input type="text" name="surabaya_jalan" placeholder="contoh: Kejawan Gebang 23A"><br>
+					<input type="text" name="surabaya_jalan" placeholder="contoh: Kejawan Gebang 23A" value="{{$data->surabaya_jalan}}"><br>
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Kelurahan</label>
-							<input type="text" name="surabaya_kelurahan" placeholder="contoh: Gebang Putih">
+							<input type="text" name="surabaya_kelurahan" placeholder="contoh: Gebang Putih" value="{{$data->surabaya_kelurahan}}">
 						</div>
 						<div class="col-sm-6">
 							<label>Desa/Kecamatan</label>
-							<input type="text" name="surabaya_kecamatan" placeholder="contoh: Sukolilo">
+							<input type="text" name="surabaya_kecamatan" placeholder="contoh: Sukolilo" value="{{$data->surabaya_kecamatan}}">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Kabupaten/Kota</label>
-							<input type="text" name="surabaya_kabupaten" placeholder="contoh: Surabaya">
+							<input type="text" name="surabaya_kabupaten" placeholder="contoh: Surabaya" value="{{$data->surabaya_kabupaten}}">
 						</div>
 						<div class="col-sm-6">
 							<label>Kode Pos</label>
-							<input type="text" name="surabaya_kode_pos" placeholder="contoh: 60111">
+							<input type="text" name="surabaya_kode_pos" placeholder="contoh: 60111" value="{{$data->surabaya_kode_pos}}">
 						</div>
 					</div>
 					<label>Telepon</label>
-					<input type="text" name="surabaya_telepon" placeholder="contoh: 08xxx"><br>
+					<input type="text" name="surabaya_telepon" placeholder="contoh: 08xxx" value="{{$data->surabaya_telepon}}"><br>
 					<label>Nomor Handphone</label>
-					<input type="text" name="nomor_handphone" placeholder="contoh: 08xxx"><br>
+					<input type="text" name="nomor_handphone" placeholder="contoh: 08xxx" value="{{$data->nomor_handphone}}"><br>
 
 					<input type="button" name="next" class="next action-button" value="Next" style="text-align: center;"/>
 				</fieldset>
@@ -144,74 +137,74 @@
 					<h2 class="fs-title">Jenjang Pendidikan</h2>
 
 					<h3 class="fs-subtitle" style="text-align: left;">SD</h3> 
-					<input type="text" name="sd_institusi" placeholder="contoh: SDN Pare 2"><br>
-					<input type="text" name="sd_bidang_studi" placeholder="contoh: -"><br>
+					<input type="text" name="sd_institusi" placeholder="contoh: SDN Pare 2" value="{{$data->sd_institusi}}"><br>
+					<input type="text" name="sd_bidang_studi" placeholder="contoh: -" value="{{$data->sd_bidang_studi}}"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="sd_tahun_masuk" placeholder="contoh: 2004">
+							<input type="text" name="sd_tahun_masuk" placeholder="contoh: 2004" value="{{$data->sd_tahun_masuk}}">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="sd_tahun_lulus" placeholder="contoh: 2010">
+							<input type="text" name="sd_tahun_lulus" placeholder="contoh: 2010" value="{{$data->sd_tahun_lulus}}">
 						</div>
 					</div>
 
 					<h3 class="fs-subtitle" style="text-align: left;">SLTP</h3> 
-					<input type="text" name="sltp_institusi" placeholder="contoh: SMPN 2 Pare"><br>
-					<input type="text" name="sltp_bidang_studi" placeholder="contoh: -"><br>
+					<input type="text" name="sltp_institusi" placeholder="contoh: SMPN 2 Pare" value="{{$data->sltp_institusi}}"><br>
+					<input type="text" name="sltp_bidang_studi" placeholder="contoh: -" value="{{$data->sltp_bidang_studi}}"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="sltp_tahun_masuk" placeholder="contoh: 2010">
+							<input type="text" name="sltp_tahun_masuk" placeholder="contoh: 2010" value="{{$data->sltp_tahun_masuk}}">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="sltp_tahun_lulus" placeholder="contoh: 2013">
+							<input type="text" name="sltp_tahun_lulus" placeholder="contoh: 2013" value="{{$data->sltp_tahun_lulus}}">
 						</div>
 					</div>
 
 					<h3 class="fs-subtitle" style="text-align: left;">SLTA</h3> 
-					<input type="text" name="slta_institusi" placeholder="contoh: SMAN 2 Pare"><br>
-					<input type="text" name="slta_bidang_studi" placeholder="contoh: IPA"><br>
+					<input type="text" name="slta_institusi" placeholder="contoh: SMAN 2 Pare" value="{{$data->slta_institusi}}"><br>
+					<input type="text" name="slta_bidang_studi" placeholder="contoh: IPA" value="{{$data->slta_bidang_studi}}"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="slta_tahun_masuk" placeholder="contoh: 2013">
+							<input type="text" name="slta_tahun_masuk" placeholder="contoh: 2013" value="{{$data->slta_tahun_masuk}}">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="slta_tahun_lulus" placeholder="contoh: 2016">
+							<input type="text" name="slta_tahun_lulus" placeholder="contoh: 2016" value="{{$data->slta_tahun_lulus}}">
 						</div>
 					</div>
 
 					<h3 class="fs-subtitle" style="text-align: left;">Diploma</h3> 
-					<input type="text" name="diploma_institusi" placeholder="contoh: D3 ITS"><br>
-					<input type="text" name="diploma_bidang_studi" placeholder="contoh: Statistika"><br>
+					<input type="text" name="diploma_institusi" placeholder="contoh: D3 ITS" value="{{$data->diploma_institusi}}"><br>
+					<input type="text" name="diploma_bidang_studi" placeholder="contoh: Statistika" value="{{$data->diploma_bidang_studi}}"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="diploma_tahun_masuk" placeholder="contoh: 2016">
+							<input type="text" name="diploma_tahun_masuk" placeholder="contoh: 2016" value="{{$data->diploma_tahun_masuk}}">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="diploma_tahun_lulus" placeholder="contoh: 2019">
+							<input type="text" name="diploma_tahun_lulus" placeholder="contoh: 2019" value="{{$data->diploma_tahun_lulus}}">
 						</div>
 					</div>
 
 					<h3 class="fs-subtitle" style="text-align: left;">Sarjana</h3> 
-					<input type="text" name="sarjana_institusi" placeholder="contoh: S1 ITS"><br>
-					<input type="text" name="sarjana_bidang_studi" placeholder="contoh: Teknik Elektro"><br>
+					<input type="text" name="sarjana_institusi" placeholder="contoh: S1 ITS" value="{{$data->sarjana_institusi}}"><br>
+					<input type="text" name="sarjana_bidang_studi" placeholder="contoh: Teknik Elektro" value="{{$data->sarjana_bidang_studi}}"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="sarjana_tahun_masuk" placeholder="contoh: 2016">
+							<input type="text" name="sarjana_tahun_masuk" placeholder="contoh: 2016" value="{{$data->sarjana_tahun_masuk}}">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="sarjana_tahun_lulus" placeholder="contoh: 2020">
+							<input type="text" name="sarjana_tahun_lulus" placeholder="contoh: 2020" value="{{$data->sarjana_tahun_lulus}}">
 						</div>
 					</div>
 
 					<h3 class="fs-subtitle" style="text-align: left;">Lain-lain</h3> 
-					<input type="text" name="lainnya_institusi" placeholder="contoh: Bukalapak"><br>
-					<input type="text" name="lainnya_bidang_studi" placeholder="contoh: HRD"><br>
+					<input type="text" name="lainnya_institusi" placeholder="contoh: Bukalapak" value="{{$data->lainnya_institusi}}"><br>
+					<input type="text" name="lainnya_bidang_studi" placeholder="contoh: HRD" value="{{$data->lainnya_bidang_studi}}"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="lainnya_tahun_masuk" placeholder="contoh: 2018">
+							<input type="text" name="lainnya_tahun_masuk" placeholder="contoh: 2018" value="{{$data->lainnya_tahun_masuk}}">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="lainnya_tahun_lulus" placeholder="contoh: 2019">
+							<input type="text" name="lainnya_tahun_lulus" placeholder="contoh: 2019" value="{{$data->lainnya_tahun_lulus}}">
 						</div>
 					</div>
 					<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
@@ -257,16 +250,11 @@
 			<!-- {{ Form::close() }} -->
 		</div>
 	</div>
-	<script type="text/javascript">
-		$('#nextMyModal').click(function(){
-			$('.myModal').hide();
-			$('#form_1').show();
-		});
-	</script>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
-	<script type="text/javascript" src="js/sipikti.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/sipikti.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 	
 </body>
 </html>

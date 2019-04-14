@@ -54,7 +54,27 @@ class HomeController extends Controller
     public function edit(Request $request)
     {
         $id = $request->id;
-        $data = $this->getPendaftarFullDetails($id);
+        $data_utama = pendaftar::find($id);
+        $data_alamat_asal = alamat::find($data_utama->alamat_asal_id);
+        $data_alamat_surabaya = alamat::find($data_utama->alamat_surabaya_id);
+        $data_status_saat_mendaftar = statusSaatMendaftar::find($data_utama->status_saat_mendaftar_id);
+        $data_sumber_informasi = sumberInformasi::find($data_utama->sumber_informasi_id);
+
+        $pendidikan_id = unserialize($data_utama->pendidikan_id);
+        $data_pendidikan = array();
+        foreach($pendidikan_id as $key => $value)
+        {
+            $data_pendidikan[$key] = pendidikan::find($value);
+        }
+
+        $data = $data_utama;
+        $data['pendidikan'] = (object)$data_pendidikan;
+        $data['alamat_asal'] = $data_alamat_asal;
+        $data['alamat_surabaya'] = $data_alamat_surabaya;
+        $data['status_saat_mendaftar'] = $this->statusSaatMendaftarTranslator($data_status_saat_mendaftar);
+        $data['sumber_informasi'] = $this->sumberInformasiTranslator($data_sumber_informasi);
+        dd($data);        
+        return view('edit', compact('data'));
     }
 
     public function update(Request $request)

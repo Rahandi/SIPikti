@@ -107,14 +107,14 @@
 						<form action="{{route('verif')}}" method="POST">
 						{{ csrf_field() }}
 						<input type="hidden" name="id" value="{{$data->id}}">
-						<input type="submit">
+						<input type="submit" value="Verifikasi">
 						</form>
 					</tr>
 					<tr>
 						<form action="{{route('delete')}}" method="POST">
 						{{ csrf_field() }}
 						<input type="hidden" name="id" value="{{$data->id}}">
-						<input type="submit">
+						<input type="submit" value="Hapus">
 						</form>
 					</tr>
 				</table>
