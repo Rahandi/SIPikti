@@ -312,12 +312,15 @@ class HomeController extends Controller
 
     private function sumberInformasiTranslator($data)
     {
-        if($data->koran){return "koran";}
-        if($data->spanduk){return "spanduk";}
-        if($data->brosur){return "brosur";}
-        if($data->teman_saudara){return "teman/saudara";}
-        if($data->pameran){return "pameran";}
-        if($data->lainnya){return "lainnya";}
+        $sumber_informasi = array();
+        if($data->koran){array_push($sumber_informasi, "koran");}
+        if($data->spanduk){array_push($sumber_informasi, "spanduk");}
+        if($data->brosur){array_push($sumber_informasi, "brosur");}
+        if($data->teman_saudara){array_push($sumber_informasi, "teman/saudara");}
+        if($data->pameran){array_push($sumber_informasi, "pameran");}
+        if($data->lainnya){array_push($sumber_informasi, "lainnya");}
+        $sumber_informasi = join(', ', $sumber_informasi);
+        return $sumber_informasi;
     }
 
     private static function findOrCreate($id)
