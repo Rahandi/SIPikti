@@ -204,10 +204,13 @@ class HomeController extends Controller
     {
         $id = $request->id;
         $pendaftar = pendaftar::find($id);
-        $pendaftar->nomor_pendaftaran = $this->generateNoPendaftaran();
-        $pendaftar->administrator = Auth::user()->name;
-        $pendaftar->save();
-        return redirect()->back();
+        if($pendaftar->nomor_pendaftaran === null){
+            $pendaftar->nomor_pendaftaran = $this->generateNoPendaftaran();
+            $pendaftar->administrator = Auth::user()->name;
+            $pendaftar->save();
+            return redirect()->back();
+        }
+        return redirect()->back()->withErrors(['Sudah terverifikasi']);
     }
 
     public function deletePendaftar(Request $request)
