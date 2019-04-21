@@ -1,25 +1,19 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" style="background-image: url(../images/bg5.png); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-	<!-- CSRF Token -->
-	<meta name="csrf-token" content="{{ csrf_token() }}">
+@section('title')
+	Detail Pendaftar
+@endsection
 
-	<title>Detail Pendaftar</title>
-
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+@section('css')
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="../css/form.css">
+	<link rel="stylesheet" type="text/css" href="css/form.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
+@endsection
 
-</head>
-<body>
-	<div class="row" style="align-content: center; margin-top: 3%; margin-bottom: 5%; width: 100%;">
-		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;background-color: white;width: 90%; border-radius: 10px;">
-			<h3>Detail Pendaftar</h3>
+@section('content')
+	<div class="row" style="align-content: center; margin-top: 2%; margin-bottom: 5%; width: 100%;">
+		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;width: 100%; border-radius: 10px;">
+			<h4 style="text-align: center;">Detail Pendaftar</h4>
 			<div class="row" style="margin: 2%; width: 90%;">
 				<table style="width: 90%;">
 					<tr>
@@ -121,10 +115,11 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('js')
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../js/sipikti.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	
-</body>
-</html>
+@endsection

@@ -23,7 +23,7 @@ Route::post('/delete', 'HomeController@deletePendaftar')->name('delete');
 
 // public
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 Route::get('/daftar', 'PendaftarController@create')->name('daftar');
 Route::get('/coba', 'PendaftarController@generateNoPendaftaran');

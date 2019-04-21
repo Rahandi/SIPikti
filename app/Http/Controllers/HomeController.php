@@ -73,7 +73,7 @@ class HomeController extends Controller
         $data['alamat_surabaya'] = $data_alamat_surabaya;
         $data['status_saat_mendaftar'] = $this->statusSaatMendaftarTranslator($data_status_saat_mendaftar);
         $data['sumber_informasi'] = $this->sumberInformasiTranslator($data_sumber_informasi);
-        dd($data);        
+                
         return view('edit', compact('data'));
     }
 
