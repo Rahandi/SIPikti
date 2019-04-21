@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" style="background-image: url(images/bg5.png);	background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+<html lang="{{ app()->getLocale() }}" style="/*background-image: url(images/bg5.png);*/	background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,7 @@
 
 	<!-- Styles -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	@yield('css')
 </head>
 <body style="font-family: montserrat;">
@@ -75,13 +75,13 @@
 			</div>
 		</nav>
 
-		<!-- <main class="py-4">
+		<main class="py-4">
 			@yield('content')
-		</main> -->
+		</main>
 	</div>
-	<div class="container">
+	<!-- <div class="container">
 		@yield('content')
-	</div>
+	</div> -->
 	@yield('js')
 </body>
 </html>
