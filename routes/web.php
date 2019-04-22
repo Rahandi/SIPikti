@@ -12,7 +12,7 @@
 */
 
 // authorized
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/list', 'HomeController@list')->name('list');
 Route::get('/kwitansi/{id}', 'HomeController@kwitansi')->name('kwitansi');
 Route::get('/detail/{id}', 'HomeController@detail')->name('detail');

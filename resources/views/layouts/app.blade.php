@@ -4,25 +4,19 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-
 	<title>@yield('title')</title>
-
 	<!-- Scripts -->
-	<script src="{{ asset('js/app.js') }}" defer></script>
-
+	<script src="{{ asset('js/app.js') }}"></script>
 	<!-- Fonts -->
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
 	<!-- Styles -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	@yield('css')
 </head>
-<body style="font-family: montserrat;">
+<body style="font-family: montserrat; font-size: 15px;">
 	<div id="app">
 		<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
 			<div class="container">
