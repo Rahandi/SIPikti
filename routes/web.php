@@ -12,7 +12,7 @@
 */
 
 // authorized
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/list', 'HomeController@list')->name('list');
 Route::get('/kwitansi/{id}', 'HomeController@kwitansi')->name('kwitansi');
 Route::get('/detail/{id}', 'HomeController@detail')->name('detail');
@@ -23,7 +23,7 @@ Route::post('/delete', 'HomeController@deletePendaftar')->name('delete');
 
 // public
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
 Route::get('/daftar', 'PendaftarController@create')->name('daftar');
 Route::get('/coba', 'PendaftarController@generateNoPendaftaran');
