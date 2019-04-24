@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/form.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -96,22 +97,25 @@
 						<td>{{ $data->sumber_informasi }}</td>
 					</tr>
 				</table>
+			</div>
+			<div class="row" style="margin-right: 0px;">
 				<table>
-					<tr>
-						<form action="{{route('verif')}}" method="POST">
+					<tr style="margin-right: 0px;">
+						<form action="{{route('verif')}}" method="POST" style="margin-right: 0px;">
 						{{ csrf_field() }}
 						<input type="hidden" name="id" value="{{$data->id}}">
-						<input type="submit" value="Verifikasi">
+						<button type="submit" class="btn btn-success"><i class="material-icons" style="font-size: 18px;">check</i></button>
 						</form>
 					</tr>
 					<tr>
 						<form action="{{route('delete')}}" method="POST">
 						{{ csrf_field() }}
 						<input type="hidden" name="id" value="{{$data->id}}">
-						<input type="submit" value="Hapus">
+						<button type="submit" class="btn btn-danger"><i class="material-icons" style="font-size: 18px;">delete</i></button>
 						</form>
 					</tr>
 				</table>
+			</div>
 			</div>
 		</div>
 	</div>

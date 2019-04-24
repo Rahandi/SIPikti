@@ -33,7 +33,7 @@
 					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center;">
 						<thead>
 							<tr>
-								<th style="width: 3%;"></th>
+								<th style="width: 5%;"></th>
 								<th style="width: 25%;">Nama</th>
 								<th style="width: 20%;">Tanggal Daftar</th>
 								<th style="width: 20%;">Tanggal Lahir</th>
