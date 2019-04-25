@@ -17,17 +17,18 @@
 
 </head>
 <body>
-	<div class="row" style="align-content: center; margin-top: 3%; margin-bottom: 5%;">
+	
+	<div class="row" style="align-content: center; margin-top: 3%; margin-bottom: 5%;font-size: 17px;">
 		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;">
 			<!-- {{ Form::open(array('route' => 'daftar.store')) }} -->
 			<form id="msform" method="POST" action="{{route('daftar.store')}}" enctype="multipart/form-data">
 				{{ csrf_field() }}
-				<div class="myModal" style="margin-top: 15%; text-align: center;">
+				<!-- <div class="myModal" style="margin-top: 15%; text-align: center;">
 					<h2 class="fs-title" style="color: white;">Administrator</h2>
 					<input type="text" name="administrator" style="width: 70%;" placeholder="contoh: Rizki Wahyu"><br>
 					<input type="button" name="next" class="nextMyModal action-button" value="Next" id="nextMyModal" />
-				</div>
-				<div id="form_1" style="display: none;">
+				</div> -->
+				<div id="form_1">
 				<ul id="progressbar">
 					<li class="active">Data Pribadi</li>
 					<li>Pendidikan</li>
@@ -38,16 +39,16 @@
 				<fieldset>
 					<h2 class="fs-title">Data Pribadi</h2>
 					<h3 class="fs-subtitle">Isikan data pribadi Anda secara jelas dan benar</h3>
-					<label>Nama Lengkap</label>
-					<input type="text" name="nama" placeholder="contoh: Fina Yunita" /><br>
+					<label>Nama Lengkap</label><span id="nama_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+					<input type="text" name="nama" id="nama" placeholder="contoh: Fina Yunita" required="required" /><br>
 					<!-- <input type="text" name="nama" value="" data-mjf="copy_fields" data-mjf_cf_on="keyup" data-mjf_cf_slaves="copy_onkeyup" id="copy_from_keyup"> -->
 					
-					<label>Nama Lengkap dengan gelar</label>
+					<label>Nama Lengkap dengan gelar</label><span id="nama_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
 					<input type="text" name="nama_gelar" placeholder="contoh: Fina Yunita, S.Kom"><br>
 					<!-- <input type="text" name="nama_gelar" value="" data-mjf_cf_slaves="copy_onkeyup" id="copy_to_keyup"> -->
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Tempat Lahir</label>
+							<label>Tempat Lahir</label><span id="nama_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
 							<input type="text" name="tempat_lahir" placeholder="contoh: Kediri">
 						</div>
 						<div class="col-sm-6">
@@ -55,23 +56,29 @@
 							<input type="date" name="tanggal_lahir">
 						</div>
 					</div>
-					<label>Jenis Kelamin</label>
-					<div class="form-group">
-						<select class="form-control" name="jenis_kelamin">
-							<option value="Laki-laki">Laki-laki</option>
-							<option value="Perempuan">Perempuan</option>
-						</select>
-					</div>
-					<label>Agama / Kepercayaan</label>
-					<div class="form-group">
-						<select class="form-control" name="agama">
-							<option value="Islam">Islam</option>
-							<option value="Kristen Protestan">Kristen Protestan</option>
-							<option value="Kristen Katolik">Kristen Katolik</option>
-							<option value="Hindu">Hindu</option>
-							<option value="Buddha">Buddha</option>
-							<option value="Khonghucu">Khonghucu</option>
-						</select>
+					<div class="row">
+						<div class="col-sm-6">
+							<label>Jenis Kelamin</label>
+							<div class="form-group">
+								<select class="form-control" name="jenis_kelamin">
+									<option value="Laki-laki">Laki-laki</option>
+									<option value="Perempuan">Perempuan</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<label>Agama / Kepercayaan</label>
+							<div class="form-group">
+								<select class="form-control" name="agama">
+									<option value="Islam">Islam</option>
+									<option value="Kristen Protestan">Kristen Protestan</option>
+									<option value="Kristen Katolik">Kristen Katolik</option>
+									<option value="Hindu">Hindu</option>
+									<option value="Buddha">Buddha</option>
+									<option value="Khonghucu">Khonghucu</option>
+								</select>
+							</div>
+						</div>
 					</div>
 					<label>Status Perkawinan</label>
 					<div class="form-group">
@@ -80,6 +87,8 @@
 							<option value="Kawin">Kawin</option>
 						</select>
 					</div>
+					<label>Nomor Handphone</label>
+					<input type="text" name="nomor_handphone" placeholder="contoh: 08xxx"><br>
 					<!-- <input type="text" name="jenis_kelamin" placeholder="Jenis Kelamin*"><br>
 					<input type="text" name="status_perkawinan" placeholder="Status Perkawinan*"><br> -->
 
@@ -135,9 +144,6 @@
 					</div>
 					<label>Telepon</label>
 					<input type="text" name="surabaya_telepon" placeholder="contoh: 08xxx"><br>
-					<label>Nomor Handphone</label>
-					<input type="text" name="nomor_handphone" placeholder="contoh: 08xxx"><br>
-
 					<input type="button" name="next" class="next action-button" value="Next" style="text-align: center;"/>
 				</fieldset>
 				<fieldset>
@@ -257,16 +263,15 @@
 			<!-- {{ Form::close() }} -->
 		</div>
 	</div>
-	<script type="text/javascript">
-		$('#nextMyModal').click(function(){
-			$('.myModal').hide();
-			$('#form_1').show();
-		});
-	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="js/sipikti.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	
+	<script type="text/javascript">
+		// $('#nextMyModal').click(function(){
+		// 	$('.myModal').hide();
+		// 	$('#form_1').show();
+		// });
+	</script>
 </body>
 </html>

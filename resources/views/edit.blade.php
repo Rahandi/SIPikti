@@ -14,13 +14,26 @@
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../css/form.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-
+	<!-- <link href="../magic/stylesheets/magic.13.5.17.css" rel="stylesheet">
+	<script type="text/javascript" src="../magic/magic.14.7.24.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+		$m.construct({
+			 lang : "en_us"
+			,create_html5 : true
+			,global_debug : false
+			,animations : { use : true }
+			,ajax : { debug : false, visual : true, timeout : 15 }
+			,geo : { use : false, debug : false, visual : true }
+			,send_timezone_to : false
+		});
+	</script>
+	<script type="text/javascript" src="../magic/wand.14.7.14.js" charset="UTF-8"></script> -->
 </head>
 <body>
 	<div class="row" style="align-content: center; margin-top: 3%; margin-bottom: 5%;">
 		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;">
 			<!-- {{ Form::open(array('route' => 'daftar.store')) }} -->
-			<form id="msform" method="POST" action="{{route('edit.update')}}" enctype="multipart/form-data">
+			<form id="msform" method="POST" action="{{route('edit.update')}}" enctype="multipart/form-data" data-mjf="form_required" name="daftarin" id="daftarin">
 				{{ csrf_field() }}
 				<ul id="progressbar">
 					<li class="active">Data Pribadi</li>
@@ -28,15 +41,17 @@
 					<li>Lainnya</li>
 				</ul>
 				<fieldset>
+					<input type="hidden" name="id" value="{{$data->id}}">
 					<h2 class="fs-title">Data Pribadi</h2>
 					<h3 class="fs-subtitle">Isikan data pribadi Anda secara jelas dan benar</h3>
 					<label>Nama Lengkap</label>
-					<input type="text" name="nama" value="{{$data->nama}}" /><br>
+					<!-- <span class="field_error_msg_off" id="0_required_msg"><br>This field is required</span> -->
+					<input type="text" name="nama" value="{{$data->nama}}" data-mjf="field_required" id="0"/><br>
 					<!-- <input type="text" name="nama" value="" data-mjf="copy_fields" data-mjf_cf_on="keyup" data-mjf_cf_slaves="copy_onkeyup" id="copy_from_keyup"> -->
 					
 					<label>Nama Lengkap dengan gelar</label>
 					<input type="text" name="nama_gelar" value="{{$data->nama_gelar}}"><br>
-					<!-- <input type="text" name="nama_gelar" value="" data-mjf_cf_slaves="copy_onkeyup" id="copy_to_keyup"> -->
+					<!-- <input type="text" name="nama_gelar" value="" data-mjf_cf_slaves="copy_onkeyup" id="copy_to_keyup" data-mjf_cf_only_empty="true"> -->
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Tempat Lahir</label>
@@ -47,24 +62,30 @@
 							<input type="date" name="tanggal_lahir" value="{{$data->tanggal_lahir}}">
 						</div>
 					</div>
-					<label>Jenis Kelamin</label>
-					<!-- {{$data->jenis_kelamin}} -->
-					<div class="form-group">
-						<select class="form-control" name="jenis_kelamin">
-							<option value="Laki-laki">Laki-laki</option>
-							<option value="Perempuan" selected="selected">Perempuan</option>
-						</select>
-					</div>
-					<label>Agama / Kepercayaan</label>
-					<div class="form-group">
-						<select class="form-control" name="agama">
-							<option value="Islam">Islam</option>
-							<option value="Kristen Protestan">Kristen Protestan</option>
-							<option value="Kristen Katolik">Kristen Katolik</option>
-							<option value="Hindu">Hindu</option>
-							<option value="Buddha">Buddha</option>
-							<option value="Khonghucu">Khonghucu</option>
-						</select>
+					<div class="row">
+						<div class="col-sm-6">
+							<label>Jenis Kelamin</label>
+							<!-- {{$data->jenis_kelamin}} -->
+							<div class="form-group">
+								<select class="form-control" name="jenis_kelamin">
+									<option value="Laki-laki">Laki-laki</option>
+									<option value="Perempuan" selected="selected">Perempuan</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<label>Agama / Kepercayaan</label>
+							<div class="form-group">
+								<select class="form-control" name="agama">
+									<option value="Islam">Islam</option>
+									<option value="Kristen Protestan">Kristen Protestan</option>
+									<option value="Kristen Katolik">Kristen Katolik</option>
+									<option value="Hindu">Hindu</option>
+									<option value="Buddha">Buddha</option>
+									<option value="Khonghucu">Khonghucu</option>
+								</select>
+							</div>
+						</div>
 					</div>
 					<label>Status Perkawinan</label>
 					<div class="form-group">
@@ -73,6 +94,8 @@
 							<option value="Kawin">Kawin</option>
 						</select>
 					</div>
+					<label>Nomor Handphone</label>
+					<input type="text" name="nomor_handphone" placeholder="contoh: 08xxx" value="{{$data->nomor_handphone}}"><br>
 					<!-- <input type="text" name="jenis_kelamin" placeholder="Jenis Kelamin*"><br>
 					<input type="text" name="status_perkawinan" placeholder="Status Perkawinan*"><br> -->
 
@@ -87,49 +110,47 @@
 						</div>
 						<div class="col-sm-6">
 							<label>Desa/Kecamatan</label>
-							<input type="text" name="asal_kecamatan" placeholder="contoh: Pare" value="{{$data->asal_kecamatan}}">
+							<input type="text" name="asal_kecamatan" placeholder="contoh: Pare" value="{{$data->alamat_asal->kecamatan}}">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Kabupaten/Kota</label>
-							<input type="text" name="asal_kabupaten" placeholder="contoh: Kediri" value="{{$data->asal_kabupaten}}">
+							<input type="text" name="asal_kabupaten" placeholder="contoh: Kediri" value="{{$data->alamat_asal->kabupaten}}">
 						</div>
 						<div class="col-sm-6">
 							<label>Kode Pos</label>
-							<input type="text" name="asal_kode_pos" placeholder="contoh: 64210" value="{{$data->asal_kode_pos}}">
+							<input type="text" name="asal_kode_pos" placeholder="contoh: 64210" value="{{$data->alamat_asal->kode_pos}}">
 						</div>
 					</div>
 					<label>Telepon</label>
-					<input type="text" name="asal_telepon" placeholder="contoh: 08xxx" value="{{$data->asal_telepon}}"><br>
+					<input type="text" name="asal_telepon" placeholder="contoh: 08xxx" value="{{$data->alamat_asal->telepon}}"><br>
 
 					<h3 class="fs-subtitle">Alamat Surabaya</h3>
 					<label>Jalan</label>
-					<input type="text" name="surabaya_jalan" placeholder="contoh: Kejawan Gebang 23A" value="{{$data->surabaya_jalan}}"><br>
+					<input type="text" name="surabaya_jalan" placeholder="contoh: Kejawan Gebang 23A" value="{{$data->alamat_surabaya->jalan}}"><br>
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Kelurahan</label>
-							<input type="text" name="surabaya_kelurahan" placeholder="contoh: Gebang Putih" value="{{$data->surabaya_kelurahan}}">
+							<input type="text" name="surabaya_kelurahan" placeholder="contoh: Gebang Putih" value="{{$data->alamat_surabaya->kelurahan}}">
 						</div>
 						<div class="col-sm-6">
 							<label>Desa/Kecamatan</label>
-							<input type="text" name="surabaya_kecamatan" placeholder="contoh: Sukolilo" value="{{$data->surabaya_kecamatan}}">
+							<input type="text" name="surabaya_kecamatan" placeholder="contoh: Sukolilo" value="{{$data->alamat_surabaya->kecamatan}}">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Kabupaten/Kota</label>
-							<input type="text" name="surabaya_kabupaten" placeholder="contoh: Surabaya" value="{{$data->surabaya_kabupaten}}">
+							<input type="text" name="surabaya_kabupaten" placeholder="contoh: Surabaya" value="{{$data->alamat_surabaya->kabupaten}}">
 						</div>
 						<div class="col-sm-6">
 							<label>Kode Pos</label>
-							<input type="text" name="surabaya_kode_pos" placeholder="contoh: 60111" value="{{$data->surabaya_kode_pos}}">
+							<input type="text" name="surabaya_kode_pos" placeholder="contoh: 60111" value="{{$data->alamat_surabaya->kode_pos}}">
 						</div>
 					</div>
 					<label>Telepon</label>
-					<input type="text" name="surabaya_telepon" placeholder="contoh: 08xxx" value="{{$data->surabaya_telepon}}"><br>
-					<label>Nomor Handphone</label>
-					<input type="text" name="nomor_handphone" placeholder="contoh: 08xxx" value="{{$data->nomor_handphone}}"><br>
+					<input type="text" name="surabaya_telepon" placeholder="contoh: 08xxx" value="{{$data->alamat_surabaya->telepon}}"><br>
 
 					<input type="button" name="next" class="next action-button" value="Next" style="text-align: center;"/>
 				</fieldset>
@@ -137,14 +158,14 @@
 					<h2 class="fs-title">Jenjang Pendidikan</h2>
 
 					<h3 class="fs-subtitle" style="text-align: left;">SD</h3> 
-					<input type="text" name="sd_institusi" placeholder="contoh: SDN Pare 2" value="{{$data->sd_institusi}}"><br>
-					<input type="text" name="sd_bidang_studi" placeholder="contoh: -" value="{{$data->sd_bidang_studi}}"><br>
+					<input type="text" name="sd_institusi" placeholder="contoh: SDN Pare 2" value="{{$data->pendidikan->sd->institusi}}"><br>
+					<input type="text" name="sd_bidang_studi" placeholder="contoh: -" value="{{$data->pendidikan->sd->bidang_studi}}"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="sd_tahun_masuk" placeholder="contoh: 2004" value="{{$data->sd_tahun_masuk}}">
+							<input type="text" name="sd_tahun_masuk" placeholder="contoh: 2004" value="{{$data->pendidikan->sd->tahun_masuk}}">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="sd_tahun_lulus" placeholder="contoh: 2010" value="{{$data->sd_tahun_lulus}}">
+							<input type="text" name="sd_tahun_lulus" placeholder="contoh: 2010" value="{{$data->pendidikan->sd->tahun_lulus}}">
 						</div>
 					</div>
 
@@ -250,11 +271,11 @@
 			<!-- {{ Form::close() }} -->
 		</div>
 	</div>
-
+	<!-- <script type="text/javascript">$m.wand.copy_fields = true;</script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="../js/sipikti.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	
+	<!-- <script type="text/javascript">$m.wand.form_required = true;</script> -->
 </body>
 </html>
