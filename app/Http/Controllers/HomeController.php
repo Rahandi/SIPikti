@@ -30,7 +30,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $data = pendaftar::all();
+        return view('dashboard', compact('data'));
     }
 
     public function list()
