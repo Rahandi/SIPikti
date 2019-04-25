@@ -15,6 +15,12 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	@yield('css')
+	<style type="text/css">
+		@font-face {
+			font-family: "montserrat";
+			src: url("../font/Montserrat/Montserrat-Medium.ttf");
+		}
+	</style>
 </head>
 <body style="font-family: montserrat; font-size: 15px; height: 100%;background-image: url(../images/bg5.png);background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
 	<div id="app">
