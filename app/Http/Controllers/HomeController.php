@@ -246,7 +246,7 @@ class HomeController extends Controller
     {
         $current_year = date('Y');
         $current_year = substr($current_year, 2, strlen($current_year));
-        $tahun_angkatan = date('Y', strtotime('+10 year'));
+        $tahun_angkatan = date('Y', strtotime('+5 year'));
         $tahun_angkatan = substr($tahun_angkatan, 2, strlen($tahun_angkatan));
         $tahun_angkatan = $this->numberToRomanRepresentation((int)$tahun_angkatan);
         $no_pendaftaran = $tahun_angkatan.'/'.$current_year.'/'.'PIKTI'.'/';
