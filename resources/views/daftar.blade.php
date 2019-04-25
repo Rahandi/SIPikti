@@ -17,7 +17,6 @@
 
 </head>
 <body>
-	
 	<div class="row" style="align-content: center; margin-top: 3%; margin-bottom: 5%;font-size: 17px;">
 		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;">
 			<!-- {{ Form::open(array('route' => 'daftar.store')) }} -->
@@ -228,9 +227,9 @@
 					<h3 class="fs-subtitle" style="font-size: 17px;">Status pada saat mendaftar</h3>
 					<table style="width: 100%;">
 						<tr>
-							<td style="width: 30%;"><span><input type="radio" name="lulus_sma">Lulus SMA</span></td>
-							<td style="width: 30%;"><span><input type="radio" name="mahasiswa">Mahasiswa</span></td>
-							<td style="width: 30%;"><span><input type="radio" name="bekerja">Bekerja</span></td>
+							<td style="width: 30%;"><span><input type="radio" name="status" value="lulus_sma">Lulus SMA</span></td>
+							<td style="width: 30%;"><span><input type="radio" name="status" value="mahasiswa">Mahasiswa</span></td>
+							<td style="width: 30%;"><span><input type="radio" name="status" value="bekerja">Bekerja</span></td>
 						</tr>
 					</table>
 					<h3 class="fs-subtitle" style="font-size: 17px;">Mengetahui program ini dari:</h3>
@@ -255,14 +254,23 @@
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="js/sipikti.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		// $('#nextMyModal').click(function(){
 		// 	$('.myModal').hide();
 		// 	$('#form_1').show();
 		// });
+		$( document ).ready(function() {
+			$('#nama').focusout(function(){
+				var from = $('#nama').val();
+				console.log("change!");
+				// console.log(from);
+				$('#nama_gelar').val(from);
+			});
+		});
 	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/sipikti.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	
 </body>
 </html>
