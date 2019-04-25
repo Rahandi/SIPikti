@@ -197,7 +197,7 @@ class HomeController extends Controller
 
         $data_utama->save();
         $data = $this.getPendaftarFullDetails($data_utama->id);
-        return view('detail', compact('data'));
+        return redirect()->route('detail', ['id' => $data->id]);
     }
 
     public function verifikasi(Request $request)
@@ -246,7 +246,7 @@ class HomeController extends Controller
     {
         $current_year = date('Y');
         $current_year = substr($current_year, 2, strlen($current_year));
-        $tahun_angkatan = date('Y', strtotime('+10 year'));
+        $tahun_angkatan = date('Y', strtotime('+5 year'));
         $tahun_angkatan = substr($tahun_angkatan, 2, strlen($tahun_angkatan));
         $tahun_angkatan = $this->numberToRomanRepresentation((int)$tahun_angkatan);
         $no_pendaftaran = $tahun_angkatan.'/'.$current_year.'/'.'PIKTI'.'/';
@@ -308,20 +308,20 @@ class HomeController extends Controller
 
     private function statusSaatMendaftarTranslator($data)
     {
-        if($data->lulus_sma){return "lulus sma";}
-        if($data->mahasiswa){return "mahasiswa";}
-        if($data->bekerja){return "bekerja";}
+        if($data->lulus_sma){return "Lulus SMA";}
+        if($data->mahasiswa){return "Mahasiswa";}
+        if($data->bekerja){return "Bekerja";}
     }
 
     private function sumberInformasiTranslator($data)
     {
         $sumber_informasi = array();
-        if($data->koran){array_push($sumber_informasi, "koran");}
-        if($data->spanduk){array_push($sumber_informasi, "spanduk");}
-        if($data->brosur){array_push($sumber_informasi, "brosur");}
-        if($data->teman_saudara){array_push($sumber_informasi, "teman/saudara");}
-        if($data->pameran){array_push($sumber_informasi, "pameran");}
-        if($data->lainnya){array_push($sumber_informasi, "lainnya");}
+        if($data->koran){array_push($sumber_informasi, "Koran");}
+        if($data->spanduk){array_push($sumber_informasi, "Spanduk");}
+        if($data->brosur){array_push($sumber_informasi, "Brosur");}
+        if($data->teman_saudara){array_push($sumber_informasi, "Teman / Saudara");}
+        if($data->pameran){array_push($sumber_informasi, "Pameran");}
+        if($data->lainnya){array_push($sumber_informasi, "Lainnya");}
         $sumber_informasi = join(', ', $sumber_informasi);
         return $sumber_informasi;
     }
