@@ -9,7 +9,10 @@
 	<style>@page { size: A4 potrait }</style>
 </head>
 <body onload="window.print()" class="A4 potrait">
-	<div class="container" style="margin: 2% 6% 3% 6%;">
+	<div class="container" style="margin: 5% 6% 3% 6%;
+	font-family: Tahoma;
+	/*font-weight: 1000;*/
+	">
 		<!-- <div id="overlay">
 			<button class="button-print" onclick="clickPrint()"><i class="fa fa-print" style="font-size: 20px;"></i></button>
 		</div> -->
@@ -29,9 +32,9 @@
 					<td>Atas Nama {{$data->nama}} dengan No. Pend {{$data->nomor_pendaftaran}}</td>
 				</tr>
 				<tr>
-					<td>TERBILANG RP</td>
+					<td>TERBILANG</td>
 					<td>:</td>
-					<td>400.000</td>
+					<td>Empat Ratus Ribu Rupiah</td>
 				</tr>
 				<tr>
 					<td>GUNA</td>
@@ -39,9 +42,9 @@
 					<td>Pembayaran Pendaftaran PIKTI tanggal {{date("d F Y")}}</td>
 				</tr>
 				<tr>
-					<td>UANG</td>
+					<td>UANG RP</td>
 					<td>:</td>
-					<td>Empat Ratus Ribu Rupiah</td>
+					<td>400.000</td>
 				</tr>
 			</table>
 		</div>

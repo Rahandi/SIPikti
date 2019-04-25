@@ -169,8 +169,6 @@ class PendaftarController extends Controller
         $table_daftar->sumber_informasi_id = $table_sumber_informasi->id;
 
         $table_daftar->save();
-
-        $data = $this->getPendaftarFullDetails($table_daftar->id);
-        return route('homepage')->with('status','Pendaftaran Sukses');
+        return redirect('/')->with('status','Pendaftaran Sukses');
     }
 }
