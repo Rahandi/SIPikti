@@ -150,7 +150,6 @@
 
 					<h3 class="fs-subtitle" style="text-align: left;"><strong>SD</strong></h3><span id="sd_tahun_lulus_label" id="sd_tahun_masuk_label" id="sd_bidang_studi_label" id="sd_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 					<input type="text" name="sd_institusi" id="sd_institusi" placeholder="contoh: SDN Pare 2"><br>
-					<input type="text" name="sd_bidang_studi" id="sd_bidang_studi" placeholder="contoh: -"><br>
 					<div class="row">
 						<div class="col-sm-6">
 							<input type="text" name="sd_tahun_masuk" id="sd_tahun_masuk" placeholder="contoh: 2004">
@@ -162,7 +161,6 @@
 
 					<h3 class="fs-subtitle" style="text-align: left;"><strong>SLTP</strong></h3><span id="sltp_tahun_lulus_label" id="sltp_tahun_masuk_label" id="sltp_bidang_studi_label" id="sltp_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 					<input type="text" name="sltp_institusi" id="sltp_institusi" placeholder="contoh: SMPN 2 Pare"><br>
-					<input type="text" name="sltp_bidang_studi" id="sltp_bidang_studi" placeholder="contoh: -"><br>
 					<div class="row">
 						<div class="col-sm-6">
 							<input type="text" name="sltp_tahun_masuk" id="sltp_tahun_masuk" placeholder="contoh: 2010">

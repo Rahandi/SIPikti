@@ -161,7 +161,7 @@ $(".next1").click(function(){
 });
 
 $(".next2").click(function(){
-	var arr = ['#sd_institusi','#sd_bidang_studi','#sd_tahun_masuk','#sd_tahun_lulus','#sltp_institusi','#sltp_bidang_studi','#sltp_tahun_masuk','#sltp_tahun_lulus','#slta_institusi','#slta_bidang_studi','#slta_tahun_masuk','#slta_tahun_lulus'];
+	var arr = ['#sd_institusi','#sd_tahun_masuk','#sd_tahun_lulus','#sltp_institusi','#sltp_tahun_masuk','#sltp_tahun_lulus','#slta_institusi','#slta_bidang_studi','#slta_tahun_masuk','#slta_tahun_lulus'];
 	// $('#nama').blur(function(){
 	var arr_ = []
 	jQuery.each(arr, function(i,value){

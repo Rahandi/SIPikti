@@ -6,14 +6,18 @@
 
 @section('css')
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../css/form.css">
+	<!-- <link rel="stylesheet" type="text/css" href="../css/form.css"> -->
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<style type="text/css">
+		i.material-icons {
+			vertical-align: middle;
+		}
+	</style>
 @endsection
 
 @section('content')
-	<div class="row" style="align-content: center;margin-top: 7%;">
+	<div class="row" style="align-content: center;">
 		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;width: 100%; border-radius: 10px;">
 			<div class="card">
 				<div class="card-header" style="font-size: 20px; text-align: center;">Detail Pendaftar</div>
@@ -99,19 +103,23 @@
 							<td>:</td>
 							<td>{{ $data->sumber_informasi }}</td>
 						</tr>
+						<tr>
+							<td>Verifikator</td>
+							<td>:</td>
+							<td>{{ $data->administrator }}</td>
+						</tr>
 					</table>
 					<div class="row" style="margin-right: 0px;margin-top: 3%;">
 						<div class="col-md-6" style="text-align: right;">
 							<form action="{{route('verif')}}" method="POST">
 							{{ csrf_field() }}
 							<input type="hidden" name="id" value="{{$data->id}}">
-							<button type="submit" class="btn btn-success" style="margin: 2%;"><i class="material-icons" style="font-size: 18px;">check</i></button>
+							<button type="submit" class="btn btn-success" style="margin: 2%;">Verifikasi <i class="material-icons" style="font-size: 18px;">check</i></button>
 							</form>
 						</div>
 						<div class="col-md-6" style="text-align: left;">
-							<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDel" style="margin: 2%;"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+							<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDel" style="margin: 2%;">Delete <i class="material-icons" style="font-size: 18px;">delete</i></button>
 						</div>
-						</table>
 					</div>
 				</div>
 			</div>
