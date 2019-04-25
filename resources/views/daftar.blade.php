@@ -19,32 +19,24 @@
 <body>
 	<div class="row" style="align-content: center; margin-top: 3%; margin-bottom: 5%;font-size: 17px;">
 		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;">
-			<!-- {{ Form::open(array('route' => 'daftar.store')) }} -->
 			<form id="msform" method="POST" action="{{route('daftar.store')}}" enctype="multipart/form-data">
 				{{ csrf_field() }}
-				<!-- <div class="myModal" style="margin-top: 15%; text-align: center;">
-					<h2 class="fs-title" style="color: white;">Administrator</h2>
-					<input type="text" name="administrator" style="width: 70%;" placeholder="contoh: Rizki Wahyu"><br>
-					<input type="button" name="next" class="nextMyModal action-button" value="Next" id="nextMyModal" />
-				</div> -->
 				<div id="form_1">
 				<ul id="progressbar">
 					<li class="active">Data Pribadi</li>
 					<li>Pendidikan</li>
 					<li>Lainnya</li>
 				</ul>
-			<!-- fieldsets -->
-				
+
 				<fieldset>
 					<h2 class="fs-title">Data Pribadi</h2>
 					<h3 class="fs-subtitle">Isikan data pribadi Anda secara jelas dan benar</h3>
 					<label>Nama Lengkap</label><span id="nama_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
 					<input type="text" name="nama" id="nama" placeholder="contoh: Fina Yunita" required="required" /><br>
-					<!-- <input type="text" name="nama" value="" data-mjf="copy_fields" data-mjf_cf_on="keyup" data-mjf_cf_slaves="copy_onkeyup" id="copy_from_keyup"> -->
 					
 					<label>Nama Lengkap dengan gelar</label><span id="nama_gelar_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
 					<input type="text" name="nama_gelar" id="nama_gelar" placeholder="contoh: Fina Yunita, S.Kom"><br>
-					<!-- <input type="text" name="nama_gelar" value="" data-mjf_cf_slaves="copy_onkeyup" id="copy_to_keyup"> -->
+					
 					<div class="row">
 						<div class="col-sm-6">
 							<label>Tempat Lahir</label><span id="tempat_lahir_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
@@ -92,7 +84,7 @@
 					<input type="text" name="status_perkawinan" placeholder="Status Perkawinan*"><br> -->
 
 					<!-- <h2 class="fs-title">Alamat</h2> -->
-					<h3 class="fs-subtitle">Alamat Asal</h3>
+					<h3 class="fs-subtitle" style="font-size: 17px;">Alamat Asal</h3>
 					<label>Jalan</label><span id="asal_jalan_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
 					<input type="text" name="asal_jalan" id="asal_jalan" placeholder="contoh: Ahmad Yani 22"><br>
 					<div class="row">
@@ -118,7 +110,7 @@
 					<label>Telepon</label><span id="asal_telepon_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
 					<input type="text" name="asal_telepon" id="asal_telepon" placeholder="contoh: 08xxx"><br>
 
-					<h3 class="fs-subtitle">Alamat Surabaya</h3>
+					<h3 class="fs-subtitle" style="font-size: 17px;">Alamat Surabaya</h3>
 					<label>Jalan</label><span id="surabaya_jalan_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
 					<input type="text" name="surabaya_jalan" id="surabaya_jalan" placeholder="contoh: Kejawan Gebang 23A"><br>
 					<div class="row">
