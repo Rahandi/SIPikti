@@ -13,8 +13,10 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
+
 	<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 @endsection
 
 @section('content')
@@ -60,11 +62,30 @@
 										<a href="edit/{{ $individu->id }}"><button type="button" class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
 										</div>
 										<div class="col-md-3">
-										<form action="{{route('delete')}}" method="POST">
-										{{ csrf_field() }}
-										<input type="hidden" name="id" value="{{$individu->id}}">
-										<button type="submit" class="btn btn-danger"><i class="material-icons" style="font-size: 18px;">delete</i></button>
-										</form>
+										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+										</div>
+										<!-- Modal -->
+										<div id="modalDelete" class="modal fade" role="dialog">
+											<div class="modal-dialog">
+												<!-- Modal content-->
+												<div class="modal-content">
+													<div class="modal-header">
+														<h4 class="modal-title">Konfirmasi</h4>
+														<button type="button" class="close" data-dismiss="modal">&times;</button>
+													</div>
+													<div class="modal-body" style="text-align: left;">
+														<p>Apakah Anda yakin akan menghapus data ini?</p>
+													</div>
+													<div class="modal-footer">
+														<form action="{{route('delete')}}" method="POST">
+															{{ csrf_field() }}
+															<input type="hidden" name="id" value="{{$individu->id}}">
+															<button type="submit" class="btn btn-danger">Ya</button>
+														</form>
+														<button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</td>

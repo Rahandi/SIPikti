@@ -5,18 +5,19 @@
 @endsection
 
 @section('css')
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../css/form.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 @endsection
 
 @section('content')
-	<div class="row" style="align-content: center; margin-top: 2%; margin-bottom: 5%; width: 100%;">
+	<div class="row" style="align-content: center;margin-top: 7%;">
 		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;width: 100%; border-radius: 10px;">
 			<div class="card">
-                <div class="card-header" style="font-size: 20px; text-align: center;">Detail Pendaftar</div>
-                <div class="card-body">
+				<div class="card-header" style="font-size: 20px; text-align: center;">Detail Pendaftar</div>
+				<div class="card-body">
 			<!-- <h4 style="text-align: center;">Detail Pendaftar</h4> -->
 					<table style="width: 90%;">
 						<tr>
@@ -99,22 +100,21 @@
 							<td>{{ $data->sumber_informasi }}</td>
 						</tr>
 					</table>
-					<div class="row" style="margin-right: 0px; margin-left: 45%;margin-top: 3%;">
-						<table>
-							<tr>
-								<form action="{{route('verif')}}" method="POST">
-								{{ csrf_field() }}
-								<input type="hidden" name="id" value="{{$data->id}}">
-								<button type="submit" class="btn btn-success" style="margin: 2%;"><i class="material-icons" style="font-size: 18px;">check</i></button>
-								</form>
-							</tr>
-							<tr>
-								<form action="{{route('delete')}}" method="POST">
-								{{ csrf_field() }}
-								<input type="hidden" name="id" value="{{$data->id}}">
-								<button type="submit" class="btn btn-danger" style="margin: 2%;"><i class="material-icons" style="font-size: 18px;">delete</i></button>
-								</form>
-							</tr>
+					<div class="row" style="margin-right: 0px;margin-top: 3%;">
+						<div class="col-md-6" style="text-align: right;">
+							<form action="{{route('verif')}}" method="POST">
+							{{ csrf_field() }}
+							<input type="hidden" name="id" value="{{$data->id}}">
+							<button type="submit" class="btn btn-success" style="margin: 2%;"><i class="material-icons" style="font-size: 18px;">check</i></button>
+							</form>
+						</div>
+						<div class="col-md-6" style="text-align: left;">
+							<form action="{{route('delete')}}" method="POST">
+							{{ csrf_field() }}
+							<input type="hidden" name="id" value="{{$data->id}}">
+							<button type="submit" class="btn btn-danger" style="margin: 2%;"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+							</form>
+						</div>
 						</table>
 					</div>
 				</div>

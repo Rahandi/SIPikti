@@ -171,7 +171,7 @@ class PendaftarController extends Controller
         $table_daftar->save();
 
         $data = $this->getPendaftarFullDetails($table_daftar->id);
-        return view('show', compact('data'));
+        return view('detail', compact('data'));
     }
 
     private function getPendaftarFullDetails($id) {

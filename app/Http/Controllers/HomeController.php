@@ -197,7 +197,7 @@ class HomeController extends Controller
 
         $data_utama->save();
         $data = $this.getPendaftarFullDetails($data_utama->id);
-        return view('show', compact);
+        return view('detail', compact('data'));
     }
 
     public function verifikasi(Request $request)
@@ -239,7 +239,7 @@ class HomeController extends Controller
             $pendidikan->delete();
         }
 
-        return redirect()->route('list');
+        return redirect()->route('dashboard');
     }
 
     private function generateNoPendaftaran()

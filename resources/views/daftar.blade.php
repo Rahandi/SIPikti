@@ -149,7 +149,7 @@
 				<fieldset>
 					<h2 class="fs-title">Jenjang Pendidikan</h2>
 
-					<h3 class="fs-subtitle" style="text-align: left;">SD</h3><span id="sd_tahun_lulus_label" id="sd_tahun_masuk_label" id="sd_bidang_studi_label" id="sd_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
+					<h3 class="fs-subtitle" style="text-align: left;"><strong>SD</strong></h3><span id="sd_tahun_lulus_label" id="sd_tahun_masuk_label" id="sd_bidang_studi_label" id="sd_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 					<input type="text" name="sd_institusi" id="sd_institusi" placeholder="contoh: SDN Pare 2"><br>
 					<input type="text" name="sd_bidang_studi" id="sd_bidang_studi" placeholder="contoh: -"><br>
 					<div class="row">
@@ -161,7 +161,7 @@
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;">SLTP</h3><span id="sltp_tahun_lulus_label" id="sltp_tahun_masuk_label" id="sltp_bidang_studi_label" id="sltp_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
+					<h3 class="fs-subtitle" style="text-align: left;"><strong>SLTP</strong></h3><span id="sltp_tahun_lulus_label" id="sltp_tahun_masuk_label" id="sltp_bidang_studi_label" id="sltp_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 					<input type="text" name="sltp_institusi" id="sltp_institusi" placeholder="contoh: SMPN 2 Pare"><br>
 					<input type="text" name="sltp_bidang_studi" id="sltp_bidang_studi" placeholder="contoh: -"><br>
 					<div class="row">
@@ -173,7 +173,7 @@
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;">SLTA</h3><span id="slta_tahun_lulus_label" id="slta_tahun_masuk_label" id="slta_bidang_studi_label" id="slta_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
+					<h3 class="fs-subtitle" style="text-align: left;"><strong>SLTA</strong></h3><span id="slta_tahun_lulus_label" id="slta_tahun_masuk_label" id="slta_bidang_studi_label" id="slta_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 					<input type="text" name="slta_institusi" id="slta_institusi" placeholder="contoh: SMAN 2 Pare"><br>
 					<input type="text" name="slta_bidang_studi" id="slta_bidang_studi" placeholder="contoh: IPA"><br>
 					<div class="row">
@@ -185,7 +185,7 @@
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;">Diploma</h3> 
+					<h3 class="fs-subtitle" style="text-align: left;"><strong>Diploma</strong></h3> 
 					<input type="text" name="diploma_institusi" placeholder="contoh: D3 ITS"><br>
 					<input type="text" name="diploma_bidang_studi" placeholder="contoh: Statistika"><br>
 					<div class="row">
@@ -197,7 +197,7 @@
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;">Sarjana</h3> 
+					<h3 class="fs-subtitle" style="text-align: left;"><strong>Sarjana</strong></h3> 
 					<input type="text" name="sarjana_institusi" placeholder="contoh: S1 ITS"><br>
 					<input type="text" name="sarjana_bidang_studi" placeholder="contoh: Teknik Elektro"><br>
 					<div class="row">
@@ -209,7 +209,7 @@
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;">Lain-lain</h3> 
+					<h3 class="fs-subtitle" style="text-align: left;"><strong>Lain-lain</strong></h3> 
 					<input type="text" name="lainnya_institusi" placeholder="contoh: Bukalapak"><br>
 					<input type="text" name="lainnya_bidang_studi" placeholder="contoh: HRD"><br>
 					<div class="row">
@@ -225,36 +225,27 @@
 				</fieldset>
 				<fieldset style="text-align: center;">
 					<h2 class="fs-title">Informasi Tambahan</h2>
-					<h3 class="fs-subtitle">Status pada saat mendaftar</h3>
-					<div class="form-check form-check-inline" style="font-size: 14px;">
-						<input class="form-check-input" type="radio" id="cb1" name="lulus_sma">
-						<label class="form-check-label" for="cb1">Lulus&nbsp;SMA</label>
-						<input class="form-check-input" type="radio" id="cb2" name="mahasiswa" style="margin-left: 5%;">
-						<label class="form-check-label" for="cb2">Mahasiswa</label>
-						<input class="form-check-input" type="radio" id="cb3" name="bekerja" style="margin-left: 5%;">
-						<label class="form-check-label" for="cb3">Bekerja</label>
-					</div>
-					<br><br>
-					<h3 class="fs-subtitle">Mengetahui program ini dari:</h3>
-					<div style="width: 100%;">
-						<div class="form-check form-check-inline" style="font-size: 14px;">
-							<input class="form-check-input" type="checkbox" id="cb4" name="koran">
-							<label class="form-check-label" for="cb4">Koran</label>
-							<input class="form-check-input" type="checkbox" id="cb5" name="spanduk" style="margin-left: 5%;">
-							<label class="form-check-label" for="cb5">Spanduk</label>
-							<input class="form-check-input" type="checkbox" id="cb6" name="brosur" style="margin-left: 5%;">
-							<label class="form-check-label" for="cb6">Brosur</label>
-						</div>
-						<div class="form-check form-check-inline" style="font-size: 14px;">
-							<input class="form-check-input" type="checkbox" id="cb7" name="teman_saudara" style="margin-left: 5%;">
-							<label class="form-check-label" for="cb7">Teman&nbsp;/&nbsp;Saudara</label>
-							<input class="form-check-input" type="checkbox" id="cb8" name="pameran" style="margin-left: 5%;">
-							<label class="form-check-label" for="cb8">Pameran</label>
-							<input class="form-check-input" type="checkbox" id="cb9" name="lainnya" style="margin-left: 5%;">
-							<label class="form-check-label" for="cb9">Lainnya</label>
-						</div>
-					</div>
-					<br><br>
+					<h3 class="fs-subtitle" style="font-size: 17px;">Status pada saat mendaftar</h3>
+					<table style="width: 100%;">
+						<tr>
+							<td style="width: 30%;"><span><input type="radio" name="lulus_sma">Lulus SMA</span></td>
+							<td style="width: 30%;"><span><input type="radio" name="mahasiswa">Mahasiswa</span></td>
+							<td style="width: 30%;"><span><input type="radio" name="bekerja">Bekerja</span></td>
+						</tr>
+					</table>
+					<h3 class="fs-subtitle" style="font-size: 17px;">Mengetahui program ini dari:</h3>
+					<table style="width: 100%;">
+						<tr>
+							<td style="width: 30%;"><input type="checkbox" name="koran"><span>Koran</span></td>
+							<td style="width: 30%;"><input type="checkbox" name="spanduk"><span>Spanduk</span></td>
+							<td style="width: 30%;"><input type="checkbox" name="brosur"><span>Brosur</span></td>
+						</tr>
+						<tr>
+							<td style="width: 30%;"><input type="checkbox" name="teman_saudara"><span>Teman / Saudara</span></td>
+							<td style="width: 30%;"><input type="checkbox" name="pameran"><span>Pameran</span></td>
+							<td style="width: 30%;"><input type="checkbox" name="lainnya"><span>Lainnya</span></td>
+						</tr>
+					</table>
 					<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
 					<input type="submit" name="submit" class="action-button" value="Submit"/>
 				</fieldset>

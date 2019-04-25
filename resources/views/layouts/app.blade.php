@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" style="background-image: url(../images/bg5.png);	background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+<html lang="{{ app()->getLocale() }}">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,10 +16,10 @@
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	@yield('css')
 </head>
-<body style="font-family: montserrat; font-size: 15px;">
+<body style="font-family: montserrat; font-size: 15px; height: 100%;background-image: url(../images/bg5.png);background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
 	<div id="app">
-		<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-			<div class="container">
+		<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="position: fixed;z-index: 5;width: 100%;">
+			<div class="container" >
 				<a class="navbar-brand" href="{{ url('/') }}">
 					Pendaftaran PIKTI
 				</a>
@@ -40,11 +40,11 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
 							</li>
-							@if (Route::has('register'))
+							<!-- @if (Route::has('register'))
 								<li class="nav-item">
 									<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
 								</li>
-							@endif
+							@endif -->
 						@else
 							<li class="nav-item">
 								<a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
@@ -72,8 +72,10 @@
 			</div>
 		</nav>
 
-		<main class="py-4">
-			@yield('content')
+		<main class="py-4" style="background-image: url(../images/bg5.png);background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+			<div style="margin-top: 5%;">
+				@yield('content')
+			</div>
 		</main>
 	</div>
 	@yield('js')
