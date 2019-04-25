@@ -15,7 +15,7 @@ class CreatePendaftarsTable extends Migration
     {
         Schema::create('pendaftar', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nomor_pendaftaran')->unique();
+            $table->string('nomor_pendaftaran')->nullable();
             $table->string('nama');
             $table->string('nama_gelar');
             $table->string('tempat_lahir');
@@ -29,7 +29,7 @@ class CreatePendaftarsTable extends Migration
             $table->integer('alamat_surabaya_id');
             $table->integer('status_saat_mendaftar_id');
             $table->integer('sumber_informasi_id');
-            $table->string('administrator');
+            $table->string('administrator')->nullable();
             $table->timestamps();
         });
     }
