@@ -49,7 +49,7 @@ class HomeController extends Controller
     public function detail($id)
     {
         $data = $this->getPendaftarFullDetails($id);
-        return view('show', compact('data'));
+        return view('detail', compact('data'));
     }
 
     public function edit(Request $request)
