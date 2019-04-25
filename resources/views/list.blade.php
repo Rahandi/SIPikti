@@ -18,8 +18,8 @@
 </head>
 <body>
 	<div class="row" style="align-content: center; margin-top: 3%; margin-bottom: 5%; width: 100%;">
-		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;background-color: white;width: 90%; border-radius: 10px;">
-			<h3>List Pendaftar</h3>
+		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;background-image: url(../images/bg5.png);width: 90%; border-radius: 10px;">
+			<h3 style="font-size: 17px; text-align: center;">List Pendaftar</h3>
 			<div class="row" style="margin: 2%; width: 90%;">
 				<table class="table table-bordered" style="margin-top: 2%;width: 90%;">
 					<thead class="thead-dark">

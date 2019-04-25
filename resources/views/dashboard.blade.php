@@ -22,7 +22,7 @@
 	<div class="row justify-content-center">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header">List Pendaftar</div>
+				<div class="card-header" style="font-size: 20px; text-align: center;">List Pendaftar</div>
 
 				<div class="card-body table-responsive">
 					@if (session('status'))

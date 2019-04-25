@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" style="/*background-image: url(images/bg5.png);*/	background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+<html lang="{{ app()->getLocale() }}" style="background-image: url(../images/bg5.png);	background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -76,9 +76,6 @@
 			@yield('content')
 		</main>
 	</div>
-	<!-- <div class="container">
-		@yield('content')
-	</div> -->
 	@yield('js')
 </body>
 </html>

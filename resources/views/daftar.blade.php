@@ -43,17 +43,17 @@
 					<input type="text" name="nama" id="nama" placeholder="contoh: Fina Yunita" required="required" /><br>
 					<!-- <input type="text" name="nama" value="" data-mjf="copy_fields" data-mjf_cf_on="keyup" data-mjf_cf_slaves="copy_onkeyup" id="copy_from_keyup"> -->
 					
-					<label>Nama Lengkap dengan gelar</label><span id="nama_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
-					<input type="text" name="nama_gelar" placeholder="contoh: Fina Yunita, S.Kom"><br>
+					<label>Nama Lengkap dengan gelar</label><span id="nama_gelar_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+					<input type="text" name="nama_gelar" id="nama_gelar" placeholder="contoh: Fina Yunita, S.Kom"><br>
 					<!-- <input type="text" name="nama_gelar" value="" data-mjf_cf_slaves="copy_onkeyup" id="copy_to_keyup"> -->
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Tempat Lahir</label><span id="nama_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
-							<input type="text" name="tempat_lahir" placeholder="contoh: Kediri">
+							<label>Tempat Lahir</label><span id="tempat_lahir_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+							<input type="text" name="tempat_lahir" id="tempat_lahir" placeholder="contoh: Kediri">
 						</div>
 						<div class="col-sm-6">
-							<label>Tanggal Lahir</label>
-							<input type="date" name="tanggal_lahir">
+							<label>Tanggal Lahir</label><span id="tanggal_lahir_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+							<input type="date" name="tanggal_lahir" id="tanggal_lahir">
 						</div>
 					</div>
 					<div class="row">
@@ -87,101 +87,101 @@
 							<option value="Kawin">Kawin</option>
 						</select>
 					</div>
-					<label>Nomor Handphone</label>
-					<input type="text" name="nomor_handphone" placeholder="contoh: 08xxx"><br>
+					<label>Nomor Handphone</label><span id="nomor_handphone_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+					<input type="text" name="nomor_handphone" id="nomor_handphone" placeholder="contoh: 08xxx"><br>
 					<!-- <input type="text" name="jenis_kelamin" placeholder="Jenis Kelamin*"><br>
 					<input type="text" name="status_perkawinan" placeholder="Status Perkawinan*"><br> -->
 
 					<!-- <h2 class="fs-title">Alamat</h2> -->
 					<h3 class="fs-subtitle">Alamat Asal</h3>
-					<label>Jalan</label>
-					<input type="text" name="asal_jalan" placeholder="contoh: Ahmad Yani 22"><br>
+					<label>Jalan</label><span id="asal_jalan_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+					<input type="text" name="asal_jalan" id="asal_jalan" placeholder="contoh: Ahmad Yani 22"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Kelurahan</label>
-							<input type="text" name="asal_kelurahan" placeholder="contoh: Pare">
+							<label>Kelurahan</label><span id="asal_kelurahan_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+							<input type="text" name="asal_kelurahan" id="asal_kelurahan" placeholder="contoh: Pare">
 						</div>
 						<div class="col-sm-6">
-							<label>Desa/Kecamatan</label>
-							<input type="text" name="asal_kecamatan" placeholder="contoh: Pare">
+							<label>Desa/Kecamatan</label><span id="asal_kecamatan_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+							<input type="text" name="asal_kecamatan" id="asal_kecamatan" placeholder="contoh: Pare">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Kabupaten/Kota</label>
-							<input type="text" name="asal_kabupaten" placeholder="contoh: Kediri">
+							<label>Kabupaten/Kota</label><span id="asal_kabupaten_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+							<input type="text" name="asal_kabupaten" id="asal_kabupaten" placeholder="contoh: Kediri">
 						</div>
 						<div class="col-sm-6">
-							<label>Kode Pos</label>
-							<input type="text" name="asal_kode_pos" placeholder="contoh: 64210">
+							<label>Kode Pos</label><span id="asal_kode_pos_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+							<input type="text" name="asal_kode_pos" id="asal_kode_pos" placeholder="contoh: 64210">
 						</div>
 					</div>
-					<label>Telepon</label>
-					<input type="text" name="asal_telepon" placeholder="contoh: 08xxx"><br>
+					<label>Telepon</label><span id="asal_telepon_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+					<input type="text" name="asal_telepon" id="asal_telepon" placeholder="contoh: 08xxx"><br>
 
 					<h3 class="fs-subtitle">Alamat Surabaya</h3>
-					<label>Jalan</label>
-					<input type="text" name="surabaya_jalan" placeholder="contoh: Kejawan Gebang 23A"><br>
+					<label>Jalan</label><span id="surabaya_jalan_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+					<input type="text" name="surabaya_jalan" id="surabaya_jalan" placeholder="contoh: Kejawan Gebang 23A"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Kelurahan</label>
-							<input type="text" name="surabaya_kelurahan" placeholder="contoh: Gebang Putih">
+							<label>Kelurahan</label><span id="surabaya_kelurahan_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+							<input type="text" name="surabaya_kelurahan" id="surabaya_kelurahan" placeholder="contoh: Gebang Putih">
 						</div>
 						<div class="col-sm-6">
-							<label>Desa/Kecamatan</label>
-							<input type="text" name="surabaya_kecamatan" placeholder="contoh: Sukolilo">
+							<label>Desa/Kecamatan</label><span id="surabaya_kecamatan_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+							<input type="text" name="surabaya_kecamatan" id="surabaya_kecamatan" placeholder="contoh: Sukolilo">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
-							<label>Kabupaten/Kota</label>
-							<input type="text" name="surabaya_kabupaten" placeholder="contoh: Surabaya">
+							<label>Kabupaten/Kota</label><span id="surabaya_kabupaten_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+							<input type="text" name="surabaya_kabupaten" id="surabaya_kabupaten" placeholder="contoh: Surabaya">
 						</div>
 						<div class="col-sm-6">
-							<label>Kode Pos</label>
-							<input type="text" name="surabaya_kode_pos" placeholder="contoh: 60111">
+							<label>Kode Pos</label><span id="surabaya_kode_pos_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+							<input type="text" name="surabaya_kode_pos" id="surabaya_kode_pos" placeholder="contoh: 60111">
 						</div>
 					</div>
-					<label>Telepon</label>
-					<input type="text" name="surabaya_telepon" placeholder="contoh: 08xxx"><br>
-					<input type="button" name="next" class="next action-button" value="Next" style="text-align: center;"/>
+					<label>Telepon</label><span id="surabaya_telepon_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+					<input type="text" name="surabaya_telepon" id="surabaya_telepon" placeholder="contoh: 08xxx"><br>
+					<input type="button" name="next" class="next1 action-button" value="Next" style="text-align: center;"/>
 				</fieldset>
 				<fieldset>
 					<h2 class="fs-title">Jenjang Pendidikan</h2>
 
-					<h3 class="fs-subtitle" style="text-align: left;">SD</h3> 
-					<input type="text" name="sd_institusi" placeholder="contoh: SDN Pare 2"><br>
-					<input type="text" name="sd_bidang_studi" placeholder="contoh: -"><br>
+					<h3 class="fs-subtitle" style="text-align: left;">SD</h3><span id="sd_tahun_lulus_label" id="sd_tahun_masuk_label" id="sd_bidang_studi_label" id="sd_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
+					<input type="text" name="sd_institusi" id="sd_institusi" placeholder="contoh: SDN Pare 2"><br>
+					<input type="text" name="sd_bidang_studi" id="sd_bidang_studi" placeholder="contoh: -"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="sd_tahun_masuk" placeholder="contoh: 2004">
+							<input type="text" name="sd_tahun_masuk" id="sd_tahun_masuk" placeholder="contoh: 2004">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="sd_tahun_lulus" placeholder="contoh: 2010">
+							<input type="text" name="sd_tahun_lulus" id="sd_tahun_lulus" placeholder="contoh: 2010">
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;">SLTP</h3> 
-					<input type="text" name="sltp_institusi" placeholder="contoh: SMPN 2 Pare"><br>
-					<input type="text" name="sltp_bidang_studi" placeholder="contoh: -"><br>
+					<h3 class="fs-subtitle" style="text-align: left;">SLTP</h3><span id="sltp_tahun_lulus_label" id="sltp_tahun_masuk_label" id="sltp_bidang_studi_label" id="sltp_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
+					<input type="text" name="sltp_institusi" id="sltp_institusi" placeholder="contoh: SMPN 2 Pare"><br>
+					<input type="text" name="sltp_bidang_studi" id="sltp_bidang_studi" placeholder="contoh: -"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="sltp_tahun_masuk" placeholder="contoh: 2010">
+							<input type="text" name="sltp_tahun_masuk" id="sltp_tahun_masuk" placeholder="contoh: 2010">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="sltp_tahun_lulus" placeholder="contoh: 2013">
+							<input type="text" name="sltp_tahun_lulus" id="sltp_tahun_lulus" placeholder="contoh: 2013">
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;">SLTA</h3> 
-					<input type="text" name="slta_institusi" placeholder="contoh: SMAN 2 Pare"><br>
-					<input type="text" name="slta_bidang_studi" placeholder="contoh: IPA"><br>
+					<h3 class="fs-subtitle" style="text-align: left;">SLTA</h3><span id="slta_tahun_lulus_label" id="slta_tahun_masuk_label" id="slta_bidang_studi_label" id="slta_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
+					<input type="text" name="slta_institusi" id="slta_institusi" placeholder="contoh: SMAN 2 Pare"><br>
+					<input type="text" name="slta_bidang_studi" id="slta_bidang_studi" placeholder="contoh: IPA"><br>
 					<div class="row">
 						<div class="col-sm-6">
-							<input type="text" name="slta_tahun_masuk" placeholder="contoh: 2013">
+							<input type="text" name="slta_tahun_masuk" id="slta_tahun_masuk" placeholder="contoh: 2013">
 						</div>
 						<div class="col-sm-6">
-							<input type="text" name="slta_tahun_lulus" placeholder="contoh: 2016">
+							<input type="text" name="slta_tahun_lulus" id="slta_tahun_lulus" placeholder="contoh: 2016">
 						</div>
 					</div>
 
@@ -221,7 +221,7 @@
 						</div>
 					</div>
 					<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-					<input type="button" name="next" class="next action-button" value="Next"/>
+					<input type="button" name="next" class="next2 action-button" value="Next"/>
 				</fieldset>
 				<fieldset style="text-align: center;">
 					<h2 class="fs-title">Informasi Tambahan</h2>
