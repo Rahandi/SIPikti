@@ -197,7 +197,7 @@ class HomeController extends Controller
 
         $data_utama->save();
         $data = $this.getPendaftarFullDetails($data_utama->id);
-        return view('detail', compact('data'));
+        return redirect()->route('detail', ['id' => $data->id]);
     }
 
     public function verifikasi(Request $request)

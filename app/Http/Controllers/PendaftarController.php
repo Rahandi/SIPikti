@@ -83,7 +83,7 @@ class PendaftarController extends Controller
             $table_pendidikan = new pendidikan();
             $table_pendidikan->jenjang_pendidikan = 'sd';
             $table_pendidikan->institusi = $request->sd_institusi;
-            $table_pendidikan->bidang_studi = $request->sd_bidang_studi;
+            $table_pendidikan->bidang_studi = '-';
             $table_pendidikan->tahun_masuk = $request->sd_tahun_masuk;
             $table_pendidikan->tahun_lulus = $request->sd_tahun_lulus;
             $table_pendidikan->save();
@@ -94,7 +94,7 @@ class PendaftarController extends Controller
             $table_pendidikan = new pendidikan();
             $table_pendidikan->jenjang_pendidikan = 'sltp';
             $table_pendidikan->institusi = $request->sltp_institusi;
-            $table_pendidikan->bidang_studi = $request->sltp_bidang_studi;
+            $table_pendidikan->bidang_studi = '-';
             $table_pendidikan->tahun_masuk = $request->sltp_tahun_masuk;
             $table_pendidikan->tahun_lulus = $request->sltp_tahun_lulus;
             $table_pendidikan->save();
@@ -149,9 +149,9 @@ class PendaftarController extends Controller
 
         //bagian status saat mendaftar
         $table_status_saat_mendaftar = new statusSaatMendaftar();
-        $table_status_saat_mendaftar->lulus_sma = (isset($request->lulus_sma)) ? 1 : 0;
-        $table_status_saat_mendaftar->mahasiswa = (isset($request->mahasiswa)) ? 1 : 0;
-        $table_status_saat_mendaftar->bekerja = (isset($request->bekerja)) ? 1 : 0;
+        $table_status_saat_mendaftar->lulus_sma = ($request->status == 'lulus_sma') ? 1 : 0;
+        $table_status_saat_mendaftar->mahasiswa = ($request->status == 'mahasiswa') ? 1 : 0;
+        $table_status_saat_mendaftar->bekerja = ($request->status == 'bekerja') ? 1 : 0;
         $table_status_saat_mendaftar->save();
 
         $table_daftar->status_saat_mendaftar_id = $table_status_saat_mendaftar->id;
@@ -171,47 +171,6 @@ class PendaftarController extends Controller
         $table_daftar->save();
 
         $data = $this->getPendaftarFullDetails($table_daftar->id);
-        return view('homepage');
-    }
-
-    private function getPendaftarFullDetails($id) {
-        $data_utama = pendaftar::find($id);
-        $data_utama->tanggal_lahir = date('d F Y', strtotime($data_utama->tanggal_lahir));
-        $data_alamat_asal = alamat::find($data_utama->alamat_asal_id);
-        $data_alamat_surabaya = alamat::find($data_utama->alamat_surabaya_id);
-        $data_status_saat_mendaftar = statusSaatMendaftar::find($data_utama->status_saat_mendaftar_id);
-        $data_sumber_informasi = sumberInformasi::find($data_utama->sumber_informasi_id);
-
-        $pendidikan_id = unserialize($data_utama->pendidikan_id);
-        $data_pendidikan = array();
-        foreach($pendidikan_id as $key => $value)
-        {
-            array_push($data_pendidikan, pendidikan::find($value));
-        }
-
-        $data = $data_utama;
-        $data['pendidikan'] = (object)$data_pendidikan;
-        $data['alamat_asal'] = $data_alamat_asal;
-        $data['alamat_surabaya'] = $data_alamat_surabaya;
-        $data['status_saat_mendaftar'] = $this->statusSaatMendaftarTranslator($data_status_saat_mendaftar);
-        $data['sumber_informasi'] = $this->sumberInformasiTranslator($data_sumber_informasi);
-        return $data;
-    }
-
-    private function statusSaatMendaftarTranslator($data)
-    {
-        if($data->lulus_sma){return "lulus sma";}
-        if($data->mahasiswa){return "mahasiswa";}
-        if($data->bekerja){return "bekerja";}
-    }
-
-    private function sumberInformasiTranslator($data)
-    {
-        if($data->koran){return "koran";}
-        if($data->spanduk){return "spanduk";}
-        if($data->brosur){return "brosur";}
-        if($data->teman_saudara){return "teman/saudara";}
-        if($data->pameran){return "pameran";}
-        if($data->lainnya){return "lainnya";}
+        return route('homepage');
     }
 }
