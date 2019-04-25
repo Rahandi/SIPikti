@@ -109,14 +109,32 @@
 							</form>
 						</div>
 						<div class="col-md-6" style="text-align: left;">
-							<form action="{{route('delete')}}" method="POST">
-							{{ csrf_field() }}
-							<input type="hidden" name="id" value="{{$data->id}}">
-							<button type="submit" class="btn btn-danger" style="margin: 2%;"><i class="material-icons" style="font-size: 18px;">delete</i></button>
-							</form>
+							<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDel" style="margin: 2%;"><i class="material-icons" style="font-size: 18px;">delete</i></button>
 						</div>
 						</table>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="modalDel" class="modal fade" role="dialog" style="z-index: 9999;">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Konfirmasi</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body" style="text-align: left;">
+					<p>Apakah Anda yakin akan menghapus data ini?</p>
+				</div>
+				<div class="modal-footer">
+					<form action="{{route('delete')}}" method="POST">
+						{{ csrf_field() }}
+						<input type="hidden" name="id" value="{{$data->id}}">
+						<button type="submit" class="btn btn-danger">Ya</button>
+					</form>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
 				</div>
 			</div>
 		</div>
