@@ -17,7 +17,7 @@ class CreatePendidikansTable extends Migration
             $table->increments('id');
             $table->string('jenjang_pendidikan');
             $table->string('institusi');
-            $table->string('bidang_studi');
+            $table->string('bidang_studi')->nullable();
             $table->string('tahun_masuk');
             $table->string('tahun_lulus');
             $table->timestamps();
