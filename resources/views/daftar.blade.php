@@ -140,72 +140,94 @@
 				<fieldset>
 					<h2 class="fs-title">Jenjang Pendidikan</h2>
 
-					<h3 class="fs-subtitle" style="text-align: left;"><strong>SD</strong></h3><span id="sd_tahun_lulus_label" id="sd_tahun_masuk_label" id="sd_bidang_studi_label" id="sd_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
+					<h3 class="fs-subtitle" style="font-size: 17px;"><strong>SD</strong></h3>
+					<label>Nama Institusi</label><span id="sd_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 					<input type="text" name="sd_institusi" id="sd_institusi" placeholder="contoh: SDN Pare 2"><br>
 					<div class="row">
 						<div class="col-sm-6">
+							<label>Tahun Masuk</label><span id="sd_tahun_masuk_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 							<input type="text" name="sd_tahun_masuk" id="sd_tahun_masuk" placeholder="contoh: 2004">
 						</div>
 						<div class="col-sm-6">
+							<label>Tahun Lulus</label><span id="sd_tahun_lulus_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 							<input type="text" name="sd_tahun_lulus" id="sd_tahun_lulus" placeholder="contoh: 2010">
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;"><strong>SLTP</strong></h3><span id="sltp_tahun_lulus_label" id="sltp_tahun_masuk_label" id="sltp_bidang_studi_label" id="sltp_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
+					<h3 class="fs-subtitle" style="font-size: 17px;"><strong>SLTP</strong></h3>
+					<label>Nama Institusi</label><span id="sltp_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 					<input type="text" name="sltp_institusi" id="sltp_institusi" placeholder="contoh: SMPN 2 Pare"><br>
 					<div class="row">
 						<div class="col-sm-6">
+							<label>Tahun Masuk</label><span id="sltp_tahun_masuk_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 							<input type="text" name="sltp_tahun_masuk" id="sltp_tahun_masuk" placeholder="contoh: 2010">
 						</div>
 						<div class="col-sm-6">
+							<label>Tahun Lulus</label><span id="sltp_tahun_lulus_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 							<input type="text" name="sltp_tahun_lulus" id="sltp_tahun_lulus" placeholder="contoh: 2013">
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;"><strong>SLTA</strong></h3><span id="slta_tahun_lulus_label" id="slta_tahun_masuk_label" id="slta_bidang_studi_label" id="slta_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
+					<h3 class="fs-subtitle" style="font-size: 17px;"><strong>SLTA</strong></h3>
+					<label>Nama Institusi</label><span id="slta_institusi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 					<input type="text" name="slta_institusi" id="slta_institusi" placeholder="contoh: SMAN 2 Pare"><br>
+					<label>Bidang Studi</label><span id="slta_bidang_studi_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 					<input type="text" name="slta_bidang_studi" id="slta_bidang_studi" placeholder="contoh: IPA"><br>
 					<div class="row">
 						<div class="col-sm-6">
+							<label>Tahun Masuk</label><span id="slta_tahun_masuk_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 							<input type="text" name="slta_tahun_masuk" id="slta_tahun_masuk" placeholder="contoh: 2013">
 						</div>
 						<div class="col-sm-6">
+							<label>Tahun Lulus</label><span id="slta_tahun_lulus_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon dilengkapi</strong></span>
 							<input type="text" name="slta_tahun_lulus" id="slta_tahun_lulus" placeholder="contoh: 2016">
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;"><strong>Diploma</strong></h3> 
+					<h3 class="fs-subtitle" style="font-size: 17px;"><strong>Diploma</strong></h3> 
+					<label>Nama Institusi</label>
 					<input type="text" name="diploma_institusi" placeholder="contoh: D3 ITS"><br>
+					<label>Bidang Studi</label>
 					<input type="text" name="diploma_bidang_studi" placeholder="contoh: Statistika"><br>
 					<div class="row">
 						<div class="col-sm-6">
+							<label>Tahun Masuk</label>
 							<input type="text" name="diploma_tahun_masuk" placeholder="contoh: 2016">
 						</div>
 						<div class="col-sm-6">
+							<label>Tahun Lulus</label>
 							<input type="text" name="diploma_tahun_lulus" placeholder="contoh: 2019">
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;"><strong>Sarjana</strong></h3> 
+					<h3 class="fs-subtitle" style="font-size: 17px;"><strong>Sarjana</strong></h3>
+					<label>Nama Institusi</label>
 					<input type="text" name="sarjana_institusi" placeholder="contoh: S1 ITS"><br>
+					<label>Bidang Studi</label>
 					<input type="text" name="sarjana_bidang_studi" placeholder="contoh: Teknik Elektro"><br>
 					<div class="row">
 						<div class="col-sm-6">
+							<label>Tahun Masuk</label>
 							<input type="text" name="sarjana_tahun_masuk" placeholder="contoh: 2016">
 						</div>
 						<div class="col-sm-6">
+							<label>Tahun Lulus</label>
 							<input type="text" name="sarjana_tahun_lulus" placeholder="contoh: 2020">
 						</div>
 					</div>
 
-					<h3 class="fs-subtitle" style="text-align: left;"><strong>Lain-lain</strong></h3> 
+					<h3 class="fs-subtitle" style="font-size: 17px;"><strong>Lain-lain</strong></h3> 
+					<label>Nama Institusi</label>
 					<input type="text" name="lainnya_institusi" placeholder="contoh: Bukalapak"><br>
+					<label>Bidang Studi</label>
 					<input type="text" name="lainnya_bidang_studi" placeholder="contoh: HRD"><br>
 					<div class="row">
 						<div class="col-sm-6">
+							<label>Tahun Masuk</label>
 							<input type="text" name="lainnya_tahun_masuk" placeholder="contoh: 2018">
 						</div>
 						<div class="col-sm-6">
+							<label>Tahun Lulus</label>
 							<input type="text" name="lainnya_tahun_lulus" placeholder="contoh: 2019">
 						</div>
 					</div>
