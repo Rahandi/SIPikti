@@ -111,33 +111,36 @@
 					<table style="width: 100%; margin-top: 2%;">
 						<tr>
 							<td style="width: 30%;text-align: right;">
-							<a 
-							@if ($data->administrator)
-								href="{{ route('kwitansi',$data->id) }}"
-							@endif
-							style="margin-right: 2%;"><button type="button" class="btn btn-success"
-							@if (!$data->administrator)
-								disabled=""
-							@endif
-							>Print <i class="material-icons" style="font-size: 18px;">print</i></button></a>
+								<a 
+								@if ($data->administrator)
+									href="{{ route('kwitansi',$data->id) }}"
+								@endif
+								style="margin-right: 2%;"><button type="button" class="btn btn-success"
+								@if (!$data->administrator)
+									disabled=""
+								@endif
+								>Print <i class="material-icons" style="font-size: 18px;">print</i></button></a>
 							</td>
 							<td style="width: 10%;text-align: center;">
-							<form 
-							@if(!$data->nomor_pendaftaran)
-								action="{{route('verif')}}" 
-							@endif
-							method="POST">
-							{{ csrf_field() }}
-							<input type="hidden" name="id" value="{{$data->id}}">
-							<button type="submit" class="btn btn-success" style="margin: 2%;"
-							@if($data->nomor_pendaftaran)
-								disabled="disabled"
-							@endif
-							>Verifikasi <i class="material-icons" style="font-size: 18px;">check</i></button>
-							</form>
+								<form 
+								@if(!$data->nomor_pendaftaran)
+									action="{{route('verif')}}" 
+								@endif
+								method="POST">
+								{{ csrf_field() }}
+								<input type="hidden" name="id" value="{{$data->id}}">
+								<button type="submit" class="btn btn-success" style="margin: 2%;"
+								@if($data->nomor_pendaftaran)
+									disabled="disabled"
+								@endif
+								>Verifikasi <i class="material-icons" style="font-size: 18px;">check</i></button>
+								</form>
+							</td>
+							<td style="width: 5%; text-align: center;">
+								<a href="{{ route('edit',$data->id) }}" style="margin-right: 2%;"><button type="button" class="btn btn-warning">Edit <i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
 							</td>
 							<td style="width: 30%;text-align: left;">
-							<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDel" style="margin: 2%;">Delete <i class="material-icons" style="font-size: 18px;">delete</i></button>
+								<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDel" style="margin: 2%;">Delete <i class="material-icons" style="font-size: 18px;">delete</i></button>
 							</td>
 						</tr>
 

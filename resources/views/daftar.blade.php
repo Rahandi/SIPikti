@@ -35,7 +35,7 @@
 					<input type="text" name="nama" id="nama" placeholder="contoh: Fina Yunita" required="required" /><br>
 					
 					<label>Nama Lengkap dengan gelar</label><span id="nama_gelar_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
-					<input type="text" name="nama_gelar" id="nama_gelar" placeholder="contoh: Fina Yunita, S.Kom"><br>
+					<input type="text" name="nama_gelar" id="nama_gelar" placeholder="contoh: Fina Yunita, S.Kom" onkeypress="return noEnter()"><br>
 					
 					<div class="row">
 						<div class="col-sm-6">
@@ -267,10 +267,10 @@
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		// $('#nextMyModal').click(function(){
-		// 	$('.myModal').hide();
-		// 	$('#form_1').show();
-		// });
+		document.getElementsByTagName("INPUT").onkeypress = function() {noEnter()};
+		function noEnter(){
+			return !(window.event && window.event.keyCode == 13);
+		}
 		$( document ).ready(function() {
 			$('#nama').focusout(function(){
 				var from = $('#nama').val();
@@ -281,8 +281,8 @@
 		});
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="js/sipikti.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/sipikti.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 	
 </body>
 </html>
