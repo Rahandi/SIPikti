@@ -55,17 +55,17 @@
 									<div class="row" style="margin: 0px;">
 										<a 
 										@if ($individu->administrator)
-											href="kwitansi/{{ $individu->id }}"
+											href="{{ route('kwitansi',$individu->id) }}"
 										@endif
 										style="margin-right: 2%;"><button type="button" class="btn btn-success"
 										@if (!$individu->administrator)
 											disabled=""
 										@endif
 										>Print <i class="material-icons" style="font-size: 18px;">print</i></button></a>
-										<a href="detail/{{ $individu->id }}"><button type="button" class="btn btn-primary">Detail <i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
+										<a href="{{ route('detail',$individu->id) }}"><button type="button" class="btn btn-primary">Detail <i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
 									</div>
 									<div class="row" style="margin: 0px;margin-top: 1%;">
-										<a href="edit/{{ $individu->id }}" style="margin-right: 2%;"><button type="button" class="btn btn-warning">Edit <i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
+										<a href="{{ route('edit',$individu->id) }}" style="margin-right: 2%;"><button type="button" class="btn btn-warning">Edit <i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
 										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">Delete <i class="material-icons" style="font-size: 18px;">delete</i></button>
 									</div>
 								</td>
