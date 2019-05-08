@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/form.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
-<body>
+<body onkeypress="return noEnter()">
 	<div class="row" style="align-content: center; margin-top: 3%; margin-bottom: 5%;">
 		<div class="col-sm-10 col-md-offset-10 mx-auto" style="z-index: 1;">
 			<!-- {{ Form::open(array('route' => 'daftar.store')) }} -->
@@ -31,7 +31,7 @@
 					<h2 class="fs-title">Data Pribadi</h2>
 					<h3 class="fs-subtitle">Isikan data pribadi Anda secara jelas dan benar</h3>
 					<label>Nama Lengkap</label><span id="nama_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
-					<input type="text" name="nama" id="nama" placeholder="contoh: Fina Yunita" value="{{$data->nama}}" required="required" /><br>
+					<input type="text" name="nama" id="nama" placeholder="contoh: Fina Yunita" value="{{$data->nama}}" required="required"/><br>
 					
 					<label>Nama Lengkap dengan gelar</label><span id="nama_gelar_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
 					<input type="text" name="nama_gelar" id="nama_gelar" placeholder="contoh: Fina Yunita, S.Kom" value="{{$data->nama_gelar}}"><br>
@@ -387,6 +387,16 @@
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
+		var input = document.getElementsByTagName("INPUT");
+		for (i in input){
+			if (i>0){
+				input[i].addEventListener("keypress", noEnter);
+				// input[i].onkeypress = function(){noEnter()};
+			}
+		}
+		function noEnter(){
+			return !(window.event && window.event.keyCode == 13);
+		}
 		$( document ).ready(function() {
 			$('#nama').focusout(function(){
 				var from = $('#nama').val();

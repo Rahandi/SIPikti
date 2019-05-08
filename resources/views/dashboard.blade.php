@@ -57,7 +57,7 @@
 										@if ($individu->administrator)
 											href="{{ route('kwitansi',$individu->id) }}"
 										@endif
-										style="margin-right: 2%;"><button type="button" class="btn btn-success"
+										target="_blank" style="margin-right: 2%;"><button type="button" class="btn btn-success"
 										@if (!$individu->administrator)
 											disabled=""
 										@endif
