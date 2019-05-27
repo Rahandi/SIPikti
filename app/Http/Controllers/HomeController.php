@@ -8,6 +8,7 @@ use App\statusSaatMendaftar;
 use App\alamat;
 use App\sumberInformasi;
 use App\noPendaftaran;
+use App\mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -240,6 +241,29 @@ class HomeController extends Controller
         }
 
         return redirect()->route('dashboard');
+    }
+
+    public function acceptToMahasiswa(Request $request)
+    {
+        $id = $request->id;
+        $data = pendaftar::find($id);
+        $mahasiswa = new mahasiswa();
+        $mahasiswa->nomor_pendaftaran = $data->nomor_pendaftaran;
+        $mahasiswa->nama = $data->nama;
+        $mahasiswa->nama_gelar = $data->nama_gelar;
+        $mahasiswa->tempat_lahir = $data->tempat_lahir;
+        $mahasiswa->tanggal_lahir = $data->tanggal_lahir;
+        $mahasiswa->jenis_kelamin = $data->jenis_kelamin;
+        $mahasiswa->agama = $data->agama;
+        $mahasiswa->status_perkawinan = $data->status_perkawinan;
+        $mahasiswa->nomor_handphone = $data->nomor_handphone;
+        $mahasiswa->pendidikan_id = $data->pendidikan_id;
+        $mahasiswa->alamat_asal_id = $data->alamat_asal_id;
+        $mahasiswa->alamat_surabaya_id = $data->alamat_surabaya_id;
+        $mahasiswa->status_saat_mendaftar_id = $data->status_saat_mendaftar_id;
+        $mahasiswa->sumber_informasi_id = $data->sumber_informasi_id;
+        $mahasiswa->administrator = $data->administrator;
+        $mahasiswa->save();
     }
 
     private function generateNoPendaftaran()
