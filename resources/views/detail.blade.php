@@ -6,7 +6,6 @@
 
 @section('css')
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<!-- <link rel="stylesheet" type="text/css" href="../css/form.css"> -->
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 	<style type="text/css">
@@ -109,17 +108,43 @@
 							<td>{{ $data->administrator }}</td>
 						</tr>
 					</table>
-					<div class="row" style="margin-right: 0px;margin-top: 3%;">
-						<div class="col-md-6" style="text-align: right;">
-							<form action="{{route('verif')}}" method="POST">
-							{{ csrf_field() }}
-							<input type="hidden" name="id" value="{{$data->id}}">
-							<button type="submit" class="btn btn-success" style="margin: 2%;">Verifikasi <i class="material-icons" style="font-size: 18px;">check</i></button>
-							</form>
-						</div>
-						<div class="col-md-6" style="text-align: left;">
-							<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDel" style="margin: 2%;">Delete <i class="material-icons" style="font-size: 18px;">delete</i></button>
-						</div>
+					<table style="width: 100%; margin-top: 2%;">
+						<tr>
+							<td style="width: 30%;text-align: right;">
+								<a 
+								@if ($data->administrator)
+									href="{{ route('kwitansi',$data->id) }}"
+								@endif
+								target="_blank" style="margin-right: 2%;"><button type="button" class="btn btn-success"
+								@if (!$data->administrator)
+									disabled=""
+								@endif
+								>Print <i class="material-icons" style="font-size: 18px;">print</i></button></a>
+							</td>
+							<td style="width: 10%;text-align: center;">
+								<form 
+								@if(!$data->nomor_pendaftaran)
+									action="{{route('verif')}}" 
+								@endif
+								method="POST">
+								{{ csrf_field() }}
+								<input type="hidden" name="id" value="{{$data->id}}">
+								<button type="submit" class="btn btn-success" style="margin: 2%;"
+								@if($data->nomor_pendaftaran)
+									disabled="disabled"
+								@endif
+								>Verifikasi <i class="material-icons" style="font-size: 18px;">check</i></button>
+								</form>
+							</td>
+							<td style="width: 5%; text-align: center;">
+								<a href="{{ route('edit',$data->id) }}" style="margin-right: 2%;"><button type="button" class="btn btn-warning">Edit <i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
+							</td>
+							<td style="width: 30%;text-align: left;">
+								<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDel" style="margin: 2%;">Delete <i class="material-icons" style="font-size: 18px;">delete</i></button>
+							</td>
+						</tr>
+
+						</table>
 					</div>
 				</div>
 			</div>

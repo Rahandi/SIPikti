@@ -78,7 +78,7 @@ class PendaftarController extends Controller
         $table_daftar->alamat_surabaya_id = $table_alamat->id;
 
         //bagian pendidikan
-        if (isset($request->sd_institusi, $request->sd_bidang_studi, $request->sd_tahun_masuk, $request->sd_tahun_lulus)) {
+        if (isset($request->sd_institusi, $request->sd_tahun_masuk, $request->sd_tahun_lulus)) {
             $table_pendidikan = new pendidikan();
             $table_pendidikan->jenjang_pendidikan = 'sd';
             $table_pendidikan->institusi = $request->sd_institusi;
@@ -89,7 +89,7 @@ class PendaftarController extends Controller
             $data_pendidikan['sd'] = $table_pendidikan->id;
         }
         
-        if (isset($request->sltp_institusi, $request->sltp_bidang_studi, $request->sltp_tahun_masuk, $request->sltp_tahun_lulus)) {
+        if (isset($request->sltp_institusi, $request->sltp_tahun_masuk, $request->sltp_tahun_lulus)) {
             $table_pendidikan = new pendidikan();
             $table_pendidikan->jenjang_pendidikan = 'sltp';
             $table_pendidikan->institusi = $request->sltp_institusi;
