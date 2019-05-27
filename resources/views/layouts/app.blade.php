@@ -13,6 +13,7 @@
 	<link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<!-- Styles -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	@yield('css')
 	<style type="text/css">
@@ -25,6 +26,9 @@
 <body style="font-family: montserrat; font-size: 15px; height: 100%;background-image: url(../images/bg5.png);background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
 	<div id="app">
 		<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="position: fixed;z-index: 5;width: 100%;">
+			<button type="button" id="sidebarCollapse" class="btn btn-info">
+				<i class="fas fa-align-justify"></i>
+			</button>
 			<div class="container" >
 				<a class="navbar-brand" href="{{ url('/') }}">
 					Pendaftaran PIKTI
@@ -84,6 +88,11 @@
 			</div>
 		</main>
 	</div>
+	<script>
+		$('#sidebarCollapse').on('click', function () {
+			$('#sidebar').toggleClass('active');
+		});
+	</script>
 	@yield('js')
 </body>
 </html>

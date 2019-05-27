@@ -24,6 +24,9 @@ Route::post('/delete', 'HomeController@deletePendaftar')->name('delete');
 Route::get('/', function () {
     return view('homepage');
 })->name('homepage');
+Route::get('/dashboard2', function () {
+    return view('dashboard2');
+})->name('dashboard2');
 Route::get('/daftar', 'PendaftarController@create')->name('daftar');
 Route::get('/coba', 'PendaftarController@generateNoPendaftaran');
 Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
