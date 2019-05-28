@@ -26,9 +26,9 @@
 <body style="font-family: montserrat; font-size: 15px; height: 100%;background-image: url(../images/bg5.png);background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
 	<div id="app">
 		<nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="position: fixed;z-index: 5;width: 100%;">
-			<button type="button" id="sidebarCollapse" class="btn btn-info">
+			<!-- <button type="button" id="sidebarCollapse" class="btn btn-info">
 				<i class="fas fa-align-justify"></i>
-			</button>
+			</button> -->
 			<div class="container" >
 				<a class="navbar-brand" href="{{ url('/') }}">
 					Pendaftaran PIKTI
@@ -87,12 +87,12 @@
 				@yield('content')
 			</div>
 		</main>
-	</div>
+	</div><!-- 
 	<script>
 		$('#sidebarCollapse').on('click', function () {
 			$('#sidebar').toggleClass('active');
 		});
-	</script>
+	</script> -->
 	@yield('js')
 </body>
 </html>
