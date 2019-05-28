@@ -35,6 +35,12 @@ class HomeController extends Controller
         return view('dashboard', compact('data'));
     }
 
+    public function test()
+    {
+        $data = pendaftar::all();
+        return view('test', compact('data'));
+    }
+
     public function list()
     {
         $data = pendaftar::all();
@@ -281,6 +287,7 @@ class HomeController extends Controller
         $mahasiswa->sumber_informasi_id = $data->sumber_informasi_id;
         $mahasiswa->administrator = $data->administrator;
         $mahasiswa->save();
+        return redirect()->back();
     }
 
     private function generateNoPendaftaran()

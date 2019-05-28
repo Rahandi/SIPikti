@@ -18,7 +18,12 @@ class AngsuranController extends Controller
         return view('angsuran', compact('data'));
     }
 
-    public function tambah_angsuran(Request $request)
+    public function create()
+    {
+        return view('create_angsuran');
+    }
+
+    public function store(Request $request)
     {
         $angsuran = new angsuran();
         $angsuran->nama = $request->nama;
@@ -26,5 +31,31 @@ class AngsuranController extends Controller
         $angsuran->detail = $request->detail;
         $angsuran->kali_pembayaran = $request->kali_pembayaran;
         $angsuran->save();
+        return redirect()->route('angsuran');
+    }
+
+    public function edit(Request $request)
+    {
+        $id = $request->id;
+        $data = angsuran::find($id);
+        return view('edit_angsuran', compact('data'));
+    }
+
+    public function update(Request $request)
+    {
+        $angsuran = angsuran::find($request->id);
+        $angsuran->nama = $request->nama;
+        $angsuran->gelombang = $request->gelombang;
+        $angsuran->detail = $request->detail;
+        $angsuran->kali_pembayaran = $request->kali_pembayaran;
+        $angsuran->save();
+        return redirect()->route('angsuran');
+    }
+
+    public function delete(Request $request)
+    {
+        $angsuran = angsuran::find($request->id);
+        $angsuran->delete();
+        return redirect()->route('angsuran');
     }
 }
