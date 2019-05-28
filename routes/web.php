@@ -27,6 +27,18 @@ Route::get('/', function () {
 Route::get('/dashboard2', function () {
     return view('dashboard2');
 })->name('dashboard2');
+
+Route::get('/pendaftaran', 'HomeController@test')->name('pendaftaran');
+Route::get('/detail2/{id}', 'HomeController@detail2')->name('detail2');
+Route::get('/angsuran', 'HomeController@test2')->name('angsuran');
+Route::get('/mahasiswa', 'HomeController@test3')->name('mahasiswa');
+
+Route::get('/akademik', function () {
+    return view('akademik');
+})->name('akademik');
+Route::get('/pembayaran', function () {
+    return view('pembayaran');
+})->name('pembayaran');
 Route::get('/daftar', 'PendaftarController@create')->name('daftar');
 Route::get('/coba', 'PendaftarController@generateNoPendaftaran');
 Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');

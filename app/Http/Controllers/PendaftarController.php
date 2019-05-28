@@ -40,7 +40,6 @@ class PendaftarController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         $data_pendidikan = array();
 
         //bagian data pribadi
