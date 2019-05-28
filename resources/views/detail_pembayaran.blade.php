@@ -21,6 +21,20 @@
 @endsection
 
 @section('content')
+	@if (session('status'))
+	<div id="modalSuccess" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
+		<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
+			<header class="w3-container w3-light-grey w3-round-large"> 
+				<span onclick="document.getElementById('modalSuccess').style.display='none'" 
+				class="w3-button w3-display-topright w3-round-large">&times;</span>
+				<h2>{{ session('status') }} !</h2>
+			</header>
+			<div class="w3-container" style="margin-top: 2%;">
+				<p>Angsuran telah berhasil dibayarkan.</p>
+			</div>
+		</div>
+	</div>
+	@endif
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="white-box">

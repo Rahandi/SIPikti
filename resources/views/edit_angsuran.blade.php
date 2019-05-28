@@ -24,7 +24,7 @@
 					<input type="text" class="form-control" id="inp3" name="detail" placeholder="Pembayaran 1-2: Rp 2.000.000; Pembayaran 3-4: Rp 1.500.000" value="{{$data->detail}}" required> </div>
 				<div class="form-group">
 					<label for="inp4" class="control-label">Kali Pembayaran</label>
-					<input type="number" class="form-control" id="inp4" name="kali_pembayaran" placeholder="4" value="{{$data->kali_pembayaran}}" required> </div>
+					<input type="number" class="form-control" id="inp4" name="kali_pembayaran" placeholder="4" value="{{$data->kali_pembayaran}}" disabled="disabled"> </div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>

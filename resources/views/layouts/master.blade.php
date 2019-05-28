@@ -10,6 +10,7 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="{{ URL::asset('plugins/images/iconITS.png')}}">
 	<title>SIM PIKTI</title>
 	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link href="{{ URL::asset('ample/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- Menu CSS -->
 	<link href="{{ URL::asset('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css') }}" rel="stylesheet">
@@ -112,17 +113,17 @@
 				<div class="sidebar-head">
 					<h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3> </div>
 				<ul class="nav" id="side-menu" style="margin-top: 5%;">
-					<li><a href="{{ route('dashboard2') }}" class="waves-effect"><i class="mdi mdi-apps fa-fw"></i> <span class="hide-menu">Dashboard<span class="fa arrow"></span></span></a>
+					<li><a href="{{ route('dashboard2') }}" class="waves-effect"><i class="material-icons">dvr</i> <span class="hide-menu">Dashboard</span></span></a>
 					</li>
-					<li><a href="{{ route('pendaftaran') }}" class="waves-effect"><i class="mdi mdi-apps fa-fw"></i> <span class="hide-menu">Pendaftaran<span class="fa arrow"></span></span></a>
+					<li><a href="{{ route('pendaftaran') }}" class="waves-effect"><i class="material-icons">description</i> <span class="hide-menu">Pendaftaran</span></span></a>
 					</li>
-					<li><a href="{{ route('akademik') }}" class="waves-effect"><i class="mdi mdi-apps fa-fw"></i> <span class="hide-menu">Akademik<span class="fa arrow"></span></span></a>
+					<li><a href="{{ route('akademik') }}" class="waves-effect"><i class="material-icons">account_balance</i> <span class="hide-menu">Akademik<span class="fa arrow"></span></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="{{ route('mahasiswa') }}"><i class="fa-fw">B</i><span class="hide-menu">Mahasiswa</span></a></li>
-							<li><a href="{{ route('pembayaran') }}"><i class="fa-fw">L</i><span class="hide-menu">Pembayaran</span></a></li>
+							<li><a href="{{ route('mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Mahasiswa</span></a></li>
+							<li><a href="{{ route('pembayaran') }}"><i class="material-icons">local_atm</i><span class="hide-menu">  Pembayaran</span></a></li>
 						</ul>
 					</li>
-					<li><a href="{{ route('angsuran') }}" class="waves-effect"><i class="mdi mdi-apps fa-fw"></i> <span class="hide-menu">Angsuran<span class="fa arrow"></span></span></a>
+					<li><a href="{{ route('angsuran') }}" class="waves-effect"><i class="material-icons">attach_money</i> <span class="hide-menu">Angsuran</span></a>
 					</li>
 					<li class="devider"></li>
 					<li><a href="documentation.html" class="waves-effect"><i class="fa fa-circle-o text-danger"></i> <span class="hide-menu">Documentation</span></a></li>

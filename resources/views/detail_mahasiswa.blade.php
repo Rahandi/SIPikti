@@ -111,7 +111,7 @@
 								<a href="{{ route('mahasiswa.edit',$data->id) }}" style="margin-right: 2%;"><button type="button" class="btn btn-warning">Edit <i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
 							</td>
 							<td style="width: 50%;text-align: left;">
-								<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modalDel" style="margin: 2%;">Delete <i class="material-icons" style="font-size: 18px;">delete</i></button>
+								<button type="submit" class="btn btn-danger" onclick="document.getElementById('modalDelete').style.display='block'" style="margin: 2%;">Delete <i class="material-icons" style="font-size: 18px;">delete</i></button>
 							</td>
 						</tr>
 
@@ -120,26 +120,24 @@
 			</div>
 		</div>
 	</div>
-	<div id="modalDel" class="modal fade" role="dialog" style="z-index: 9999;">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Konfirmasi</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<div class="modal-body" style="text-align: left;">
-					<p>Apakah Anda yakin akan menghapus data ini?</p>
-				</div>
-				<div class="modal-footer" style="width: 100%;">
-					<form action="{{route('mahasiswa.delete')}}" method="POST">
-						{{ csrf_field() }}
-						<input type="hidden" name="id" value="{{$data->id}}">
-						<button type="submit" class="btn btn-danger">Ya</button>
-					</form>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-				</div>
+	<div id="modalDelete" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
+		<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
+			<header class="w3-container w3-light-grey w3-round-large"> 
+				<span onclick="document.getElementById('modalDelete').style.display='none'" 
+				class="w3-button w3-display-topright w3-round-large">&times;</span>
+				<h2>Konfirmasi</h2>
+			</header>
+			<div class="w3-container" style="margin-top: 2%;">
+				<p>Apakah Anda yakin akan menghapus data mahasiswa ini?</p>
 			</div>
+			<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
+				<form action="{{route('mahasiswa.delete')}}" method="POST">
+					{{ csrf_field() }}
+					<input type="hidden" name="id" value="{{$data->id}}">
+					<button type="submit" class="btn btn-success" style="margin: 1%;">Ya</button>
+					<button type="button" class="btn btn-danger" onclick="document.getElementById('modalDelete').style.display='none'" style="margin: 1%;">Tidak</button>
+				</form>
+			</footer>
 		</div>
 	</div>
 @endsection

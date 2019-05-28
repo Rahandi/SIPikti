@@ -72,6 +72,6 @@ class PembayaranController extends Controller
         $data_pembayaran = implode(',', $data_pembayaran);
         $mahasiswa_angsuran->data_pembayaran = $data_pembayaran;
         $mahasiswa_angsuran->save();
-        return redirect()->back();
+        return redirect()->back()->with('status','Pembayaran Sukses');
     }
 }
