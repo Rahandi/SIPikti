@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('layouts.master')
 
 @section('pagetitle')
@@ -27,15 +26,17 @@
 							{{ session('status') }}
 						</div>
 					@endif
+					<a href="{{route('angsuran.create')}}"><button class="btn btn-info">create new</button></a>
 					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 						<thead>
 							<tr>
 								<th style="width: 5%;"></th>
-								<th style="width: 25%;">Nama</th>
+								<th style="width: 20%;">Nama</th>
 								<th style="width: 20%;">Gelombang</th>
 								<th style="width: 20%;">Detail</th>
 								<th style="width: 20%;">Kali Pembayaran</th>
-								<th style="width: 20%; display: none;">Modified</th>
+								<th style="width: 20%;">Action</th>
+								<th style="display: none;">Modified</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -46,6 +47,16 @@
 								<td>{{ $individu->created_at }}</td>
 								<td>{{ $individu->tanggal_lahir }}</td>
 								<td>{{ $individu->tanggal_lahir }}</td>
+								<td>
+									<form action="{{ route('angsuran.delete') }}" method="POST">
+										{{csrf_field()}}
+										<input type="hidden" name="id" value="{{$individu->id}}">
+										<button type="submit">delete</button>
+									</form>
+									<a href="{{route('angsuran.edit', $individu->id)}}">
+										<button>edit</button>
+									</a>
+								</td>
 								<td style="display: none;">
 									{{ $individu->tanggal_lahir }}
 								</td>
@@ -106,29 +117,3 @@
 		});
 	</script>
 @endsection
-=======
-<a href="{{route('angsuran.create')}}">create new</a>
-<table>
-    <thead>
-        <th>Nama</th>
-        <th>Action</th>
-    </thead>
-    <tbody>
-    @foreach ($data as $individu)
-        <tr>
-            <td>{{ $individu->nama }}</td>
-            <td>
-                <form action="{{ route('angsuran.delete') }}" method="POST">
-                    {{csrf_field()}}
-                    <input type="hidden" name="id" value="{{$individu->id}}">
-                    <button type="submit">delete</button>
-                </form>
-                <a href="{{route('angsuran.edit', $individu->id)}}">
-                    <button>edit</button>
-                </a>
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
->>>>>>> master
