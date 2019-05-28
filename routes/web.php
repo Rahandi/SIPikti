@@ -47,6 +47,9 @@ Route::get('/test_dashboard', 'HomeController@test')->name('test_dashboard');
 Route::post('/accept_mahasiswa', 'HomeController@acceptToMahasiswa')->name('accept_mahasiswa');
 
 Route::get('/mahasiswa', 'MahasiswaController@index')->name('mahasiswa');
+Route::get('/mahasiswa/detail/{id}', 'MahasiswaController@detail')->name('mahasiswa.detail');
+Route::get('/mahasiswa/edit/{id}', 'MahasiswaController@edit')->name('mahasiswa.edit');
+Route::post('/mahasiswa/update', 'MahasiswaController@update')->name('mahasiswa.update');
 Route::post('/mahasiswa/delete', 'MahasiswaController@delete')->name('mahasiswa.delete');
 
 Route::get('/angsuran', 'AngsuranController@index')->name('angsuran');

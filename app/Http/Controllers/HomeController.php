@@ -38,7 +38,13 @@ class HomeController extends Controller
     public function test()
     {
         $data = pendaftar::all();
-        return view('test', compact('data'));
+        return view('pendaftaran', compact('data'));
+    }
+
+    public function detail2($id)
+    {
+        $data = $this->getPendaftarFullDetails($id);
+        return view('detail2', compact('data'));
     }
 
     public function list()
@@ -270,6 +276,8 @@ class HomeController extends Controller
     {
         $id = $request->id;
         $data = pendaftar::find($id);
+        $data->status = 1;
+        $data->save();
         $mahasiswa = new mahasiswa();
         $mahasiswa->nomor_pendaftaran = $data->nomor_pendaftaran;
         $mahasiswa->nama = $data->nama;

@@ -1,15 +1,14 @@
-<<<<<<< HEAD
 @extends('layouts.master')
 
 @section('pagetitle')
-	Pendaftaran
+	Mahasiswa
 @endsection
 
 @section('css')
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
 	<style type="text/css">
 		i.material-icons {
 			vertical-align: middle;
@@ -31,10 +30,10 @@
 						<thead>
 							<tr>
 								<th style="width: 5%;"></th>
-								<th style="width: 25%;">Nama</th>
-								<th style="width: 20%;">Tanggal Daftar</th>
-								<th style="width: 15%;">Tanggal Lahir</th>
-								<th style="width: 25%;">Action</th>
+								<th style="width: 25%;text-align: center;">Nama</th>
+								<th style="width: 20%;text-align: center;">Tanggal Daftar</th>
+								<th style="width: 20%;text-align: center;">Tanggal Lahir</th>
+								<th style="width: 20%;text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -46,20 +45,13 @@
 								<td>{{ $individu->tanggal_lahir }}</td>
 								<td>
 									<div class="row" style="margin: 0px;">
-										<a 
-										@if ($individu->administrator)
-											href="{{ route('kwitansi',$individu->id) }}"
-										@endif
-										target="_blank"><button type="button" class="btn btn-info"
-										@if (!$individu->administrator)
-											disabled=""
-										@endif
-										><i class="material-icons" style="font-size: 18px;">print</i></button></a>
-										<a href="{{ route('detail2',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
+										
+										<a href="{{ route('mahasiswa.detail',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
 
-										<a href="{{ route('edit',$individu->id) }}"><button type="button" class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
+										<a href="{{ route('mahasiswa.edit',$individu->id) }}"><button type="button" class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
+
 										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"><i class="material-icons" style="font-size: 18px;">delete</i></button>
-										<button type="button" class="btn btn-success"><i class="material-icons" style="font-size: 18px;">person_add</i></button>
+										
 									</div>
 								</td>
 							</tr>
@@ -73,10 +65,10 @@
 											<button type="button" class="close" data-dismiss="modal">&times;</button>
 										</div>
 										<div class="modal-body" style="text-align: left;">
-											<p>Apakah Anda yakin akan menghapus data ini?</p>
+											<p>Apakah Anda yakin akan menghapus data mahasiswa ini?</p>
 										</div>
 										<div class="modal-footer">
-											<form action="{{route('delete')}}" method="POST">
+											<form action="{{route('mahasiswa.delete')}}" method="POST">
 												{{ csrf_field() }}
 												<input type="hidden" name="id" value="{{$individu->id}}">
 												<button type="submit" class="btn btn-danger">Ya</button>
@@ -119,25 +111,3 @@
 		});
 	</script>
 @endsection
-=======
-<table>
-    <thead>
-        <th>Nama</th>
-        <th>Action</th>
-    </thead>
-    <tbody>
-    @foreach ($data as $individu)
-        <tr>
-            <td>{{ $individu->nama }}</td>
-            <td>
-                <form action="{{ route('mahasiswa.delete') }}" method="POST">
-                    {{csrf_field()}}
-                    <input type="hidden" name="id" value="{{$individu->id}}">
-                    <button type="submit">delete</button>
-                </form>
-            </td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
->>>>>>> master

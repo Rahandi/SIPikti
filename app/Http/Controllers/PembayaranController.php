@@ -22,8 +22,24 @@ class PembayaranController extends Controller
 
     public function detail(Request $request)
     {
-        $data = angsuran::all();
-        return view('pembayaran_detail', compact('data'));
+        $pembayaran = mahasiswaAngsuran::where('mahasiswa_id', $request->id)->get()->first();
+        if ($pembayaran)
+        {
+            $pembayaran->data_pembayaran = explode(',', $pembayaran->data_pembayaran);
+            $data = array(
+                "mahasiswa" => mahasiswa::find($request->id),
+                "exist" => 1,
+                "pembayaran" => $pembayaran,
+                "angsuran" => angsuran::find($pembayaran->angsuran_id)
+            );
+            return view('detail_pembayaran', compact('data'));
+        }
+        $data = array(
+            "mahasiswa" => mahasiswa::find($request->id),
+            "exist" => 0,
+            "angsuran" => angsuran::all()
+        );
+        return view('detail_pembayaran', compact('data'));
     }
 
     public function selectAngsuran(Request $request)
@@ -33,7 +49,7 @@ class PembayaranController extends Controller
 
         $angsuran = angsuran::find($id_angsuran);
         $kali_angsuran = array();
-        for ($x = 0; $x <= $angsuran->kali_pembayaran; $x++) {
+        for ($x = 0; $x < $angsuran->kali_pembayaran; $x++) {
             array_push($kali_angsuran, 0);
         }
 

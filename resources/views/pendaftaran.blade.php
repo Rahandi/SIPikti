@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<!-- <link rel="stylesheet" type="text/css" href="../css/modal.css"> -->
 	<style type="text/css">
 		i.material-icons {
 			vertical-align: middle;
@@ -30,10 +31,10 @@
 						<thead>
 							<tr>
 								<th style="width: 5%;"></th>
-								<th style="width: 25%;">Nama</th>
-								<th style="width: 20%;">Tanggal Daftar</th>
-								<th style="width: 15%;">Tanggal Lahir</th>
-								<th style="width: 25%;">Action</th>
+								<th style="width: 25%;text-align: center;">Nama</th>
+								<th style="width: 20%;text-align: center;">Tanggal Daftar</th>
+								<th style="width: 15%;text-align: center;">Tanggal Lahir</th>
+								<th style="width: 25%;text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -44,6 +45,8 @@
 								<td>{{ $individu->created_at }}</td>
 								<td>{{ $individu->tanggal_lahir }}</td>
 								<td>
+									<form action="{{ route('accept_mahasiswa') }}" method="POST">
+										{{csrf_field()}}
 									<div class="row" style="margin: 0px;">
 										<a 
 										@if ($individu->administrator)
@@ -58,8 +61,15 @@
 
 										<a href="{{ route('edit',$individu->id) }}"><button type="button" class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
 										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"><i class="material-icons" style="font-size: 18px;">delete</i></button>
-										<button type="button" class="btn btn-success"><i class="material-icons" style="font-size: 18px;">person_add</i></button>
+
+										<input type="hidden" name="id" value="{{$individu->id}}">
+										<button type="submit" class="btn btn-success"
+										@if (!$individu->administrator or $individu->status == 1)
+											disabled=""
+										@endif
+										><i class="material-icons" style="font-size: 18px;">person_add</i></button>
 									</div>
+									</form>
 								</td>
 							</tr>
 							<!-- Modal -->

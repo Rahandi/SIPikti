@@ -20,13 +20,15 @@
 <div class="row">
 		<div class="col-sm-12">
 			<div class="white-box">
-				<div class="row row-in">
+				<div class="row row-in" style="margin-bottom: 1%;">
 					@if (session('status'))
 						<div class="alert alert-success" role="alert">
 							{{ session('status') }}
 						</div>
 					@endif
-					<a href="{{route('angsuran.create')}}"><button class="btn btn-info">create new</button></a>
+					<a href="{{route('angsuran.create')}}"><button class="btn btn-info">Create New</button></a>
+				</div>
+				<div class="row row-in">
 					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 						<thead>
 							<tr>
@@ -36,7 +38,7 @@
 								<th style="width: 20%;">Detail</th>
 								<th style="width: 20%;">Kali Pembayaran</th>
 								<th style="width: 20%;">Action</th>
-								<th style="display: none;">Modified</th>
+								<th style="display: none;">created</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -44,21 +46,19 @@
 							<tr>
 								<td></td>
 								<td class="sorting_1" style="text-align: left;">{{ $individu->nama }}</td>
-								<td>{{ $individu->created_at }}</td>
-								<td>{{ $individu->tanggal_lahir }}</td>
-								<td>{{ $individu->tanggal_lahir }}</td>
+								<td>{{ $individu->gelombang }}</td>
+								<td>{{ $individu->detail }}</td>
+								<td>{{ $individu->kali_pembayaran }}</td>
 								<td>
-									<form action="{{ route('angsuran.delete') }}" method="POST">
-										{{csrf_field()}}
-										<input type="hidden" name="id" value="{{$individu->id}}">
-										<button type="submit">delete</button>
-									</form>
+									<div class="row" style="margin: 0px;">
 									<a href="{{route('angsuran.edit', $individu->id)}}">
-										<button>edit</button>
+										<button class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button>
 									</a>
+									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+									</div>
 								</td>
 								<td style="display: none;">
-									{{ $individu->tanggal_lahir }}
+									{{ $individu->created_at }}
 								</td>
 							</tr>
 							<!-- Modal -->
@@ -74,7 +74,7 @@
 											<p>Apakah Anda yakin akan menghapus data ini?</p>
 										</div>
 										<div class="modal-footer">
-											<form action="{{route('delete')}}" method="POST">
+											<form action="{{route('angsuran.delete')}}" method="POST">
 												{{ csrf_field() }}
 												<input type="hidden" name="id" value="{{$individu->id}}">
 												<button type="submit" class="btn btn-danger">Ya</button>
@@ -106,7 +106,7 @@
 					"targets": 0,
 
 				} ],
-				"order": [[ 5, 'asc' ]],
+				"order": [[ 6, 'asc' ]],
 			} );
 
 			t.on( 'order.dt search.dt', function () {

@@ -7,24 +7,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/iconITS.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ URL::asset('plugins/images/iconITS.png')}}">
 	<title>SIM PIKTI</title>
 	<!-- Bootstrap Core CSS -->
-	<link href="../ample/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{{ URL::asset('ample/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- Menu CSS -->
-	<link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+	<link href="{{ URL::asset('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css') }}" rel="stylesheet">
 	<!-- toast CSS -->
-	<link href="../plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
+	<link href="{{ URL::asset('plugins/bower_components/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
 	<!-- chartist CSS -->
-	<link href="../plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
-	<link href="../plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+	<link href="{{ URL::asset('plugins/bower_components/chartist-js/dist/chartist.min.css') }}" rel="stylesheet">
+	<link href="{{ URL::asset('plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css') }}" rel="stylesheet">
 	
 	<!-- animation CSS -->
-	<link href="../ample/css/animate.css" rel="stylesheet">
+	<link href="{{ URL::asset('ample/css/animate.css') }}" rel="stylesheet">
 	<!-- Custom CSS -->
-	<link href="../ample/css/style.css" rel="stylesheet">
+	<link href="{{ URL::asset('ample/css/style.css') }}" rel="stylesheet">
 	<!-- color CSS -->
-	<link href="../ample/css/colors/megna.css" id="theme" rel="stylesheet">
+	<link href="{{ URL::asset('ample/css/colors/megna.css') }}" id="theme" rel="stylesheet">
 	@yield('css')
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,10 +56,10 @@
 					<!-- Logo -->
 					<a class="logo" href="{{ route('dashboard2') }}">
 						<!-- Logo icon image, you can use font-icon also --><b>
-						<!--This is dark logo icon--><img src="../plugins/images/logoITS.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="../plugins/images/logoITS.png" alt="home" class="light-logo" />
+						<!--This is dark logo icon--><img src="{{ URL::asset('plugins/images/logoITS.png') }}" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="{{ URL::asset('plugins/images/logoITS.png') }}" alt="home" class="light-logo" />
 					 </b>
 						<!-- Logo text image you can use text also --><span class="hidden-xs">
-						<!--This is dark logo text--><img src="../plugins/images/logoPIKTI.png" alt="home" class="dark-logo" /><!--This is light logo text--><img src="../plugins/images/logoPIKTI.png" alt="home" class="light-logo" />
+						<!--This is dark logo text--><img src="{{ URL::asset('plugins/images/logoPIKTI.png') }}" alt="home" class="dark-logo" /><!--This is light logo text--><img src="{{ URL::asset('plugins/images/logoPIKTI.png') }}" alt="home" class="light-logo" />
 					 </span> </a>
 				</div>
 				<!-- /Logo -->
@@ -157,29 +157,29 @@
 	<!-- ============================================================== -->
 	<!-- All Jquery -->
 	<!-- ============================================================== -->
-	<script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="{{ URL::asset('plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
 	<!-- Bootstrap Core JavaScript -->
-	<script src="../ample/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="{{ URL::asset('ample/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 	<!-- Menu Plugin JavaScript -->
-	<script src="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+	<script src="{{ URL::asset('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') }}"></script>
 	<!--slimscroll JavaScript -->
-	<script src="../ample/js/jquery.slimscroll.js"></script>
+	<script src="{{ URL::asset('ample/js/jquery.slimscroll.js') }}"></script>
 	<!--Wave Effects -->
-	<script src="../ample/js/waves.js"></script>
+	<script src="{{ URL::asset('ample/js/waves.js') }}"></script>
 	<!--Counter js -->
-	<script src="../plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
-	<script src="../plugins/bower_components/counterup/jquery.counterup.min.js"></script>
-	<script src="../plugins/bower_components/raphael/raphael-min.js"></script>
+	<script src="{{ URL::asset('plugins/bower_components/waypoints/lib/jquery.waypoints.js') }}"></script>
+	<script src="{{ URL::asset('plugins/bower_components/counterup/jquery.counterup.min.js') }}"></script>
+	<script src="{{ URL::asset('plugins/bower_components/raphael/raphael-min.js') }}"></script>
 	<!-- chartist chart -->
-	<script src="../plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
-	<script src="../plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+	<script src="{{ URL::asset('plugins/bower_components/chartist-js/dist/chartist.min.js') }}"></script>
+	<script src="{{ URL::asset('plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js') }}"></script>
 	<!-- Custom Theme JavaScript -->
-	<script src="../ample/js/custom.min.js"></script>
+	<script src="{{ URL::asset('ample/js/custom.min.js') }}"></script>
 	<!-- Custom tab JavaScript -->
-	<script src="../ample/js/cbpFWTabs.js"></script>
-	<script src="../plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+	<script src="{{ URL::asset('ample/js/cbpFWTabs.js') }}"></script>
+	<script src="{{ URL::asset('plugins/bower_components/toast-master/js/jquery.toast.js') }}"></script>
 	<!--Style Switcher -->
-	<script src="../plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+	<script src="{{ URL::asset('plugins/bower_components/styleswitcher/jQuery.style.switcher.js') }}"></script>
 	@yield('js')
 </body>
 </html>
