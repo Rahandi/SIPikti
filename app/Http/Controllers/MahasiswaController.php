@@ -198,11 +198,11 @@ class MahasiswaController extends Controller
 
     public function delete(Request $request)
     {
-        $data = mahasiswa::find($request->id);
-        $data->delete();
-        $data = pendaftar::find($request->id);
-        $data->status = 0;
-        $data->save();
+        $mahasiswa = mahasiswa::find($request->id);
+        $pendaftar = pendaftar::where('nomor_pendaftaran', $mahasiswa->nomor_pendaftaran)->get()->first();
+        $pendaftar->status = 0;
+        $pendaftar->save();
+        $mahasiswa->delete();
         return redirect()->back();
     }
 

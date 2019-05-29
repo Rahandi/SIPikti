@@ -5,7 +5,6 @@
 @endsection
 
 @section('css')
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
@@ -89,6 +88,7 @@
 @section('js')
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
 	<script>
 		$(document).ready(function(){
 			var t = $('#list').DataTable( {

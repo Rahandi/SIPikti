@@ -10,6 +10,7 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="{{ URL::asset('plugins/images/iconITS.png')}}">
 	<title>SIM PIKTI</title>
 	<!-- Bootstrap Core CSS -->
+	<link href="{{ URL::asset('ample/bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link href="{{ URL::asset('ample/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- Menu CSS -->
@@ -26,6 +27,7 @@
 	<link href="{{ URL::asset('ample/css/style.css') }}" rel="stylesheet">
 	<!-- color CSS -->
 	<link href="{{ URL::asset('ample/css/colors/megna.css') }}" id="theme" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	@yield('css')
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
