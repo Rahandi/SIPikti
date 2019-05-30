@@ -269,7 +269,7 @@ class HomeController extends Controller
             $pendidikan->delete();
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->route('pendaftaran');
     }
 
     public function acceptToMahasiswa(Request $request)
