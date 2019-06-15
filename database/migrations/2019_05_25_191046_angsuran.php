@@ -17,8 +17,8 @@ class Angsuran extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->string('gelombang');
-            $table->string('detail');
-            $table->integer('kali_pembayaran');
+            $table->string('keterangan');
+            $table->text('template');
             $table->timestamps();
         });
     }

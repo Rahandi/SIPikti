@@ -28,8 +28,8 @@ class AngsuranController extends Controller
         $angsuran = new angsuran();
         $angsuran->nama = $request->nama;
         $angsuran->gelombang = $request->gelombang;
-        $angsuran->detail = $request->detail;
-        $angsuran->kali_pembayaran = $request->kali_pembayaran;
+        $angsuran->keterangan = $request->keterangan;
+        // $angsuran->template here || need to discuss with front-end about data
         $angsuran->save();
         return redirect()->route('angsuran');
     }
@@ -46,8 +46,8 @@ class AngsuranController extends Controller
         $angsuran = angsuran::find($request->id);
         $angsuran->nama = $request->nama;
         $angsuran->gelombang = $request->gelombang;
-        $angsuran->detail = $request->detail;
-        $angsuran->kali_pembayaran = $request->kali_pembayaran;
+        $angsuran->keterangan = $request->keterangan;
+        // $angsuran->template here || need to discuss with front-end about data
         $angsuran->save();
         return redirect()->route('angsuran');
     }
