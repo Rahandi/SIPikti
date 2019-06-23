@@ -15,12 +15,12 @@ class AngsuranController extends Controller
     public function index()
     {
         $data = angsuran::all();
-        return view('angsuran', compact('data'));
+        return view('angsuran.index', compact('data'));
     }
 
     public function create()
     {
-        return view('create_angsuran');
+        return view('angsuran.create');
     }
 
     public function store(Request $request)
@@ -38,7 +38,7 @@ class AngsuranController extends Controller
     {
         $id = $request->id;
         $data = angsuran::find($id);
-        return view('edit_angsuran', compact('data'));
+        return view('angsuran.edit', compact('data'));
     }
 
     public function update(Request $request)

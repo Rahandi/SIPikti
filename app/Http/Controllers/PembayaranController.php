@@ -17,7 +17,7 @@ class PembayaranController extends Controller
     public function index()
     {
         $data = mahasiswa::all();
-        return view('pembayaran', compact('data'));
+        return view('pembayaran.index', compact('data'));
     }
 
     public function detail(Request $request)
@@ -32,7 +32,7 @@ class PembayaranController extends Controller
                 "pembayaran" => $pembayaran,
                 "angsuran" => angsuran::find($pembayaran->angsuran_id)
             );
-            return view('detail_pembayaran', compact('data'));
+            return view('pembayaran.detail', compact('data'));
         }
         $data = array(
             "mahasiswa" => mahasiswa::find($request->id),

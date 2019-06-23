@@ -56,13 +56,13 @@ class HomeController extends Controller
     public function kwitansi($id)
     {
         $data = pendaftar::find($id);
-        return view('kwitansi', compact('data'));
+        return view('pendaftaran.kwitansi', compact('data'));
     }
 
     public function detail($id)
     {
         $data = $this->getPendaftarFullDetails($id);
-        return view('detail', compact('data'));
+        return view('pendaftaran.detail', compact('data'));
     }
 
     public function edit(Request $request)
@@ -87,7 +87,7 @@ class HomeController extends Controller
         $data['alamat_surabaya'] = $data_alamat_surabaya;
         $data['status_saat_mendaftar'] = $this->statusSaatMendaftarTranslator($data_status_saat_mendaftar);
         $data['sumber_informasi'] = $data_sumber_informasi;
-        return view('edit', compact('data'));
+        return view('pendaftaran.edit', compact('data'));
     }
 
     public function update(Request $request)

@@ -22,13 +22,13 @@ class MahasiswaController extends Controller
     public function index()
     {
         $data = mahasiswa::all();
-        return view('mahasiswa', compact('data'));
+        return view('mahasiswa.index', compact('data'));
     }
 
     public function detail(Request $request)
     {
         $data = $this->getPendaftarFullDetails($request->id);
-        return view('detail_mahasiswa', compact('data'));
+        return view('mahasiswa.detail', compact('data'));
     }
 
     public function edit(Request $request)
@@ -53,7 +53,7 @@ class MahasiswaController extends Controller
         $data['alamat_surabaya'] = $data_alamat_surabaya;
         $data['status_saat_mendaftar'] = $this->statusSaatMendaftarTranslator($data_status_saat_mendaftar);
         $data['sumber_informasi'] = $data_sumber_informasi;
-        return view('edit_mahasiswa', compact('data'));
+        return view('mahasiswa.edit', compact('data'));
     }
 
     public function update(Request $request)
