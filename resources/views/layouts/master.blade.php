@@ -121,6 +121,7 @@
 					</li>
 					<li><a href="{{ route('akademik') }}" class="waves-effect"><i class="material-icons">account_balance</i> <span class="hide-menu">Akademik<span class="fa arrow"></span></span></a>
 						<ul class="nav nav-second-level">
+							<li><a href="{{ route('calon_mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Calon Mahasiswa</span></a></li>
 							<li><a href="{{ route('mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Mahasiswa</span></a></li>
 							<li><a href="{{ route('pembayaran') }}"><i class="material-icons">local_atm</i><span class="hide-menu">  Pembayaran</span></a></li>
 						</ul>

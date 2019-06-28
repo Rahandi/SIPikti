@@ -276,6 +276,8 @@ class HomeController extends Controller
     {
         $id = $request->id;
         $data = pendaftar::find($id);
+        $data->status = 1;
+        $data->save();
         $mahasiswa = new mahasiswa();
         $mahasiswa->nomor_pendaftaran = $data->nomor_pendaftaran;
         $mahasiswa->nama = $data->nama;

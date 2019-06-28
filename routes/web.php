@@ -43,6 +43,12 @@ Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
 Route::get('/test_dashboard', 'HomeController@test')->name('test_dashboard');
 Route::post('/accept_mahasiswa', 'HomeController@acceptToMahasiswa')->name('accept_mahasiswa');
 
+Route::get('/calon_mahasiswa', 'MahasiswaController@calon_mahasiswa')->name('calon_mahasiswa');
+Route::get('/calon_mahasiswa/detail/{id}', 'MahasiswaController@calon_mahasiswa_detail')->name('calon_mahasiswa.detail');
+Route::get('/calon_mahasiswa/edit/{id}', 'MahasiswaController@calon_mahasiswa_edit')->name('calon_mahasiswa.edit');
+Route::post('/calon_mahasiswa/update', 'MahasiswaController@calon_mahasiswa_update')->name('calon_mahasiswa.update');
+Route::post('/calon_mahasiswa/delete', 'MahasiswaController@calon_mahasiswa_delete')->name('calon_mahasiswa.delete');
+
 Route::get('/mahasiswa', 'MahasiswaController@index')->name('mahasiswa');
 Route::get('/mahasiswa/detail/{id}', 'MahasiswaController@detail')->name('mahasiswa.detail');
 Route::get('/mahasiswa/edit/{id}', 'MahasiswaController@edit')->name('mahasiswa.edit');

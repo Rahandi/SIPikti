@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('pagetitle')
-	Mahasiswa
+	Calon Mahasiswa
 @endsection
 
 @section('css')
@@ -29,26 +29,26 @@
 						<thead>
 							<tr>
 								<th style="width: 5%;"></th>
-								<th style="width: 20%;text-align: center;">NRP</th>
 								<th style="width: 25%;text-align: center;">Nama</th>
+								<th style="width: 20%;text-align: center;">Tanggal Daftar</th>
 								<th style="width: 20%;text-align: center;">Tanggal Lahir</th>
 								<th style="width: 20%;text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody>
 						@foreach ($data as $individu)
-						@if (isset($individu->nrp))
+						@if (!isset($individu->nrp))
 							<tr>
 								<td></td>
-								<td style="text-align: left;">{{ $individu->nrp }}</td>
 								<td class="sorting_1" style="text-align: left;">{{ $individu->nama }}</td>
+								<td>{{ $individu->created_at }}</td>
 								<td>{{ $individu->tanggal_lahir }}</td>
 								<td>
 									<div class="row" style="margin: 0px;">
 										
-										<a href="{{ route('mahasiswa.detail',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
+										<a href="{{ route('calon_mahasiswa.detail',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
 
-										<a href="{{ route('mahasiswa.edit',$individu->id) }}"><button type="button" class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
+										<a href="{{ route('calon_mahasiswa.edit',$individu->id) }}"><button type="button" class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
 
 										<button type="button" id="tombolDel" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" value="{{$individu->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button>
 										
@@ -67,7 +67,7 @@
 										<p>Apakah Anda yakin akan menghapus data mahasiswa ini?</p>
 									</div>
 									<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
-										<form action="{{route('mahasiswa.delete')}}" method="POST">
+										<form action="{{route('calon_mahasiswa.delete')}}" method="POST">
 											{{ csrf_field() }}
 											<input type="hidden" name="id" id="valueId" value="">
 											<button type="submit" id="DeleteButton" class="btn btn-success" style="margin: 1%;">Ya</button>
