@@ -66,6 +66,7 @@ class PembayaranController extends Controller
         $data_pembayaran[$jenis_terbayar]['tanda'] = 1;
         $mahasiswa_angsuran->data_pembayaran = serialize($data_pembayaran);
         $mahasiswa_angsuran->save();
+        $this->generateNRP($mahasiswa_angsuran->mahasiswa_id);
         return redirect()->back()->with('status', 'Pembayaran Sukses');
     }
 

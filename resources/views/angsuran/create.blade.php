@@ -37,6 +37,7 @@
 				<div class="form-group">
 					<label for="kali_pembayaran" class="control-label">Kali Angsuran</label>
 					<select class="form-control" name="kali_pembayaran" id="kali_pembayaran" required="" onchange="getAng()">
+						<option value="0">Select Here</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
