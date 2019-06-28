@@ -60,14 +60,10 @@ class PembayaranController extends Controller
     public function bayarAngsuran(Request $request)
     {
         $id_mahasiswa_angsuran = $request->mahasiswa_angsuran;
-        $index_bayar = $request->index_bayar;
+        $jenis_terbayar = $request->jenis_bayar;
         $mahasiswa_angsuran = mahasiswaAngsuran::find($id_mahasiswa_angsuran);
-        $data_pembayaran = $mahasiswa_angsuran->data_pembayaran;
-        $data_pembayaran = explode(',', $data_pembayaran);
-        $data_pembayaran[$index_bayar] = 1;
-        $data_pembayaran = implode(',', $data_pembayaran);
-        $mahasiswa_angsuran->data_pembayaran = $data_pembayaran;
+        $mahasiswa_angsuran['data_pembayaran'][$jenis_terbayar]['tanda'] = 1;
         $mahasiswa_angsuran->save();
-        return redirect()->back()->with('status','Pembayaran Sukses');
+        return redirect()->back()->with('status', 'Pembayaran Sukses');
     }
 }
