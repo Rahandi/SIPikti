@@ -33,21 +33,24 @@
 							<tr>
 								<th style="width: 5%;"></th>
 								<th style="width: 20%;">Nama</th>
-								<th style="width: 20%;">Gelombang</th>
-								<th style="width: 20%;">Detail</th>
+								<th style="width: 10%;">Gelombang</th>
 								<th style="width: 20%;">Kali Pembayaran</th>
+								<th style="width: 20%;">Detail Pembayaran</th>
+								<th style="width: 10%;">Keterangan</th>
 								<th style="width: 20%;">Action</th>
 								<th style="display: none;">created</th>
 							</tr>
 						</thead>
 						<tbody>
+						
 						@foreach ($data as $individu)
 							<tr>
 								<td></td>
 								<td class="sorting_1" style="text-align: left;">{{ $individu->nama }}</td>
 								<td>{{ $individu->gelombang }}</td>
+								<td>{{ $individu->kali_angsuran }}</td>
 								<td>{{ $individu->detail }}</td>
-								<td>{{ $individu->kali_pembayaran }}</td>
+								<td>{{ $individu->keterangan }}</td>
 								<td>
 									<div class="row" style="margin: 0px;">
 									<a href="{{route('angsuran.edit', $individu->id)}}">

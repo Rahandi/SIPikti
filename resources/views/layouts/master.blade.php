@@ -57,7 +57,7 @@
 			<div class="navbar-header">
 				<div class="top-left-part">
 					<!-- Logo -->
-					<a class="logo" href="{{ route('dashboard2') }}">
+					<a class="logo" href="{{ route('dashboard') }}">
 						<!-- Logo icon image, you can use font-icon also --><b>
 						<!--This is dark logo icon--><img src="{{ URL::asset('plugins/images/logoITS.png') }}" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="{{ URL::asset('plugins/images/logoITS.png') }}" alt="home" class="light-logo" />
 					 </b>
@@ -115,7 +115,7 @@
 				<div class="sidebar-head">
 					<h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3> </div>
 				<ul class="nav" id="side-menu" style="margin-top: 5%;">
-					<li><a href="{{ route('dashboard2') }}" class="waves-effect"><i class="material-icons">dvr</i> <span class="hide-menu">Dashboard</span></span></a>
+					<li><a href="{{ route('dashboard') }}" class="waves-effect"><i class="material-icons">dvr</i> <span class="hide-menu">Dashboard</span></span></a>
 					</li>
 					<li><a href="{{ route('pendaftaran') }}" class="waves-effect"><i class="material-icons">description</i> <span class="hide-menu">Pendaftaran</span></span></a>
 					</li>

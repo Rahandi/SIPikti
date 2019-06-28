@@ -25,7 +25,7 @@ class PembayaranController extends Controller
         $pembayaran = mahasiswaAngsuran::where('mahasiswa_id', $request->id)->get()->first();
         if ($pembayaran)
         {
-            $pembayaran->data_pembayaran = explode(',', $pembayaran->data_pembayaran);
+            $pembayaran->data_pembayaran = unserialize($pembayaran->data_pembayaran);
             $data = array(
                 "mahasiswa" => mahasiswa::find($request->id),
                 "exist" => 1,
@@ -48,15 +48,11 @@ class PembayaranController extends Controller
         $id_mahasiswa = $request->id_mahasiswa;
 
         $angsuran = angsuran::find($id_angsuran);
-        $kali_angsuran = array();
-        for ($x = 0; $x < $angsuran->kali_pembayaran; $x++) {
-            array_push($kali_angsuran, 0);
-        }
 
         $mahasiswa_angsuran = new mahasiswaAngsuran();
         $mahasiswa_angsuran->mahasiswa_id = $id_mahasiswa;
         $mahasiswa_angsuran->angsuran_id = $id_angsuran;
-        $mahasiswa_angsuran->data_pembayaran = implode(',', $kali_angsuran);
+        $mahasiswa_angsuran->data_pembayaran = $angsuran->template;
         $mahasiswa_angsuran->save();
         return redirect()->back();
     }

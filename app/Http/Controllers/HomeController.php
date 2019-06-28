@@ -32,19 +32,19 @@ class HomeController extends Controller
     public function index()
     {
         $data = pendaftar::all();
-        return view('dashboard', compact('data'));
+        return view('dashboard.index', compact('data'));
     }
 
     public function test()
     {
         $data = pendaftar::all();
-        return view('pendaftaran', compact('data'));
+        return view('pendaftaran.index', compact('data'));
     }
 
     public function detail2($id)
     {
         $data = $this->getPendaftarFullDetails($id);
-        return view('detail2', compact('data'));
+        return view('pendaftaran.detail', compact('data'));
     }
 
     public function list()

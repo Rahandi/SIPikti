@@ -18,6 +18,7 @@ class Angsuran extends Migration
             $table->string('nama');
             $table->string('gelombang');
             $table->string('keterangan');
+            $table->integer('kali_angsuran');
             $table->text('template');
             $table->timestamps();
         });
