@@ -16,6 +16,7 @@ class Mahasiswa extends Migration
         Schema::create('mahasiswa', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nomor_pendaftaran')->nullable();
+            $table->string('nrp')->nullable();
             $table->string('nama');
             $table->string('nama_gelar');
             $table->string('tempat_lahir');

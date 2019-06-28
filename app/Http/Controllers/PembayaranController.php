@@ -62,9 +62,9 @@ class PembayaranController extends Controller
         $id_mahasiswa_angsuran = $request->mahasiswa_angsuran;
         $jenis_terbayar = $request->jenis_bayar;
         $mahasiswa_angsuran = mahasiswaAngsuran::find($id_mahasiswa_angsuran);
-        $data_pembayaran = $mahasiswa_angsuran->data_pembayaran;
+        $data_pembayaran = unserialize($mahasiswa_angsuran->data_pembayaran);
         $data_pembayaran[$jenis_terbayar]['tanda'] = 1;
-        $mahasiswa_angsuran->data_pembayaran = $data_pembayaran;
+        $mahasiswa_angsuran->data_pembayaran = serialize($data_pembayaran);
         $mahasiswa_angsuran->save();
         return redirect()->back()->with('status', 'Pembayaran Sukses');
     }

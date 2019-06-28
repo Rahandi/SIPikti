@@ -74,21 +74,21 @@
 								<td>{{ $data['angsuran']->gelombang }}</td>
 							</tr>
 							<tr>
-								<td>Keterangan</td>
+								<td>Kali Angsuran</td>
 								<td>:</td>
-								<td>{{ $data['angsuran']->detail }}</td>
+								<td>{{ $data['angsuran']->kali_angsuran }}</td>
 							</tr>
 						</table><br>
-						@foreach ($data['pembayaran']->data_pembayaran as $index => $data_bayar)
+						@foreach ($data['pembayaran']['data_pembayaran'] as $index => $data_bayar)
 							<form action="{{route('pembayaran.bayar')}}" method="POST" style="width: 100%;text-align: center;">
 								{{csrf_field()}}
 								<input type="hidden" name="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
-								<input type="hidden" name="index_bayar" value="{{$index}}">
+								<input type="hidden" name="jenis_bayar" value="{{$index}}">
 								<button type="submit" class="btn btn-success"
-								@if ($data_bayar == 1)
+								@if ($data_bayar['tanda'] == 1)
 									disabled="disabled"
 								@endif
-								>Pembayaran {{$index + 1}}</button>
+								>Pembayaran {{$index}}</button>
 							</form><br>
 						@endforeach
 					@endif
