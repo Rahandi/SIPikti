@@ -17,7 +17,7 @@ class MahasiswaAngsuran extends Migration
             $table->bigIncrements('id');
             $table->string('mahasiswa_id');
             $table->string('angsuran_id');
-            $table->string('data_pembayaran');
+            $table->text('data_pembayaran');
             $table->timestamps();
         });
     }

@@ -39,7 +39,7 @@ class PembayaranController extends Controller
             "exist" => 0,
             "angsuran" => angsuran::all()
         );
-        return view('detail_pembayaran', compact('data'));
+        return view('pembayaran.detail', compact('data'));
     }
 
     public function selectAngsuran(Request $request)
@@ -67,5 +67,13 @@ class PembayaranController extends Controller
         $mahasiswa_angsuran->data_pembayaran = serialize($data_pembayaran);
         $mahasiswa_angsuran->save();
         return redirect()->back()->with('status', 'Pembayaran Sukses');
+    }
+
+    private function generateNRP($id_mahasiswa)
+    {
+        $mahasiswa = mahasiswa::find($id_mahasiswa);
+        $mahasiswa->nrp = 'gatau nrpnya gimana';
+        $mahasiswa->save();
+        return redirect()->back();
     }
 }
