@@ -91,8 +91,24 @@ class PembayaranController extends Controller
         ->get();
         for($i=0;$i<count($data);$i++){
             $data[$i]->data_pembayaran = unserialize($data[$i]->data_pembayaran);
+            // disintegrate pembayaran
+            $data_pembayaran = array(
+                "Daftar ulang 1" => $data[$i]->data_pembayaran['Daftar ulang 1']['tanda'],
+                "Daftar ulang 2" => $data[$i]->data_pembayaran['Daftar ulang 2']['tanda']
+            );
+            for($j=1;$j<=5;$j++){
+                $angsuran = "Angsuran ".$j;
+                $data_pembayaran[$angsuran] = isset($data[$i]->data_pembayaran[$angsuran]) ? $data[$i]->data_pembayaran[$angsuran]['tanda'] : -1;
+            }
+            $data[$i]->data_pembayaran = $data_pembayaran;
         }
+        dd($data);
         return view('pembayaran.rekap', compact('data'));
+    }
+
+    public function download()
+    {
+
     }
 
     private function generateNRP($id_mahasiswa)
