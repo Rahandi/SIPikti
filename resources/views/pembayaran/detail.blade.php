@@ -80,11 +80,11 @@
 							</tr>
 						</table><br>
 						@foreach ($data['pembayaran']['data_pembayaran'] as $index => $data_bayar)
-							<form action="{{route('pembayaran.bayar')}}" method="POST" style="width: 100%;text-align: center;">
+							<form action="{{route('pembayaran.bayar')}}" method="POST" style="width: 100%;text-align: center;" target="_blank">
 								{{csrf_field()}}
 								<input type="hidden" name="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
 								<input type="hidden" name="jenis_bayar" value="{{$index}}">
-								<button type="submit" class="btn btn-success"
+								<button type="submit" class="btn btn-success" onclick="reloadPlis()" 
 								@if ($data_bayar['tanda'] == 1)
 									disabled="disabled"
 								@endif
@@ -118,6 +118,9 @@
 			$('.selectpicker').selectpicker();
 
 		});
+		function reloadPlis(){
+			setTimeout(function(){location.reload()},500);
+		}
 	</script>
 	<script src="{{ URL::asset('plugins/bower_components/styleswitcher/jQuery.style.switcher.js') }}"></script>
 @endsection
