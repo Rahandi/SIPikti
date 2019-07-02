@@ -30,17 +30,6 @@ Route::get('/detail2/{id}', 'HomeController@detail2')->name('detail2');
 Route::get('/angsuran', 'HomeController@test2')->name('angsuran');
 Route::get('/mahasiswa', 'HomeController@test3')->name('mahasiswa');
 
-Route::get('/akademik', function () {
-    return view('akademik');
-})->name('akademik');
-Route::get('/pembayaran', function () {
-    return view('pembayaran');
-})->name('pembayaran');
-
-Route::get('/rekap_pembayaran', function () {
-    return view('rekap_pembayaran.index');
-})->name('rekap_pembayaran');
-
 Route::get('/daftar', 'PendaftarController@create')->name('daftar');
 Route::get('/coba', 'PendaftarController@generateNoPendaftaran');
 Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
@@ -71,5 +60,6 @@ Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran');
 Route::get('/pembayaran/detail/{id}', 'PembayaranController@detail')->name('pembayaran.detail');
 Route::post('/pembayaran/select', 'PembayaranController@selectAngsuran')->name('pembayaran.select');
 Route::post('/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
+Route::get('/pembayaran/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
 
 Auth::routes();

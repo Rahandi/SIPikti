@@ -82,6 +82,19 @@ class PembayaranController extends Controller
         return view('pembayaran.kwitansi', compact('data'));
     }
 
+    public function rekap()
+    {
+        $rekap = \DB::table('mahasiswa_angsuran')
+        ->join('mahasiswa', 'mahasiswa_angsuran.mahasiswa_id', '=', 'mahasiswa.id')
+        ->join('angsuran', 'mahasiswa_angsuran.angsuran_id', '=', 'angsuran.id')
+        ->select('mahasiswa.nrp', 'mahasiswa.nama', 'angsuran.nama as angsuran_nama', 'mahasiswa_angsuran.data_pembayaran')
+        ->get();
+        for($i=0;$i<count($rekap);$i++){
+            $rekap[$i]->data_pembayaran = unserialize($rekap[$i]->data_pembayaran);
+        }
+        dd($rekap);
+    }
+
     private function generateNRP($id_mahasiswa)
     {
         $mahasiswa = mahasiswa::find($id_mahasiswa);
