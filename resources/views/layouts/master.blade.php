@@ -124,6 +124,7 @@
 							<li><a href="{{ route('calon_mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Calon Mahasiswa</span></a></li>
 							<li><a href="{{ route('mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Mahasiswa</span></a></li>
 							<li><a href="{{ route('pembayaran') }}"><i class="material-icons">local_atm</i><span class="hide-menu">  Pembayaran</span></a></li>
+							<li><a href="{{ route('rekap_pembayaran') }}"><i class="material-icons">local_atm</i><span class="hide-menu">  Rekap Pembayaran</span></a></li>
 						</ul>
 					</li>
 					<li><a href="{{ route('angsuran') }}" class="waves-effect"><i class="material-icons">attach_money</i> <span class="hide-menu">Angsuran</span></a>

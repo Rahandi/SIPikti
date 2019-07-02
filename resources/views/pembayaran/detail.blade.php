@@ -84,7 +84,7 @@
 								{{csrf_field()}}
 								<input type="hidden" name="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
 								<input type="hidden" name="jenis_bayar" value="{{$index}}">
-								<button type="submit" class="btn btn-success" onclick="reloadPlis()" 
+								<button type="submit" class="btn btn-success" onclick="reloadPlis()" style="width: 20%;" 
 								@if ($data_bayar['tanda'] == 1)
 									disabled="disabled"
 								@endif

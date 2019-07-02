@@ -36,6 +36,11 @@ Route::get('/akademik', function () {
 Route::get('/pembayaran', function () {
     return view('pembayaran');
 })->name('pembayaran');
+
+Route::get('/rekap_pembayaran', function () {
+    return view('rekap_pembayaran.index');
+})->name('rekap_pembayaran');
+
 Route::get('/daftar', 'PendaftarController@create')->name('daftar');
 Route::get('/coba', 'PendaftarController@generateNoPendaftaran');
 Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
