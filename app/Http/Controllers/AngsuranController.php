@@ -45,7 +45,7 @@ class AngsuranController extends Controller
         $template['Daftar ulang 2'] = array('biaya' => $request->du2, 'tanda' => 0);
         for($i=1; $i<=$request['kali_pembayaran']; $i++){
             $jadi = $prefix.$i;
-            $template['Angsuran'.$i] = array('biaya' => $request[$jadi], 'tanda' => 0);
+            $template['Angsuran '.$i] = array('biaya' => $request[$jadi], 'tanda' => 0);
         }
         $angsuran->template = serialize($template);
         $angsuran->save();
