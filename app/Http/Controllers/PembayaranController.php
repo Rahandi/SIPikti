@@ -59,6 +59,7 @@ class PembayaranController extends Controller
 
     public function bayarAngsuran(Request $request)
     {
+        $date = $this->get_date();
         $id_mahasiswa_angsuran = $request->mahasiswa_angsuran;
         $jenis_terbayar = $request->jenis_bayar;
         $mahasiswa_angsuran = mahasiswaAngsuran::find($id_mahasiswa_angsuran);
@@ -66,8 +67,19 @@ class PembayaranController extends Controller
         $data_pembayaran[$jenis_terbayar]['tanda'] = 1;
         $mahasiswa_angsuran->data_pembayaran = serialize($data_pembayaran);
         $mahasiswa_angsuran->save();
-        $this->generateNRP($mahasiswa_angsuran->mahasiswa_id);
-        return redirect()->back()->with('status', 'Pembayaran Sukses');
+        if ($jenis_terbayar == 'Daftar ulang 1'){
+            $this->generateNRP($mahasiswa_angsuran->mahasiswa_id);            
+        }
+        $mahasiswa = mahasiswa::find($mahasiswa_angsuran->mahasiswa_id);
+        $data = array(
+            'nomer_pendaftaran' => $mahasiswa->nomor_pendaftaran,
+            'nama' => $mahasiswa->nama,
+            'nrp' => $mahasiswa->nrp,
+            'nama_pembayaran' => $jenis_terbayar,
+            'biaya' => $data_pembayaran[$jenis_terbayar]['biaya'],
+            'date' => $date
+        );
+        return view('pembayaran.kwitansi', compact('data'));
     }
 
     private function generateNRP($id_mahasiswa)
@@ -76,5 +88,39 @@ class PembayaranController extends Controller
         $mahasiswa->nrp = 'gatau nrpnya gimana';
         $mahasiswa->save();
         return redirect()->back();
+    }
+
+    private function get_date()
+    {
+        $month = date("F");
+        if ($month == 'January'){
+            $month = 'Januari';
+        }
+        elseif ($month == 'February'){
+            $month = 'Februari';
+        }
+        elseif ($month == 'March'){
+            $month = 'Maret';
+        }
+        elseif ($month == 'May'){
+            $month = 'Mei';
+        }
+        elseif ($month == 'June'){
+            $month = 'Juni';
+        }
+        elseif ($month == 'July'){
+            $month = 'Juli';
+        }
+        elseif ($month == 'August'){
+            $month = 'Agustus';
+        }
+        elseif ($month == 'October'){
+            $month = 'Oktober';
+        }
+        elseif ($month == 'December'){
+            $month = 'Desember';
+        }
+        $date = date('d ').$month.date(' Y');
+        return $date;
     }
 }

@@ -21,12 +21,12 @@
 		</div>
 		<br><hr>
 		<div class="row" style="text-align: left; margin-left: 3%;">
-			<p>Nomor Reg. {{$data->nomor_pendaftaran}}</p>
+			<p>Nomor Reg. {{$data['pendaftar']->nomor_pendaftaran}}</p>
 			<table style="margin-top: 5%;">
 				<tr>
 					<td style="width: 25%;">SUDAH TERIMA</td>
 					<td>:</td>
-					<td>Atas Nama {{$data->nama}} dengan No. Pend {{$data->nomor_pendaftaran}}</td>
+					<td>Atas Nama {{$data['pendaftar']->nama}} dengan No. Pend {{$data['pendaftar']->nomor_pendaftaran}}</td>
 				</tr>
 				<tr>
 					<td>TERBILANG</td>
@@ -36,7 +36,7 @@
 				<tr>
 					<td>GUNA</td>
 					<td>:</td>
-					<td>Pembayaran Pendaftaran PIKTI tanggal {{date("d F Y")}}</td>
+					<td>Pembayaran Pendaftaran PIKTI tanggal {{$data['date']}}</td>
 				</tr>
 				<tr>
 					<td>UANG RP</td>
@@ -47,8 +47,8 @@
 		</div>
 		<br>
 		<div class="row" style="margin-left: 50%; text-align: center;">
-			Surabaya, {{date("d F Y")}}<br><br><br><br><br><br>
-			{{$data->administrator}}
+			Surabaya, {{$data['date']}}<br><br><br><br><br><br>
+			{{$data['pendaftar']->administrator}}
 		</div>
 		<br><hr>
 		<div class="row">

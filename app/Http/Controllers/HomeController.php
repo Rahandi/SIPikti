@@ -55,7 +55,11 @@ class HomeController extends Controller
 
     public function kwitansi($id)
     {
-        $data = pendaftar::find($id);
+        $date = $this->get_date();
+        $data = array(
+            'pendaftar' => pendaftar::find($id),
+            'date' => $date
+        );
         return view('pendaftaran.kwitansi', compact('data'));
     }
 
@@ -389,5 +393,39 @@ class HomeController extends Controller
 
     private function get(&$var, $default=-1) {
     	return isset($var) ? $var : $default;
+    }
+
+    private function get_date()
+    {
+        $month = date("F");
+        if ($month == 'January'){
+            $month = 'Januari';
+        }
+        elseif ($month == 'February'){
+            $month = 'Februari';
+        }
+        elseif ($month == 'March'){
+            $month = 'Maret';
+        }
+        elseif ($month == 'May'){
+            $month = 'Mei';
+        }
+        elseif ($month == 'June'){
+            $month = 'Juni';
+        }
+        elseif ($month == 'July'){
+            $month = 'Juli';
+        }
+        elseif ($month == 'August'){
+            $month = 'Agustus';
+        }
+        elseif ($month == 'October'){
+            $month = 'Oktober';
+        }
+        elseif ($month == 'December'){
+            $month = 'Desember';
+        }
+        $date = date('d ').$month.date(' Y');
+        return $date;
     }
 }
