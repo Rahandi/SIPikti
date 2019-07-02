@@ -119,7 +119,7 @@
 					</li>
 					<li><a href="{{ route('pendaftaran') }}" class="waves-effect"><i class="material-icons">description</i> <span class="hide-menu">Pendaftaran</span></span></a>
 					</li>
-					<li><a class="waves-effect"><i class="material-icons">account_balance</i> <span class="hide-menu">Akademik<span class="fa arrow"></span></span></a>
+					<li><a class="dropdown-toggle waves-effect" data-toggle="dropdown" href="/akademik"><i class="material-icons">account_balance</i> <span class="hide-menu">Akademik<span class="fa arrow"></span></span></a>
 						<ul class="nav nav-second-level">
 							<li><a href="{{ route('calon_mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Calon Mahasiswa</span></a></li>
 							<li><a href="{{ route('mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Mahasiswa</span></a></li>

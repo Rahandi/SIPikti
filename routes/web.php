@@ -37,29 +37,29 @@ Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
 Route::get('/test_dashboard', 'HomeController@test')->name('test_dashboard');
 Route::post('/accept_mahasiswa', 'HomeController@acceptToMahasiswa')->name('accept_mahasiswa');
 
-Route::get('/calon_mahasiswa', 'MahasiswaController@calon_mahasiswa')->name('calon_mahasiswa');
-Route::get('/calon_mahasiswa/detail/{id}', 'MahasiswaController@calon_mahasiswa_detail')->name('calon_mahasiswa.detail');
-Route::get('/calon_mahasiswa/edit/{id}', 'MahasiswaController@calon_mahasiswa_edit')->name('calon_mahasiswa.edit');
-Route::post('/calon_mahasiswa/update', 'MahasiswaController@calon_mahasiswa_update')->name('calon_mahasiswa.update');
-Route::post('/calon_mahasiswa/delete', 'MahasiswaController@calon_mahasiswa_delete')->name('calon_mahasiswa.delete');
+Route::get('/akademik/calon_mahasiswa', 'MahasiswaController@calon_mahasiswa')->name('calon_mahasiswa');
+Route::get('/akademik/calon_mahasiswa/detail/{id}', 'MahasiswaController@calon_mahasiswa_detail')->name('calon_mahasiswa.detail');
+Route::get('/akademik/calon_mahasiswa/edit/{id}', 'MahasiswaController@calon_mahasiswa_edit')->name('calon_mahasiswa.edit');
+Route::post('/akademik/calon_mahasiswa/update', 'MahasiswaController@calon_mahasiswa_update')->name('calon_mahasiswa.update');
+Route::post('/akademik/calon_mahasiswa/delete', 'MahasiswaController@calon_mahasiswa_delete')->name('calon_mahasiswa.delete');
 
-Route::get('/mahasiswa', 'MahasiswaController@index')->name('mahasiswa');
-Route::get('/mahasiswa/detail/{id}', 'MahasiswaController@detail')->name('mahasiswa.detail');
-Route::get('/mahasiswa/edit/{id}', 'MahasiswaController@edit')->name('mahasiswa.edit');
-Route::post('/mahasiswa/update', 'MahasiswaController@update')->name('mahasiswa.update');
-Route::post('/mahasiswa/delete', 'MahasiswaController@delete')->name('mahasiswa.delete');
+Route::get('/akademik/mahasiswa', 'MahasiswaController@index')->name('mahasiswa');
+Route::get('/akademik/mahasiswa/detail/{id}', 'MahasiswaController@detail')->name('mahasiswa.detail');
+Route::get('/akademik/mahasiswa/edit/{id}', 'MahasiswaController@edit')->name('mahasiswa.edit');
+Route::post('/akademik/mahasiswa/update', 'MahasiswaController@update')->name('mahasiswa.update');
+Route::post('/akademik/mahasiswa/delete', 'MahasiswaController@delete')->name('mahasiswa.delete');
 
 Route::get('/angsuran', 'AngsuranController@index')->name('angsuran');
 Route::get('/angsuran/create', 'AngsuranController@create')->name('angsuran.create');
 Route::post('/angsuran/store', 'AngsuranController@store')->name('angsuran.store');
 Route::get('/angsuran/edit/{id}', 'AngsuranController@edit')->name('angsuran.edit');
 Route::post('/angsuran/update', 'AngsuranController@update')->name('angsuran.update');
-Route::post('angsuran/delete', 'AngsuranController@delete')->name('angsuran.delete');
+Route::post('/angsuran/delete', 'AngsuranController@delete')->name('angsuran.delete');
 
-Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran');
-Route::get('/pembayaran/detail/{id}', 'PembayaranController@detail')->name('pembayaran.detail');
-Route::post('/pembayaran/select', 'PembayaranController@selectAngsuran')->name('pembayaran.select');
-Route::post('/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
-Route::get('/pembayaran/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
+Route::get('/akademik/pembayaran', 'PembayaranController@index')->name('pembayaran');
+Route::get('/akademik/pembayaran/detail/{id}', 'PembayaranController@detail')->name('pembayaran.detail');
+Route::post('/akademik/pembayaran/select', 'PembayaranController@selectAngsuran')->name('pembayaran.select');
+Route::post('/akademik/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
+Route::get('/akademik/pembayaran/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
 
 Auth::routes();

@@ -43,17 +43,20 @@
 							</tr>
 						</thead>
 						<tbody>
-						@foreach ($data as $individu)
+						@foreach ($data as $rekap)
 							<tr>
 								<td></td>
-								<td class="sorting_1" style="text-align: left;">{{ $individu->nama }}</td>
-								<td>{{ $individu->created_at }}</td>
-								<td>{{ $individu->tanggal_lahir }}</td>
-								<td>
-									<div class="row" style="margin: 0px;">
-										<a href="{{ route('pembayaran.detail',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
-									</div>
-								</td>
+								<td class="sorting_1" style="text-align: left;">{{ $rekap->nrp }}</td>
+								<td>{{ $rekap->nama }}</td>
+								<td>{{ $rekap->angsuran_nama }}</td>
+								<td>{{ $rekap->data_pembayaran['Daftar ulang 1']['tanda'] }}</td>
+								<td>{{ $rekap->data_pembayaran['Daftar ulang 2']['tanda'] }}</td>
+								<td>{{ $rekap->data_pembayaran['Angsuran 1']['tanda'] }}</td>
+								<td>{{ $rekap->data_pembayaran['Angsuran 2']['tanda'] }}</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
 							</tr>
 						@endforeach
 						</tbody>
