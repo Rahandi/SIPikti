@@ -26,12 +26,18 @@
 					<div class="input-group">
 						<span class="input-group-addon">Rp</span>
 						<input type="text" class="form-control" id="du1" name="du1" placeholder="1500000" required>
-					</div><br>
+					</div>
+					<div style="margin-top: 1%;"></div>
+					Terbilang:
+					<input type="text" class="form-control" id="ter_du1" name="ter_du1" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					Daftar Ulang 2:
 					<div class="input-group">
 						<span class="input-group-addon">Rp</span>
 						<input type="text" class="form-control" id="du2" name="du2" placeholder="1500000" required>
 					</div>
+					<div style="margin-top: 1%;"></div>
+					Terbilang:
+					<input type="text" class="form-control" id="ter_du2" name="ter_du2" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 				</div>
 
 				<div class="form-group">
@@ -52,35 +58,50 @@
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
 							<input type="text" class="form-control" id="a1" name="a1" placeholder="1500000">
-						</div><br>
+						</div>
+						<div style="margin-top: 1%;"></div>
+						Terbilang:
+						<input type="text" class="form-control" id="ter_a1" name="ter_a1" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					</div>
 					<div id="ang2" style="display: none;">
 						Angsuran 2:
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
 							<input type="text" class="form-control" id="a2" name="a2" placeholder="1500000">
-						</div><br>
+						</div>
+						<div style="margin-top: 1%;"></div>
+						Terbilang:
+						<input type="text" class="form-control" id="ter_a2" name="ter_a2" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					</div>
 					<div id="ang3" style="display: none;">
 						Angsuran 3:
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
 							<input type="text" class="form-control" id="a3" name="a3" placeholder="1500000">
-						</div><br>
+						</div>
+						<div style="margin-top: 1%;"></div>
+						Terbilang:
+						<input type="text" class="form-control" id="ter_a3" name="ter_a3" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					</div>
 					<div id="ang4" style="display: none;">
 						Angsuran 4:
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
 							<input type="text" class="form-control" id="a4" name="a4" placeholder="1500000">
-						</div><br>
+						</div>
+						<div style="margin-top: 1%;"></div>
+						Terbilang:
+						<input type="text" class="form-control" id="ter_a4" name="ter_a4" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					</div>
 					<div id="ang5" style="display: none;">
 						Angsuran 5:
 						<div class="input-group">
 							<span class="input-group-addon">Rp</span>
 							<input type="text" class="form-control" id="a5" name="a5" placeholder="1500000">
-						</div><br>
+						</div>
+						<div style="margin-top: 1%;"></div>
+						Terbilang:
+						<input type="text" class="form-control" id="ter_a5" name="ter_a5" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					</div>
 				</div>
 				<div class="form-group">

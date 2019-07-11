@@ -28,18 +28,17 @@
 					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 						<thead>
 							<tr>
-								<th style="width: 5%;"></th>
-								<th style="width: 20%;text-align: center;">NRP</th>
+								<th style="width: 1%;"></th>
+								<th style="width: 15%;text-align: center;">NRP</th>
 								<th style="width: 25%;text-align: center;">Nama</th>
 								<th style="width: 20%;text-align: center;">Jenis Angsuran</th>
-								<th style="width: 5%;text-align: center;">Daftar Ulang 1</th>
-								<th style="width: 5%;text-align: center;">Daftar Ulang 2</th>
-								<th style="width: 5%;text-align: center;">Angsuran 1</th>
-								<th style="width: 5%;text-align: center;">Angsuran 2</th>
-								<th style="width: 5%;text-align: center;">Angsuran 3</th>
-								<th style="width: 5%;text-align: center;">Angsuran 4</th>
-								<th style="width: 5%;text-align: center;">Angsuran 5</th>
-								<th style="width: 10%;text-align: center;">Action</th>
+								<th style="width: 5%;text-align: center;">DU1</th>
+								<th style="width: 5%;text-align: center;">DU2</th>
+								<th style="width: 5%;text-align: center;">A1</th>
+								<th style="width: 5%;text-align: center;">A2</th>
+								<th style="width: 5%;text-align: center;">A3</th>
+								<th style="width: 5%;text-align: center;">A4</th>
+								<th style="width: 5%;text-align: center;">A5</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -49,14 +48,55 @@
 								<td class="sorting_1" style="text-align: left;">{{ $rekap->nrp }}</td>
 								<td>{{ $rekap->nama }}</td>
 								<td>{{ $rekap->angsuran_nama }}</td>
-								<td>{{ $rekap->data_pembayaran['Daftar ulang 1']['tanda'] }}</td>
-								<td>{{ $rekap->data_pembayaran['Daftar ulang 2']['tanda'] }}</td>
-								<td>{{ $rekap->data_pembayaran['Angsuran 1']['tanda'] }}</td>
-								<td>{{ $rekap->data_pembayaran['Angsuran 2']['tanda'] }}</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
+								@if ($rekap->data_pembayaran['Daftar ulang 1'] == '0')
+									<td><i class="material-icons" style="font-size: 22px;">remove</i></td>
+									@elseif ($rekap->data_pembayaran['Daftar ulang 1'] == '1')
+									<td><i class="material-icons" style="font-size: 22px;">done</i></td>
+									@else
+									<td style="background-color: #cccccc;"></td>
+								@endif
+								@if ($rekap->data_pembayaran['Daftar ulang 2'] == '0')
+									<td><i class="material-icons" style="font-size: 22px;">remove</i></td>
+									@elseif ($rekap->data_pembayaran['Daftar ulang 2'] == '1')
+									<td><i class="material-icons" style="font-size: 22px;">done</i></td>
+									@else
+									<td style="background-color: #cccccc;"></td>
+								@endif
+								@if ($rekap->data_pembayaran['Angsuran 1'] == '0')
+									<td><i class="material-icons" style="font-size: 22px;">remove</i></td>
+									@elseif ($rekap->data_pembayaran['Angsuran 1'] == '1')
+									<td><i class="material-icons" style="font-size: 22px;">done</i></td>
+									@else
+									<td style="background-color: #cccccc;"></td>
+								@endif
+								@if ($rekap->data_pembayaran['Angsuran 2'] == '0')
+									<td><i class="material-icons" style="font-size: 22px;">remove</i></td>
+									@elseif ($rekap->data_pembayaran['Angsuran 2'] == '1')
+									<td><i class="material-icons" style="font-size: 22px;">done</i></td>
+									@else
+									<td style="background-color: #cccccc;"></td>
+								@endif
+								@if ($rekap->data_pembayaran['Angsuran 3'] == '0')
+									<td><i class="material-icons" style="font-size: 22px;">remove</i></td>
+									@elseif ($rekap->data_pembayaran['Angsuran 3'] == '1')
+									<td><i class="material-icons" style="font-size: 22px;">done</i></td>
+									@else
+									<td style="background-color: #cccccc;"></td>
+								@endif
+								@if ($rekap->data_pembayaran['Angsuran 4'] == '0')
+									<td><i class="material-icons" style="font-size: 22px;">remove</i></td>
+									@elseif ($rekap->data_pembayaran['Angsuran 4'] == '1')
+									<td><i class="material-icons" style="font-size: 22px;">done</i></td>
+									@else
+									<td style="background-color: #cccccc;"></td>
+								@endif
+								@if ($rekap->data_pembayaran['Angsuran 5'] == '0')
+									<td><i class="material-icons" style="font-size: 22px;">remove</i></td>
+									@elseif ($rekap->data_pembayaran['Angsuran 5'] == '1')
+									<td><i class="material-icons" style="font-size: 22px;">done</i></td>
+									@else
+									<td style="background-color: #cccccc;"></td>
+								@endif
 							</tr>
 						@endforeach
 						</tbody>

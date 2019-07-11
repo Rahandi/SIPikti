@@ -19,7 +19,8 @@ class AngsuranController extends Controller
             $data[$i]->template = unserialize($data[$i]->template);
             $keterangan = array();
             foreach ($data[$i]->template as $key => $value) {
-                array_push($keterangan, $key.': '.$value['biaya']);
+                $biaya = strrev(rtrim(chunk_split(strrev($value['biaya']), 3, '.'), '.'));
+                array_push($keterangan, $key.': '.$biaya);
             }
             $data[$i]->detail = implode('; ', $keterangan);
         }

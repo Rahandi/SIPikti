@@ -5,6 +5,8 @@
 @endsection
 
 @section('css')
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
 	<link href="{{ URL::asset('plugins/bower_components/custom-select/custom-select.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ URL::asset('plugins/bower_components/switchery/dist/switchery.min.css') }}" rel="stylesheet" />
@@ -49,6 +51,13 @@
 							<td>:</td>
 							<td>{{ $data['mahasiswa']->nama }}</td>
 						</tr>
+						@if ($data['pembayaran']['data_pembayaran']['Daftar ulang 1']['tanda'] == 1)
+						<tr>
+							<td>NRP</td>
+							<td>:</td>
+							<td>{{ $data['mahasiswa']->nrp }}</td>
+						</tr>
+						@endif
 					</table><br>
 					@if ($data['exist'] == 0)
 						<form action="{{route('pembayaran.select')}}" method="POST" style="width: 100%;">
@@ -79,18 +88,48 @@
 								<td>{{ $data['angsuran']->kali_angsuran }}</td>
 							</tr>
 						</table><br>
-						@foreach ($data['pembayaran']['data_pembayaran'] as $index => $data_bayar)
-							<form action="{{route('pembayaran.bayar')}}" method="POST" style="width: 100%;text-align: center;" target="_blank">
-								{{csrf_field()}}
-								<input type="hidden" name="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
-								<input type="hidden" name="jenis_bayar" value="{{$index}}">
-								<button type="submit" class="btn btn-success" onclick="reloadPlis()" style="width: 20%;" 
-								@if ($data_bayar['tanda'] == 1)
-									disabled="disabled"
-								@endif
-								>Pembayaran {{$index}}</button>
-							</form><br>
-						@endforeach
+						<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
+							<thead>
+								<tr>
+									<th style="width: 20%;text-align: center;">Nama Pembayaran</th>
+									<th style="width: 20%;text-align: center;">Total Biaya</th>
+									<th style="width: 20%;text-align: center;">Tanggal Bayar</th>
+									<th style="width: 25%;text-align: center;">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+							@foreach ($data['pembayaran']['data_pembayaran'] as $index => $data_bayar)
+								<tr>
+									<td class="sorting_1" style="text-align: left;">{{ $index }}</td>
+									<td>Rp {{ $data_bayar['biaya'] }}</td>
+									<td>18 Agustus 2019</td>
+									<td>
+										<div class="row" style="width: 100%;">
+											<div class="col-md-6">
+												<form action="{{route('pembayaran.bayar')}}" method="POST" style="text-align: right;" target="_blank">
+												{{csrf_field()}}
+												<input type="hidden" name="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
+												<input type="hidden" name="jenis_bayar" value="{{$index}}">
+												<button type="submit" class="btn btn-success" onclick="reloadPlis()" 
+												@if ($data_bayar['tanda'] == 1)
+													disabled="disabled"
+												@endif
+												>Bayar</button>
+												</form>
+											</div>
+											<div class="col-md-6">
+												<a href=""><button class="btn btn-info"
+												@if ($data_bayar['tanda'] != 1)
+													disabled="disabled"
+												@endif
+												>Kwitansi</button></a>
+											</div>
+										</div>
+									</td>
+								</tr>
+							@endforeach
+							</tbody>
+						</table>
 					@endif
 				</div>
 			</div>
@@ -100,6 +139,7 @@
 
 @section('js')
 	<script type="text/javascript" src="{{ URL::asset('js/sipikti.js') }}"></script>
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 	<script src="{{ URL::asset('plugins/bower_components/switchery/dist/switchery.min.js') }}"></script>

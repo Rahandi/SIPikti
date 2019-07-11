@@ -26,12 +26,18 @@
 					<div class="input-group">
 						<span class="input-group-addon">Rp</span>
 						<input type="text" class="form-control" id="du1" name="du1" placeholder="1500000" value="{{$data['template']['Daftar ulang 1']['biaya']}}" required>
-					</div><br>
+					</div>
+					<div style="margin-top: 1%;"></div>
+					Terbilang:
+					<input type="text" class="form-control" id="ter_du1" name="ter_du1" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					Daftar Ulang 2:
 					<div class="input-group">
 						<span class="input-group-addon">Rp</span>
 						<input type="text" class="form-control" id="du2" name="du2" placeholder="1500000" value="{{$data['template']['Daftar ulang 2']['biaya']}}" required>
 					</div>
+					<div style="margin-top: 1%;"></div>
+					Terbilang:
+					<input type="text" class="form-control" id="ter_du2" name="ter_du2" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 				</div>
 
 				<div class="form-group">
@@ -79,7 +85,10 @@
 								value="{{$data['template']['Angsuran1']['biaya']}}"
 							@endif
 							>
-						</div><br>
+						</div>
+						<div style="margin-top: 1%;"></div>
+						Terbilang:
+						<input type="text" class="form-control" id="ter_a1" name="ter_a1" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					</div>
 					<div id="ang2"
 					@if ($data->kali_angsuran < 2)
@@ -94,7 +103,10 @@
 								value="{{$data['template']['Angsuran2']['biaya']}}"
 							@endif
 							>
-						</div><br>
+						</div>
+						<div style="margin-top: 1%;"></div>
+						Terbilang:
+						<input type="text" class="form-control" id="ter_a2" name="ter_a2" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					</div>
 					<div id="ang3"
 					@if ($data->kali_angsuran < 3)
@@ -109,7 +121,10 @@
 								value="{{$data['template']['Angsuran3']['biaya']}}"
 							@endif
 							>
-						</div><br>
+						</div>
+						<div style="margin-top: 1%;"></div>
+						Terbilang:
+						<input type="text" class="form-control" id="ter_a3" name="ter_a3" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					</div>
 					<div id="ang4"
 					@if ($data->kali_angsuran < 4)
@@ -124,7 +139,10 @@
 								value="{{$data['template']['Angsuran4']['biaya']}}"
 							@endif
 							>
-						</div><br>
+						</div>
+						<div style="margin-top: 1%;"></div>
+						Terbilang:
+						<input type="text" class="form-control" id="ter_a4" name="ter_a4" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					</div>
 					<div id="ang5"
 					@if ($data->kali_angsuran < 5)
@@ -139,7 +157,10 @@
 								value="{{$data['template']['Angsuran5']['biaya']}}"
 							@endif
 							>
-						</div><br>
+						</div>
+						<div style="margin-top: 1%;"></div>
+						Terbilang:
+						<input type="text" class="form-control" id="ter_a5" name="ter_a5" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
 					</div>
 				</div>
 				<div class="form-group">

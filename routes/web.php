@@ -49,17 +49,19 @@ Route::get('/akademik/mahasiswa/edit/{id}', 'MahasiswaController@edit')->name('m
 Route::post('/akademik/mahasiswa/update', 'MahasiswaController@update')->name('mahasiswa.update');
 Route::post('/akademik/mahasiswa/delete', 'MahasiswaController@delete')->name('mahasiswa.delete');
 
-Route::get('/angsuran', 'AngsuranController@index')->name('angsuran');
-Route::get('/angsuran/create', 'AngsuranController@create')->name('angsuran.create');
-Route::post('/angsuran/store', 'AngsuranController@store')->name('angsuran.store');
-Route::get('/angsuran/edit/{id}', 'AngsuranController@edit')->name('angsuran.edit');
-Route::post('/angsuran/update', 'AngsuranController@update')->name('angsuran.update');
-Route::post('/angsuran/delete', 'AngsuranController@delete')->name('angsuran.delete');
+Route::get('/keuangan/angsuran', 'AngsuranController@index')->name('angsuran');
+Route::get('/keuangan/angsuran/create', 'AngsuranController@create')->name('angsuran.create');
+Route::post('/keuangan/angsuran/store', 'AngsuranController@store')->name('angsuran.store');
+Route::get('/keuangan/angsuran/edit/{id}', 'AngsuranController@edit')->name('angsuran.edit');
+Route::post('/keuangan/angsuran/update', 'AngsuranController@update')->name('angsuran.update');
+Route::post('/keuangan/angsuran/delete', 'AngsuranController@delete')->name('angsuran.delete');
 
-Route::get('/akademik/pembayaran', 'PembayaranController@index')->name('pembayaran');
-Route::get('/akademik/pembayaran/detail/{id}', 'PembayaranController@detail')->name('pembayaran.detail');
-Route::post('/akademik/pembayaran/select', 'PembayaranController@selectAngsuran')->name('pembayaran.select');
-Route::post('/akademik/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
-Route::get('/akademik/pembayaran/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
+Route::get('/keuangan/pembayaran', 'PembayaranController@index')->name('pembayaran');
+Route::get('/keuangan/pembayaran/detail/{id}', 'PembayaranController@detail')->name('pembayaran.detail');
+Route::post('/keuangan/pembayaran/select', 'PembayaranController@selectAngsuran')->name('pembayaran.select');
+Route::post('/keuangan/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
+Route::get('/keuangan/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
+
+Route::get('/coba', 'PembayaranController@generateNRP');
 
 Auth::routes();

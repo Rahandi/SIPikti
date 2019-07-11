@@ -25,7 +25,11 @@ class PembayaranController extends Controller
         $pembayaran = mahasiswaAngsuran::where('mahasiswa_id', $request->id)->get()->first();
         if ($pembayaran)
         {
-            $pembayaran->data_pembayaran = unserialize($pembayaran->data_pembayaran);
+            $datanya = unserialize($pembayaran->data_pembayaran);
+            foreach($datanya as $key => $value){
+                $datanya[$key]['biaya'] = strrev(rtrim(chunk_split(strrev($datanya[$key]['biaya']), 3, '.'), '.'));
+            }
+            $pembayaran->data_pembayaran = $datanya;
             $data = array(
                 "mahasiswa" => mahasiswa::find($request->id),
                 "exist" => 1,
@@ -102,7 +106,7 @@ class PembayaranController extends Controller
             }
             $data[$i]->data_pembayaran = $data_pembayaran;
         }
-        dd($data);
+        
         return view('pembayaran.rekap', compact('data'));
     }
 
@@ -111,10 +115,25 @@ class PembayaranController extends Controller
 
     }
 
-    private function generateNRP($id_mahasiswa)
+    public function generateNRP($id_mahasiswa)
     {
+        $tahun = date('Y');
+        $tahun = substr($tahun, 2, strlen($tahun));
+
+        $nrp_mahasiswa = \DB::table('mahasiswa')
+                            ->select('mahasiswa.nrp')
+                            ->orderBy('mahasiswa.nrp', 'DESC')
+                            ->take(1)
+                            ->get();
+        $sekarang = $nrp_mahasiswa[0]->nrp;
+        $sekarang = substr($sekarang, 7);
+        $urutan = $sekarang+1;
+        $urutan = str_pad($urutan, 3, '0', 0);
+
+        $nrp = '88'.$tahun.'200'.$urutan;
+
         $mahasiswa = mahasiswa::find($id_mahasiswa);
-        $mahasiswa->nrp = 'gatau nrpnya gimana';
+        $mahasiswa->nrp = $nrp;
         $mahasiswa->save();
         return redirect()->back();
     }
