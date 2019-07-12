@@ -69,6 +69,7 @@ class PembayaranController extends Controller
         $mahasiswa_angsuran = mahasiswaAngsuran::find($id_mahasiswa_angsuran);
         $data_pembayaran = unserialize($mahasiswa_angsuran->data_pembayaran);
         $data_pembayaran[$jenis_terbayar]['tanda'] = 1;
+        $data_pembayaran[$jenis_terbayar]['tanggal_bayar'] = $date;
         $mahasiswa_angsuran->data_pembayaran = serialize($data_pembayaran);
         $mahasiswa_angsuran->save();
         if ($jenis_terbayar == 'Daftar ulang 1'){
@@ -81,6 +82,7 @@ class PembayaranController extends Controller
             'nrp' => $mahasiswa->nrp,
             'nama_pembayaran' => $jenis_terbayar,
             'biaya' => $data_pembayaran[$jenis_terbayar]['biaya'],
+            'terbilang' => $data_pembayaran[$jenis_terbayar]['tanggal_bayar'],
             'date' => $date
         );
         return view('pembayaran.kwitansi', compact('data'));

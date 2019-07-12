@@ -42,11 +42,27 @@ class AngsuranController extends Controller
         $angsuran->kali_angsuran = $request->kali_pembayaran;
         $prefix = 'a';
         $template = array();
-        $template['Daftar ulang 1'] = array('biaya' => $request->du1, 'tanda' => 0);
-        $template['Daftar ulang 2'] = array('biaya' => $request->du2, 'tanda' => 0);
+        $template['Daftar ulang 1'] = array(
+            'biaya' => $request->du1, 
+            'tanda' => 0,
+            'terbilang' => $request->ter_du1,
+            'tanggal_bayar' => NULL
+        );
+        $template['Daftar ulang 2'] = array(
+            'biaya' => $request->du2, 
+            'tanda' => 0,
+            'terbilang' => $request->ter_du2,
+            'tanggal_bayar' => NULL
+        );
         for($i=1; $i<=$request['kali_pembayaran']; $i++){
             $jadi = $prefix.$i;
-            $template['Angsuran '.$i] = array('biaya' => $request[$jadi], 'tanda' => 0);
+            $terbilang = 'ter_a'.$i;
+            $template['Angsuran '.$i] = array(
+                'biaya' => $request[$jadi], 
+                'tanda' => 0,
+                'terbilang' => $request[$terbilang],
+                'tanggal_bayar' => NULL
+            );
         }
         $angsuran->template = serialize($template);
         $angsuran->save();
@@ -69,11 +85,27 @@ class AngsuranController extends Controller
         $angsuran->keterangan = $request->keterangan;
         $prefix = 'a';
         $template = array();
-        $template['Daftar ulang 1'] = array('biaya' => $request->du1, 'tanda' => 0);
-        $template['Daftar ulang 2'] = array('biaya' => $request->du2, 'tanda' => 0);
+        $template['Daftar ulang 1'] = array(
+            'biaya' => $request->du1, 
+            'tanda' => 0,
+            'terbilang' => $request->ter_du1,
+            'tanggal_bayar' => NULL
+        );
+        $template['Daftar ulang 2'] = array(
+            'biaya' => $request->du2, 
+            'tanda' => 0,
+            'terbilang' => $request->ter_du2,
+            'tanggal_bayar' => NULL
+        );
         for($i=1; $i<=$request['kali_pembayaran']; $i++){
             $jadi = $prefix.$i;
-            $template['Angsuran'.$i] = array('biaya' => $request[$jadi], 'tanda' => 0);
+            $terbilang = 'ter_a'.$i;
+            $template['Angsuran '.$i] = array(
+                'biaya' => $request[$jadi], 
+                'tanda' => 0,
+                'terbilang' => $request[$terbilang],
+                'tanggal_bayar' => NULL
+            );
         }
         $angsuran->template = serialize($template);
         $angsuran->save();
