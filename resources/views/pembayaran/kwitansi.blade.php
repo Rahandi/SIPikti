@@ -31,7 +31,7 @@
 				<tr>
 					<td>TERBILANG</td>
 					<td>:</td>
-					<td>Empat Ratus Ribu Rupiah</td>
+					<td>{{$data['terbilang']}}</td>
 				</tr>
 				<tr>
 					<td>GUNA</td>
@@ -48,7 +48,7 @@
 		<br>
 		<div class="row" style="margin-left: 50%; text-align: center;">
 			Surabaya, {{$data['date']}}<br><br><br><br><br><br>
-			yoshima
+			{{$data['administrator']}}
 		</div>
 		<br><hr>
 		<div class="row">

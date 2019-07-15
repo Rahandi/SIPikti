@@ -47,7 +47,7 @@
 		</div>
 		<br>
 		<div class="row" style="margin-left: 50%; text-align: center;">
-			Surabaya, {{$data['date']}}<br><br><br><br><br><br>
+			Surabaya, {{$data['pendaftar']->tanggal_verifikasi}}<br><br><br><br><br><br>
 			{{$data['pendaftar']->administrator}}
 		</div>
 		<br><hr>

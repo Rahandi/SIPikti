@@ -240,6 +240,7 @@ class HomeController extends Controller
         $pendaftar = pendaftar::find($id);
         if($pendaftar->nomor_pendaftaran === null){
             $pendaftar->nomor_pendaftaran = $this->generateNoPendaftaran();
+            $pendaftar->tanggal_verifikasi = $this->get_date();
             $pendaftar->administrator = Auth::user()->name;
             $pendaftar->save();
             return redirect()->back();

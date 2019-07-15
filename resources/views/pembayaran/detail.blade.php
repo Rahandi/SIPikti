@@ -51,13 +51,11 @@
 							<td>:</td>
 							<td>{{ $data['mahasiswa']->nama }}</td>
 						</tr>
-						@if ($data['pembayaran']['data_pembayaran']['Daftar ulang 1']['tanda'] == 1)
 						<tr>
 							<td>NRP</td>
 							<td>:</td>
 							<td>{{ $data['mahasiswa']->nrp }}</td>
 						</tr>
-						@endif
 					</table><br>
 					@if ($data['exist'] == 0)
 						<form action="{{route('pembayaran.select')}}" method="POST" style="width: 100%;">
@@ -102,7 +100,7 @@
 								<tr>
 									<td class="sorting_1" style="text-align: left;">{{ $index }}</td>
 									<td>Rp {{ $data_bayar['biaya'] }}</td>
-									<td>18 Agustus 2019</td>
+									<td>{{ $data_bayar['tanggal_bayar'] }}</td>
 									<td>
 										<div class="row" style="width: 100%;">
 											<div class="col-md-6">

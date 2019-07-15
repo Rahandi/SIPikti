@@ -61,7 +61,7 @@
 						</div>
 						<div style="margin-top: 1%;"></div>
 						Terbilang:
-						<input type="text" class="form-control" id="ter_a1" name="ter_a1" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
+						<input type="text" class="form-control" id="ter_a1" name="ter_a1" placeholder="Satu Juta Lima Ratus Ribu Rupiah"><br>
 					</div>
 					<div id="ang2" style="display: none;">
 						Angsuran 2:
@@ -71,7 +71,7 @@
 						</div>
 						<div style="margin-top: 1%;"></div>
 						Terbilang:
-						<input type="text" class="form-control" id="ter_a2" name="ter_a2" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
+						<input type="text" class="form-control" id="ter_a2" name="ter_a2" placeholder="Satu Juta Lima Ratus Ribu Rupiah"><br>
 					</div>
 					<div id="ang3" style="display: none;">
 						Angsuran 3:
@@ -81,7 +81,7 @@
 						</div>
 						<div style="margin-top: 1%;"></div>
 						Terbilang:
-						<input type="text" class="form-control" id="ter_a3" name="ter_a3" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
+						<input type="text" class="form-control" id="ter_a3" name="ter_a3" placeholder="Satu Juta Lima Ratus Ribu Rupiah"><br>
 					</div>
 					<div id="ang4" style="display: none;">
 						Angsuran 4:
@@ -91,7 +91,7 @@
 						</div>
 						<div style="margin-top: 1%;"></div>
 						Terbilang:
-						<input type="text" class="form-control" id="ter_a4" name="ter_a4" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
+						<input type="text" class="form-control" id="ter_a4" name="ter_a4" placeholder="Satu Juta Lima Ratus Ribu Rupiah"><br>
 					</div>
 					<div id="ang5" style="display: none;">
 						Angsuran 5:
@@ -101,7 +101,7 @@
 						</div>
 						<div style="margin-top: 1%;"></div>
 						Terbilang:
-						<input type="text" class="form-control" id="ter_a5" name="ter_a5" placeholder="Satu Juta Lima Ratus Ribu Rupiah" required><br>
+						<input type="text" class="form-control" id="ter_a5" name="ter_a5" placeholder="Satu Juta Lima Ratus Ribu Rupiah"><br>
 					</div>
 				</div>
 				<div class="form-group">

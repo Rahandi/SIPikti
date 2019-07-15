@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\mahasiswa;
 use App\angsuran;
 use App\mahasiswaAngsuran;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
@@ -82,8 +83,9 @@ class PembayaranController extends Controller
             'nrp' => $mahasiswa->nrp,
             'nama_pembayaran' => $jenis_terbayar,
             'biaya' => $data_pembayaran[$jenis_terbayar]['biaya'],
-            'terbilang' => $data_pembayaran[$jenis_terbayar]['tanggal_bayar'],
-            'date' => $date
+            'terbilang' => $data_pembayaran[$jenis_terbayar]['terbilang'],
+            'date' => $date,
+            'administrator' => Auth::user()->name
         );
         return view('pembayaran.kwitansi', compact('data'));
     }
