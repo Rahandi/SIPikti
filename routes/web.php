@@ -61,6 +61,7 @@ Route::get('/keuangan/pembayaran/detail/{id}', 'PembayaranController@detail')->n
 Route::post('/keuangan/pembayaran/select', 'PembayaranController@selectAngsuran')->name('pembayaran.select');
 Route::post('/keuangan/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
 Route::get('/keuangan/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
+Route::get('/keuangan/rekap/download', 'PembayaranController@download')->name('pembayaran.rekap.download');
 
 Route::get('/coba', 'PembayaranController@generateNRP');
 

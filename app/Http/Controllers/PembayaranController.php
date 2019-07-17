@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\mahasiswa;
 use App\angsuran;
 use App\mahasiswaAngsuran;
+use App\Exports\AngsuranExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -116,7 +118,7 @@ class PembayaranController extends Controller
 
     public function download()
     {
-
+        return Excel::download(new AngsuranExport, 'angsuran.xlsx');
     }
 
     public function generateNRP($id_mahasiswa)
