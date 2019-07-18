@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\mahasiswa;
 use App\angsuran;
 use App\mahasiswaAngsuran;
-use App\Exports\AngsuranExport;
+use App\Exports\RekapExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -118,7 +118,25 @@ class PembayaranController extends Controller
 
     public function download()
     {
-        return Excel::download(new AngsuranExport, 'angsuran.xlsx');
+        $data = \DB::table('mahasiswa_angsuran')
+        ->join('mahasiswa', 'mahasiswa_angsuran.mahasiswa_id', '=', 'mahasiswa.id')
+        ->join('angsuran', 'mahasiswa_angsuran.angsuran_id', '=', 'angsuran.id')
+        ->select('mahasiswa.nrp', 'mahasiswa.nama', 'angsuran.nama as angsuran_nama', 'mahasiswa_angsuran.data_pembayaran')
+        ->get();
+        for($i=0;$i<count($data);$i++){
+            $data[$i]->data_pembayaran = unserialize($data[$i]->data_pembayaran);
+            // disintegrate pembayaran
+            $data_pembayaran = array(
+                "Daftar ulang 1" => $data[$i]->data_pembayaran['Daftar ulang 1']['tanda'],
+                "Daftar ulang 2" => $data[$i]->data_pembayaran['Daftar ulang 2']['tanda']
+            );
+            for($j=1;$j<=5;$j++){
+                $angsuran = "Angsuran ".$j;
+                $data_pembayaran[$angsuran] = isset($data[$i]->data_pembayaran[$angsuran]) ? $data[$i]->data_pembayaran[$angsuran]['tanda'] : -1;
+            }
+            $data[$i]->data_pembayaran = $data_pembayaran;
+        }
+        dd($data);
     }
 
     public function generateNRP($id_mahasiswa)

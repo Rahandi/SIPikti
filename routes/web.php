@@ -63,6 +63,6 @@ Route::post('/keuangan/pembayaran/bayar', 'PembayaranController@bayarAngsuran')-
 Route::get('/keuangan/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
 Route::get('/keuangan/rekap/download', 'PembayaranController@download')->name('pembayaran.rekap.download');
 
-Route::get('/coba', 'PembayaranController@generateNRP');
+Route::get('/coba', 'PembayaranController@download');
 
 Auth::routes();
