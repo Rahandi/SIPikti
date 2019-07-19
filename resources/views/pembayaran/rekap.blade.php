@@ -26,7 +26,7 @@
 						</div>
 					@endif
 					<div style="text-align: right; margin-bottom: 1%;">
-						<a href=""><button type="button" class="btn btn-info">Download Rekap</button></a>
+						<a href="{{ route('pembayaran.rekap.download') }}"><button type="button" class="btn btn-info">Download Rekap</button></a>
 					</div>
 					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 						<thead>
