@@ -45,11 +45,11 @@ class RekapExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            "nrp",
-            "nama",
-            "angsuran_nama",
-            "Daftar ulang 1",
-            "Daftar ulang 2",
+            "NRP",
+            "Nama Mahasiswa",
+            "Jenis Angsuran",
+            "Daftar Ulang 1",
+            "Daftar Ulang 2",
             "Angsuran 1",
             "Angsuran 2",
             "Angsuran 3",
