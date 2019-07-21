@@ -116,11 +116,16 @@
 												</form>
 											</div>
 											<div class="col-md-6">
-												<a href=""><button class="btn btn-info"
+												<form action="{{route('pembayaran.kwitansi')}}" method="POST" style="text-align: right;" target="_blank">
+												{{csrf_field()}}
+												<input type="hidden" name="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
+												<input type="hidden" name="jenis_bayar" value="{{$index}}">
+												<button type="submit" class="btn btn-info" 
 												@if ($data_bayar['tanda'] != 1)
 													disabled="disabled"
 												@endif
-												>Kwitansi</button></a>
+												>Kwitansi</button>
+												</form>
 											</div>
 										</div>
 									</td>

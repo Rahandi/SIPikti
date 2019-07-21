@@ -13,12 +13,12 @@
 
 // authorized
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
-Route::get('/kwitansi/{id}', 'HomeController@kwitansi')->name('kwitansi');
-Route::get('/detail/{id}', 'HomeController@detail')->name('detail');
-Route::get('/edit/{id}', 'HomeController@edit')->name('edit');
-Route::post('/update', 'HomeController@update')->name('edit.update');
-Route::post('/verif', 'HomeController@verifikasi')->name('verif');
-Route::post('/delete', 'HomeController@deletePendaftar')->name('delete');
+Route::get('/pendaftaran/kwitansi/{id}', 'HomeController@kwitansi')->name('kwitansi');
+Route::get('/pendaftaran/detail/{id}', 'HomeController@detail')->name('detail');
+Route::get('/pendaftaran/edit/{id}', 'HomeController@edit')->name('edit');
+Route::post('/pendaftaran/update', 'HomeController@update')->name('edit.update');
+Route::post('/pendaftaran/verif', 'HomeController@verifikasi')->name('verif');
+Route::post('/pendaftaran/delete', 'HomeController@deletePendaftar')->name('delete');
 
 // public
 Route::get('/', function () {
@@ -26,7 +26,7 @@ Route::get('/', function () {
 })->name('homepage');
 
 Route::get('/pendaftaran', 'HomeController@test')->name('pendaftaran');
-Route::get('/detail2/{id}', 'HomeController@detail2')->name('detail2');
+Route::get('/pendaftaran/detail2/{id}', 'HomeController@detail2')->name('detail2');
 Route::get('/angsuran', 'HomeController@test2')->name('angsuran');
 Route::get('/mahasiswa', 'HomeController@test3')->name('mahasiswa');
 
@@ -58,10 +58,11 @@ Route::post('/keuangan/angsuran/delete', 'AngsuranController@delete')->name('ang
 
 Route::get('/keuangan/pembayaran', 'PembayaranController@index')->name('pembayaran');
 Route::get('/keuangan/pembayaran/detail/{id}', 'PembayaranController@detail')->name('pembayaran.detail');
+Route::get('/keuangan/pembayaran/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
+Route::get('/keuangan/pembayaran/rekap/download', 'PembayaranController@download')->name('pembayaran.rekap.download');
 Route::post('/keuangan/pembayaran/select', 'PembayaranController@selectAngsuran')->name('pembayaran.select');
 Route::post('/keuangan/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
-Route::get('/keuangan/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
-Route::get('/keuangan/rekap/download', 'PembayaranController@download')->name('pembayaran.rekap.download');
+Route::post('/keuangan/pembayaran/kwitansi', 'PembayaranController@kwitansi')->name('pembayaran.kwitansi');
 
 Route::get('/coba', 'PembayaranController@download');
 
