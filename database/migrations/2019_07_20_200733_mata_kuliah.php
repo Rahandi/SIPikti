@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTanggaldaftarToMahasiswa extends Migration
+class MataKuliah extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddTanggaldaftarToMahasiswa extends Migration
      */
     public function up()
     {
-        Schema::table('pendaftar', function (Blueprint $table) {
-            $table->string('tanggal_verifikasi')->nullable();
+        Schema::create('jadwal', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('jam');
+            $table->string('mata_kuliah');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddTanggaldaftarToMahasiswa extends Migration
      */
     public function down()
     {
-        Schema::table('mahasiswa', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

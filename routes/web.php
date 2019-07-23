@@ -49,6 +49,13 @@ Route::get('/akademik/mahasiswa/edit/{id}', 'MahasiswaController@edit')->name('m
 Route::post('/akademik/mahasiswa/update', 'MahasiswaController@update')->name('mahasiswa.update');
 Route::post('/akademik/mahasiswa/delete', 'MahasiswaController@delete')->name('mahasiswa.delete');
 
+Route::get('/akademik/jadwal', 'JadwalController@index')->name('jadwal');
+Route::get('/akademik/jadwal/create', 'JadwalController@create')->name('jadwal.create');
+Route::get('/akademik/jadwal/edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
+Route::post('/akademik/jadwal/store', 'JadwalController@store')->name('jadwal.store');
+Route::post('/akademik/jadwal/update', 'JadwalController@update')->name('jadwal.update');
+Route::post('/akademik/jadwal/delete', 'JadwalController@delete')->name('jadwal.delete');
+
 Route::get('/keuangan/angsuran', 'AngsuranController@index')->name('angsuran');
 Route::get('/keuangan/angsuran/create', 'AngsuranController@create')->name('angsuran.create');
 Route::post('/keuangan/angsuran/store', 'AngsuranController@store')->name('angsuran.store');
