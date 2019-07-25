@@ -98,7 +98,7 @@ $(".nextMyModal").click(function(){
 });
 
 $(".next1").click(function(){
-	var arr = ['#nama','#nama_gelar','#tempat_lahir','#tanggal_lahir','#nomor_handphone','#asal_jalan','#asal_kelurahan','#asal_kecamatan','#asal_kabupaten','#asal_kode_pos','#asal_telepon','#surabaya_jalan','#surabaya_kelurahan','#surabaya_kecamatan','#surabaya_kabupaten','#surabaya_kode_pos','#surabaya_telepon'];
+	var arr = ['#nama','#nama_gelar','#tempat_lahir','#tanggal_lahir','#asal_jalan','#asal_kelurahan','#asal_kecamatan','#asal_kabupaten','#asal_kode_pos','#surabaya_jalan','#surabaya_kelurahan','#surabaya_kecamatan','#surabaya_kabupaten','#surabaya_kode_pos'];
 	// $('#nama').blur(function(){
 	var arr_ = []
 	jQuery.each(arr, function(i,value){
