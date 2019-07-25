@@ -29,8 +29,10 @@ class JadwalController extends Controller
     {
         dd($request);
         $jadwal = new jadwal();
-        $jadwal->jam = $request->jam;
+        $jadwal->kelas = $request->kelas;
+        $jadwal->jam = $request->start_time.' - '.$request->end_time;
         $jadwal->mata_kuliah = $request->mata_kuliah;
+        $jadwal->termin = $request->termin;
         $jadwal->save();
         return redirect()->route('jadwal');
     }
@@ -38,6 +40,9 @@ class JadwalController extends Controller
     public function edit(Request $request)
     {
         $data = jadwal::find($request->id);
+        $time = explode(' - ', $data->jam);
+        $data->start_time = $time[0];
+        $data->end_time = $time[1];
         return view('akademik.jadwal.edit', compact('data'));
     }
 
@@ -45,8 +50,10 @@ class JadwalController extends Controller
     {
         dd($request);
         $jadwal = jadwal::find($request->id);
-        $jadwal->jam = $request->jam;
+        $jadwal->kelas = $request->kelas;
+        $jadwal->jam = $request->start_time.' - '.$request->end_time;
         $jadwal->mata_kuliah = $request->mata_kuliah;
+        $jadwal->termin = $request->termin;
         $jadwal->mata_kuliah->save();
         return redirect()->route('jadwal');
     }
