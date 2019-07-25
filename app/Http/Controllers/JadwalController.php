@@ -75,6 +75,6 @@ class JadwalController extends Controller
         $mhs_jadwal->mahasiswa_id = $request->mahasiswa_id;
         $mhs_jadwal->jadwal_id = $request->jadwal_id;
         $mhs_jadwal->save();
-        return redirect()
+        return redirect();
     }
 }

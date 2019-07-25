@@ -123,6 +123,7 @@
 						<ul class="nav nav-second-level">
 							<li><a href="{{ route('calon_mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Calon Mahasiswa</span></a></li>
 							<li><a href="{{ route('mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Mahasiswa</span></a></li>
+							<li><a href="{{ route('jadwal') }}"><i class="material-icons">group</i><span class="hide-menu">  Jadwal</span></a></li>
 						</ul>
 					</li>
 					<li><a class="dropdown-toggle waves-effect" data-toggle="dropdown" href="/keuangan"><i class="material-icons">attach_money</i> <span class="hide-menu">Keuangan<span class="fa arrow"></span></span></a>
