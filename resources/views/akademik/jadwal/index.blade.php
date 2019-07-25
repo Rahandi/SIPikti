@@ -44,7 +44,7 @@
 						@foreach ($data as $datas)
 							<tr>
 								<td></td>
-								<td class="sorting_1">{{$datas->kelas}}</td>
+								<td class="sorting_1">{{$datas->termin}}</td>
 								<td>{{$datas->kelas}}</td>
 								<td>{{$datas->jam}}</td>
 								<td>{{$datas->mata_kuliah}}</td>

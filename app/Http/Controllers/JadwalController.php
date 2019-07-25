@@ -27,7 +27,6 @@ class JadwalController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
         $jadwal = new jadwal();
         $jadwal->kelas = $request->kelas;
         $jadwal->jam = $request->start_time.' - '.$request->end_time;
@@ -48,13 +47,12 @@ class JadwalController extends Controller
 
     public function update(Request $request)
     {
-        dd($request);
         $jadwal = jadwal::find($request->id);
         $jadwal->kelas = $request->kelas;
         $jadwal->jam = $request->start_time.' - '.$request->end_time;
         $jadwal->mata_kuliah = $request->mata_kuliah;
         $jadwal->termin = $request->termin;
-        $jadwal->mata_kuliah->save();
+        $jadwal->save();
         return redirect()->route('jadwal');
     }
 
