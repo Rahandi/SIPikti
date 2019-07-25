@@ -50,8 +50,10 @@ class JadwalController extends Controller
     {
         dd($request);
         $jadwal = jadwal::find($request->id);
-        $jadwal->jam = $request->jam;
+        $jadwal->kelas = $request->kelas;
+        $jadwal->jam = $request->start_time.' - '.$request->end_time;
         $jadwal->mata_kuliah = $request->mata_kuliah;
+        $jadwal->termin = $request->termin;
         $jadwal->mata_kuliah->save();
         return redirect()->route('jadwal');
     }
