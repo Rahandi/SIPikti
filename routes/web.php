@@ -65,8 +65,8 @@ Route::post('/keuangan/angsuran/delete', 'AngsuranController@delete')->name('ang
 
 Route::get('/keuangan/pembayaran', 'PembayaranController@index')->name('pembayaran');
 Route::get('/keuangan/pembayaran/detail/{id}', 'PembayaranController@detail')->name('pembayaran.detail');
-Route::get('/keuangan/pembayaran/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
-Route::get('/keuangan/pembayaran/rekap/download', 'PembayaranController@download')->name('pembayaran.rekap.download');
+Route::get('/keuangan/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
+Route::get('/keuangan/rekap/download', 'PembayaranController@download')->name('pembayaran.rekap.download');
 Route::post('/keuangan/pembayaran/select', 'PembayaranController@selectAngsuran')->name('pembayaran.select');
 Route::post('/keuangan/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
 Route::post('/keuangan/pembayaran/kwitansi', 'PembayaranController@kwitansi')->name('pembayaran.kwitansi');
