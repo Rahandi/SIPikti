@@ -109,7 +109,7 @@ class JadwalController extends Controller
         }
 
         $belum_dapat = \DB::table('mahasiswa')
-                            ->select('nrp', 'nama')
+                            ->select('id', 'nrp', 'nama')
                             ->whereNotIn('id', $notin)
                             ->get();
         return $belum_dapat;
