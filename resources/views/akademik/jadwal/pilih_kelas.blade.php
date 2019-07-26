@@ -45,7 +45,7 @@
 				</div>
 				<div class="row row-in">
 					<h3 class="box-title m-b-0" style="text-align: center;">Pilih Mahasiswa</h3>
-					<form action="{{route('jadwal.select')}}" method="POST">
+					<form action="{{route('jadwal.select')}}" method="POST" style="text-align: right;">
 					{{ csrf_field() }}
 					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: left; width: 100%;">
 						<thead>
@@ -70,7 +70,7 @@
 						</tbody>
 					</table>
 					<input type="hidden" name="jadwal_id" id="jadwal_id" value="{{$data['jadwal']->id}}">
-					<button type="submit" class="btn btn-info" id="selectMhs" style="margin: 1%;">Pilih Mahasiswa</button>
+					<button type="submit" class="btn btn-info" id="selectMhs" style="margin-top: 1%;">Pilih Mahasiswa</button>
 					</form>
 				</div>
 		</div>
