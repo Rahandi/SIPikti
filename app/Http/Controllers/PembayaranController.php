@@ -140,7 +140,7 @@ class PembayaranController extends Controller
         return Excel::download(new RekapExport(), 'rekap.xlsx');
     }
 
-    public function generateNRP($id_mahasiswa)
+    private function generateNRP($id_mahasiswa)
     {
         $tahun = date('Y');
         $tahun = substr($tahun, 2, strlen($tahun));

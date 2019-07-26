@@ -63,23 +63,30 @@ class JadwalController extends Controller
         return redirect()->route('jadwal');
     }
 
-    public function indexMahasiswaJadwal()
+    public function detailJadwal($id)
     {
-        $mahasiswa = mahasiswa::all();
-        $jadwal = jadwal::all();
+        $jadwal = jadwal::find($id);
+        $sudah_diterima = \DB::table('mahasiswa')
+                            ->join('mahasiswa_jadwal', 'mahasiswa.id', '=', 'mahasiswa_jadwal.mahasiswa_id')
+                            ->select('mahasiswa.nrp', 'mahasiswa.nama')
+                            ->where('mahasiswa_jadwal.jadwal_id', '=', $id)
+                            ->get();
+        dd($sudah_diterima);
+
         $data = array(
-            "mahasiswa" => $mahasiswa,
-            "jadwal" => $jadwal
+            'jadwal' => $jadwal,
+            'mahasiswa' => $sudah_diterima
         );
-        return view('akademik.mahasiswa_jadwal.index', compact('data'));
+
+        return view('akademik.jadwal.detail', compact('data'));
     }
 
-    public function selectJadwal(Request $request)
+    private function belumDapatJadwal($id)
     {
-        $mhs_jadwal = new mahasiswa_jadwal();
-        $mhs_jadwal->mahasiswa_id = $request->mahasiswa_id;
-        $mhs_jadwal->jadwal_id = $request->jadwal_id;
-        $mhs_jadwal->save();
-        return redirect();
+        $sudah_dapat = \DB::table('mahasiswa_jadwal')
+                            ->select('mahasiswa_jadwal.mahasiswa_id')
+                            ->where('mahasiswa_jadwal.jadwal_id', '=', $id)
+                            ->get();
+        dd($sudah_dapat);
     }
 }

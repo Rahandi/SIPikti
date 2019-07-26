@@ -71,6 +71,7 @@ Route::post('/keuangan/pembayaran/select', 'PembayaranController@selectAngsuran'
 Route::post('/keuangan/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
 Route::post('/keuangan/pembayaran/kwitansi', 'PembayaranController@kwitansi')->name('pembayaran.kwitansi');
 
-Route::get('/coba', 'PembayaranController@download');
+Route::get('/coba', 'JadwalController@detailJadwal');
+Route::get('/coba2', 'JadwalController@belumDapatJadwal');
 
 Auth::routes();
