@@ -82,7 +82,8 @@
 									<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
 										<form action="{{route('jadwal.cancel')}}" method="POST">
 											{{ csrf_field() }}
-											<input type="hidden" name="id" id="valueId" value="">
+											<input type="hidden" name="mahasiswa_id" id="valueId" value="{{$datas->id}}">
+											<input type="hidden" name="jadwal_id" id="valueId" value="{{$data['jadwal']->id}}">
 											<button type="submit" class="btn btn-success" id="DeleteButton" style="margin: 1%;">Ya</button>
 											<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Tidak</button>
 										</form>
