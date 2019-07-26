@@ -91,8 +91,8 @@ class JadwalController extends Controller
 
     public function cancel(Request $request)
     {
-        $record = mahasiswa_jadwal::where('mahasiswa_id', $request->mahasiswa_id)->where('jadwal_id', $request->jadwal_id)->get();
-        $record->delete();
+        $record = mahasiswa_jadwal::where('mahasiswa_id', '=', $request->mahasiswa_id)->where('jadwal_id', '=', $request->jadwal_id)->get();
+        $record[0]->delete();
         return redirect()->back();
     }
 
