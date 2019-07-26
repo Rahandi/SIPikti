@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('pagetitle')
-	Jadwal
+	Detail Jadwal
 @endsection
 
 @section('css')
@@ -14,49 +14,57 @@
 		}
 	</style>
 @endsection
-
 @section('content')
 <div class="row">
 		<div class="col-sm-12">
 			<div class="white-box">
-				<div class="row row-in" style="margin-bottom: 1%;">
-					@if (session('status'))
-						<div class="alert alert-success" role="alert">
-							{{ session('status') }}
-						</div>
-					@endif
-					<a href="{{route('jadwal.create')}}"><button class="btn btn-info">Tambahkan Jadwal</button></a>
+				<div class="row row-in" style="margin-bottom: 2%;width: 100%;">
+					<table>
+						<tr>
+							<td style="width: 12%;">Kelas</td>
+							<td style="width: 1%;">:</td>
+							<td>{{$data['jadwal']->kelas}}</td>
+						</tr>
+						<tr>
+							<td>Termin</td>
+							<td>:</td>
+							<td>{{$data['jadwal']->termin}}</td>
+						</tr>
+						<tr>
+							<td>Jam</td>
+							<td>:</td>
+							<td>{{$data['jadwal']->jam}}</td>
+						</tr>
+						<tr>
+							<td>Mata Kuliah</td>
+							<td>:</td>
+							<td>{{$data['jadwal']->mata_kuliah}}</td>
+						</tr>
+					</table>
+				</div>
+				<div class="row row-in" style="text-align: right;margin-bottom: 1%;">
+					<a href="{{route('jadwal.pilihkelas',$data['jadwal']->id)}}"><button class="btn btn-info">Tambahkan Mahasiswa</button></a>
 				</div>
 				<div class="row row-in">
-					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
+					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: left; width: 100%;">
 						<thead>
 							<tr>
-								<th style="width: 5%;"></th>
-								<th style="width: 10%;">Termin</th>
-								<th style="width: 10%;">Kelas</th>
-								<th style="width: 20%;">Jam</th>
-								<th style="width: 20%;">Mata Kuliah</th>
-								<th style="width: 20%;">Action</th>
+								<th style="width: 10%;"></th>
+								<th style="width: 25%;text-align: center;">NRP</th>
+								<th style="width: 40%;text-align: center;">Nama Mahasiswa</th>
+								<th style="width: 25%;text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody>
 						
-						@foreach ($data as $datas)
+						@foreach ($data['mahasiswa'] as $datas)
 							<tr>
 								<td></td>
-								<td class="sorting_1">{{$datas->termin}}</td>
-								<td>{{$datas->kelas}}</td>
-								<td>{{$datas->jam}}</td>
-								<td>{{$datas->mata_kuliah}}</td>
-								<td>
+								<td class="sorting_1">{{$datas->nrp}}</td>
+								<td>{{$datas->nama}}</td>
+								<td style="text-align: center;">
 									<div class="row" style="margin: 0px;">
-									<a href="{{route('jadwal.detail', $datas->id)}}">
-										<button class="btn btn-info"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button>
-									</a>
-									<a href="{{route('jadwal.edit', $datas->id)}}">
-										<button class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button>
-									</a>
-									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$datas->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$datas->nrp}}"><i class="material-icons" style="font-size: 18px;">delete</i></button>
 									</div>
 								</td>
 							</tr>
@@ -69,10 +77,10 @@
 										<h2>Konfirmasi</h2>
 									</header>
 									<div class="w3-container" style="margin-top: 2%;">
-										<p>Apakah Anda yakin akan menghapus data jadwal ini?</p>
+										<p>Apakah Anda yakin akan menghapus mahasiswa tersebut di jadwal kelas ini?</p>
 									</div>
 									<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
-										<form action="{{route('jadwal.delete')}}" method="POST">
+										<form action="{{route('jadwal.cancel')}}" method="POST">
 											{{ csrf_field() }}
 											<input type="hidden" name="id" id="valueId" value="">
 											<button type="submit" class="btn btn-success" id="DeleteButton" style="margin: 1%;">Ya</button>

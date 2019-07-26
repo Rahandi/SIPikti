@@ -86,7 +86,6 @@ class JadwalController extends Controller
             'jadwal' => $jadwal,
             'mahasiswa' => $belum_dapat
         );
-        dd($data);
         return view('akademik.jadwal.pilih_kelas', compact('data'));
     }
 
