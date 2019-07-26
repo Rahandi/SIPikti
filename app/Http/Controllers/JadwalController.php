@@ -98,7 +98,14 @@ class JadwalController extends Controller
 
     public function select(Request $request)
     {
-        dd($request);
+        for($i=0;$i<count($request->mhs);$i++)
+        {
+            $mahasiswa_jadwal = new mahasiswa_jadwal();
+            $mahasiswa_jadwal->jadwal_id = $request->jadwal_id;
+            $mahasiswa_jadwal->mahasiswa_id = $request->mhs[$i];
+            $mahasiswa_jadwal->save();
+        }
+        return redirect()->route('jadwal.detail', $request->jadwal_id);
     }
 
     private function belumDapatJadwal($id)
