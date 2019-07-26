@@ -96,6 +96,11 @@ class JadwalController extends Controller
         return redirect()->back();
     }
 
+    public function select(Request $request)
+    {
+        dd($request);
+    }
+
     private function belumDapatJadwal($id)
     {
         $sudah_dapat = \DB::table('mahasiswa_jadwal')
