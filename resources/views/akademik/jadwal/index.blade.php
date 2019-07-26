@@ -32,11 +32,11 @@
 						<thead>
 							<tr>
 								<th style="width: 5%;"></th>
-								<th style="width: 10%;">Termin</th>
-								<th style="width: 10%;">Kelas</th>
-								<th style="width: 20%;">Jam</th>
-								<th style="width: 20%;">Mata Kuliah</th>
-								<th style="width: 20%;">Action</th>
+								<th style="width: 10%; text-align: center;">Termin</th>
+								<th style="width: 10%; text-align: center;">Kelas</th>
+								<th style="width: 15%; text-align: center;">Jam</th>
+								<th style="width: 30%; text-align: center;">Mata Kuliah</th>
+								<th style="width: 15%; text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody>

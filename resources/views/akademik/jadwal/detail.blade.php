@@ -21,14 +21,14 @@
 				<div class="row row-in" style="margin-bottom: 2%;width: 100%;">
 					<table>
 						<tr>
-							<td style="width: 12%;">Kelas</td>
-							<td style="width: 1%;">:</td>
-							<td>{{$data['jadwal']->kelas}}</td>
-						</tr>
-						<tr>
 							<td>Termin</td>
 							<td>:</td>
 							<td>{{$data['jadwal']->termin}}</td>
+						</tr>
+						<tr>
+							<td style="width: 12%;">Kelas</td>
+							<td style="width: 1%;">:</td>
+							<td>{{$data['jadwal']->kelas}}</td>
 						</tr>
 						<tr>
 							<td>Jam</td>
