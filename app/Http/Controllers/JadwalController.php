@@ -90,6 +90,13 @@ class JadwalController extends Controller
         return view('akademik.jadwal.pilih_kelas', compact('data'));
     }
 
+    public function cancel(Request $request)
+    {
+        $record = mahasiswa_jadwal::where('mahasiswa_id', $request->mahasiswa_id)->where('jadwal_id', $request->jadwal_id);
+        $record->delete();
+        return redirect()->back();
+    }
+
     private function belumDapatJadwal($id)
     {
         $sudah_dapat = \DB::table('mahasiswa_jadwal')
