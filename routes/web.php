@@ -52,6 +52,8 @@ Route::post('/akademik/mahasiswa/delete', 'MahasiswaController@delete')->name('m
 Route::get('/akademik/jadwal', 'JadwalController@index')->name('jadwal');
 Route::get('/akademik/jadwal/create', 'JadwalController@create')->name('jadwal.create');
 Route::get('/akademik/jadwal/edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
+Route::get('/akademik/jadwal/detail/{id}', 'JadwalController@detailJadwal')->name('jadwal.detail');
+Route::get('/akademik/jadwal/pilihkelas/{id}', 'JadwalController@pilihKelas')->name('jadwal.pilihkelas');
 Route::post('/akademik/jadwal/store', 'JadwalController@store')->name('jadwal.store');
 Route::post('/akademik/jadwal/update', 'JadwalController@update')->name('jadwal.update');
 Route::post('/akademik/jadwal/delete', 'JadwalController@delete')->name('jadwal.delete');
@@ -71,7 +73,7 @@ Route::post('/keuangan/pembayaran/select', 'PembayaranController@selectAngsuran'
 Route::post('/keuangan/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
 Route::post('/keuangan/pembayaran/kwitansi', 'PembayaranController@kwitansi')->name('pembayaran.kwitansi');
 
-Route::get('/coba', 'JadwalController@detailJadwal');
-Route::get('/coba2', 'JadwalController@belumDapatJadwal');
+Route::get('/coba/{id}', 'JadwalController@detailJadwal');
+Route::get('/coba2/{id}', 'JadwalController@pilihKelas');
 
 Auth::routes();

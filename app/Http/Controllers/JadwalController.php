@@ -71,14 +71,23 @@ class JadwalController extends Controller
                             ->select('mahasiswa.nrp', 'mahasiswa.nama')
                             ->where('mahasiswa_jadwal.jadwal_id', '=', $id)
                             ->get();
-        dd($sudah_diterima);
-
         $data = array(
             'jadwal' => $jadwal,
             'mahasiswa' => $sudah_diterima
         );
-
         return view('akademik.jadwal.detail', compact('data'));
+    }
+
+    public function pilihKelas($id)
+    {
+        $jadwal = jadwal::find($id);
+        $belum_dapat = $this->belumDapatJadwal($id);
+        $data = array(
+            'jadwal' => $jadwal,
+            'mahasiswa' => $belum_dapat
+        );
+        dd($data);
+        return view('akademik.jadwal.pilih_kelas', compact('data'));
     }
 
     private function belumDapatJadwal($id)
@@ -87,6 +96,16 @@ class JadwalController extends Controller
                             ->select('mahasiswa_jadwal.mahasiswa_id')
                             ->where('mahasiswa_jadwal.jadwal_id', '=', $id)
                             ->get();
-        dd($sudah_dapat);
+        $notin = array();
+        for($i=0;$i<count($sudah_dapat);$i++)
+        {
+            array_push($notin, $sudah_dapat[$i]->mahasiswa_id);
+        }
+
+        $belum_dapat = \DB::table('mahasiswa')
+                            ->select('nrp', 'nama')
+                            ->whereNotIn('id', $notin)
+                            ->get();
+        return $belum_dapat;
     }
 }
