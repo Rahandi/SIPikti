@@ -68,7 +68,7 @@ class JadwalController extends Controller
         $jadwal = jadwal::find($id);
         $sudah_diterima = \DB::table('mahasiswa')
                             ->join('mahasiswa_jadwal', 'mahasiswa.id', '=', 'mahasiswa_jadwal.mahasiswa_id')
-                            ->select('mahasiswa.nrp', 'mahasiswa.nama')
+                            ->select('mahasiswa.id', 'mahasiswa.nrp', 'mahasiswa.nama')
                             ->where('mahasiswa_jadwal.jadwal_id', '=', $id)
                             ->get();
         $data = array(
@@ -91,7 +91,7 @@ class JadwalController extends Controller
 
     public function cancel(Request $request)
     {
-        $record = mahasiswa_jadwal::where('mahasiswa_id', $request->mahasiswa_id)->where('jadwal_id', $request->jadwal_id);
+        $record = mahasiswa_jadwal::where('mahasiswa_id', $request->mahasiswa_id)->where('jadwal_id', $request->jadwal_id)->get();
         $record->delete();
         return redirect()->back();
     }
