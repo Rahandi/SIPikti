@@ -80,7 +80,7 @@ class JadwalController extends Controller
 
     public function pilihKelas($id)
     {
-        $jadwal = jadwal::find($id);
+        $jadwal = jadwal::find($id) ;
         $belum_dapat = $this->belumDapatJadwal($id);
         $data = array(
             'jadwal' => $jadwal,

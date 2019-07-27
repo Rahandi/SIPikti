@@ -59,10 +59,10 @@
 					<!-- Logo -->
 					<a class="logo" href="{{ route('dashboard') }}">
 						<!-- Logo icon image, you can use font-icon also --><b>
-						<!--This is dark logo icon--><img src="{{ URL::asset('plugins/images/logoITS.png') }}" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="{{ URL::asset('plugins/images/logoITS.png') }}" alt="home" class="light-logo" />
+						<!--This is dark logo icon--><img src="{{ URL::asset('plugins/images/LogoITS.png') }}" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="{{ URL::asset('plugins/images/LogoITS.png') }}" alt="home" class="light-logo" />
 					 </b>
 						<!-- Logo text image you can use text also --><span class="hidden-xs">
-						<!--This is dark logo text--><img src="{{ URL::asset('plugins/images/logoPIKTI.png') }}" alt="home" class="dark-logo" /><!--This is light logo text--><img src="{{ URL::asset('plugins/images/logoPIKTI.png') }}" alt="home" class="light-logo" />
+						<!--This is dark logo text--><img src="{{ URL::asset('plugins/images/LogoPIKTI.png') }}" alt="home" class="dark-logo" /><!--This is light logo text--><img src="{{ URL::asset('plugins/images/LogoPIKTI.png') }}" alt="home" class="light-logo" />
 					 </span> </a>
 				</div>
 				<!-- /Logo -->
