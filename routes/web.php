@@ -12,7 +12,7 @@
 */
 
 // authorized
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/dashboard', 'HomeController@statistic')->name('dashboard');
 Route::get('/pendaftaran/kwitansi/{id}', 'HomeController@kwitansi')->name('kwitansi');
 Route::get('/pendaftaran/detail/{id}', 'HomeController@detail')->name('detail');
 Route::get('/pendaftaran/edit/{id}', 'HomeController@edit')->name('edit');
@@ -25,7 +25,7 @@ Route::get('/', function () {
     return view('homepage');
 })->name('homepage');
 
-Route::get('/pendaftaran', 'HomeController@test')->name('pendaftaran');
+Route::get('/pendaftaran', 'HomeController@index')->name('pendaftaran');
 Route::get('/pendaftaran/detail2/{id}', 'HomeController@detail2')->name('detail2');
 Route::get('/angsuran', 'HomeController@test2')->name('angsuran');
 Route::get('/mahasiswa', 'HomeController@test3')->name('mahasiswa');
