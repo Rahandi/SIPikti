@@ -79,10 +79,13 @@ class PembayaranController extends Controller
             $this->generateNRP($mahasiswa_angsuran->mahasiswa_id);            
         }
         $mahasiswa = mahasiswa::find($mahasiswa_angsuran->mahasiswa_id);
+        $angsuran = angsuran::find($mahasiswa_angsuran->angsuran_id);
         $data = array(
             'nomer_pendaftaran' => $mahasiswa->nomor_pendaftaran,
             'nama' => $mahasiswa->nama,
             'nrp' => $mahasiswa->nrp,
+            'gelombang' => $angsuran->gelombang,
+            'cara' => $angsuran->nama,
             'nama_pembayaran' => $jenis_terbayar,
             'biaya' => strrev(rtrim(chunk_split(strrev($data_pembayaran[$jenis_terbayar]['biaya']), 3, '.'), '.')),
             'terbilang' => $data_pembayaran[$jenis_terbayar]['terbilang'],
