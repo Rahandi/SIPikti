@@ -103,7 +103,7 @@
 									<td>{{ $data_bayar['tanggal_bayar'] }}</td>
 									<td>
 										<div class="row" style="width: 100%;">
-											<div class="col-md-6">
+											<div class="col-md-4">
 												<form action="{{route('pembayaran.bayar')}}" method="POST" style="text-align: right;" target="_blank">
 												{{csrf_field()}}
 												<input type="hidden" name="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
@@ -115,7 +115,19 @@
 												>Bayar</button>
 												</form>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-4">
+												<form action="" method="POST" style="text-align: right;" target="_blank">
+												{{csrf_field()}}
+												<input type="hidden" name="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
+												<input type="hidden" name="jenis_bayar" value="{{$index}}">
+												<button type="submit" class="btn btn-danger" onclick="reloadPlis()" 
+												@if ($data_bayar['tanda'] != 1)
+													disabled="disabled"
+												@endif
+												>Hapus</button>
+												</form>
+											</div>
+											<div class="col-md-4">
 												<form action="{{route('pembayaran.kwitansi')}}" method="POST" style="text-align: right;" target="_blank">
 												{{csrf_field()}}
 												<input type="hidden" name="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
