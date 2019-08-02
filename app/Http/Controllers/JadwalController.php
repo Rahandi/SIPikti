@@ -80,7 +80,7 @@ class JadwalController extends Controller
 
     public function pilihKelas($id)
     {
-        $jadwal = jadwal::find($id);
+        $jadwal = jadwal::find($id) ;
         $belum_dapat = $this->belumDapatJadwal($id);
         $data = array(
             'jadwal' => $jadwal,
@@ -108,12 +108,24 @@ class JadwalController extends Controller
         return redirect()->route('jadwal.detail', $request->jadwal_id);
     }
 
+    public function absensi($id)
+    {
+        $jadwal = jadwal::find($id);
+        $jadwal->mata_kuliah = explode(', ', $jadwal->mata_kuliah);
+        $data = array(
+            'jadwal' => $jadwal,
+            'mahasiswa' => \DB::table('mahasiswa')
+                            ->join('mahasiswa_jadwal', 'mahasiswa.id', '=', 'mahasiswa_jadwal.mahasiswa_id')
+                            ->select('mahasiswa.nrp', 'mahasiswa.nama')
+                            ->where('mahasiswa_jadwal.jadwal_id', '=', $id)
+                            ->get()
+        );
+        return view('akademik.jadwal.absen', compact('data'));
+    }
+
     private function belumDapatJadwal($id)
     {
-        $sudah_dapat = \DB::table('mahasiswa_jadwal')
-                            ->select('mahasiswa_jadwal.mahasiswa_id')
-                            ->where('mahasiswa_jadwal.jadwal_id', '=', $id)
-                            ->get();
+        $sudah_dapat = mahasiswa_jadwal::all();
         $notin = array();
         for($i=0;$i<count($sudah_dapat);$i++)
         {

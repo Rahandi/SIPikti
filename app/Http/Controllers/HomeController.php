@@ -9,6 +9,9 @@ use App\alamat;
 use App\sumberInformasi;
 use App\noPendaftaran;
 use App\mahasiswa;
+use App\angsuran;
+use App\mahasiswaangsuran;
+use App\jadwal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,18 +27,37 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function statistic()
     {
-        $data = pendaftar::all();
+        $data = array();
+        //angsuran
+        $data['angsuran'] = array();
+        $angsuran = angsuran::all();
+        foreach($angsuran as $element)
+        {
+            $aggregate = \DB::table('mahasiswa_angsuran')
+                            ->select('*')
+                            ->where('angsuran_id', '=', $element->id)
+                            ->get();
+            $data['angsuran'][$element->nama] = count($aggregate);
+        }
+
+        //kelas
+        $data['kelas'] = array();
+        $jadwal = jadwal::all();
+        foreach($jadwal as $element)
+        {
+            $aggregate = \DB::table('mahasiswa_jadwal')
+                            ->select('*')
+                            ->where('jadwal_id', '=', $element->id)
+                            ->get();
+            $data['kelas'][$element->kelasA] = count($aggregate);
+        }
+
         return view('dashboard.index', compact('data'));
     }
 
-    public function test()
+    public function index()
     {
         $data = pendaftar::all();
         return view('pendaftaran.index', compact('data'));

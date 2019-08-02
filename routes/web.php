@@ -12,7 +12,7 @@
 */
 
 // authorized
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/dashboard', 'HomeController@statistic')->name('dashboard');
 Route::get('/pendaftaran/kwitansi/{id}', 'HomeController@kwitansi')->name('kwitansi');
 Route::get('/pendaftaran/detail/{id}', 'HomeController@detail')->name('detail');
 Route::get('/pendaftaran/edit/{id}', 'HomeController@edit')->name('edit');
@@ -25,7 +25,7 @@ Route::get('/', function () {
     return view('homepage');
 })->name('homepage');
 
-Route::get('/pendaftaran', 'HomeController@test')->name('pendaftaran');
+Route::get('/pendaftaran', 'HomeController@index')->name('pendaftaran');
 Route::get('/pendaftaran/detail2/{id}', 'HomeController@detail2')->name('detail2');
 Route::get('/angsuran', 'HomeController@test2')->name('angsuran');
 Route::get('/mahasiswa', 'HomeController@test3')->name('mahasiswa');
@@ -54,6 +54,7 @@ Route::get('/akademik/jadwal/create', 'JadwalController@create')->name('jadwal.c
 Route::get('/akademik/jadwal/edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
 Route::get('/akademik/jadwal/detail/{id}', 'JadwalController@detailJadwal')->name('jadwal.detail');
 Route::get('/akademik/jadwal/pilihkelas/{id}', 'JadwalController@pilihKelas')->name('jadwal.pilihkelas');
+Route::get('/akademik/jadwal/absensi/{id}', 'JadwalController@absensi')->name('jadwal.absensi');
 Route::post('/akademik/jadwal/store', 'JadwalController@store')->name('jadwal.store');
 Route::post('/akademik/jadwal/update', 'JadwalController@update')->name('jadwal.update');
 Route::post('/akademik/jadwal/delete', 'JadwalController@delete')->name('jadwal.delete');
