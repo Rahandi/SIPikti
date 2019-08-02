@@ -92,6 +92,19 @@ class PembayaranController extends Controller
         return view('pembayaran.kwitansi', compact('data'));
     }
 
+    public function deleteBayarAngsuran(Request $request)
+    {
+        $id_mahasiswa_angsuran = $request->mahasiswa_angsuran;
+        $jenis_bayar = $request->jenis_bayar;
+        $mahasiswa_angsuran = mahasiswaAngsuran::find($id_mahasiswa_angsuran);
+        $data_pembayaran = unserialize($mahasiswa_angsuran->data_pembayaran);
+        $data_pembayaran[$jenis_bayar]['tanda'] = 0;
+        $data_pembayaran[$jenis_bayar]['tanggal_bayar'] = NULL;
+        $mahasiswa_angsuran->data_pembayaran = serialize($data_pembayaran);
+        $mahasiswa_angsuran->save();
+        return redirect()->back();
+    }
+
     public function kwitansi(Request $request)
     {
         $jenis_terbayar = $request->jenis_bayar;

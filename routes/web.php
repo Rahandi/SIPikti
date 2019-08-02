@@ -74,6 +74,7 @@ Route::get('/keuangan/rekap', 'PembayaranController@rekap')->name('pembayaran.re
 Route::get('/keuangan/rekap/download', 'PembayaranController@download')->name('pembayaran.rekap.download');
 Route::post('/keuangan/pembayaran/select', 'PembayaranController@selectAngsuran')->name('pembayaran.select');
 Route::post('/keuangan/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
+Route::post('/keuangan/pembayaran/batalbayar', 'PembayaranController@deleteBayarAngsuran')->name('pembayaran.batalbayar');
 Route::post('/keuangan/pembayaran/kwitansi', 'PembayaranController@kwitansi')->name('pembayaran.kwitansi');
 
 Route::get('/coba/{id}', 'JadwalController@detailJadwal');
