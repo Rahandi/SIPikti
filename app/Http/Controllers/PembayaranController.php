@@ -174,9 +174,11 @@ class PembayaranController extends Controller
         $nrp = '88'.$tahun.'200'.$urutan;
 
         $mahasiswa = mahasiswa::find($id_mahasiswa);
-        $mahasiswa->nrp = $nrp;
-        $mahasiswa->save();
-        return redirect()->back();
+        if($mahasiswa->nrp == NULL)
+        {
+            $mahasiswa->nrp = $nrp;
+            $mahasiswa->save();
+        }
     }
 
     private function get_date()
