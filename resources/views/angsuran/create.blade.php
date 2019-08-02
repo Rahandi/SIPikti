@@ -14,10 +14,10 @@
 				{{csrf_field()}}
 				<div class="form-group">
 					<label for="inp1" class="control-label">Nama</label>
-					<input type="text" class="form-control" id="inp1" name="nama" placeholder="Angsuran Cara 1" required> </div>
+					<input type="text" class="form-control" id="inp1" name="nama" placeholder="Cara 1" required> </div>
 				<div class="form-group">
 					<label for="inp2" class="control-label">Gelombang</label>
-					<input type="text" class="form-control" id="inp2" name="gelombang" placeholder="1" required> </div>
+					<input type="text" class="form-control" id="inp2" name="gelombang" placeholder="2" required> </div>
 				
 				<div class="form-group">
 					<label class="control-label">Detail Pembayaran</label>

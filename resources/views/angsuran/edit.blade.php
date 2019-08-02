@@ -15,10 +15,10 @@
 				<input type="hidden" name="id" value="{{$data->id}}">
 				<div class="form-group">
 					<label for="inp1" class="control-label">Nama</label>
-					<input type="text" class="form-control" id="inp1" name="nama" placeholder="Angsuran 1" value="{{$data->nama}}" required> </div>
+					<input type="text" class="form-control" id="inp1" name="nama" placeholder="Cara 1" value="{{$data->nama}}" required> </div>
 				<div class="form-group">
 					<label for="inp2" class="control-label">Gelombang</label>
-					<input type="text" class="form-control" id="inp2" name="gelombang" placeholder="1" value="{{$data->gelombang}}" required> </div>
+					<input type="text" class="form-control" id="inp2" name="gelombang" placeholder="2" value="{{$data->gelombang}}" required> </div>
 				<div class="form-group">
 					<label class="control-label">Detail Pembayaran</label>
 					<br>

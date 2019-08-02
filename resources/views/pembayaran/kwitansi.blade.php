@@ -36,7 +36,7 @@
 				<tr>
 					<td>GUNA</td>
 					<td>:</td>
-					<td>Pembayaran {{$data['nama_pembayaran']}} PIKTI tanggal {{$data['date']}}</td>
+					<td>Pembayaran {{$data['nama_pembayaran']}} {{$data['cara']}} Gel. {{$data['gelombang']}} PIKTI tanggal {{$data['date']}}</td>
 				</tr>
 				<tr>
 					<td>UANG RP</td>
