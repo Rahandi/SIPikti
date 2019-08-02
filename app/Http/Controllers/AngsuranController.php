@@ -82,7 +82,7 @@ class AngsuranController extends Controller
         $angsuran = angsuran::find($request->id);
         $angsuran->nama = $request->nama;
         $angsuran->gelombang = $request->gelombang;
-        $angsuran->keterangan = $request->keterangan;
+        $angsuran->keterangan = ($request->keteranga)?$request->keterangan:'-';
         $prefix = 'a';
         $template = array();
         $template['Daftar ulang 1'] = array(
