@@ -38,7 +38,7 @@ class AngsuranController extends Controller
         $angsuran = new angsuran();
         $angsuran->nama = $request->nama;
         $angsuran->gelombang = $request->gelombang;
-        $angsuran->keterangan = $request->keterangan;
+        $angsuran->keterangan = ($request->keteranga)?$request->keterangan:'-';
         $angsuran->kali_angsuran = $request->kali_pembayaran;
         $prefix = 'a';
         $template = array();
