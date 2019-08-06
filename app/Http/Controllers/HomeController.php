@@ -78,8 +78,10 @@ class HomeController extends Controller
     public function kwitansi($id)
     {
         $date = $this->get_date();
+        $pendaftar = pendaftar::find($id);
+        $pendaftar->administrator = Auth::user()->name;
         $data = array(
-            'pendaftar' => pendaftar::find($id),
+            'pendaftar' => $pendaftar,
             'date' => $date
         );
         return view('pendaftaran.kwitansi', compact('data'));
