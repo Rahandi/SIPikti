@@ -56,8 +56,8 @@ Route::post('/akademik/jadwal/select', 'JadwalController@select')->name('jadwal.
 
 Route::get('/keuangan/angsuran', 'AngsuranController@index')->name('angsuran');
 Route::get('/keuangan/angsuran/create', 'AngsuranController@create')->name('angsuran.create');
-Route::post('/keuangan/angsuran/store', 'AngsuranController@store')->name('angsuran.store');
 Route::get('/keuangan/angsuran/edit/{id}', 'AngsuranController@edit')->name('angsuran.edit');
+Route::post('/keuangan/angsuran/store', 'AngsuranController@store')->name('angsuran.store');
 Route::post('/keuangan/angsuran/update', 'AngsuranController@update')->name('angsuran.update');
 Route::post('/keuangan/angsuran/delete', 'AngsuranController@delete')->name('angsuran.delete');
 
