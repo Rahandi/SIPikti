@@ -11,31 +11,24 @@
 |
 */
 
+// public
+Route::get('/', function () {
+    return view('homepage');
+})->name('homepage');
+Route::get('/daftar', 'PendaftarController@create')->name('daftar');
+Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
+
 // authorized
 Route::get('/dashboard', 'HomeController@statistic')->name('dashboard');
+Route::get('/pendaftaran', 'HomeController@index')->name('pendaftaran');
+Route::get('/pendaftaran/detail2/{id}', 'HomeController@detail2')->name('detail2');
 Route::get('/pendaftaran/kwitansi/{id}', 'HomeController@kwitansi')->name('kwitansi');
 Route::get('/pendaftaran/detail/{id}', 'HomeController@detail')->name('detail');
 Route::get('/pendaftaran/edit/{id}', 'HomeController@edit')->name('edit');
 Route::post('/pendaftaran/update', 'HomeController@update')->name('edit.update');
 Route::post('/pendaftaran/verif', 'HomeController@verifikasi')->name('verif');
 Route::post('/pendaftaran/delete', 'HomeController@deletePendaftar')->name('delete');
-
-// public
-Route::get('/', function () {
-    return view('homepage');
-})->name('homepage');
-
-Route::get('/pendaftaran', 'HomeController@index')->name('pendaftaran');
-Route::get('/pendaftaran/detail2/{id}', 'HomeController@detail2')->name('detail2');
-Route::get('/angsuran', 'HomeController@test2')->name('angsuran');
-Route::get('/mahasiswa', 'HomeController@test3')->name('mahasiswa');
-
-Route::get('/daftar', 'PendaftarController@create')->name('daftar');
-Route::get('/coba', 'PendaftarController@generateNoPendaftaran');
-Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
-
-Route::get('/test_dashboard', 'HomeController@test')->name('test_dashboard');
-Route::post('/accept_mahasiswa', 'HomeController@acceptToMahasiswa')->name('accept_mahasiswa');
+Route::post('/pendaftaran/accept_mahasiswa', 'HomeController@acceptToMahasiswa')->name('accept_mahasiswa');
 
 Route::get('/akademik/calon_mahasiswa', 'MahasiswaController@calon_mahasiswa')->name('calon_mahasiswa');
 Route::get('/akademik/calon_mahasiswa/detail/{id}', 'MahasiswaController@calon_mahasiswa_detail')->name('calon_mahasiswa.detail');
@@ -77,7 +70,9 @@ Route::post('/keuangan/pembayaran/bayar', 'PembayaranController@bayarAngsuran')-
 Route::post('/keuangan/pembayaran/batalbayar', 'PembayaranController@deleteBayarAngsuran')->name('pembayaran.batalbayar');
 Route::post('/keuangan/pembayaran/kwitansi', 'PembayaranController@kwitansi')->name('pembayaran.kwitansi');
 
+// unrelevant
 Route::get('/coba/{id}', 'JadwalController@detailJadwal');
 Route::get('/coba2/{id}', 'JadwalController@pilihKelas');
+Route::post('/daftaroke','PendaftarController@store');
 
 Auth::routes();
