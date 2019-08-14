@@ -30,6 +30,8 @@ class HomeController extends Controller
     public function statistic()
     {
         $data = array();
+        //pendaftar
+        $data['pendaftar'] = pendaftar::count();
         //angsuran
         $data['angsuran'] = array();
         $angsuran = angsuran::all();
