@@ -46,11 +46,11 @@
 								<td>
 									<div class="row" style="margin: 0px;">
 										
-										<a href="{{ route('calon_mahasiswa.detail',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
+										<a data-toggle="tooltip" data-placement="top" title="Detail" href="{{ route('calon_mahasiswa.detail',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
 
-										<a href="{{ route('calon_mahasiswa.edit',$individu->id) }}"><button type="button" class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
+										<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{ route('calon_mahasiswa.edit',$individu->id) }}"><button type="button" class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
 
-										<button type="button" id="tombolDel" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" value="{{$individu->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+										<a  data-toggle="tooltip" data-placement="top" title="Hapus"><button type="button" id="tombolDel" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" value="{{$individu->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button></a>
 										
 									</div>
 								</td>

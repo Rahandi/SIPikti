@@ -104,6 +104,11 @@
 							<td>:</td>
 							<td>{{ $data->administrator }}</td>
 						</tr>
+						<tr>
+							<td>Tanggal Verifikasi</td>
+							<td>:</td>
+							<td>{{ $data->tanggal_verifikasi }}</td>
+						</tr>
 					</table>
 					<table style="width: 100%; margin-top: 2%;">
 						<tr>
@@ -119,19 +124,11 @@
 								>Print <i class="material-icons" style="font-size: 18px;">print</i></button></a>
 							</td>
 							<td style="width: 10%;text-align: center;">
-								<form 
-								@if(!$data->nomor_pendaftaran)
-									action="{{route('verif')}}" 
-								@endif
-								method="POST">
-								{{ csrf_field() }}
-								<input type="hidden" name="id" value="{{$data->id}}">
-								<button type="submit" class="btn btn-success" style="margin: 2%;"
+								<button type="submit" class="btn btn-success" style="margin: 2%;" onclick="document.getElementById('modalVerif').style.display='block'"
 								@if($data->nomor_pendaftaran)
 									disabled="disabled"
 								@endif
 								>Verifikasi <i class="material-icons" style="font-size: 18px;">check</i></button>
-								</form>
 							</td>
 							<td style="width: 5%; text-align: center;">
 								<a href="{{ route('edit',$data->id) }}" style="margin-right: 2%;"><button type="button" class="btn btn-warning">Edit <i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
@@ -175,6 +172,33 @@
 					<button type="button" class="btn btn-danger" onclick="document.getElementById('modalDelete').style.display='none'" style="margin: 1%;">Tidak</button>
 				</form>
 			</footer>
+		</div>
+	</div>
+	<div id="modalVerif" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
+		<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
+			<header class="w3-container w3-light-grey w3-round-large"> 
+				<span onclick="document.getElementById('modalVerif').style.display='none'" 
+				class="w3-button w3-display-topright w3-round-large">&times;</span>
+				<h2>Konfirmasi</h2>
+			</header>
+			<form 
+			@if(!$data->nomor_pendaftaran)
+				action="{{route('verif')}}" 
+			@endif
+			method="POST">
+			{{ csrf_field() }}
+			<div class="w3-container" style="margin-top: 2%;">
+				<p>Verifikasi Pendaftar menggunakan:</p>
+				<input type="radio" name="toolVerif" value="Ijazah">&nbsp;Ijazah<br>
+				<input type="radio" name="toolVerif" value="SKL">&nbsp;SKL<br>
+				<input type="radio" name="toolVerif" value="Lainnya">&nbsp;Lainnya: <input type="text" name="lainnya">
+			</div>
+			<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
+					<input type="hidden" name="id" value="{{$data->id}}">
+					<button type="submit" class="btn btn-success" style="margin: 1%;">Ya</button>
+					<button type="button" class="btn btn-danger" onclick="document.getElementById('modalVerif').style.display='none'" style="margin: 1%;">Tidak</button>
+			</footer>
+			</form>
 		</div>
 	</div>
 @endsection

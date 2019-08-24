@@ -53,10 +53,10 @@
 								<td>{{ $individu->keterangan }}</td>
 								<td>
 									<div class="row" style="margin: 0px;">
-									<a href="{{route('angsuran.edit', $individu->id)}}">
+									<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('angsuran.edit', $individu->id)}}">
 										<button class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button>
 									</a>
-									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$individu->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+									<a data-toggle="tooltip" data-placement="top" title="Hapus"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$individu->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button></a>
 									</div>
 								</td>
 								<td style="display: none;">

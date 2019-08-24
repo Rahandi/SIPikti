@@ -84,7 +84,7 @@ class HomeController extends Controller
         $pendaftar->administrator = Auth::user()->name;
 
         $no_kwitansi = $pendaftar->nomor_pendaftaran;
-        $no_urut = explode('/', $no_kwitansi)[-1];
+        $no_urut = explode('/', $no_kwitansi)[3];
         $no_pendaftaran = '200.' . date('Y') . '.' . $no_urut;
 
         $data = array(

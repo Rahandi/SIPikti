@@ -44,7 +44,7 @@
 								<td>{{ $individu->tanggal_lahir }}</td>
 								<td>
 									<div class="row" style="margin: 0px;">
-										<a href="{{ route('pembayaran.detail',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
+										<a data-toggle="tooltip" data-placement="top" title="Detail" href="{{ route('pembayaran.detail',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
 									</div>
 								</td>
 							</tr>

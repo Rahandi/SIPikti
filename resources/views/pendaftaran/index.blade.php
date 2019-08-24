@@ -7,7 +7,7 @@
 @section('css')
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
 	<style type="text/css">
 		i.material-icons {
 			vertical-align: middle;
@@ -46,7 +46,7 @@
 									<form action="{{ route('accept_mahasiswa') }}" method="POST">
 										{{csrf_field()}}
 									<div class="row" style="margin: 0px;">
-										<a 
+										<a data-toggle="tooltip" data-placement="top" title="Print Kwitansi"
 										@if ($individu->administrator)
 											href="{{ route('kwitansi',$individu->id) }}"
 										@endif
@@ -55,15 +55,14 @@
 											disabled=""
 										@endif
 										><i class="material-icons" style="font-size: 18px;">print</i></button></a>
-										<a href="{{ route('detail2',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
-
-										<a href="{{ route('edit',$individu->id) }}"><button type="button" class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
-										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$individu->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+										<a data-toggle="tooltip" data-placement="top" title="Detail" href="{{ route('detail2',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
+										<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{ route('edit',$individu->id) }}"><button type="button" class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
+										<a data-toggle="tooltip" data-placement="top" title="Hapus"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$individu->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button></a>
 
 										<input type="hidden" name="id" value="{{$individu->id}}">
-										<button type="submit" class="btn btn-success"
+										<button data-toggle="tooltip" data-placement="top" title="Tambahkan sbg Mahasiswa" type="submit" class="btn btn-success"
 										@if (!$individu->administrator or $individu->status == 1)
-											disabled=""
+											disabled="" 
 										@endif
 										><i class="material-icons" style="font-size: 18px;">person_add</i></button>
 									</div>
