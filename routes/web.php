@@ -71,8 +71,7 @@ Route::post('/keuangan/pembayaran/batalbayar', 'PembayaranController@deleteBayar
 Route::post('/keuangan/pembayaran/kwitansi', 'PembayaranController@kwitansi')->name('pembayaran.kwitansi');
 
 // unrelevant
-Route::get('/coba/{id}', 'JadwalController@detailJadwal');
-Route::get('/coba2/{id}', 'JadwalController@pilihKelas');
+Route::get('/coba', 'HomeController@generateNoPendaftaran');
 Route::post('/daftaroke','PendaftarController@store');
 
 Auth::routes();

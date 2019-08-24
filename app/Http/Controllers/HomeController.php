@@ -82,8 +82,14 @@ class HomeController extends Controller
         $date = $this->get_date();
         $pendaftar = pendaftar::find($id);
         $pendaftar->administrator = Auth::user()->name;
+
+        $no_kwitansi = $pendaftar->nomor_pendaftaran;
+        $no_urut = explode('/', $no_kwitansi)[-1];
+        $no_pendaftaran = '200.' . date('Y') . '.' . $no_urut;
+
         $data = array(
             'pendaftar' => $pendaftar,
+            'no_pendaftaran' => $no_pendaftaran,
             'date' => $date
         );
         return view('pendaftaran.kwitansi', compact('data'));
