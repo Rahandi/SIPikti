@@ -274,6 +274,10 @@ class HomeController extends Controller
             $pendaftar->nomor_pendaftaran = $this->generateNoPendaftaran();
             $pendaftar->tanggal_verifikasi = $this->get_date();
             $pendaftar->administrator = Auth::user()->name;
+            $pendaftar->toolVerif = $request->toolVerif;
+            if ($pendaftar->toolVerif == 'Lainnya') {
+                $pendaftar->toolVerif = $request->lainnya;
+            }
             $pendaftar->save();
             return redirect()->back();
         }
