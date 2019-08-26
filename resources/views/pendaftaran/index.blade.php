@@ -25,6 +25,9 @@
 							{{ session('status') }}
 						</div>
 					@endif
+					<div style="text-align: right; margin-bottom: 1%;">
+						<a href="{{ route('pendaftaran.download') }}"><button type="button" class="btn btn-info">Download Pendaftar</button></a>
+					</div>
 					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 						<thead>
 							<tr>

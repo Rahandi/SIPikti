@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\PendaftarExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 use App\pendaftar;
 use App\pendidikan;

@@ -6,6 +6,7 @@ use App\pendaftar;
 use App\alamat;
 use App\statusSaatMendaftar;
 use App\sumberInformasi;
+use App\pendidikan;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -45,9 +46,9 @@ class PendaftarExport implements FromCollection, WithHeadings
                 "Nomor Handphone" => $data[$i]->nomor_handphone,
                 "Alamat Asal" => $alamat_asal,
                 "Alamat Surabaya" => $alamat_surabaya,
-                "SD" => $data_pendidikan['sd'],
-                "SMP" => $data_pendidikan['smp'],
-                "SMU" => $data_pendidikan['sma'],
+                "SD" => $data_pendidikan['sd']->institusi,
+                "SMP" => $data_pendidikan['sltp']->institusi,
+                "SMU" => $data_pendidikan['slta']->institusi,
                 "Status" => $this->statusSaatMendaftarTranslator($data_status_saat_mendaftar),
                 "Sumber Informasi" => $this->sumberInformasiTranslator($data_sumber_informasi)
             );
