@@ -29,6 +29,7 @@ Route::post('/pendaftaran/update', 'HomeController@update')->name('edit.update')
 Route::post('/pendaftaran/verif', 'HomeController@verifikasi')->name('verif');
 Route::post('/pendaftaran/delete', 'HomeController@deletePendaftar')->name('delete');
 Route::post('/pendaftaran/accept_mahasiswa', 'HomeController@acceptToMahasiswa')->name('accept_mahasiswa');
+Route::get('/pendaftaran/download', 'HomeController@download')->name('pendaftaran.download');
 
 Route::get('/akademik/calon_mahasiswa', 'MahasiswaController@calon_mahasiswa')->name('calon_mahasiswa');
 Route::get('/akademik/calon_mahasiswa/detail/{id}', 'MahasiswaController@calon_mahasiswa_detail')->name('calon_mahasiswa.detail');

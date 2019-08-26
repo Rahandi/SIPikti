@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PendaftarExport;
+
 use App\pendaftar;
 use App\pendidikan;
 use App\statusSaatMendaftar;
@@ -337,6 +339,11 @@ class HomeController extends Controller
         $mahasiswa->administrator = $data->administrator;
         $mahasiswa->save();
         return redirect()->back();
+    }
+
+    public function download()
+    {
+        return Excel::download(new PendaftarExport(), 'pendaftar.xlsx');
     }
 
     private function generateNoPendaftaran()
