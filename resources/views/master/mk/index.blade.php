@@ -35,6 +35,7 @@
 								<th style="width: 50%; text-align: center;">Nama Mata Kuliah</th>
 								<th style="width: 20%; text-align: center;">Termin</th>
 								<th style="width: 25%; text-align: center;">Action</th>
+								<th style="display: none;">created</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -54,7 +55,9 @@
 									</a>
 									</div>
 								</td>
+								<td class="sorting_1" style="display: none;">{{$datas->id}}</td>
 							</tr>
+
 							<!-- Modal -->
 							<div id="modalDelete" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
 								<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
@@ -97,7 +100,7 @@
 					"orderable": false,
 					"targets": 0,
 				} ],
-				"order": [[ 1, 'asc' ]],
+				"order": [[ 4, 'asc' ]],
 			} );
 
 			t.on( 'order.dt search.dt', function () {

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('pagetitle')
-	Pendaftaran
+	Dosen
 @endsection
 
 @section('css')
@@ -19,57 +19,38 @@
 <div class="row">
 		<div class="col-sm-12">
 			<div class="white-box">
-				<div class="row row-in">
+				<div class="row row-in" style="margin-bottom: 1%;">
 					@if (session('status'))
 						<div class="alert alert-success" role="alert">
 							{{ session('status') }}
 						</div>
 					@endif
-					<div style="text-align: right; margin-bottom: 1%;">
-						<a href="{{ route('pendaftaran.download') }}"><button type="button" class="btn btn-info">Download Pendaftar</button></a>
-					</div>
+					<a href="{{route('master.dosen.create')}}"><button class="btn btn-info">Tambah Dosen</button></a>
+				</div>
+				<div class="row row-in">
 					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 						<thead>
 							<tr>
 								<th style="width: 5%;"></th>
-								<th style="width: 25%;text-align: center;">Nama</th>
-								<th style="width: 20%;text-align: center;">Tanggal Daftar</th>
-								<th style="width: 15%;text-align: center;">Tanggal Lahir</th>
-								<th style="width: 25%;text-align: center;">Action</th>
+								<th style="width: 70%; text-align: center;">Nama Dosen</th>
+								<th style="width: 25%; text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody>
-						@foreach ($data as $individu)
+						
+						@foreach ($data as $datas)
 							<tr>
 								<td></td>
-								<td class="sorting_1" style="text-align: left;">{{ $individu->nama }}</td>
-								<td>{{ $individu->created_at }}</td>
-								<td>{{ $individu->tanggal_lahir }}</td>
+								<td>{{$datas->nama}}</td>
 								<td>
-									<form action="{{ route('accept_mahasiswa') }}" method="POST">
-										{{csrf_field()}}
 									<div class="row" style="margin: 0px;">
-										<a data-toggle="tooltip" data-placement="top" title="Print Kwitansi"
-										@if ($individu->administrator)
-											href="{{ route('kwitansi',$individu->id) }}"
-										@endif
-										target="_blank"><button type="button" class="btn btn-info"
-										@if (!$individu->administrator)
-											disabled=""
-										@endif
-										><i class="material-icons" style="font-size: 18px;">print</i></button></a>
-										<a data-toggle="tooltip" data-placement="top" title="Detail" href="{{ route('detail2',$individu->id) }}"><button type="button" class="btn btn-primary"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button></a>
-										<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{ route('edit',$individu->id) }}"><button type="button" class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button></a>
-										<a data-toggle="tooltip" data-placement="top" title="Hapus"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$individu->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button></a>
-
-										<input type="hidden" name="id" value="{{$individu->id}}">
-										<button data-toggle="tooltip" data-placement="top" title="Tambahkan sbg Mahasiswa" type="submit" class="btn btn-success"
-										@if (!$individu->administrator or $individu->status == 1)
-											disabled="" 
-										@endif
-										><i class="material-icons" style="font-size: 18px;">person_add</i></button>
+									<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('master.dosen.edit', $datas->id)}}">
+										<button class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button>
+									</a>
+									<a data-toggle="tooltip" data-placement="top" title="Hapus">
+										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$datas->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+									</a>
 									</div>
-									</form>
 								</td>
 							</tr>
 							<!-- Modal -->
@@ -81,22 +62,21 @@
 										<h2>Konfirmasi</h2>
 									</header>
 									<div class="w3-container" style="margin-top: 2%;">
-										<p>Apakah Anda yakin akan menghapus data ini?</p>
+										<p>Apakah Anda yakin akan menghapus data dosen ini?</p>
 									</div>
 									<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
-										<form action="{{route('delete')}}" method="POST">
+										<form action="{{route('master.dosen.delete')}}" method="POST">
 											{{ csrf_field() }}
 											<input type="hidden" name="id" id="valueId" value="">
 											<button type="submit" class="btn btn-success" id="DeleteButton" style="margin: 1%;">Ya</button>
+											<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Tidak</button>
 										</form>
-										<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Tidak</button>
 									</footer>
 								</div>
 							</div>
 						@endforeach
 						</tbody>
 					</table>
-				
 				</div>
 		</div>
 	</div>
@@ -115,7 +95,7 @@
 					"orderable": false,
 					"targets": 0,
 				} ],
-				"order": [[ 2, 'asc' ]],
+				"order": [[ 1, 'asc' ]],
 			} );
 
 			t.on( 'order.dt search.dt', function () {
