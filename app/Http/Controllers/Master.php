@@ -106,6 +106,12 @@ class Master extends Controller
     public function edit_kelas($id)
     {
         $data = masterKelas::find($id);
+        $sk = explode(' - ', $data->jam_SK);
+        $j = explode(' - ', $data->jam_J);
+        $data->start_SK = $sk[0];
+        $data->end_SK = $sk[1];
+        $data->start_J = $j[0];
+        $data->end_J = $j[1];
         return view('master.kelas.edit', compact('data'));
     }
 
