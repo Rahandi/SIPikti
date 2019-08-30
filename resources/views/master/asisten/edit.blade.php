@@ -25,7 +25,7 @@
 						<th style="width: 25%;">NRP</th>
 						<th style="width: 60%;">Nama Asisten</th>
 						<th rowspan="2" style="width: 15%;">
-							<input type="hidden" name="id" value="{{$data->nrp}}">
+							<input type="hidden" name="id" value="{{$data->id}}">
 							<a><button type="submit" style="width: 100%;" class="btn btn-info">Submit</button></a>
 						</th>
 					</tr>

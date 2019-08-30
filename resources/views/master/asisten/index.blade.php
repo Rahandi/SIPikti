@@ -46,7 +46,7 @@
 								<td>{{$datas->nama}}</td>
 								<td>
 									<div class="row" style="margin: 0px;">
-									<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('master.asisten.edit', $datas->nrp)}}">
+									<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('master.asisten.edit', $datas->id)}}">
 										<button class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button>
 									</a>
 									<a data-toggle="tooltip" data-placement="top" title="Hapus">

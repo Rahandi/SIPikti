@@ -123,7 +123,8 @@ class Master extends Controller
 
     public function update_asisten(Request $request)
     {
-        $asisten = masterAsisten::find($request->nrp);
+        $asisten = masterAsisten::find($request->id);
+        $asisten->nrp = $request->nrp;
         $asisten->nama = $request->nama;
         $asisten->save();
         return redirect()->route('master.asisten.index');
