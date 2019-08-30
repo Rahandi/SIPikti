@@ -4,6 +4,17 @@
 	Dashboard
 @endsection
 
+@section('css')
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
+	<style type="text/css">
+		i.material-icons {
+			vertical-align: middle;
+		}
+	</style>
+@endsection
+
 @section('content')
 	<div class="row">
 		<div class="col-sm-12">

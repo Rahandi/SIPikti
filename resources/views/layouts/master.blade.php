@@ -122,7 +122,7 @@
 					<li><a class="dropdown-toggle waves-effect" data-toggle="dropdown" href="/akademik"><i class="material-icons">account_balance</i> <span class="hide-menu">Akademik<span class="fa arrow"></span></span></a>
 						<ul class="nav nav-second-level">
 							<li><a href="{{ route('calon_mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Calon Mahasiswa</span></a></li>
-							<li><a href="{{ route('mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Mahasiswa</span></a></li>
+							<li><a href="{{ route('mahasiswa') }}"><i class="material-icons">how_to_reg</i><span class="hide-menu">  Mahasiswa</span></a></li>
 							<!-- <li><a href="{{ route('jadwal') }}"><i class="material-icons">group</i><span class="hide-menu">  Jadwal</span></a></li> -->
 						</ul>
 					</li>
@@ -133,12 +133,12 @@
 							<li><a href="{{ route('pembayaran.rekap') }}"><i class="material-icons">local_atm</i><span class="hide-menu">  Rekap Pembayaran</span></a></li>
 						</ul>
 					</li>
-					<li><a class="dropdown-toggle waves-effect" data-toggle="dropdown" href="/master"><i class="material-icons">account_balance</i> <span class="hide-menu">Master<span class="fa arrow"></span></span></a>
+					<li><a class="dropdown-toggle waves-effect" data-toggle="dropdown" href="/master"><i class="material-icons">language</i> <span class="hide-menu">Master<span class="fa arrow"></span></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="{{ route('master.mk.index') }}"><i class="material-icons">group</i><span class="hide-menu">  Mata Kuliah</span></a></li>
-							<li><a href="{{ route('master.kelas.index') }}"><i class="material-icons">group</i><span class="hide-menu">  Kelas</span></a></li>
-							<li><a href="{{ route('master.dosen.index') }}"><i class="material-icons">group</i><span class="hide-menu">  Dosen</span></a></li>
-							<li><a href="{{ route('master.asisten.index') }}"><i class="material-icons">group</i><span class="hide-menu">  Asisten</span></a></li>
+							<li><a href="{{ route('master.mk.index') }}"><i class="material-icons">laptop_windows</i><span class="hide-menu">  Mata Kuliah</span></a></li>
+							<li><a href="{{ route('master.kelas.index') }}"><i class="material-icons">av_timer</i><span class="hide-menu">  Kelas</span></a></li>
+							<li><a href="{{ route('master.dosen.index') }}"><i class="material-icons">airline_seat_recline_extra</i><span class="hide-menu">  Dosen</span></a></li>
+							<li><a href="{{ route('master.asisten.index') }}"><i class="material-icons">perm_identity</i><span class="hide-menu">  Asisten</span></a></li>
 						</ul>
 					</li>
 					<li class="devider"></li>
