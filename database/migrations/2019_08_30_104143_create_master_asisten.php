@@ -14,7 +14,8 @@ class CreateMasterAsisten extends Migration
     public function up()
     {
         Schema::create('master_asisten', function (Blueprint $table) {
-            $table->string('nrp')->primary();
+            $table->increments('id');
+            $table->string('nrp');
             $table->string('nama');
             $table->timestamps();
         });
