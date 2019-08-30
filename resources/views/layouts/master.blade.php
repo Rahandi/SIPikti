@@ -133,6 +133,14 @@
 							<li><a href="{{ route('pembayaran.rekap') }}"><i class="material-icons">local_atm</i><span class="hide-menu">  Rekap Pembayaran</span></a></li>
 						</ul>
 					</li>
+					<li><a class="dropdown-toggle waves-effect" data-toggle="dropdown" href="/master"><i class="material-icons">account_balance</i> <span class="hide-menu">Master<span class="fa arrow"></span></span></a>
+						<ul class="nav nav-second-level">
+							<li><a href="{{ route('master.mk.index') }}"><i class="material-icons">group</i><span class="hide-menu">  Mata Kuliah</span></a></li>
+							<li><a href="{{ route('master.kelas.index') }}"><i class="material-icons">group</i><span class="hide-menu">  Kelas</span></a></li>
+							<li><a href="{{ route('master.dosen.index') }}"><i class="material-icons">group</i><span class="hide-menu">  Dosen</span></a></li>
+							<li><a href="{{ route('master.asisten.index') }}"><i class="material-icons">group</i><span class="hide-menu">  Asisten</span></a></li>
+						</ul>
+					</li>
 					<li class="devider"></li>
 					<li><a href="documentation.html" class="waves-effect"><i class="fa fa-circle-o text-danger"></i> <span class="hide-menu">Documentation</span></a></li>
 					<li><a href="gallery.html" class="waves-effect"><i class="fa fa-circle-o text-info"></i> <span class="hide-menu">Faqs</span></a></li>

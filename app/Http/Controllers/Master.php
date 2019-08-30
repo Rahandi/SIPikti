@@ -136,7 +136,7 @@ class Master extends Controller
 
     public function update_mk(Request $request)
     {
-        $mk = masterMK::find($request->find);
+        $mk = masterMK::find($request->id);
         $mk->nama = $request->nama;
         $mk->semester = $request->semester;
         $mk->save();

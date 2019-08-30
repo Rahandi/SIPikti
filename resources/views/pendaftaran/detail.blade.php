@@ -117,7 +117,7 @@
 								@if ($data->administrator)
 									href="{{ route('kwitansi',$data->id) }}"
 								@endif
-								target="_blank" style="margin-right: 2%;"><button type="button" class="btn btn-success"
+								target="_blank" style="margin-right: 2%;"><button type="button" class="btn btn-info"
 								@if (!$data->administrator)
 									disabled=""
 								@endif
