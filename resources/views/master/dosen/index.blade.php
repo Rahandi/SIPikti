@@ -41,7 +41,7 @@
 						@foreach ($data as $datas)
 							<tr>
 								<td></td>
-								<td class="sorting_1">{{$datas->nama}}</td>
+								<td>{{$datas->nama}}</td>
 								<td>
 									<div class="row" style="margin: 0px;">
 									<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('master.dosen.edit', $datas->id)}}">
@@ -62,10 +62,10 @@
 										<h2>Konfirmasi</h2>
 									</header>
 									<div class="w3-container" style="margin-top: 2%;">
-										<p>Apakah Anda yakin akan menghapus data mata kuliah ini?</p>
+										<p>Apakah Anda yakin akan menghapus data dosen ini?</p>
 									</div>
 									<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
-										<form action="{{route('master.mk.delete')}}" method="POST">
+										<form action="{{route('master.dosen.delete')}}" method="POST">
 											{{ csrf_field() }}
 											<input type="hidden" name="id" id="valueId" value="">
 											<button type="submit" class="btn btn-success" id="DeleteButton" style="margin: 1%;">Ya</button>
