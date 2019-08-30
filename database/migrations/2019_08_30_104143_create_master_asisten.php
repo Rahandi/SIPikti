@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MataKuliah extends Migration
+class CreateMasterAsisten extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class MataKuliah extends Migration
      */
     public function up()
     {
-        Schema::create('jadwal', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('jam');
-            $table->string('mata_kuliah');
+        Schema::create('master_asisten', function (Blueprint $table) {
+            $table->string('nrp');
+            $table->string('nama');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class MataKuliah extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('master_asisten');
     }
 }
