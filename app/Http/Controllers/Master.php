@@ -61,6 +61,7 @@ class Master extends Controller
         $asisten->nrp = $request->nrp;
         $asisten->nama = $request->nama;
         $asisten->save();
+        return redirect()->route('master.asisten.index');
     }
 
     public function store_dosen(Request $request)
@@ -68,15 +69,17 @@ class Master extends Controller
         $dosen = new masterDosen();
         $dosen->nama = $request->nama;
         $dosen->save();
+        return redirect()->route('master.dosen.index');
     }
 
     public function store_kelas(Request $request)
     {
         $kelas = new masterKelas();
         $kelas->nama = $request->nama;
-        $kelas->jam_SK = $request->jam_SK;
-        $kelas->jam_J = $request->jam_J;
+        $kelas->jam_SK = $request->start_SK.' - '.$request->end_SK;
+        $kelas->jam_J = $request->start_J.' - '.$request->end_J;
         $kelas->save();
+        return redirect()->route('master.kelas.index');
     }
 
     public function store_mk(Request $request)
@@ -85,6 +88,7 @@ class Master extends Controller
         $mk->nama = $request->nama;
         $mk->semester = $request->semester;
         $mk->save();
+        return redirect()->route('master.mk.index');
     }
 
     public function edit_asisten($id)
@@ -116,6 +120,7 @@ class Master extends Controller
         $asisten = masterAsisten::find($request->nrp);
         $asisten->nama = $request->nama;
         $asisten->save();
+        return redirect()->route('master.asisten.index');
     }
 
     public function update_dosen(Request $request)
@@ -123,15 +128,17 @@ class Master extends Controller
         $dosen = masterDosen::find($request->id);
         $dosen->nama = $request->nama;
         $dosen->save();
+        return redirect()->route('master.dosen.index');
     }
 
     public function update_kelas(Request $request)
     {
         $kelas = masterKelas::find($request->id);
         $kelas->nama = $request->nama;
-        $kelas->jam_SK = $request->jam_SK;
-        $kelas->jam_J = $request->jam_J;
+        $kelas->jam_SK = $request->start_SK.' - '.$request->end_SK;
+        $kelas->jam_J = $request->start_J.' - '.$request->end_J;
         $kelas->save();
+        return redirect()->route('master.kelas.index');
     }
 
     public function update_mk(Request $request)
@@ -140,29 +147,34 @@ class Master extends Controller
         $mk->nama = $request->nama;
         $mk->semester = $request->semester;
         $mk->save();
+        return redirect()->route('master.mk.index');
     }
 
     public function delete_asisten(Request $request)
     {
         $asisten = masterAsisten::find($request->nrp);
         $asisten->delete();
+        return redirect()->route('master.asisten.index');
     }
 
     public function delete_dosen(Request $request)
     {
         $dosen = masterDosen::find($request->id);
         $dosen->delete();
+        return redirect()->route('master.dosen.index');
     }
 
     public function delete_kelas(Request $request)
     {
         $kelas = masterKelas::find($request->id);
         $kelas->delete();        
+        return redirect()->route('master.kelas.index');
     }
 
     public function delete_mk(Request $request)
     {
         $mk = masterMK::find($request->find);
         $mk->delete();        
+        return redirect()->route('master.mk.index');
     }
 }
