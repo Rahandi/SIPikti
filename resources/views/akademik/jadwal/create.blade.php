@@ -4,6 +4,14 @@
 	Tambah Jadwal
 @endsection
 
+@section('css')
+<style type="text/css">
+	#tableMK tr th, td{
+		padding: 8px;
+	}
+</style>
+@endsection
+
 @section('content')
 <div class="row">
 	<div class="col-sm-12">
@@ -12,93 +20,187 @@
 			<p class="text-muted m-b-30">Tambahkan Jadwal</p>
 			<form action="{{route('jadwal.store')}}" method="POST" data-toggle="validator">
 				{{csrf_field()}}
-				<div class="form-group">
-					<label for="inp1" class="control-label">Termin</label>
-					<input type="text" class="form-control" id="inp1" name="termin" placeholder="1" required>
-				</div>
-				<div class="form-group">
-					<label for="inp2" class="control-label">Kelas</label>
-					<input type="text" class="form-control" id="inp2" name="kelas" placeholder="A" required>
-				</div>
-				<div class="form-group">
-					<label for="inp3" class="control-label">Jam</label>
-					<div style="width: 100%;">
-						<input type="time" class="form-control col-sm-4" id="inp3" name="start_time" style="width: 10%;" required>
-						<p id="inp3" class="col-sm-1" style="text-align: center;vertical-align: middle;padding: 7px 12px;">s/d</p>
-						<input type="time" class="form-control col-sm-4" id="inp3" name="end_time" style="width: 10%;" required>
+				<div class="form-group" style="width: 100%;">
+					<div class="col-md-4">
+						<label for="inp1" class="control-label">Termin</label>
+						<input type="text" class="form-control" id="inp1" name="termin" placeholder="1" required>
+					</div>
+					<div class="col-md-8">
+						<label for="kelas" class="control-label">Kelas</label>
+						<select class="form-control" name="kelas" id="kelas" required="" onchange="getKelas()">
+							<option value="0">Select Here</option>
+							<!-- foreach data kelas -->
+							<option value="a">A</option>
+							<option value="b">B</option>
+							<option value="c">C</option>
+							<option value="d">D</option>
+							<option value="e">E</option>
+							<option value="f">F</option>
+						</select>
 					</div>
 				</div>
 				<br><br>
-				<div class="form-group">
-					<label for="inp4" class="control-label">Mata Kuliah</label>
-					<input type="text" class="form-control" id="inp4" name="mata_kuliah" placeholder="Aplikasi Perkantoran, Desain Web Profesional, Pemrograman Java, Teknik Multimedia Pendukung Game, Teknologi Basis Data." required> </div>
+				<table style="width: 100%; text-align: center; margin-top: 5%;">
+					<tr>
+						<th style="text-align: center;">Senin-Kamis (Jam)</th>
+						<th style="text-align: center;">Jumat (Jam)</th>
+					</tr>
+					<tr>
+						<td>10:00 s/d 12.30</td>
+						<td>10:00 s/d 12.30</td>
+					</tr>
+				</table>
 
-				<div class="form-group">
-					<label for="matkul" class="control-label">Mata Kuliah</label>
-					<select class="form-control" name="matkul" id="matkul" required="" onchange="getMK()">
-						<option value="0">Select Here</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label class="control-label">Detail Angsuran</label>
-					<div id="ang1" style="display: none;">
-						Angsuran 1:
-						<div class="input-group">
-							<span class="input-group-addon">Rp</span>
-							<input type="text" class="form-control" id="a1" name="a1" placeholder="1500000">
-						</div>
-						<div style="margin-top: 1%;"></div>
-						Terbilang:
-						<input type="text" class="form-control" id="ter_a1" name="ter_a1" placeholder="Satu Juta Lima Ratus Ribu Rupiah"><br>
-					</div>
-					<div id="ang2" style="display: none;">
-						Angsuran 2:
-						<div class="input-group">
-							<span class="input-group-addon">Rp</span>
-							<input type="text" class="form-control" id="a2" name="a2" placeholder="1500000">
-						</div>
-						<div style="margin-top: 1%;"></div>
-						Terbilang:
-						<input type="text" class="form-control" id="ter_a2" name="ter_a2" placeholder="Satu Juta Lima Ratus Ribu Rupiah"><br>
-					</div>
-					<div id="ang3" style="display: none;">
-						Angsuran 3:
-						<div class="input-group">
-							<span class="input-group-addon">Rp</span>
-							<input type="text" class="form-control" id="a3" name="a3" placeholder="1500000">
-						</div>
-						<div style="margin-top: 1%;"></div>
-						Terbilang:
-						<input type="text" class="form-control" id="ter_a3" name="ter_a3" placeholder="Satu Juta Lima Ratus Ribu Rupiah"><br>
-					</div>
-					<div id="ang4" style="display: none;">
-						Angsuran 4:
-						<div class="input-group">
-							<span class="input-group-addon">Rp</span>
-							<input type="text" class="form-control" id="a4" name="a4" placeholder="1500000">
-						</div>
-						<div style="margin-top: 1%;"></div>
-						Terbilang:
-						<input type="text" class="form-control" id="ter_a4" name="ter_a4" placeholder="Satu Juta Lima Ratus Ribu Rupiah"><br>
-					</div>
-					<div id="ang5" style="display: none;">
-						Angsuran 5:
-						<div class="input-group">
-							<span class="input-group-addon">Rp</span>
-							<input type="text" class="form-control" id="a5" name="a5" placeholder="1500000">
-						</div>
-						<div style="margin-top: 1%;"></div>
-						Terbilang:
-						<input type="text" class="form-control" id="ter_a5" name="ter_a5" placeholder="Satu Juta Lima Ratus Ribu Rupiah"><br>
-					</div>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Submit</button>
+				<!-- if kelas != 'S' -->
+				<h4 class="box-title m-b-0" style="margin-top: 2%;">Pilih Mata Kuliah</h4>
+				<p class="text-muted m-b-30">Tambahkan Mata Kuliah</p>
+
+				<table style="width: 100%;text-align: center;" id="tableMK" border="">
+					<tr>
+						<th style="text-align: center; width: 10%;">Hari</th>
+						<th style="text-align: center; width: 35%;">Mata Kuliah</th>
+						<th style="text-align: center; width: 30%;">Dosen (Optional)</th>
+						<th style="text-align: center; width: 25%;">Asisten (Optional)</th>
+					</tr>
+					<tr>
+						<td><label class="control-label">SENIN</label></td>
+						<td>
+							<select class="form-control" name="matkul" id="matkul" required="">
+								<option value="">Select Here</option>
+								<!-- foreach master MK -->
+								<option value="1">Aplikasi Perkantoran</option>
+								<option value="2">Pemrograman Java</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control" name="dosen" id="dosen">
+								<option value="">Select Here</option>
+								<!-- foreach master Dosen -->
+								<option value="1">Dini Adni Navastara, S.Kom</option>
+								<option value="2">Hadziq Fabroyir, S.Kom, Ph.D</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control" name="asisten" id="asisten">
+								<option value="">Select Here</option>
+								<!-- foreach master Asisten -->
+								<option value="1">Yoshima Syach Putri</option>
+								<option value="2">Rahandi Noor Pasha</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="control-label">SELASA</label></td>
+						<td>
+							<select class="form-control" name="matkul" id="matkul" required="">
+								<option value="">Select Here</option>
+								<!-- foreach master MK -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control" name="dosen" id="dosen">
+								<option value="">Select Here</option>
+								<!-- foreach master Dosen -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control" name="asisten" id="asisten">
+								<option value="">Select Here</option>
+								<!-- foreach master Asisten -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="control-label">RABU</label></td>
+						<td>
+							<select class="form-control" name="matkul" id="matkul" required="">
+								<option value="">Select Here</option>
+								<!-- foreach master MK -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control" name="dosen" id="dosen">
+								<option value="">Select Here</option>
+								<!-- foreach master Dosen -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control" name="asisten" id="asisten">
+								<option value="">Select Here</option>
+								<!-- foreach master Asisten -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="control-label">KAMIS</label></td>
+						<td>
+							<select class="form-control" name="matkul" id="matkul" required="">
+								<option value="">Select Here</option>
+								<!-- foreach master MK -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control" name="dosen" id="dosen">
+								<option value="">Select Here</option>
+								<!-- foreach master Dosen -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control" name="asisten" id="asisten">
+								<option value="">Select Here</option>
+								<!-- foreach master Asisten -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label class="control-label">JUMAT</label></td>
+						<td>
+							<select class="form-control" name="matkul" id="matkul" required="">
+								<option value="">Select Here</option>
+								<!-- foreach master MK -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control" name="dosen" id="dosen">
+								<option value="">Select Here</option>
+								<!-- foreach master Dosen -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+						<td>
+							<select class="form-control" name="asisten" id="asisten">
+								<option value="">Select Here</option>
+								<!-- foreach master Asisten -->
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+				
+				<div style="margin-top: 3%; width: 100%; text-align: center;">
+					<button type="submit" style="width: 15%;" class="btn btn-primary">Submit</button>
 				</div>
 			</form>
 		</div>
@@ -108,17 +210,6 @@
 
 @section('js')
 <script type="text/javascript">
-	function getMK(){
-		var from = $('#matkul').val();
-		console.log("change!");
-		$jml = from;
-		console.log($jml);
-		for (i = 1; i <= 5; i++){
-			document.getElementById(i).style.display = "none";
-		}
-		for (i = 1; i <= $jml; i++){
-			document.getElementById(i).style.display = "block";
-		}
-	}
+
 </script>
 @endsection
