@@ -42,7 +42,7 @@
 							<tr>
 								<td></td>
 								<td>{{$datas->nama}}</td>
-								<td>
+								<td style="text-align: center;">
 									<div class="row" style="margin: 0px;">
 									<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('master.dosen.edit', $datas->id)}}">
 										<button class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button>
