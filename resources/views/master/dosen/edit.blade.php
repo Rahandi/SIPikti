@@ -31,7 +31,7 @@
 					<tr>
 						<td>
 							<div class="form-group">
-								<input style="text-align: left;" type="text" class="form-control" id="inp1" name="nama" placeholder="Dini Adni Navastara" value="{{$data->nama}}" required>
+								<input style="text-align: left;" type="text" class="form-control" id="inp1" name="nama" placeholder="Dini Adni Navastara, S.Kom., M.Sc." value="{{$data->nama}}" required>
 							</div>
 						</td>
 						<td></td>

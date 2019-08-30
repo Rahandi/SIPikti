@@ -28,7 +28,7 @@
 					<a href="{{route('master.mk.create')}}"><button class="btn btn-info">Tambah Mata Kuliah</button></a>
 				</div>
 				<div class="row row-in">
-					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
+					<table id="list" class="table table-striped table-hover table-bordered" style="width: 100%;">
 						<thead>
 							<tr>
 								<th style="width: 5%;"></th>
@@ -44,7 +44,7 @@
 							<tr>
 								<td></td>
 								<td class="sorting_1">{{$datas->nama}}</td>
-								<td>{{$datas->semester}}</td>
+								<td style="text-align: center;">{{$datas->semester}}</td>
 								<td>
 									<div class="row" style="margin: 0px;">
 									<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('master.mk.edit', $datas->id)}}">

@@ -30,7 +30,7 @@
 					<tr>
 						<td>
 							<div class="form-group">
-								<input style="text-align: left;" type="text" class="form-control" id="inp1" name="nama" placeholder="Dini Adni Navastara" required>
+								<input style="text-align: left;" type="text" class="form-control" id="inp1" name="nama" placeholder="Dini Adni Navastara, S.Kom., M.Sc." required>
 							</div>
 						</td>
 						<td></td>

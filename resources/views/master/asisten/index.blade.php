@@ -28,7 +28,7 @@
 					<a href="{{route('master.asisten.create')}}"><button class="btn btn-info">Tambah Asisten</button></a>
 				</div>
 				<div class="row row-in">
-					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
+					<table id="list" class="table table-striped table-hover table-bordered" style="width: 100%;">
 						<thead>
 							<tr>
 								<th style="width: 5%;"></th>

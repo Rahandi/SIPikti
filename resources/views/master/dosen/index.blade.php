@@ -28,7 +28,7 @@
 					<a href="{{route('master.dosen.create')}}"><button class="btn btn-info">Tambah Dosen</button></a>
 				</div>
 				<div class="row row-in">
-					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
+					<table id="list" class="table table-striped table-hover table-bordered" style="width: 100%;">
 						<thead>
 							<tr>
 								<th style="width: 5%;"></th>
