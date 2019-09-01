@@ -73,36 +73,36 @@ Route::post('/keuangan/pembayaran/kwitansi', 'PembayaranController@kwitansi')->n
 
 Route::group(['prefix'=>'master'], function(){
     Route::group(['prefix'=>'asisten'], function(){
-        Route::get('/', 'Master@index_asisten')->name('master.asisten.index');
-        Route::get('/create', 'Master@create_asisten')->name('master.asisten.create');
-        Route::get('/edit/{id}', 'Master@edit_asisten')->name('master.asisten.edit');
-        Route::post('/store', 'Master@store_asisten')->name('master.asisten.store');
-        Route::post('/update', 'Master@update_asisten')->name('master.asisten.update');
-        Route::post('/delete', 'Master@delete_asisten')->name('master.asisten.delete');
+        Route::get('/', 'MasterController@index_asisten')->name('master.asisten.index');
+        Route::get('/create', 'MasterController@create_asisten')->name('master.asisten.create');
+        Route::get('/edit/{id}', 'MasterController@edit_asisten')->name('master.asisten.edit');
+        Route::post('/store', 'MasterController@store_asisten')->name('master.asisten.store');
+        Route::post('/update', 'MasterController@update_asisten')->name('master.asisten.update');
+        Route::post('/delete', 'MasterController@delete_asisten')->name('master.asisten.delete');
     });
     Route::group(['prefix'=>'dosen'], function(){
-        Route::get('/', 'Master@index_dosen')->name('master.dosen.index');
-        Route::get('/create', 'Master@create_dosen')->name('master.dosen.create');
-        Route::get('/edit/{id}', 'Master@edit_dosen')->name('master.dosen.edit');
-        Route::post('/store', 'Master@store_dosen')->name('master.dosen.store');
-        Route::post('/update', 'Master@update_dosen')->name('master.dosen.update');
-        Route::post('/delete', 'Master@delete_dosen')->name('master.dosen.delete');
+        Route::get('/', 'MasterController@index_dosen')->name('master.dosen.index');
+        Route::get('/create', 'MasterController@create_dosen')->name('master.dosen.create');
+        Route::get('/edit/{id}', 'MasterController@edit_dosen')->name('master.dosen.edit');
+        Route::post('/store', 'MasterController@store_dosen')->name('master.dosen.store');
+        Route::post('/update', 'MasterController@update_dosen')->name('master.dosen.update');
+        Route::post('/delete', 'MasterController@delete_dosen')->name('master.dosen.delete');
     });
     Route::group(['prefix'=>'kelas'], function(){
-        Route::get('/', 'Master@index_kelas')->name('master.kelas.index');
-        Route::get('/create', 'Master@create_kelas')->name('master.kelas.create');
-        Route::get('/edit/{id}', 'Master@edit_kelas')->name('master.kelas.edit');
-        Route::post('/store', 'Master@store_kelas')->name('master.kelas.store');
-        Route::post('/update', 'Master@update_kelas')->name('master.kelas.update');
-        Route::post('/delete', 'Master@delete_kelas')->name('master.kelas.delete');
+        Route::get('/', 'MasterController@index_kelas')->name('master.kelas.index');
+        Route::get('/create', 'MasterController@create_kelas')->name('master.kelas.create');
+        Route::get('/edit/{id}', 'MasterController@edit_kelas')->name('master.kelas.edit');
+        Route::post('/store', 'MasterController@store_kelas')->name('master.kelas.store');
+        Route::post('/update', 'MasterController@update_kelas')->name('master.kelas.update');
+        Route::post('/delete', 'MasterController@delete_kelas')->name('master.kelas.delete');
     });
     Route::group(['prefix'=>'mk'], function(){
-        Route::get('/', 'Master@index_mk')->name('master.mk.index');
-        Route::get('/create', 'Master@create_mk')->name('master.mk.create');
-        Route::get('/edit/{id}', 'Master@edit_mk')->name('master.mk.edit');
-        Route::post('/store', 'Master@store_mk')->name('master.mk.store');
-        Route::post('/update', 'Master@update_mk')->name('master.mk.update');
-        Route::post('/delete', 'Master@delete_mk')->name('master.mk.delete');
+        Route::get('/', 'MasterController@index_mk')->name('master.mk.index');
+        Route::get('/create', 'MasterController@create_mk')->name('master.mk.create');
+        Route::get('/edit/{id}', 'MasterController@edit_mk')->name('master.mk.edit');
+        Route::post('/store', 'MasterController@store_mk')->name('master.mk.store');
+        Route::post('/update', 'MasterController@update_mk')->name('master.mk.update');
+        Route::post('/delete', 'MasterController@delete_mk')->name('master.mk.delete');
     });
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\jadwal;
 use App\mahasiswa;
 use App\mahasiswa_jadwal;
+use App\masterKelas;
 use Illuminate\Http\Request;
 
 class JadwalController extends Controller
@@ -28,30 +29,98 @@ class JadwalController extends Controller
     public function store(Request $request)
     {
         $jadwal = new jadwal();
-        $jadwal->kelas = $request->kelas;
-        $jadwal->jam = $request->start_time.' - '.$request->end_time;
-        $jadwal->mata_kuliah = $request->mata_kuliah;
         $jadwal->termin = $request->termin;
+        $jadwal->id_kelas = masterKelas::where('nama','=',$request->kelas)->first()->id;
+        
+        $mk = array();
+        foreach($request->matkul as $matkul)
+        {
+            ($matkul) ? array_push($mk, $matkul) : array_push($mk, '0');
+        }
+
+        $dosen = array();
+        foreach($request->dosen as $indvdosen)
+        {
+            ($indvdosen) ? array_push($dosen, $indvdosen) : array_push($dosen, '0');
+        }
+
+        $asisten = array();
+        foreach($request->asisten as $indvasisten)
+        {
+            ($indvasisten) ? array_push($asisten, $indvasisten) : array_push($asisten, '0');
+        }
+
+        $jadwal->ids_mk = implode(',', $mk);
+        $jadwal->ids_dosen = implode(',', $dosen);
+        $jadwal->ids_asisten = implode(',', $asisten);
+
         $jadwal->save();
         return redirect()->route('jadwal');
     }
 
     public function edit(Request $request)
     {
-        $data = jadwal::find($request->id);
-        $time = explode(' - ', $data->jam);
-        $data->start_time = $time[0];
-        $data->end_time = $time[1];
+        $data = new stdClass();
+        $jadwal = jadwal::find($request->id);
+        $ids_mk = explode(',',$jadwal->ids_mk);
+        $ids_dosen = explode(',',$jadwal->ids_dosen);
+        $ids_asisten = explode(',',$jadwal->ids_asisten);
+        
+        $mk = array();
+        foreach($ids_mk as $indvmk)
+        {
+            ($indvmk)?array_push($mk, $indvmk):array_push($mk, null);
+        }
+
+        $dosen = array();
+        foreach($ids_dosen as $indvdosen)
+        {
+            ($indvdosen)?array_push($dosen, $indvdosen):array_push($dosen, null);
+        }
+
+        $asisten = array();
+        foreach($ids_asisten as $indvasisten)
+        {
+            ($indvasisten)?array_push($asisten, $indvasisten):array_push($asisten, null);
+        }
+
+        $data->termin = $jadwal->termin;
+        $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+        $data->matkul = $mk;
+        $data->dosen = $dosen;
+        $data->asisten = $asisten;
+
         return view('akademik.jadwal.edit', compact('data'));
     }
 
     public function update(Request $request)
     {
         $jadwal = jadwal::find($request->id);
-        $jadwal->kelas = $request->kelas;
-        $jadwal->jam = $request->start_time.' - '.$request->end_time;
-        $jadwal->mata_kuliah = $request->mata_kuliah;
         $jadwal->termin = $request->termin;
+        $jadwal->id_kelas = masterKelas::where('nama','=',$request->kelas)->first()->id;
+        
+        $mk = array();
+        foreach($request->matkul as $matkul)
+        {
+            ($matkul) ? array_push($mk, $matkul) : array_push($mk, '0');
+        }
+
+        $dosen = array();
+        foreach($request->dosen as $indvdosen)
+        {
+            ($indvdosen) ? array_push($dosen, $indvdosen) : array_push($dosen, '0');
+        }
+
+        $asisten = array();
+        foreach($request->asisten as $indvasisten)
+        {
+            ($indvasisten) ? array_push($asisten, $indvasisten) : array_push($asisten, '0');
+        }
+
+        $jadwal->ids_mk = implode(',', $mk);
+        $jadwal->ids_dosen = implode(',', $dosen);
+        $jadwal->ids_asisten = implode(',', $asisten);
+
         $jadwal->save();
         return redirect()->route('jadwal');
     }
@@ -61,81 +130,5 @@ class JadwalController extends Controller
         $jadwal = jadwal::find($request->id);
         $jadwal->delete();
         return redirect()->route('jadwal');
-    }
-
-    public function detailJadwal($id)
-    {
-        $jadwal = jadwal::find($id);
-        $sudah_diterima = \DB::table('mahasiswa')
-                            ->join('mahasiswa_jadwal', 'mahasiswa.id', '=', 'mahasiswa_jadwal.mahasiswa_id')
-                            ->select('mahasiswa.id', 'mahasiswa.nrp', 'mahasiswa.nama')
-                            ->where('mahasiswa_jadwal.jadwal_id', '=', $id)
-                            ->get();
-        $data = array(
-            'jadwal' => $jadwal,
-            'mahasiswa' => $sudah_diterima
-        );
-        return view('akademik.jadwal.detail', compact('data'));
-    }
-
-    public function pilihKelas($id)
-    {
-        $jadwal = jadwal::find($id) ;
-        $belum_dapat = $this->belumDapatJadwal($id);
-        $data = array(
-            'jadwal' => $jadwal,
-            'mahasiswa' => $belum_dapat
-        );
-        return view('akademik.jadwal.pilih_kelas', compact('data'));
-    }
-
-    public function cancel(Request $request)
-    {
-        $record = mahasiswa_jadwal::where('mahasiswa_id', '=', $request->mahasiswa_id)->where('jadwal_id', '=', $request->jadwal_id)->get();
-        $record[0]->delete();
-        return redirect()->back();
-    }
-
-    public function select(Request $request)
-    {
-        for($i=0;$i<count($request->mhs);$i++)
-        {
-            $mahasiswa_jadwal = new mahasiswa_jadwal();
-            $mahasiswa_jadwal->jadwal_id = $request->jadwal_id;
-            $mahasiswa_jadwal->mahasiswa_id = $request->mhs[$i];
-            $mahasiswa_jadwal->save();
-        }
-        return redirect()->route('jadwal.detail', $request->jadwal_id);
-    }
-
-    public function absensi($id)
-    {
-        $jadwal = jadwal::find($id);
-        $jadwal->mata_kuliah = explode(', ', $jadwal->mata_kuliah);
-        $data = array(
-            'jadwal' => $jadwal,
-            'mahasiswa' => \DB::table('mahasiswa')
-                            ->join('mahasiswa_jadwal', 'mahasiswa.id', '=', 'mahasiswa_jadwal.mahasiswa_id')
-                            ->select('mahasiswa.nrp', 'mahasiswa.nama')
-                            ->where('mahasiswa_jadwal.jadwal_id', '=', $id)
-                            ->get()
-        );
-        return view('akademik.jadwal.absen', compact('data'));
-    }
-
-    private function belumDapatJadwal($id)
-    {
-        $sudah_dapat = mahasiswa_jadwal::all();
-        $notin = array();
-        for($i=0;$i<count($sudah_dapat);$i++)
-        {
-            array_push($notin, $sudah_dapat[$i]->mahasiswa_id);
-        }
-
-        $belum_dapat = \DB::table('mahasiswa')
-                            ->select('id', 'nrp', 'nama')
-                            ->whereNotIn('id', $notin)
-                            ->get();
-        return $belum_dapat;
     }
 }

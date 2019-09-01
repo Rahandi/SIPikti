@@ -30,12 +30,12 @@
 						<select class="form-control" name="kelas" id="kelas" required="" onchange="getKelas()">
 							<option value="0">Select Here</option>
 							<!-- foreach data kelas -->
-							<option value="a">A</option>
-							<option value="b">B</option>
-							<option value="c">C</option>
-							<option value="d">D</option>
-							<option value="e">E</option>
-							<option value="f">F</option>
+							<option value="A">A</option>
+							<option value="B">B</option>
+							<option value="C">C</option>
+							<option value="D">D</option>
+							<option value="E">E</option>
+							<option value="F">F</option>
 						</select>
 					</div>
 				</div>
@@ -65,7 +65,7 @@
 					<tr>
 						<td><label class="control-label">SENIN</label></td>
 						<td>
-							<select class="form-control" name="matkul" id="matkul" required="">
+							<select class="form-control" name="matkul[]" id="matkul" required="">
 								<option value="">Select Here</option>
 								<!-- foreach master MK -->
 								<option value="1">Aplikasi Perkantoran</option>
@@ -73,7 +73,7 @@
 							</select>
 						</td>
 						<td>
-							<select class="form-control" name="dosen" id="dosen">
+							<select class="form-control" name="dosen[]" id="dosen">
 								<option value="">Select Here</option>
 								<!-- foreach master Dosen -->
 								<option value="1">Dini Adni Navastara, S.Kom</option>
@@ -81,7 +81,7 @@
 							</select>
 						</td>
 						<td>
-							<select class="form-control" name="asisten" id="asisten">
+							<select class="form-control" name="asisten[]" id="asisten">
 								<option value="">Select Here</option>
 								<!-- foreach master Asisten -->
 								<option value="1">Yoshima Syach Putri</option>
@@ -92,7 +92,7 @@
 					<tr>
 						<td><label class="control-label">SELASA</label></td>
 						<td>
-							<select class="form-control" name="matkul" id="matkul" required="">
+							<select class="form-control" name="matkul[]" id="matkul" required="">
 								<option value="">Select Here</option>
 								<!-- foreach master MK -->
 								<option value="1">1</option>
@@ -100,7 +100,7 @@
 							</select>
 						</td>
 						<td>
-							<select class="form-control" name="dosen" id="dosen">
+							<select class="form-control" name="dosen[]" id="dosen">
 								<option value="">Select Here</option>
 								<!-- foreach master Dosen -->
 								<option value="1">1</option>
@@ -108,7 +108,7 @@
 							</select>
 						</td>
 						<td>
-							<select class="form-control" name="asisten" id="asisten">
+							<select class="form-control" name="asisten[]" id="asisten">
 								<option value="">Select Here</option>
 								<!-- foreach master Asisten -->
 								<option value="1">1</option>
@@ -119,7 +119,7 @@
 					<tr>
 						<td><label class="control-label">RABU</label></td>
 						<td>
-							<select class="form-control" name="matkul" id="matkul" required="">
+							<select class="form-control" name="matkul[]" id="matkul" required="">
 								<option value="">Select Here</option>
 								<!-- foreach master MK -->
 								<option value="1">1</option>
@@ -127,7 +127,7 @@
 							</select>
 						</td>
 						<td>
-							<select class="form-control" name="dosen" id="dosen">
+							<select class="form-control" name="dosen[]" id="dosen">
 								<option value="">Select Here</option>
 								<!-- foreach master Dosen -->
 								<option value="1">1</option>
@@ -135,7 +135,7 @@
 							</select>
 						</td>
 						<td>
-							<select class="form-control" name="asisten" id="asisten">
+							<select class="form-control" name="asisten[]" id="asisten">
 								<option value="">Select Here</option>
 								<!-- foreach master Asisten -->
 								<option value="1">1</option>
@@ -146,7 +146,7 @@
 					<tr>
 						<td><label class="control-label">KAMIS</label></td>
 						<td>
-							<select class="form-control" name="matkul" id="matkul" required="">
+							<select class="form-control" name="matkul[]" id="matkul" required="">
 								<option value="">Select Here</option>
 								<!-- foreach master MK -->
 								<option value="1">1</option>
@@ -154,7 +154,7 @@
 							</select>
 						</td>
 						<td>
-							<select class="form-control" name="dosen" id="dosen">
+							<select class="form-control" name="dosen[]" id="dosen">
 								<option value="">Select Here</option>
 								<!-- foreach master Dosen -->
 								<option value="1">1</option>
@@ -162,7 +162,7 @@
 							</select>
 						</td>
 						<td>
-							<select class="form-control" name="asisten" id="asisten">
+							<select class="form-control" name="asisten[]" id="asisten">
 								<option value="">Select Here</option>
 								<!-- foreach master Asisten -->
 								<option value="1">1</option>
@@ -173,7 +173,7 @@
 					<tr>
 						<td><label class="control-label">JUMAT</label></td>
 						<td>
-							<select class="form-control" name="matkul" id="matkul" required="">
+							<select class="form-control" name="matkul[]" id="matkul" required="">
 								<option value="">Select Here</option>
 								<!-- foreach master MK -->
 								<option value="1">1</option>
@@ -181,7 +181,7 @@
 							</select>
 						</td>
 						<td>
-							<select class="form-control" name="dosen" id="dosen">
+							<select class="form-control" name="dosen[]" id="dosen">
 								<option value="">Select Here</option>
 								<!-- foreach master Dosen -->
 								<option value="1">1</option>
@@ -189,7 +189,7 @@
 							</select>
 						</td>
 						<td>
-							<select class="form-control" name="asisten" id="asisten">
+							<select class="form-control" name="asisten[]" id="asisten">
 								<option value="">Select Here</option>
 								<!-- foreach master Asisten -->
 								<option value="1">1</option>
