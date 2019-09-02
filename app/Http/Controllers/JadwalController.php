@@ -6,6 +6,9 @@ use App\jadwal;
 use App\mahasiswa;
 use App\mahasiswa_jadwal;
 use App\masterKelas;
+use App\masterDosen;
+use App\masterAsisten;
+use App\masterMK;
 use Illuminate\Http\Request;
 
 class JadwalController extends Controller
@@ -23,7 +26,14 @@ class JadwalController extends Controller
 
     public function create()
     {
-        return view('akademik.jadwal.create');
+        $data = new stdClass();
+
+        $data->masterKelas = masterKelas::all();
+        $data->masterDosen = masterDosen::all();
+        $data->masterAsisten = masterAsisten::all();
+        $data->masterMK = masterMK::all();
+
+        return view('akademik.jadwal.create', compact('data'));
     }
 
     public function store(Request $request)
