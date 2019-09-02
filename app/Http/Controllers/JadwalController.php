@@ -177,19 +177,19 @@ class JadwalController extends Controller
         $mk = array();
         foreach($ids_mk as $indvmk)
         {
-            ($indvmk)?array_push($mk, $indvmk):array_push($mk, null);
+            ($indvmk)?array_push($mk, masterMK::find($indvmk)->nama):array_push($mk, null);
         }
 
         $dosen = array();
         foreach($ids_dosen as $indvdosen)
         {
-            ($indvdosen)?array_push($dosen, $indvdosen):array_push($dosen, null);
+            ($indvdosen)?array_push($dosen, masterDosen::find($indvdosen)->nama):array_push($dosen, null);
         }
 
         $asisten = array();
         foreach($ids_asisten as $indvasisten)
         {
-            ($indvasisten)?array_push($asisten, $indvasisten):array_push($asisten, null);
+            ($indvasisten)?array_push($asisten, masterAsisten::find($indvasisten)->nama):array_push($asisten, null);
         }
 
         $data->id = $id;
@@ -198,10 +198,6 @@ class JadwalController extends Controller
         $data->matkul = $mk;
         $data->dosen = $dosen;
         $data->asisten = $asisten;
-        $data->masterKelas = masterKelas::all();
-        $data->masterDosen = masterDosen::all();
-        $data->masterAsisten = masterAsisten::all();
-        $data->masterMK = masterMK::all();
 
         return view('akademik.jadwal.detail', compact('data'));
     }
