@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" style="background-image: url(../images/bg5.png);	background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+<html lang="{{ app()->getLocale() }}" style="background-image: url({{ URL::asset('images/bg5.png') }});	background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +11,9 @@
     <title>Pendaftaran PIKTI</title>
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="../css/form.css">
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/bootstrap.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/form.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
 </head>
 <body onkeypress="return noEnter()">
 	<div class="row" style="align-content: center; margin-top: 3%; margin-bottom: 5%;">
@@ -376,7 +376,10 @@
 								@endif
 								><span>Lainnya</span></td>
 						</tr>
-					</table>
+					</table><br><br>
+					<label>Gelombang:</label><span id="gel_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
+					<input style="width: 15%;" type="text" name="gelombang" id="gelombang" placeholder="contoh: 1" value="{{$data->gelombang}}" required="required" /><br>
+
 					<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
 					<input type="submit" name="submit" class="action-button" value="Submit"/>
 				</fieldset>

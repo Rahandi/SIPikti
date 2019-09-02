@@ -23,22 +23,22 @@
 						<tr>
 							<td>Termin</td>
 							<td>:</td>
-							<td>{{$data['jadwal']->termin}}</td>
+							<td>{{$data->termin}}</td>
 						</tr>
 						<tr>
 							<td style="width: 12%;">Kelas</td>
 							<td style="width: 1%;">:</td>
-							<td>{{$data['jadwal']->kelas}}</td>
+							<td>{{$data->kelas}}</td>
 						</tr>
 						<tr>
 							<td>Jam</td>
 							<td>:</td>
-							<td>{{$data['jadwal']->jam}}</td>
+							<td></td>
 						</tr>
 						<tr>
 							<td>Mata Kuliah</td>
 							<td>:</td>
-							<td>{{$data['jadwal']->mata_kuliah}}</td>
+							<td></td>
 						</tr>
 					</table>
 				</div>

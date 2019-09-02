@@ -123,14 +123,14 @@
 						<ul class="nav nav-second-level">
 							<li><a href="{{ route('calon_mahasiswa') }}"><i class="material-icons">group</i><span class="hide-menu">  Calon Mahasiswa</span></a></li>
 							<li><a href="{{ route('mahasiswa') }}"><i class="material-icons">how_to_reg</i><span class="hide-menu">  Mahasiswa</span></a></li>
-							<li><a href="{{ route('jadwal') }}"><i class="material-icons">group</i><span class="hide-menu">  Jadwal</span></a></li>
+							<li><a href="{{ route('jadwal') }}"><i class="material-icons">date_range</i><span class="hide-menu">  Jadwal</span></a></li>
 						</ul>
 					</li>
 					<li><a class="dropdown-toggle waves-effect" data-toggle="dropdown" href="/keuangan"><i class="material-icons">attach_money</i> <span class="hide-menu">Keuangan<span class="fa arrow"></span></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="{{ route('angsuran') }}" class="waves-effect"><i class="material-icons">attach_money</i> <span class="hide-menu">Angsuran</span></a></li>
+							<li><a href="{{ route('angsuran') }}" class="waves-effect"><i class="material-icons">style</i> <span class="hide-menu">Angsuran</span></a></li>
 							<li><a href="{{ route('pembayaran') }}"><i class="material-icons">local_atm</i><span class="hide-menu">  Pembayaran</span></a></li>
-							<li><a href="{{ route('pembayaran.rekap') }}"><i class="material-icons">local_atm</i><span class="hide-menu">  Rekap Pembayaran</span></a></li>
+							<li><a href="{{ route('pembayaran.rekap') }}"><i class="material-icons">poll</i><span class="hide-menu">  Rekap Pembayaran</span></a></li>
 						</ul>
 					</li>
 					<li><a class="dropdown-toggle waves-effect" data-toggle="dropdown" href="/master"><i class="material-icons">language</i> <span class="hide-menu">Master<span class="fa arrow"></span></span></a>
