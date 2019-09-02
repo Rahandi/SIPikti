@@ -9,7 +9,7 @@ use App\masterDosen;
 use App\masterKelas;
 use App\masterMK;
 
-class Master extends Controller
+class MasterController extends Controller
 {
     public function index_asisten()
     {

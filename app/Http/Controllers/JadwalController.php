@@ -26,7 +26,7 @@ class JadwalController extends Controller
 
     public function create()
     {
-        $data = new stdClass();
+        $data = new \stdClass();
 
         $data->masterKelas = masterKelas::all();
         $data->masterDosen = masterDosen::all();
