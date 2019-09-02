@@ -54,6 +54,7 @@ class PendaftarController extends Controller
         $table_daftar->agama = $request->agama;
         $table_daftar->status_perkawinan = $request->status_perkawinan;
         $table_daftar->nomor_handphone = $request->nomor_handphone;
+        $table_daftar->gelombang = $request->gelombang;
 
         //bagian alamat
         ///alamat asal

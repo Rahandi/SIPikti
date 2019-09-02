@@ -163,6 +163,7 @@ class HomeController extends Controller
         $data_utama->agama = $request->agama;
         $data_utama->status_perkawinan = $request->status_perkawinan;
         $data_utama->nomor_handphone = $request->nomor_handphone;
+        $data_utama->gelombang = $request->gelombang;
 
         //bagian alamat
         ///alamat asal
