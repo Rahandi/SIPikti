@@ -20,7 +20,25 @@ class JadwalController extends Controller
 
     public function index()
     {
-        $data = jadwal::all();
+        $jadwal = jadwal::all();
+        $data = array();
+        foreach($jadwal as $jadwals)
+        {
+            $temp = new \stdClass();
+            $temp->termin = $jadwals->termin;
+            $kelas = masterKelas::find($jadwals->id_kelas);
+            $temp->kelas = $kelas->nama;
+            $temp->jam_sk = $kelas->jam_SK;
+            $temp->jam_j = $kelas->jam_J;
+            $temp_mk = array();
+            $ids_mk = explode(',', $jadwals->ids_mk);
+            foreach($ids_mk as $id_mk)
+            {
+                array_push($temp_mk, masterKelas::find($id_mk)->nama);
+            }
+            $temp->mk = implode(', ', $temp_mk);
+            array_push($data, $temp);
+        }
         return view('akademik.jadwal.index', compact('data'));
     }
 
