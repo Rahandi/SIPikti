@@ -113,6 +113,7 @@ class JadwalController extends Controller
             ($indvasisten)?array_push($asisten, $indvasisten):array_push($asisten, null);
         }
 
+        $data->id = $request->id;
         $data->termin = $jadwal->termin;
         $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $data->matkul = $mk;
@@ -163,5 +164,45 @@ class JadwalController extends Controller
         $jadwal = jadwal::find($request->id);
         $jadwal->delete();
         return redirect()->route('jadwal');
+    }
+
+    public function detail($id)
+    {
+        $data = new \stdClass();
+        $jadwal = jadwal::find($id);
+        $ids_mk = explode(',',$jadwal->ids_mk);
+        $ids_dosen = explode(',',$jadwal->ids_dosen);
+        $ids_asisten = explode(',',$jadwal->ids_asisten);
+        
+        $mk = array();
+        foreach($ids_mk as $indvmk)
+        {
+            ($indvmk)?array_push($mk, $indvmk):array_push($mk, null);
+        }
+
+        $dosen = array();
+        foreach($ids_dosen as $indvdosen)
+        {
+            ($indvdosen)?array_push($dosen, $indvdosen):array_push($dosen, null);
+        }
+
+        $asisten = array();
+        foreach($ids_asisten as $indvasisten)
+        {
+            ($indvasisten)?array_push($asisten, $indvasisten):array_push($asisten, null);
+        }
+
+        $data->id = $id;
+        $data->termin = $jadwal->termin;
+        $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+        $data->matkul = $mk;
+        $data->dosen = $dosen;
+        $data->asisten = $asisten;
+        $data->masterKelas = masterKelas::all();
+        $data->masterDosen = masterDosen::all();
+        $data->masterAsisten = masterAsisten::all();
+        $data->masterMK = masterMK::all();
+
+        return view('akademik.jadwal.detail', compact('data'));
     }
 }

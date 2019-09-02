@@ -30,7 +30,7 @@
 		<div class="white-box">
 			<h3 class="box-title m-b-0">Form Jadwal</h3>
 			<p class="text-muted m-b-30">Ubah Jadwal</p>
-			<form action="{{route('jadwal.store')}}" method="POST" data-toggle="validator">
+			<form action="{{route('jadwal.update')}}" method="POST" data-toggle="validator">
 				{{csrf_field()}}
 				<div class="form-group" style="width: 100%;">
 					<div class="col-md-4">
@@ -273,6 +273,7 @@
 				</div>
 
 				<div style="margin-top: 3%; width: 100%; text-align: center;">
+					<input type="hidden" name="id" value="{{$data->id}}">
 					<button type="submit" style="width: 15%;" class="btn btn-success">Submit</button>
 				</div>
 			</form>
