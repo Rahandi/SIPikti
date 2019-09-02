@@ -25,6 +25,7 @@ class JadwalController extends Controller
         foreach($jadwal as $jadwals)
         {
             $temp = new \stdClass();
+            $temp->id = $jadwals->id;
             $temp->termin = $jadwals->termin;
             $kelas = masterKelas::find($jadwals->id_kelas);
             $temp->kelas = $kelas->nama;
@@ -34,7 +35,7 @@ class JadwalController extends Controller
             $ids_mk = explode(',', $jadwals->ids_mk);
             foreach($ids_mk as $id_mk)
             {
-                array_push($temp_mk, masterKelas::find($id_mk)->nama);
+                array_push($temp_mk, masterMK::find($id_mk)->nama);
             }
             $temp->mk = implode(', ', $temp_mk);
             array_push($data, $temp);

@@ -46,8 +46,8 @@
 								<td></td>
 								<td class="sorting_1">{{$datas->termin}}</td>
 								<td>{{$datas->kelas}}</td>
-								<td>{{$datas->jam}}</td>
-								<td>{{$datas->mata_kuliah}}</td>
+								<td>{{$datas->jam_sk}}</td>
+								<td>{{$datas->mk}}</td>
 								<td>
 									<div class="row" style="margin: 0px;">
 									<a href="{{route('jadwal.detail', $datas->id)}}">
