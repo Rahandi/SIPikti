@@ -70,7 +70,7 @@ class JadwalController extends Controller
 
     public function edit(Request $request)
     {
-        $data = new stdClass();
+        $data = new \stdClass();
         $jadwal = jadwal::find($request->id);
         $ids_mk = explode(',',$jadwal->ids_mk);
         $ids_dosen = explode(',',$jadwal->ids_dosen);
@@ -99,6 +99,10 @@ class JadwalController extends Controller
         $data->matkul = $mk;
         $data->dosen = $dosen;
         $data->asisten = $asisten;
+        $data->masterKelas = masterKelas::all();
+        $data->masterDosen = masterDosen::all();
+        $data->masterAsisten = masterAsisten::all();
+        $data->masterMK = masterMK::all();
 
         return view('akademik.jadwal.edit', compact('data'));
     }
