@@ -47,13 +47,13 @@ Route::get('/akademik/jadwal', 'JadwalController@index')->name('jadwal');
 Route::get('/akademik/jadwal/create', 'JadwalController@create')->name('jadwal.create');
 Route::get('/akademik/jadwal/edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
 Route::get('/akademik/jadwal/detail/{id}', 'JadwalController@detail')->name('jadwal.detail');
-Route::get('/akademik/jadwal/pilihkelas/{id}', 'JadwalController@pilihKelas')->name('jadwal.pilihkelas');
+Route::get('/akademik/jadwal/pilihkelas/{id}', 'JadwalController@PageSelectJadwal')->name('jadwal.pilihkelas');
 Route::get('/akademik/jadwal/absensi/{id}', 'JadwalController@absensi')->name('jadwal.absensi');
 Route::post('/akademik/jadwal/store', 'JadwalController@store')->name('jadwal.store');
 Route::post('/akademik/jadwal/update', 'JadwalController@update')->name('jadwal.update');
 Route::post('/akademik/jadwal/delete', 'JadwalController@delete')->name('jadwal.delete');
 Route::post('/akademik/jadwal/cancel', 'JadwalController@cancel')->name('jadwal.cancel');
-Route::post('/akademik/jadwal/select', 'JadwalController@select')->name('jadwal.select');
+Route::post('/akademik/jadwal/select', 'JadwalController@SelectJadwal')->name('jadwal.select');
 
 Route::get('/keuangan/angsuran', 'AngsuranController@index')->name('angsuran');
 Route::get('/keuangan/angsuran/create', 'AngsuranController@create')->name('angsuran.create');

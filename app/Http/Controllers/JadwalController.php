@@ -194,11 +194,63 @@ class JadwalController extends Controller
 
         $data->id = $id;
         $data->termin = $jadwal->termin;
-        $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+        $data->kelas = masterKelas::find($jadwal->id_kelas);
         $data->matkul = $mk;
         $data->dosen = $dosen;
         $data->asisten = $asisten;
 
         return view('akademik.jadwal.detail', compact('data'));
+    }
+
+    public function PageSelectJadwal($id)
+    {
+        $data = new \stdClass();
+        $data->id_mahasiswa = $id;
+        $data->jadwal = array();
+        $jadwals = jadwal::all();
+        foreach ($jadwals as $jadwal)
+        {
+            $temp = new \stdClass();
+            $ids_mk = explode(',',$jadwal->ids_mk);
+            $ids_dosen = explode(',',$jadwal->ids_dosen);
+            $ids_asisten = explode(',',$jadwal->ids_asisten);
+            
+            $mk = array();
+            foreach($ids_mk as $indvmk)
+            {
+                ($indvmk)?array_push($mk, masterMK::find($indvmk)->nama):array_push($mk, null);
+            }
+
+            $dosen = array();
+            foreach($ids_dosen as $indvdosen)
+            {
+                ($indvdosen)?array_push($dosen, masterDosen::find($indvdosen)->nama):array_push($dosen, null);
+            }
+
+            $asisten = array();
+            foreach($ids_asisten as $indvasisten)
+            {
+                ($indvasisten)?array_push($asisten, masterAsisten::find($indvasisten)->nama):array_push($asisten, null);
+            }
+
+            $temp->id = $id;
+            $temp->termin = $jadwal->termin;
+            $temp->kelas = masterKelas::find($jadwal->id_kelas);
+            $temp->matkul = $mk;
+            $temp->dosen = $dosen;
+            $temp->asisten = $asisten;
+
+            array_push($data->jadwal, $temp);
+        }
+        return view('akademik.jadwal.select', compact('data'));
+    }
+
+    public function SelectJadwal(Request $request)
+    {
+        $data = new mahasiswa_jadwal();
+        $data->mahasiswa_id = $request->mahasiswa_id;
+        $data->jadwal_id = $request->jadwal_id;
+        $data->save();
+        return redirect()->route('pembayaran.detail', ['id'=>$request->mahasiswa_id]);
     }
 }
