@@ -51,13 +51,13 @@
 							<label>Jenis Kelamin</label>
 							<div class="form-group">
 								<select class="form-control" name="jenis_kelamin">
-									<option value="Laki-laki"
-									@if ($data->jenis_kelamin == 'Laki-laki')
+									<option value="L"
+									@if ($data->jenis_kelamin == 'L')
 										selected=""
 									@endif
 									>Laki-laki</option>
-									<option value="Perempuan"
-									@if ($data->jenis_kelamin == 'Perempuan')
+									<option value="P"
+									@if ($data->jenis_kelamin == 'P')
 										selected=""
 									@endif>Perempuan</option>
 								</select>
