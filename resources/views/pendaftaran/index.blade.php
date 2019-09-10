@@ -32,9 +32,11 @@
 						<thead>
 							<tr>
 								<th style="width: 5%;"></th>
-								<th style="width: 25%;text-align: center;">Nama</th>
-								<th style="width: 20%;text-align: center;">Tanggal Daftar</th>
+								<th style="width: 20%;text-align: center;">Nomor Pendaftaran</th>
+								<th style="width: 20%;text-align: center;">Nama</th>
+								<th style="text-align: center;display: none;">Tanggal Daftar</th>
 								<th style="width: 15%;text-align: center;">Tanggal Lahir</th>
+								<th style="width: 10%;text-align: center;">Gelombang</th>
 								<th style="width: 25%;text-align: center;">Action</th>
 							</tr>
 						</thead>
@@ -42,9 +44,11 @@
 						@foreach ($data as $individu)
 							<tr>
 								<td></td>
+								<td>{{ $individu->nomor_pendaftaran }}</td>
 								<td class="sorting_1" style="text-align: left;">{{ $individu->nama }}</td>
-								<td>{{ $individu->created_at }}</td>
+								<td style="display: none;">{{ $individu->created_at }}</td>
 								<td>{{ $individu->tanggal_lahir }}</td>
+								<td>{{ $individu->gelombang }}</td>
 								<td>
 									<form action="{{ route('accept_mahasiswa') }}" method="POST">
 										{{csrf_field()}}
@@ -115,7 +119,7 @@
 					"orderable": false,
 					"targets": 0,
 				} ],
-				"order": [[ 2, 'asc' ]],
+				"order": [[ 3, 'asc' ]],
 			} );
 
 			t.on( 'order.dt search.dt', function () {

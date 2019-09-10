@@ -177,8 +177,7 @@ class PendaftarController extends Controller
 
         //bagian data pribadi
         $table_daftar = new pendaftar();
-        $table_daftar->administrator = null;
-        $table_daftar->nomor_pendaftaran = null;
+        $table_daftar->administrator = 'admin';
         $table_daftar->nama = $request->nama;
         $table_daftar->nama_gelar = $request->nama_gelar;
         $table_daftar->tempat_lahir = $request->tempat_lahir;
