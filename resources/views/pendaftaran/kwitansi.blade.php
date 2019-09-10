@@ -21,12 +21,12 @@
 		</div>
 		<br><hr>
 		<div class="row" style="text-align: left; margin-left: 3%;">
-			<p>No. Kwitansi {{$data['pendaftar']->nomor_pendaftaran}}</p>
+			<p>No. Kwitansi {{$data['no_pendaftaran']}}</p>
 			<table style="margin-top: 5%;">
 				<tr>
 					<td style="width: 25%;">SUDAH TERIMA</td>
 					<td>:</td>
-					<td>Atas Nama {{$data['pendaftar']->nama}} dengan No. Pendaftaran {{$data['no_pendaftaran']}}</td>
+					<td>Atas Nama {{$data['pendaftar']->nama}} dengan No. Pendaftaran {{$data['pendaftar']->nomor_pendaftaran}}</td>
 				</tr>
 				<tr>
 					<td>TERBILANG</td>

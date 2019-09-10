@@ -87,8 +87,15 @@ class HomeController extends Controller
         $pendaftar->administrator = Auth::user()->name;
 
         $no_kwitansi = $pendaftar->nomor_pendaftaran;
-        $no_urut = explode('/', $no_kwitansi)[3];
-        $no_pendaftaran = '200.' . date('Y') . '.' . $no_urut;
+        $no_urut = explode('.', $no_kwitansi)[2];
+
+        $current_year = date('Y');
+        $current_year = substr($current_year, 2, strlen($current_year));
+        $tahun_angkatan = date('Y', strtotime('+5 year'));
+        $tahun_angkatan = substr($tahun_angkatan, 2, strlen($tahun_angkatan));
+        $tahun_angkatan = $this->numberToRomanRepresentation((int)$tahun_angkatan);
+        $no_pendaftaran = $tahun_angkatan.'/'.$current_year.'/'.'PIKTI'.'/'.$no_urut;
+
 
         $data = array(
             'pendaftar' => $pendaftar,
@@ -350,12 +357,7 @@ class HomeController extends Controller
 
     private function generateNoPendaftaran()
     {
-        $current_year = date('Y');
-        $current_year = substr($current_year, 2, strlen($current_year));
-        $tahun_angkatan = date('Y', strtotime('+5 year'));
-        $tahun_angkatan = substr($tahun_angkatan, 2, strlen($tahun_angkatan));
-        $tahun_angkatan = $this->numberToRomanRepresentation((int)$tahun_angkatan);
-        $no_pendaftaran = $tahun_angkatan.'/'.$current_year.'/'.'PIKTI'.'/';
+        $no_pendaftaran = '200.' . date('Y') . '.';
         $no_urut = noPendaftaran::where('tahun', date('Y'))->take(1)->get();
         if (count($no_urut)) {
             $no_urut = $no_urut[0];
