@@ -174,7 +174,10 @@
 
 		});
 		function reloadPlis(){
-			setTimeout(function(){location.reload()},500);
+			setTimeout(function(){
+				location.reload()
+				// window.location.href='http://www.google.com'
+			},500);
 		}
 	</script>
 	<script src="{{ URL::asset('plugins/bower_components/styleswitcher/jQuery.style.switcher.js') }}"></script>
