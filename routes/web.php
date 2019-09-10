@@ -108,6 +108,6 @@ Route::group(['prefix'=>'master'], function(){
 
 // unrelevant
 Route::get('/coba', 'HomeController@generateNoPendaftaran');
-Route::post('/daftaroke','PendaftarController@store');
+Route::post('/daftaroke','PendaftarController@storekhusus');
 
 Auth::routes();
