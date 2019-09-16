@@ -173,6 +173,10 @@ class JadwalController extends Controller
         $ids_mk = explode(',',$jadwal->ids_mk);
         $ids_dosen = explode(',',$jadwal->ids_dosen);
         $ids_asisten = explode(',',$jadwal->ids_asisten);
+        $mahasiswa_jadwal = \DB::table('mahasiswa_jadwal')
+                                ->select('mahasiswa_id')
+                                ->groupBy('mahasiswa_id')
+                                ->get();
         
         $mk = array();
         foreach($ids_mk as $indvmk)
@@ -192,12 +196,19 @@ class JadwalController extends Controller
             ($indvasisten)?array_push($asisten, masterAsisten::find($indvasisten)->nama):array_push($asisten, null);
         }
 
+        $mahasiswa = array();
+        foreach($mahasiswa_jadwal as $row)
+        {
+            array_push($mahasiswa, mahasiswa::find($row->mahasiswa_id));
+        }
+
         $data->id = $id;
         $data->termin = $jadwal->termin;
         $data->kelas = masterKelas::find($jadwal->id_kelas);
         $data->matkul = $mk;
         $data->dosen = $dosen;
         $data->asisten = $asisten;
+        $data->mahasiswa = $mahasiswa;
 
         return view('akademik.jadwal.detail', compact('data'));
     }
