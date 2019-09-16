@@ -44,7 +44,6 @@ class PembayaranController extends Controller
                 "kelas" => NULL,
                 "jadwal" => NULL
             );
-
             $mahasiswa_jadwal = mahasiswaJadwal::where('mahasiswa_id', '=', $request->id)->get()->first();
             if($mahasiswa_jadwal) {
                 $jadwal = jadwal::find($mahasiswa_jadwal->jadwal_id);

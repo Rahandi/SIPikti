@@ -176,7 +176,7 @@ class JadwalController extends Controller
         $mahasiswa_jadwal = \DB::table('mahasiswa_jadwal')
                                 ->select('mahasiswa_id')
                                 ->groupBy('mahasiswa_id')
-                                ->where('jadwal_id', '=', '$id')
+                                ->where('jadwal_id', '=', $id)
                                 ->get();
         
         $mk = array();
@@ -245,7 +245,7 @@ class JadwalController extends Controller
                 ($indvasisten)?array_push($asisten, masterAsisten::find($indvasisten)->nama):array_push($asisten, null);
             }
 
-            $temp->id = $id;
+            $temp->id = $jadwal->id;
             $temp->termin = $jadwal->termin;
             $temp->kelas = masterKelas::find($jadwal->id_kelas);
             $temp->matkul = $mk;
