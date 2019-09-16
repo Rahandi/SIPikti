@@ -176,6 +176,7 @@ class JadwalController extends Controller
         $mahasiswa_jadwal = \DB::table('mahasiswa_jadwal')
                                 ->select('mahasiswa_id')
                                 ->groupBy('mahasiswa_id')
+                                ->where('jadwal_id', '=', '$id')
                                 ->get();
         
         $mk = array();
