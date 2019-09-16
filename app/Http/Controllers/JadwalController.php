@@ -284,10 +284,21 @@ class JadwalController extends Controller
     {
         $data = new \stdClass();
         $jadwal = jadwal::find($id);
+        $kelas = masterKelas::find($jadwal->id_kelas);
         $mahasiswa = $this->get_mahasiswa_no_jadwal();
         $data->jadwal = $jadwal;
         $data->mahasiswa = $mahasiswa;
+        $data->kelas = $kelas;
         return view('akademik.jadwal.tambah_mhs', compact('data'));
+    }
+
+    public function tambah(Request $request)
+    {
+        $data = new mahasiswaJadwal();
+        $data->mahasiswa_id = $request->mahasiswa_id;
+        $data->jadwal_id = $request->jadwal_id;
+        $data->save();
+        return redirect()->route('jadwal.detail', ['id' => $request->jadwal_id]);
     }
 
     private function get_mahasiswa_no_jadwal()
