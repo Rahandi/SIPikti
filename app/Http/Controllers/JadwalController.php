@@ -315,6 +315,7 @@ class JadwalController extends Controller
         $mahasiswa = \DB::table('mahasiswa')
                         ->select('*')
                         ->whereNotIn('id', $mahasiswa_ids)
+                        ->where('nrp', '!=', null)
                         ->get();
         return $mahasiswa;
     }
