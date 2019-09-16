@@ -265,4 +265,17 @@ class JadwalController extends Controller
         $data->save();
         return redirect()->route('pembayaran.detail', ['id'=>$request->id_mahasiswa]);
     }
+
+    public function cancel(Request $request)
+    {
+        $data = DB::table('mahasiswa_jadwal')
+                    ->where('mahasiswa_id', '=', $request->mhs)
+                    ->where('jadwal_id', '=', $request->jdw)
+                    ->get();
+        foreach($data as $item)
+        {
+            $item->delete();
+        }
+        return redirect()->back();
+    }
 }
