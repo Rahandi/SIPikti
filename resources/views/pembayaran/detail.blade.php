@@ -59,7 +59,7 @@
 						<tr>
 							<td>Kelas</td>
 							<td>:</td>
-							<td>A {tombol 'Lihat Kelas'}</td>
+							<td>{tombol 'Lihat Kelas'}</td>
 						</tr>
 					</table><br>
 					@if ($data['exist'] == 0)
