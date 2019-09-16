@@ -346,6 +346,7 @@ class HomeController extends Controller
         $mahasiswa->status_saat_mendaftar_id = $data->status_saat_mendaftar_id;
         $mahasiswa->sumber_informasi_id = $data->sumber_informasi_id;
         $mahasiswa->administrator = $data->administrator;
+        $mahasiswa->gelombang = $data->gelombang;
         $mahasiswa->save();
         return redirect()->back();
     }
