@@ -294,11 +294,13 @@ class JadwalController extends Controller
 
     public function tambah(Request $request)
     {
-        dd($request);
-        $data = new mahasiswaJadwal();
-        $data->mahasiswa_id = $request->mahasiswa_id;
-        $data->jadwal_id = $request->jadwal_id;
-        $data->save();
+        foreach($request->picked as $id)
+        {
+            $data = new mahasiswaJadwal();
+            $data->mahasiswa_id = $id;
+            $data->jadwal_id = $request->jadwal;
+            $data->save();
+        }
         return redirect()->route('jadwal.detail', ['id' => $request->jadwal_id]);
     }
 
