@@ -17,14 +17,13 @@
 
 @section('content')
 	<div class="row">
-		{{dd($data)}}
 		<div class="col-sm-12">
 			<div class="white-box">
 				<h3 class="box-title m-b-0">Kelas - {{ $data->jadwal->id }}</h3> <!-- tambahi count disini.. /30 -->
 				<p class="text-muted m-b-30">Semester {{ $data->jadwal->id }}</p>
 				<div class="row row-in">
 					<form method="POST" action="{{route('jadwal.tambah')}}">
-					<div style="margin-top: 5%;">
+					<div>
 						<table id="list2" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 							<thead>
 								<tr>
@@ -48,7 +47,7 @@
 							</tbody>
 						</table>
 						<input type="hidden" name="jadwal" value="{{$data->jadwal->id}}">
-						<button type="submit" style="text-align: center;" class="btn btn-primary">Submit</button>
+						<a style="text-align: right;"><button type="submit" class="btn btn-info">Submit</button></a>
 					</div>
 					</form>
 				</div>
