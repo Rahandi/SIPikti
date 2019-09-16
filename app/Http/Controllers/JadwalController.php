@@ -268,11 +268,11 @@ class JadwalController extends Controller
 
     public function cancel(Request $request)
     {
-        $data = \DB::table('mahasiswa_jadwal')
-                    ->where('mahasiswa_id', '=', $request->mhs)
-                    ->where('jadwal_id', '=', $request->jdw)
-                    ->get();
-        dd($data);
+        $match = [
+            'mahasiswa_id' => $request->mhs,
+            'jadwal_id' => $request->jdw
+        ];
+        $data = mahasiswaJadwal::where($match)->get();
         foreach($data as $item)
         {
             $item->delete();

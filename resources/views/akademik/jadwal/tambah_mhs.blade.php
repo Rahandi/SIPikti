@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('pagetitle')
-	Detail Jadwal
+	Tambah Mahasiswa
 @endsection
 
 @section('css')
@@ -21,30 +21,6 @@
 			<div class="white-box">
 				<h3 class="box-title m-b-0">Kelas - {{ $data->kelas->nama }}</h3> <!-- tambahi count disini.. /30 -->
 				<p class="text-muted m-b-30">Semester {{ $data->termin }}</p>
-				<div class="row row-in">
-						<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
-							<thead>
-								<tr>
-									<th style="width: 10%;text-align: center;">Hari</th>
-									<th style="width: 25%;text-align: center;">Mata Kuliah</th>
-									<th style="width: 25%;text-align: center;">Dosen</th>
-									<th style="width: 25%;text-align: center;">Asisten</th>
-								</tr>
-							</thead>
-							<tbody>
-							<?php $hari = array('SENIN','SELASA','RABU','KAMIS','JUMAT') ?>
-							@for ($i = 0; $i < 5; $i++)
-								<tr>
-									<td class="sorting_1"><label class="control-label">{{$hari[$i]}}</label></td>
-									<td style="text-align: left;">{{$data->matkul[$i]}}</td>
-									<td style="text-align: left;">{{$data->dosen[$i]}}</td>
-									<td style="text-align: left;">{{$data->asisten[$i]}}</td>
-								</tr>
-							@endfor
-							</tbody>
-						</table>
-				</div><br>
-				<h4 class="box-title m-b-0">List Mahasiswa</h4><br>
 				<div class="row row-in">
 					<div>
 						<div class="col-md-6" style="text-align: left;">

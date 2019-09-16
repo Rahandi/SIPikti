@@ -54,6 +54,7 @@ Route::post('/akademik/jadwal/update', 'JadwalController@update')->name('jadwal.
 Route::post('/akademik/jadwal/delete', 'JadwalController@delete')->name('jadwal.delete');
 Route::post('/akademik/jadwal/cancel', 'JadwalController@cancel')->name('jadwal.cancel');
 Route::post('/akademik/jadwal/select', 'JadwalController@SelectJadwal')->name('jadwal.select');
+Route::post('/akademik/jadwal/tambah', 'JadwalController@SelectJadwal')->name('jadwal.tambah');
 
 Route::get('/keuangan/angsuran', 'AngsuranController@index')->name('angsuran');
 Route::get('/keuangan/angsuran/create', 'AngsuranController@create')->name('angsuran.create');
