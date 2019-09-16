@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\jadwal;
 use App\mahasiswa;
-use App\mahasiswa_jadwal;
+use App\mahasiswaJadwal;
 use App\masterKelas;
 use App\masterDosen;
 use App\masterAsisten;
@@ -247,7 +247,7 @@ class JadwalController extends Controller
 
     public function SelectJadwal(Request $request)
     {
-        $data = new mahasiswa_jadwal();
+        $data = new mahasiswaJadwal();
         $data->mahasiswa_id = $request->id_mahasiswa;
         $data->jadwal_id = $request->jadwal_id;
         $data->save();
