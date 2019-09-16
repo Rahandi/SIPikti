@@ -287,6 +287,7 @@ class JadwalController extends Controller
         $mahasiswa = $this->get_mahasiswa_no_jadwal();
         $data->jadwal = $jadwal;
         $data->mahasiswa = $mahasiswa;
+        return view('akademik.jadwal.tambah_mhs', compact('data'));
     }
 
     private function get_mahasiswa_no_jadwal()

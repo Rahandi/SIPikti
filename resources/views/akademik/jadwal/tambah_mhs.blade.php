@@ -17,19 +17,13 @@
 
 @section('content')
 	<div class="row">
+		{{dd($data)}}
 		<div class="col-sm-12">
 			<div class="white-box">
-				<h3 class="box-title m-b-0">Kelas - {{ $data->kelas->nama }}</h3> <!-- tambahi count disini.. /30 -->
-				<p class="text-muted m-b-30">Semester {{ $data->termin }}</p>
+				<h3 class="box-title m-b-0">Kelas - {{ $data->jadwal->id }}</h3> <!-- tambahi count disini.. /30 -->
+				<p class="text-muted m-b-30">Semester {{ $data->jadwal->id }}</p>
 				<div class="row row-in">
-					<div>
-						<div class="col-md-6" style="text-align: left;">
-							<a href=""><button type="button" class="btn btn-info">Tambah Mahasiswa</button></a>
-						</div>
-						<div class="col-md-6" style="text-align: right;">
-							<a href=""><button type="button" class="btn btn-primary">Download Absensi</button></a>
-						</div>
-					</div>
+					<form method="POST" action="{{route('jadwal.tambah')}}">
 					<div style="margin-top: 5%;">
 						<table id="list2" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 							<thead>
@@ -47,37 +41,16 @@
 									<td class="sorting_1"><label class="control-label">{{$individu->nrp}}</label></td>
 									<td style="text-align: left;">{{$individu->nama}}</td>
 									<td style="text-align: center;">
-										<div class="row" style="margin: 0px;">
-											<a data-toggle="tooltip" data-placement="top" title="Hapus"><button type="button" id="tombolDel" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" value="{{$individu->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button></a>
-										</div>
+										<input type="checkbox" name="picked" value="{{$individu->id}}">
 									</td>
 								</tr>
-								<!-- Modal -->
-								<div id="modalDelete" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
-									<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
-										<header class="w3-container w3-light-grey w3-round-large"> 
-											<span 
-											class="w3-button w3-display-topright w3-round-large" data-dismiss="modal">&times;</span>
-											<h2>Konfirmasi</h2>
-										</header>
-										<div class="w3-container" style="margin-top: 2%;">
-											<p>Apakah Anda yakin akan menghapus data mahasiswa ini di kelas {{$data->kelas->nama}}?</p>
-										</div>
-										<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
-											<form action="{{route('jadwal.cancel')}}" method="POST">
-												{{ csrf_field() }}
-												<input type="hidden" name="mhs" value="{{$individu->id}}">
-												<input type="hidden" name="jdw" value="{{$data->id}}">
-												<button type="submit" id="DeleteButton" class="btn btn-success" style="margin: 1%;">Ya</button>
-												<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Tidak</button>
-											</form>
-										</footer>
-									</div>
-								</div>
 							@endforeach
 							</tbody>
 						</table>
+						<input type="hidden" name="jadwal" value="{{$data->jadwal->id}}">
+						<button type="submit" style="text-align: center;" class="btn btn-primary">Submit</button>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>

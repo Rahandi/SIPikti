@@ -48,7 +48,7 @@
 				<div class="row row-in">
 					<div>
 						<div class="col-md-6" style="text-align: left;">
-							<a href=""><button type="button" class="btn btn-info">Tambah Mahasiswa</button></a>
+							<a href="{{route('jadwal.pilihmhs', $data->id)}}"><button type="button" class="btn btn-info">Tambah Mahasiswa</button></a>
 						</div>
 						<div class="col-md-6" style="text-align: right;">
 							<a href=""><button type="button" class="btn btn-primary">Download Absensi</button></a>
