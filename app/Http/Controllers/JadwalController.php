@@ -210,6 +210,7 @@ class JadwalController extends Controller
         $data->dosen = $dosen;
         $data->asisten = $asisten;
         $data->mahasiswa = $mahasiswa;
+        $data->hitung = $this->hitung_mahasiswa_jadwal($id);
 
         return view('akademik.jadwal.detail', compact('data'));
     }
@@ -321,5 +322,15 @@ class JadwalController extends Controller
                         ->where('nrp', '!=', null)
                         ->get();
         return $mahasiswa;
+    }
+
+    private function hitung_mahasiswa_jadwal($jadwal_id)
+    {
+        $data = \DB::table('mahasiswa_jadwal')
+                    ->select('mahasiswa_id')
+                    ->where('jadwal_id', '=', $jadwal_id)
+                    ->groupBy('mahasiswa_id')
+                    ->get();
+        return count($data);
     }
 }
