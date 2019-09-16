@@ -301,7 +301,7 @@ class JadwalController extends Controller
             $data->jadwal_id = $request->jadwal;
             $data->save();
         }
-        return redirect()->route('jadwal.detail', ['id' => $request->jadwal_id]);
+        return redirect()->route('jadwal.detail', ['id' => $request->jadwal]);
     }
 
     private function get_mahasiswa_no_jadwal()

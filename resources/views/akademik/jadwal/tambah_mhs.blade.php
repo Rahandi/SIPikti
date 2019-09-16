@@ -19,10 +19,11 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="white-box">
-				<h3 class="box-title m-b-0">Kelas - {{ $data->jadwal->id }}</h3> <!-- tambahi count disini.. /30 -->
-				<p class="text-muted m-b-30">Semester {{ $data->jadwal->id }}</p>
+				<h3 class="box-title m-b-0">Kelas - {{ $data->kelas->nama }}</h3> <!-- tambahi count disini.. /30 -->
+				<p class="text-muted m-b-30">Semester {{ $data->jadwal->termin }}</p>
 				<div class="row row-in">
 					<form method="POST" action="{{route('jadwal.tambah')}}">
+					{{ csrf_field() }}
 					<div>
 						<table id="list2" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 							<thead>
@@ -40,7 +41,7 @@
 									<td class="sorting_1"><label class="control-label">{{$individu->nrp}}</label></td>
 									<td style="text-align: left;">{{$individu->nama}}</td>
 									<td style="text-align: center;">
-										<input type="checkbox" name="picked" value="{{$individu->id}}">
+										<input type="checkbox" name="picked[]" value="{{$individu->id}}">
 									</td>
 								</tr>
 							@endforeach
