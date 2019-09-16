@@ -30,9 +30,10 @@
 							<tr>
 								<th style="width: 5%;"></th>
 								<th style="width: 25%;text-align: center;">Nama</th>
+								<th style="width: 15%;text-align: center;">Gelombang</th>
 								<th style="width: 20%;text-align: center;">Tanggal Daftar</th>
 								<th style="width: 20%;text-align: center;">Tanggal Lahir</th>
-								<th style="width: 20%;text-align: center;">Action</th>
+								<th style="width: 15%;text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -40,6 +41,7 @@
 							<tr>
 								<td></td>
 								<td class="sorting_1" style="text-align: left;">{{ $individu->nama }}</td>
+								<td>{{ $individu->gelombang }}</td>
 								<td>{{ $individu->created_at }}</td>
 								<td>{{ $individu->tanggal_lahir }}</td>
 								<td>

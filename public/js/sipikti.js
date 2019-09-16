@@ -1,4 +1,3 @@
-
 $('#sd').click(function(){
 	$('#sltp_pendidikan').hide();
 	$('#slta_pendidikan').hide();
@@ -98,7 +97,7 @@ $(".nextMyModal").click(function(){
 });
 
 $(".next1").click(function(){
-	var arr = ['#nama','#nama_gelar','#tempat_lahir','#tanggal_lahir'];
+	var arr = ['#nama','#nama_gelar','#tempat_lahir','#tanggal_lahir']; // required function (to show which required)
 	// $('#nama').blur(function(){
 	var arr_ = []
 	jQuery.each(arr, function(i,value){

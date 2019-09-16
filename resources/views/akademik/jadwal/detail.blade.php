@@ -19,8 +19,8 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="white-box">
-				<h3 class="box-title m-b-0">Kelas - {{ $data->kelas }}</h3>
-				<p class="text-muted m-b-30">Termin {{ $data->termin }}</p>
+				<h3 class="box-title m-b-0">Kelas - {{ $data->kelas->nama }}</h3>
+				<p class="text-muted m-b-30">Semester {{ $data->termin }}</p>
 				<div class="row row-in">
 					
 						<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">

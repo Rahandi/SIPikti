@@ -205,7 +205,7 @@ class JadwalController extends Controller
     public function PageSelectJadwal($id)
     {
         $data = new \stdClass();
-        $data->id_mahasiswa = $id;
+        $data->id_mahasiswa = mahasiswa::find($id);
         $data->jadwal = array();
         $jadwals = jadwal::all();
         foreach ($jadwals as $jadwal)
@@ -248,9 +248,9 @@ class JadwalController extends Controller
     public function SelectJadwal(Request $request)
     {
         $data = new mahasiswa_jadwal();
-        $data->mahasiswa_id = $request->mahasiswa_id;
+        $data->mahasiswa_id = $request->id_mahasiswa;
         $data->jadwal_id = $request->jadwal_id;
         $data->save();
-        return redirect()->route('pembayaran.detail', ['id'=>$request->mahasiswa_id]);
+        return redirect()->route('pembayaran.detail', ['id'=>$request->id_mahasiswa]);
     }
 }

@@ -34,7 +34,7 @@
 				{{csrf_field()}}
 				<div class="form-group" style="width: 100%;">
 					<div class="col-md-4">
-						<label for="inp1" class="control-label">Termin</label>
+						<label for="inp1" class="control-label">Semester</label>
 						<input type="text" class="form-control text" data-style="btn-info btn-outline" id="inp1" name="termin" placeholder="1" value="{{ $data->termin }}" required>
 					</div>
 					<div class="col-md-8">

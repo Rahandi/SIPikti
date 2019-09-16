@@ -56,6 +56,11 @@
 							<td>:</td>
 							<td>{{ $data['mahasiswa']->nrp }}</td>
 						</tr>
+						<tr>
+							<td>Kelas</td>
+							<td>:</td>
+							<td>A {tombol 'Lihat Kelas'}</td>
+						</tr>
 					</table><br>
 					@if ($data['exist'] == 0)
 						<form action="{{route('pembayaran.select')}}" method="POST" style="width: 100%;">
@@ -175,8 +180,8 @@
 		});
 		function reloadPlis(){
 			setTimeout(function(){
-				location.reload()
-				// window.location.href='http://www.google.com'
+				// location.reload()
+				window.location.href="{{route('jadwal.pilihkelas',$data['mahasiswa']->id)}}"
 			},500);
 		}
 	</script>

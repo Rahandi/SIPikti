@@ -171,6 +171,7 @@
 					<label>Telepon</label><span id="surabaya_telepon_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
 					<input type="text" name="surabaya_telepon" id="surabaya_telepon" placeholder="contoh: 08xxx" value="{{$data->alamat_surabaya->telepon}}"><br>
 
+					<a href="{{route('pendaftaran')}}"><input type="button" name="cancel" class="action-button" value="Cancel" style="text-align: center;"/></a>
 					<input type="button" name="next" class="next1 action-button" value="Next" style="text-align: center;"/>
 				</fieldset>
 				<fieldset>
@@ -315,6 +316,7 @@
 							>
 						</div>
 					</div>
+					<a href="{{route('pendaftaran')}}"><input type="button" name="cancel" class="action-button" value="Cancel" style="text-align: center;"/></a>
 					<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
 					<input type="button" name="next" class="next2 action-button" value="Next"/>
 				</fieldset>
@@ -380,6 +382,7 @@
 					<label>Gelombang:</label><span id="gel_label" style="display: none;"><strong style='color:red;font-size:12px;'>&nbsp;&nbsp;* mohon diisi</strong></span>
 					<input style="width: 15%;" type="text" name="gelombang" id="gelombang" placeholder="contoh: 1" value="{{$data->gelombang}}" required="required" /><br>
 
+					<a href="{{route('pendaftaran')}}"><input type="button" name="cancel" class="action-button" value="Cancel" style="text-align: center;"/></a>
 					<input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
 					<input type="submit" name="submit" class="action-button" value="Submit"/>
 				</fieldset>
