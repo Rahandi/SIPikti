@@ -85,7 +85,7 @@
 											<h2>Konfirmasi</h2>
 										</header>
 										<div class="w3-container" style="margin-top: 2%;">
-											<p>Apakah Anda yakin akan menghapus data mahasiswa ini?</p>
+											<p>Apakah Anda yakin akan menghapus data mahasiswa ini di kelas {{$data->kelas->nama}}?</p>
 										</div>
 										<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
 											<form action="{{route('jadwal.cancel')}}" method="POST">
