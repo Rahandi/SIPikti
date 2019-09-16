@@ -279,4 +279,31 @@ class JadwalController extends Controller
         }
         return redirect()->back();
     }
+
+    public function pilihmhs($id)
+    {
+        $data = new \stdClass();
+        $jadwal = jadwal::find($id);
+        $mahasiswa = $this->get_mahasiswa_no_jadwal();
+        $data->jadwal = $jadwal;
+        $data->mahasiswa = $mahasiswa;
+    }
+
+    private function get_mahasiswa_no_jadwal()
+    {
+        $mahasiswa_punya_jadwal = \DB::table('mahasiswa_jadwal')
+                                        ->select('mahasiswa_id')
+                                        ->groupBy('mahasiswa_id')
+                                        ->get();
+        $mahasiswa_ids = array();
+        foreach($mahasiswa_punya_jadwal as $id)
+        {
+            array_push($mahasiswa_ids, $id->mahasiswa_id);
+        }
+        $mahasiswa = \DB::table('mahasiswa')
+                        ->select('*')
+                        ->whereNotIn('id', $mahasiswa_ids)
+                        ->get();
+        return $mahasiswa;
+    }
 }
