@@ -294,6 +294,7 @@ class JadwalController extends Controller
 
     public function tambah(Request $request)
     {
+        dd($request);
         $data = new mahasiswaJadwal();
         $data->mahasiswa_id = $request->mahasiswa_id;
         $data->jadwal_id = $request->jadwal_id;
