@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\mahasiswa;
 use App\angsuran;
+use App\jadwal;
+use App\masterKelas;
 use App\mahasiswaAngsuran;
+use App\mahasiswaJadwal;
 use App\Exports\RekapExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
@@ -33,11 +36,15 @@ class PembayaranController extends Controller
                 $datanya[$key]['biaya'] = strrev(rtrim(chunk_split(strrev($datanya[$key]['biaya']), 3, '.'), '.'));
             }
             $pembayaran->data_pembayaran = $datanya;
+            $mahasiswa_jadwal = mahasiswaJadwal::where('mahasiswa_id', '=', $request->id)->get()->first();
+            $jadwal = jadwal::find($mahasiswa_jadwal->jadwal_id);
             $data = array(
                 "mahasiswa" => mahasiswa::find($request->id),
                 "exist" => 1,
                 "pembayaran" => $pembayaran,
-                "angsuran" => angsuran::find($pembayaran->angsuran_id)
+                "angsuran" => angsuran::find($pembayaran->angsuran_id),
+                "kelas" => masterKelas::find($jadwal->id_kelas)->nama,
+                "jadwal" => $jadwal
             );
             return view('pembayaran.detail', compact('data'));
         }
