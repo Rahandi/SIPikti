@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\jadwal;
 use App\mahasiswa;
-use App\mahasiswa_jadwal;
+use App\mahasiswaJadwal;
 use App\masterKelas;
 use App\masterDosen;
 use App\masterAsisten;
@@ -173,6 +173,11 @@ class JadwalController extends Controller
         $ids_mk = explode(',',$jadwal->ids_mk);
         $ids_dosen = explode(',',$jadwal->ids_dosen);
         $ids_asisten = explode(',',$jadwal->ids_asisten);
+        $mahasiswa_jadwal = \DB::table('mahasiswa_jadwal')
+                                ->select('mahasiswa_id')
+                                ->groupBy('mahasiswa_id')
+                                ->where('jadwal_id', '=', $id)
+                                ->get();
         
         $mk = array();
         foreach($ids_mk as $indvmk)
@@ -192,12 +197,20 @@ class JadwalController extends Controller
             ($indvasisten)?array_push($asisten, masterAsisten::find($indvasisten)->nama):array_push($asisten, null);
         }
 
+        $mahasiswa = array();
+        foreach($mahasiswa_jadwal as $row)
+        {
+            array_push($mahasiswa, mahasiswa::find($row->mahasiswa_id));
+        }
+
         $data->id = $id;
         $data->termin = $jadwal->termin;
         $data->kelas = masterKelas::find($jadwal->id_kelas);
         $data->matkul = $mk;
         $data->dosen = $dosen;
         $data->asisten = $asisten;
+        $data->mahasiswa = $mahasiswa;
+        $data->hitung = $this->hitung_mahasiswa_jadwal($id);
 
         return view('akademik.jadwal.detail', compact('data'));
     }
@@ -233,7 +246,7 @@ class JadwalController extends Controller
                 ($indvasisten)?array_push($asisten, masterAsisten::find($indvasisten)->nama):array_push($asisten, null);
             }
 
-            $temp->id = $id;
+            $temp->id = $jadwal->id;
             $temp->termin = $jadwal->termin;
             $temp->kelas = masterKelas::find($jadwal->id_kelas);
             $temp->matkul = $mk;
@@ -247,10 +260,77 @@ class JadwalController extends Controller
 
     public function SelectJadwal(Request $request)
     {
-        $data = new mahasiswa_jadwal();
+        $data = new mahasiswaJadwal();
         $data->mahasiswa_id = $request->id_mahasiswa;
         $data->jadwal_id = $request->jadwal_id;
         $data->save();
         return redirect()->route('pembayaran.detail', ['id'=>$request->id_mahasiswa]);
+    }
+
+    public function cancel(Request $request)
+    {
+        $match = [
+            'mahasiswa_id' => $request->mhs,
+            'jadwal_id' => $request->jdw
+        ];
+        $data = mahasiswaJadwal::where($match)->get();
+        foreach($data as $item)
+        {
+            $item->delete();
+        }
+        return redirect()->back();
+    }
+
+    public function pilihmhs($id)
+    {
+        $data = new \stdClass();
+        $jadwal = jadwal::find($id);
+        $kelas = masterKelas::find($jadwal->id_kelas);
+        $mahasiswa = $this->get_mahasiswa_no_jadwal();
+        $data->jadwal = $jadwal;
+        $data->mahasiswa = $mahasiswa;
+        $data->kelas = $kelas;
+        return view('akademik.jadwal.tambah_mhs', compact('data'));
+    }
+
+    public function tambah(Request $request)
+    {
+        foreach($request->picked as $id)
+        {
+            $data = new mahasiswaJadwal();
+            $data->mahasiswa_id = $id;
+            $data->jadwal_id = $request->jadwal;
+            $data->save();
+        }
+        return redirect()->route('jadwal.detail', ['id' => $request->jadwal]);
+    }
+
+    private function get_mahasiswa_no_jadwal()
+    {
+        $mahasiswa_punya_jadwal = \DB::table('mahasiswa_jadwal')
+                                        ->select('mahasiswa_id')
+                                        ->groupBy('mahasiswa_id')
+                                        ->get();
+        $mahasiswa_ids = array();
+        foreach($mahasiswa_punya_jadwal as $id)
+        {
+            array_push($mahasiswa_ids, $id->mahasiswa_id);
+        }
+        $mahasiswa = \DB::table('mahasiswa')
+                        ->select('*')
+                        ->whereNotIn('id', $mahasiswa_ids)
+                        ->where('nrp', '!=', null)
+                        ->get();
+        return $mahasiswa;
+    }
+
+    private function hitung_mahasiswa_jadwal($jadwal_id)
+    {
+        $data = \DB::table('mahasiswa_jadwal')
+                    ->select('mahasiswa_id')
+                    ->where('jadwal_id', '=', $jadwal_id)
+                    ->groupBy('mahasiswa_id')
+                    ->get();
+        return count($data);
     }
 }

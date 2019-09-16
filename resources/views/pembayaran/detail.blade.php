@@ -59,7 +59,11 @@
 						<tr>
 							<td>Kelas</td>
 							<td>:</td>
-							<td>{tombol 'Lihat Kelas'}</td>
+							@if ($data['kelas'] != null)
+								<td>{{ $data['kelas'] }} &nbsp;&nbsp;&nbsp;<a href="{{ route('jadwal.detail', $data['jadwal']->id) }}"><button class="btn btn-primary">Lihat Kelas</button></a></td>
+							@else
+								<td><a href="{{ route('jadwal.pilihkelas', $data['mahasiswa']->id) }}"><button class="btn btn-primary">Pilih Kelas</button></a></td>
+							@endif
 						</tr>
 					</table><br>
 					@if ($data['exist'] == 0)
