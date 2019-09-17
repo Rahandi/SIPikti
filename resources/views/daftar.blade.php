@@ -267,6 +267,9 @@
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/sipikti.js') }}"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 	<script type="text/javascript">
 		var input = document.getElementsByTagName("INPUT");
 		for (i in input){
@@ -287,9 +290,5 @@
 			});
 		});
 	</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="{{ URL::asset('js/sipikti.js') }}"></script>
-	<script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
-	
 </body>
 </html>
