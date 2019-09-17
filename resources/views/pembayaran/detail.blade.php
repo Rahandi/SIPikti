@@ -59,6 +59,7 @@
 						<tr>
 							<td>Kelas</td>
 							<td>:</td>
+							<!-- to know the class -->
 							@if ($data['kelas'] != null)
 								<td>{{ $data['kelas'] }} &nbsp;&nbsp;&nbsp;<a href="{{ route('jadwal.detail', $data['jadwal']->id) }}"><button class="btn btn-primary">Lihat Kelas</button></a></td>
 							@else
