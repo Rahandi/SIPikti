@@ -59,8 +59,9 @@
 						<tr>
 							<td>Kelas</td>
 							<td>:</td>
-							<!-- to know the class -->
-							@if ($data['kelas'] != null)
+							@if ($data['exist'] == 0)
+								<td></td>
+							@elseif ($data['kelas'] != null)
 								<td>{{ $data['kelas'] }} &nbsp;&nbsp;&nbsp;<a href="{{ route('jadwal.detail', $data['jadwal']->id) }}"><button class="btn btn-primary">Lihat Kelas</button></a></td>
 							@else
 								<td><a href="{{ route('jadwal.pilihkelas', $data['mahasiswa']->id) }}"><button class="btn btn-primary">Pilih Kelas</button></a></td>
@@ -118,7 +119,13 @@
 												{{csrf_field()}}
 												<input type="hidden" name="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
 												<input type="hidden" name="jenis_bayar" value="{{$index}}">
-												<button type="submit" class="btn btn-success" onclick="reloadPlis()" 
+												<button type="submit" class="btn btn-success"
+												@if ($data['kelas'] == null)
+													onclick="reloadPlis()"
+												@else
+													onclick="reloadSaja()"
+												@endif
+
 												@if ($data_bayar['tanda'] == 1)
 													disabled="disabled"
 												@endif
@@ -185,8 +192,12 @@
 		});
 		function reloadPlis(){
 			setTimeout(function(){
-				// location.reload()
 				window.location.href="{{route('jadwal.pilihkelas',$data['mahasiswa']->id)}}"
+			},500);
+		}
+		function reloadSaja(){
+			setTimeout(function(){
+				window.location.reload()
 			},500);
 		}
 	</script>
