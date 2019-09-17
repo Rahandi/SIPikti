@@ -55,6 +55,7 @@ class PembayaranController extends Controller
         $data = array(
             "mahasiswa" => mahasiswa::find($request->id),
             "exist" => 0,
+            "kelas" => NULL,
             "angsuran" => angsuran::all()
         );
         return view('pembayaran.detail', compact('data'));
