@@ -36,7 +36,7 @@
 				<tr>
 					<td>GUNA</td>
 					<td>:</td>
-					<td>Pembayaran Pendaftaran PIKTI tanggal {{$data['date']}}</td>
+					<td>Pembayaran Pendaftaran PIKTI tanggal {{$data['pendaftar']->tanggal_verifikasi}}</td>
 				</tr>
 				<tr>
 					<td>UANG RP</td>
