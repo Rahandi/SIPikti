@@ -45,7 +45,7 @@
 							<tr>
 								<td></td>
 								<td class="sorting_1">{{$datas->termin}}</td>
-								<td>{{$datas->kelas}}</td>
+								<td>{{$datas->kelas}}<br><span class="label label-danger">{{ $datas->hitung }}/30</span></td>
 								<td>{{$datas->jam_sk}}</td>
 								<td>{{$datas->mk}}</td>
 								<td>
@@ -85,6 +85,7 @@
 						</tbody>
 					</table>
 				</div>
+			}
 		</div>
 	</div>
 </div>

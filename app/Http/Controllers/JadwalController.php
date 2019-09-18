@@ -253,7 +253,7 @@ class JadwalController extends Controller
             $temp->matkul = $mk;
             $temp->dosen = $dosen;
             $temp->asisten = $asisten;
-            $temp->hitung = hitung_mahasiswa_jadwal($jadwals->id);
+            $temp->hitung = $this->hitung_mahasiswa_jadwal($jadwal->id);
 
             array_push($data->jadwal, $temp);
         }

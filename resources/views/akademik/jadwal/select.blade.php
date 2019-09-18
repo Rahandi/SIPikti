@@ -61,7 +61,7 @@
 							<input type="hidden" name="id_mahasiswa" value="{{$data->id_mahasiswa->id}}">
 							<select class="selectpicker" data-style="btn-info btn-outline" name="jadwal_id">
 								@foreach ($data->jadwal as $individu)
-								<option data-tokens="{{ $individu->kelas->nama }}" value="{{$individu->id}}">{{ $individu->kelas->nama }}</option>
+								<option data-tokens="{{ $individu->kelas->nama }}" value="{{$individu->id}}">{{ $individu->kelas->nama }}&nbsp;&nbsp;&nbsp;<span class="label label-danger">({{ $individu->hitung }}/30)</span></option>
 								@endforeach
 							</select>
 						<button type="submit" class="btn btn-info">Pilih</button>
