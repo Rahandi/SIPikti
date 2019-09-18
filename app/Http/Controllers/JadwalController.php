@@ -38,6 +38,7 @@ class JadwalController extends Controller
                 array_push($temp_mk, masterMK::find($id_mk)->nama);
             }
             $temp->mk = implode(', ', $temp_mk);
+            $temp->hitung = $this->hitung_mahasiswa_jadwal($jadwals->id);
             array_push($data, $temp);
         }
         return view('akademik.jadwal.index', compact('data'));
@@ -252,6 +253,7 @@ class JadwalController extends Controller
             $temp->matkul = $mk;
             $temp->dosen = $dosen;
             $temp->asisten = $asisten;
+            $temp->hitung = hitung_mahasiswa_jadwal($jadwals->id);
 
             array_push($data->jadwal, $temp);
         }
