@@ -452,11 +452,14 @@ class MahasiswaController extends Controller
         $pendaftar = pendaftar::all();
         foreach($pendaftar as $item)
         {
-            $mahasiswa = mahasiswa::where('nama', $item->nama);
-            if($mahasiswa)
+            $mahasiswa = mahasiswa::where('nama', $item->nama)->get();
+            foreach($mahasiswa as $found)
             {
-                $mahasiswa->gelombang = $item->gelombang;
-                $mahasiswa->save();
+                if($found)
+                {
+                    $found->gelombang = $item->gelombang;
+                    $found->save();
+                }
             }
         }
     }
