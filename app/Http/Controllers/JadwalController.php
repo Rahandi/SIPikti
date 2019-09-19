@@ -262,6 +262,11 @@ class JadwalController extends Controller
 
     public function SelectJadwal(Request $request)
     {
+        $data = mahasiswaJadwal::where('mahasiswa_id', $request->id_mahasiswa)->get();
+        foreach($data as $item)
+        {
+            $item->delete();
+        }
         $data = new mahasiswaJadwal();
         $data->mahasiswa_id = $request->id_mahasiswa;
         $data->jadwal_id = $request->jadwal_id;
