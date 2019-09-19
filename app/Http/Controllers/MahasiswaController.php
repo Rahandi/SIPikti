@@ -446,4 +446,18 @@ class MahasiswaController extends Controller
         $mahasiswa->delete();
         return redirect()->back();
     }
+
+    public function update_gelombang()
+    {
+        $pendaftar = pendaftar::all();
+        foreach($pendaftar as $item)
+        {
+            $mahasiswa = mahasiswa::where('nama', $item->nama);
+            if($mahasiswa)
+            {
+                $mahasiswa->gelombang = $item->gelombang;
+                $mahasiswa->save();
+            }
+        }
+    }
 }
