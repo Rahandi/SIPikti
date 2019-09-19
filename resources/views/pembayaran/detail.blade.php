@@ -56,17 +56,17 @@
 							<td>:</td>
 							<td>{{ $data['mahasiswa']->nrp }}</td>
 						</tr>
+						@if ($data['exist'] != 0)
 						<tr>
 							<td>Kelas</td>
 							<td>:</td>
-							@if ($data['exist'] == 0)
-								<td></td>
-							@elseif ($data['kelas'] != null)
-								<td>{{ $data['kelas'] }} &nbsp;&nbsp;&nbsp;<a href="{{ route('jadwal.detail', $data['jadwal']->id) }}"><button class="btn btn-primary">Lihat Kelas</button></a></td>
+							@if ($data['kelas'] != null)
+								<td>{{ $data['kelas'] }} &nbsp;&nbsp;&nbsp;<a href="{{ route('jadwal.pilihkelas', $data['mahasiswa']->id) }}"><button class="btn btn-warning">Ubah Kelas</button></a>&nbsp;&nbsp;&nbsp;<a href="{{ route('jadwal.detail', $data['jadwal']->id) }}"><button class="btn btn-primary">Lihat Kelas</button></a></td>
 							@else
 								<td><a href="{{ route('jadwal.pilihkelas', $data['mahasiswa']->id) }}"><button class="btn btn-primary">Pilih Kelas</button></a></td>
 							@endif
 						</tr>
+						@endif
 					</table><br>
 					@if ($data['exist'] == 0)
 						<form action="{{route('pembayaran.select')}}" method="POST" style="width: 100%;">
