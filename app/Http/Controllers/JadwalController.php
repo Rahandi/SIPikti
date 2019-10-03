@@ -183,7 +183,18 @@ class JadwalController extends Controller
         $mk = array();
         foreach($ids_mk as $indvmk)
         {
-            ($indvmk)?array_push($mk, masterMK::find($indvmk)->nama):array_push($mk, null);
+            if($indvmk)
+            {
+                $temp = new \stdClass();
+                $master_mk = masterMK::find($indvmk);
+                $temp->nama = $master_mk->nama;
+                $temp->id = $master_mk->id;
+                array_push($mk, $temp);
+            }
+            else
+            {
+                array_push($mk, null);
+            }
         }
 
         $dosen = array();
