@@ -50,13 +50,15 @@
 								<td>{{$datas->mk}}</td>
 								<td>
 									<div class="row" style="margin: 0px;">
-									<a href="{{route('jadwal.detail', $datas->id)}}">
+									<a data-toggle="tooltip" data-placement="top" title="Detail Kelas" href="{{route('jadwal.detail', $datas->id)}}">
 										<button class="btn btn-info"><i class="material-icons" style="font-size: 18px;">format_list_bulleted</i></button>
 									</a>
-									<a href="{{route('jadwal.edit', $datas->id)}}">
+									<a data-toggle="tooltip" data-placement="top" title="Edit Kelas" href="{{route('jadwal.edit', $datas->id)}}">
 										<button class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button>
 									</a>
-									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$datas->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+									<a data-toggle="tooltip" data-placement="top" title="Hapus Kelas">
+										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$datas->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+									</a>
 									</div>
 								</td>
 							</tr>
