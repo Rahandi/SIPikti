@@ -70,11 +70,16 @@
 							@for ($i = 0; $i < 5; $i++)
 								<tr>
 									<td class="sorting_1"><label class="control-label">{{$hari[$i]}}</label></td>
-									<td style="text-align: left;">{{$data->matkul[$i]}}</td>
+									<td style="text-align: left;">{{$data->matkul[$i]->nama}}</td>
 									<td style="text-align: left;">{{$data->dosen[$i]}}</td>
 									<td style="text-align: left;">{{$data->asisten[$i]}}</td>
 									<td style="text-align: center;">
-										<a href=""><button type="button" class="btn btn-primary">Download</button></a>
+										<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => $data->matkul[$i]->id])}}"><button type="button" class="btn btn-primary"  
+											@if (!$data->dosen[$i] or !$data->asisten[$i])
+												disabled="disabled"
+											@endif
+											>Download</button></a>
+										
 									</td>
 								</tr>
 							@endfor
