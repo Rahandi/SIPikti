@@ -163,6 +163,13 @@ class JadwalController extends Controller
     public function delete(Request $request)
     {
         $jadwal = jadwal::find($request->id);
+        $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $request->id)->get();
+
+        foreach($mahasiswa_jadwal as $item)
+        {
+            $item->delete();
+        }
+
         $jadwal->delete();
         return redirect()->route('jadwal');
     }
