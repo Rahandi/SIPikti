@@ -312,6 +312,26 @@ class JadwalController extends Controller
         return redirect()->route('jadwal.detail', ['id' => $request->jadwal]);
     }
 
+    public function DownloadJadwal($id)
+    {
+        $data = new \stdClass();
+
+        $data->jadwal = jadwal::find($id);
+
+        $data->mahasiswa = array();
+        $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id)->get();
+        foreach($mahasiswa_jadwal as $item)
+        {
+            $temp = new \stdClass();
+            $mahasiswa = mahasiswa::find($item->mahasiswa_id);
+            $temp->nama = $mahasiswa->nama;
+            $temp->nrp = $mahasiswa->nrp;
+            array_push($data->mahasiswa, $temp);
+        }
+
+        return view('akademik.jadwal.download', compact('data'));
+    }
+
     private function get_mahasiswa_no_jadwal()
     {
         $mahasiswa_punya_jadwal = \DB::table('mahasiswa_jadwal')
