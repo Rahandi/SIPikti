@@ -50,7 +50,7 @@ Route::get('/akademik/jadwal/detail/{id}', 'JadwalController@detail')->name('jad
 Route::get('/akademik/jadwal/pilihkelas/{id}', 'JadwalController@PageSelectJadwal')->name('jadwal.pilihkelas');
 Route::get('/akademik/jadwal/absensi/{id}', 'JadwalController@absensi')->name('jadwal.absensi');
 Route::get('/akademik/jadwal/pilihmhs/{id}', 'JadwalController@pilihmhs')->name('jadwal.pilihmhs');
-Route::get('/akademik/jadwal/download/{id}', 'JadwalController@DownloadJadwal')->name('jadwal.download');
+Route::get('/akademik/jadwal/download/{id_jadwal}/{id_mk}', 'JadwalController@DownloadJadwal')->name('jadwal.download');
 Route::post('/akademik/jadwal/store', 'JadwalController@store')->name('jadwal.store');
 Route::post('/akademik/jadwal/update', 'JadwalController@update')->name('jadwal.update');
 Route::post('/akademik/jadwal/delete', 'JadwalController@delete')->name('jadwal.delete');

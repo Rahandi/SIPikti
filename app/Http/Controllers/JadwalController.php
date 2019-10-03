@@ -312,14 +312,23 @@ class JadwalController extends Controller
         return redirect()->route('jadwal.detail', ['id' => $request->jadwal]);
     }
 
-    public function DownloadJadwal($id)
+    public function DownloadJadwal($id_jadwal, $id_mk)
     {
         $data = new \stdClass();
 
-        $data->jadwal = jadwal::find($id);
+        $jadwal = jadwal::find($id_jadwal);
+        $mk = explode(',', $jadwal->ids_mk);
+        $index_mk = array_search($id_mk, $mk);
+
+        $data->termin = $jadwal->termin;
+        $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+        $data->dosen = masterDosen::find(explode(',', $jadwal->ids_dosen)[$index_mk])->nama;
+        $data->asisten = new \stdClass();
+        $data->asisten->nrp = masterAsisten::find(explode(',', $jadwal->ids_asisten)[$index_mk])->nrp;
+        $data->asisten->nama = masterAsisten::find(explode(',', $jadwal->ids_asisten)[$index_mk])->nama;
 
         $data->mahasiswa = array();
-        $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id)->get();
+        $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get();
         foreach($mahasiswa_jadwal as $item)
         {
             $temp = new \stdClass();
