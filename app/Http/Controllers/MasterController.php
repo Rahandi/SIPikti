@@ -226,7 +226,7 @@ class MasterController extends Controller
     public function delete_gelombang(Request $request)
     {
         $gelombang = masterGelombang::find($request->id);
-        $mk->delete();
+        $gelombang->delete();
         return redirect()->route('master.gelombang.index');
     }
 }

@@ -106,6 +106,14 @@ Route::group(['prefix'=>'master'], function(){
         Route::post('/update', 'MasterController@update_mk')->name('master.mk.update');
         Route::post('/delete', 'MasterController@delete_mk')->name('master.mk.delete');
     });
+    Route::group(['prefix'=>'gelombang'], function(){
+        Route::get('/', 'MasterController@index_gelombang')->name('master.gelombang.index');
+        Route::get('/create', 'MasterController@create_gelombang')->name('master.gelombang.create');
+        Route::get('/edit/{id}', 'MasterController@edit_gelombang')->name('master.gelombang.edit');
+        Route::post('/store', 'MasterController@store_gelombang')->name('master.gelombang.store');
+        Route::post('/update', 'MasterController@update_gelombang')->name('master.gelombang.update');
+        Route::post('/delete', 'MasterController@delete_gelombang')->name('master.gelombang.delete');
+    });
 });
 
 // unrelevant
