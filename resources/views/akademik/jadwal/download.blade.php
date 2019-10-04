@@ -6,6 +6,14 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">
+	<style type="text/css">
+		i.material-icons {
+			vertical-align: middle;
+		}
+	</style>
 	<style>@page { size: A4 landscape }</style>
 </head>
 <body onload="window.print()" class="A4 landscape">
@@ -45,39 +53,52 @@
 		</div>
 		<br>
 		<div class="row" style="text-align: center;width: 100%;">
-			<table border="" style="width: 100%;">
+			<table id="list" border="" style="width: 100%;">
+				<thead>
 				<tr>
 					<th style="width: 3%;">No.</th>
 					<th style="width: 15%;">NRP</th>
 					<th style="width: 30%;">Nama Mahasiswa</th>
 					@for ($i = 1; $i <= 16; $i++)
-					<th style="width: 3%;">$i</th>
+						<th style="width: 3%;">{{$i}}</th>
 					@endfor
 				</tr>
-				
+				</thead>
+				<tbody>
 				@foreach ($data->mahasiswa as $individu)
-				@for ($ia = 1; $ia <= 16; $ia++)
-				<tr style="clear: both; page-break-after: always;">
-					<td></td>
-					<td>{{$individu->nrp}}</td>
-					<td style="text-align: left;">{{$individu->nama}}</td>
-					@for ($i = 1; $i <= 16; $i++)
-					<th></th>
-					@endfor
-				</tr>
-				@endfor
+					<tr style="page-break-after: always;">
+						<td>{{$individu->urut}}</td>
+						<td>{{$individu->nrp}}</td>
+						<td style="text-align: left;">{{$individu->nama}}</td>
+						@for ($i = 1; $i <= 16; $i++)
+						<td></td>
+						@endfor
+					</tr>
 				@endforeach
-				
+				</tbody>
 			</table>
 		</div>
 	</div>
-</body>
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
 <script>
-	// $(".button-print").click(function(){
-	// 	window.print();
-	// });
-	function clickPrint() {
-		window.print();
-	}
+	$(document).ready(function(){
+		var t = $('#list').DataTable( {
+			"columnDefs": [ {
+				"searchable": false,
+				"orderable": false,
+				"targets": 0,
+			} ],
+			"order": [[ 1, 'asc' ]],
+		} );
+
+		t.on( 'order.dt search.dt', function () {
+			t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+				cell.innerHTML = i+1;
+			} );
+		} ).draw();
+	});
 </script>
+</body>
 </html>
