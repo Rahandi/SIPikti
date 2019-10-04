@@ -348,10 +348,13 @@ class JadwalController extends Controller
 
         $data->mahasiswa = array();
         $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get();
+        $urut = 0;
         foreach($mahasiswa_jadwal as $item)
         {
+            $urut += 1;
             $temp = new \stdClass();
             $mahasiswa = mahasiswa::find($item->mahasiswa_id);
+            $temp->urut = $urut;
             $temp->nama = $mahasiswa->nama;
             $temp->nrp = $mahasiswa->nrp;
             array_push($data->mahasiswa, $temp);
