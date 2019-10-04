@@ -339,7 +339,7 @@ class JadwalController extends Controller
         $index_mk = array_search($id_mk, $mk);
 
         $data->termin = $jadwal->termin;
-        $data->mata_kuliah = masterMK::find($mk)->nama;
+        $data->mata_kuliah = masterMK::find($id_mk)->nama;
         $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $data->dosen = masterDosen::find(explode(',', $jadwal->ids_dosen)[$index_mk])->nama;
         $data->asisten = new \stdClass();
