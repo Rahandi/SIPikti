@@ -19,8 +19,41 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="white-box">
-				<h3 class="box-title m-b-0">Kelas - {{ $data->kelas->nama }}&nbsp;&nbsp;&nbsp;<span class="label label-danger">{{ $data->hitung }}/30</span></h3>
-				<p class="text-muted m-b-30">Semester {{ $data->termin }}</p>
+				<div>
+					<div class="col-md-6" style="text-align: left;">
+						<h3 class="box-title m-b-0">Kelas - {{ $data->kelas->nama }}&nbsp;&nbsp;&nbsp;<span class="label label-danger">{{ $data->hitung }}/30</span></h3>
+						<p class="text-muted m-b-30">Semester {{ $data->termin }}</p>
+					</div>
+					<div class="col-md-6" style="text-align: right;">
+						<a data-toggle="tooltip" data-placement="top" title="Edit Kelas" href="{{route('jadwal.edit', $data->id)}}">
+							<button class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button>
+						</a>
+						<a data-toggle="tooltip" data-placement="top" title="Hapus Kelas">
+							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$data->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button>
+						</a>
+					</div>
+				</div>
+				<!-- Modal -->
+				<div id="modalDelete" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
+					<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
+						<header class="w3-container w3-light-grey w3-round-large"> 
+							<span data-dismiss="modal" 
+							class="w3-button w3-display-topright w3-round-large">&times;</span>
+							<h2>Konfirmasi</h2>
+						</header>
+						<div class="w3-container" style="margin-top: 2%;">
+							<p>Apakah Anda yakin akan menghapus data jadwal ini?</p>
+						</div>
+						<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
+							<form action="{{route('jadwal.delete')}}" method="POST">
+								{{ csrf_field() }}
+								<input type="hidden" name="id" id="valueId" value="">
+								<button type="submit" class="btn btn-success" id="DeleteButton" style="margin: 1%;">Ya</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Tidak</button>
+							</form>
+						</footer>
+					</div>
+				</div>
 				<div class="row row-in">
 						<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 							<thead>
@@ -29,6 +62,7 @@
 									<th style="width: 25%;text-align: center;">Mata Kuliah</th>
 									<th style="width: 25%;text-align: center;">Dosen</th>
 									<th style="width: 25%;text-align: center;">Asisten</th>
+									<th style="width: 15%;text-align: center;">Absensi</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -36,9 +70,17 @@
 							@for ($i = 0; $i < 5; $i++)
 								<tr>
 									<td class="sorting_1"><label class="control-label">{{$hari[$i]}}</label></td>
-									<td style="text-align: left;">{{$data->matkul[$i]}}</td>
+									<td style="text-align: left;">{{$data->matkul[$i]->nama}}</td>
 									<td style="text-align: left;">{{$data->dosen[$i]}}</td>
 									<td style="text-align: left;">{{$data->asisten[$i]}}</td>
+									<td style="text-align: center;">
+										<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => $data->matkul[$i]->id])}}"><button type="button" class="btn btn-primary"  
+											@if (!$data->dosen[$i] or !$data->asisten[$i])
+												disabled="disabled"
+											@endif
+											>Download</button></a>
+										
+									</td>
 								</tr>
 							@endfor
 							</tbody>
@@ -47,11 +89,8 @@
 				<h4 class="box-title m-b-0">List Mahasiswa</h4><br>
 				<div class="row row-in">
 					<div>
-						<div class="col-md-6" style="text-align: left;">
+						<div class="col-md-12" style="text-align: left;">
 							<a href="{{route('jadwal.pilihmhs', $data->id)}}"><button type="button" class="btn btn-info">Tambah Mahasiswa</button></a>
-						</div>
-						<div class="col-md-6" style="text-align: right;">
-							<a href=""><button type="button" class="btn btn-primary">Download Absensi</button></a>
 						</div>
 					</div>
 					<div style="margin-top: 5%;">

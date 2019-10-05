@@ -139,6 +139,7 @@
 							<li><a href="{{ route('master.kelas.index') }}"><i class="material-icons">av_timer</i><span class="hide-menu">  Kelas</span></a></li>
 							<li><a href="{{ route('master.dosen.index') }}"><i class="material-icons">airline_seat_recline_extra</i><span class="hide-menu">  Dosen</span></a></li>
 							<li><a href="{{ route('master.asisten.index') }}"><i class="material-icons">perm_identity</i><span class="hide-menu">  Asisten</span></a></li>
+							<li><a href="{{ route('master.gelombang.index') }}"><i class="material-icons">date_range</i><span class="hide-menu">  Gelombang</span></a></li>
 						</ul>
 					</li>
 					<li class="devider"></li>

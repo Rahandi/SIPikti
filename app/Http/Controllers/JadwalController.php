@@ -163,6 +163,13 @@ class JadwalController extends Controller
     public function delete(Request $request)
     {
         $jadwal = jadwal::find($request->id);
+        $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $request->id)->get();
+
+        foreach($mahasiswa_jadwal as $item)
+        {
+            $item->delete();
+        }
+
         $jadwal->delete();
         return redirect()->route('jadwal');
     }
@@ -183,7 +190,18 @@ class JadwalController extends Controller
         $mk = array();
         foreach($ids_mk as $indvmk)
         {
-            ($indvmk)?array_push($mk, masterMK::find($indvmk)->nama):array_push($mk, null);
+            if($indvmk)
+            {
+                $temp = new \stdClass();
+                $master_mk = masterMK::find($indvmk);
+                $temp->nama = $master_mk->nama;
+                $temp->id = $master_mk->id;
+                array_push($mk, $temp);
+            }
+            else
+            {
+                array_push($mk, null);
+            }
         }
 
         $dosen = array();
@@ -310,6 +328,39 @@ class JadwalController extends Controller
             $data->save();
         }
         return redirect()->route('jadwal.detail', ['id' => $request->jadwal]);
+    }
+
+    public function DownloadJadwal($id_jadwal, $id_mk)
+    {
+        $data = new \stdClass();
+
+        $jadwal = jadwal::find($id_jadwal);
+        $mk = explode(',', $jadwal->ids_mk);
+        $index_mk = array_search($id_mk, $mk);
+
+        $data->termin = $jadwal->termin;
+        $data->mata_kuliah = masterMK::find($id_mk)->nama;
+        $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+        $data->dosen = masterDosen::find(explode(',', $jadwal->ids_dosen)[$index_mk])->nama;
+        $data->asisten = new \stdClass();
+        $data->asisten->nrp = masterAsisten::find(explode(',', $jadwal->ids_asisten)[$index_mk])->nrp;
+        $data->asisten->nama = masterAsisten::find(explode(',', $jadwal->ids_asisten)[$index_mk])->nama;
+
+        $data->mahasiswa = array();
+        $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get();
+        $urut = 0;
+        foreach($mahasiswa_jadwal as $item)
+        {
+            $urut += 1;
+            $temp = new \stdClass();
+            $mahasiswa = mahasiswa::find($item->mahasiswa_id);
+            $temp->urut = $urut;
+            $temp->nama = $mahasiswa->nama;
+            $temp->nrp = $mahasiswa->nrp;
+            array_push($data->mahasiswa, $temp);
+        }
+
+        return view('akademik.jadwal.download', compact('data'));
     }
 
     private function get_mahasiswa_no_jadwal()

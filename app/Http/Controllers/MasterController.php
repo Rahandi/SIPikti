@@ -8,6 +8,7 @@ use App\masterAsisten;
 use App\masterDosen;
 use App\masterKelas;
 use App\masterMK;
+use App\masterGelombang;
 
 class MasterController extends Controller
 {
@@ -35,6 +36,12 @@ class MasterController extends Controller
         return view('master.kelas.index', compact('data'));
     }
 
+    public function index_gelombang()
+    {
+        $data = masterGelombang::all();
+        return view('master.gelombang.index', compact('data'));
+    }
+
     public function create_asisten()
     {
         return view('master.asisten.create');
@@ -53,6 +60,11 @@ class MasterController extends Controller
     public function create_kelas()
     {
         return view('master.kelas.create');
+    }
+
+    public function create_gelombang()
+    {
+        return view('master.gelombang.create');
     }
 
     public function store_asisten(Request $request)
@@ -91,6 +103,16 @@ class MasterController extends Controller
         return redirect()->route('master.mk.index');
     }
 
+    public function store_gelombang(Request $request)
+    {
+        $gelombang = new masterGelombang();
+        $gelombang->nama = $request->nama;
+        $gelombang->mulai = $request->mulai;
+        $gelombang->berakhir = $request->berakhir;
+        $gelombang->save();
+        return redirect()->route('master.gelombang.index');
+    }
+
     public function edit_asisten($id)
     {
         $data = masterAsisten::find($id);
@@ -119,6 +141,12 @@ class MasterController extends Controller
     {
         $data = masterMK::find($id);
         return view('master.mk.edit', compact('data'));
+    }
+
+    public function edit_gelombang($id)
+    {
+        $data = masterGelombang::find($id);
+        return view('master.gelombang.edit', compact('data'));
     }
 
     public function update_asisten(Request $request)
@@ -157,6 +185,16 @@ class MasterController extends Controller
         return redirect()->route('master.mk.index');
     }
 
+    public function update_gelombang(Request $request)
+    {
+        $gelombang = masterGelombang::find($request->id);
+        $gelombang->nama = $request->nama;
+        $gelombang->mulai = $request->mulai;
+        $gelombang->berakhir = $request->berakhir;
+        $gelombang->save();
+        return redirect()->route('master.gelombang.index');
+    }
+
     public function delete_asisten(Request $request)
     {
         $asisten = masterAsisten::find($request->nrp);
@@ -183,5 +221,12 @@ class MasterController extends Controller
         $mk = masterMK::find($request->find);
         $mk->delete();        
         return redirect()->route('master.mk.index');
+    }
+
+    public function delete_gelombang(Request $request)
+    {
+        $gelombang = masterGelombang::find($request->id);
+        $gelombang->delete();
+        return redirect()->route('master.gelombang.index');
     }
 }
