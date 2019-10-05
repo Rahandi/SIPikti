@@ -341,10 +341,14 @@ class JadwalController extends Controller
         $data->termin = $jadwal->termin;
         $data->mata_kuliah = masterMK::find($id_mk)->nama;
         $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
-        $data->dosen = masterDosen::find(explode(',', $jadwal->ids_dosen)[$index_mk])->nama;
+
+        $dosen = masterDosen::find(explode(',', $jadwal->ids_dosen)[$index_mk]);
+        $data->dosen = ($dosen)?$dosen->nama:null;
+
+        $asisten = masterAsisten::find(explode(',', $jadwal->ids_asisten)[$index_mk]);
         $data->asisten = new \stdClass();
-        $data->asisten->nrp = masterAsisten::find(explode(',', $jadwal->ids_asisten)[$index_mk])->nrp;
-        $data->asisten->nama = masterAsisten::find(explode(',', $jadwal->ids_asisten)[$index_mk])->nama;
+        $data->asisten->nrp = ($mahasiswa)?$mahasiswa->nrp:null;
+        $data->asisten->nama = ($mahasiswa)?$mahasiswa->nama:null;
 
         $data->mahasiswa = array();
         $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get();

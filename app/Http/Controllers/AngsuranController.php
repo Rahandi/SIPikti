@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\angsuran;
+use App\mahasiswaAngsuran;
 use Illuminate\Http\Request;
 
 class AngsuranController extends Controller
@@ -115,6 +116,13 @@ class AngsuranController extends Controller
     public function delete(Request $request)
     {
         $angsuran = angsuran::find($request->id);
+
+        $mahasiswa_angsuran = mahasiswaAngsuran::where('angsuran_id', $request->id);
+        foreach($mahasiswa_angsuran as $item)
+        {
+            $item->delete();
+        }
+
         $angsuran->delete();
         return redirect()->route('angsuran');
     }
