@@ -22,7 +22,7 @@
 				<h3 class="box-title m-b-0">Kelas - {{ $data->kelas->nama }}</h3> <!-- tambahi count disini.. /30 -->
 				<p class="text-muted m-b-30">Semester {{ $data->jadwal->termin }}</p>
 				<div class="row row-in">
-					<form method="POST" action="{{route('jadwal.tambah')}}">
+					<form method="POST" action="{{route('jadwal.tambah')}}" id="forms">
 					{{ csrf_field() }}
 					<div>
 						<table id="list2" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
@@ -41,13 +41,14 @@
 									<td class="sorting_1"><label class="control-label">{{$individu->nrp}}</label></td>
 									<td style="text-align: left;">{{$individu->nama}}</td>
 									<td style="text-align: center;">
-										<input type="checkbox" name="picked[]" value="{{$individu->id}}">
+										<input type="checkbox" name="picked[]" value="{{$individu->id}}" onclick="cekbok({{$individu->id}})">
 									</td>
 								</tr>
 							@endforeach
 							</tbody>
 						</table>
 						<input type="hidden" name="jadwal" value="{{$data->jadwal->id}}">
+						<input type="hidden" name="cekboks" value="">
 						<a style="text-align: right;"><button type="submit" class="btn btn-info">Submit</button></a>
 					</div>
 					</form>
@@ -63,6 +64,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
 	<script>
+		var checked = []
+		var cekboks = document.getElementById("forms")
+
 		$(document).ready(function(){
 			var t = $('#list2').DataTable( {
 				"columnDefs": [ {
@@ -89,5 +93,29 @@
 				document.getElementById("valueId").value = Id;
 			});
 		});
+
+		Array.prototype.remove = function() {
+			var what, a = arguments, L = a.length, ax;
+			while (L && this.length) {
+				what = a[--L];
+				while ((ax = this.indexOf(what)) !== -1) {
+					this.splice(ax, 1);
+				}
+			}
+			return this;
+		};
+
+		function cekbok(id)
+		{
+			if (checked.includes(id))
+			{
+				checked.remove(id)
+			}
+			else
+			{
+				checked.push(id)
+			}
+			cekboks.cekboks.value = checked
+		}
 	</script>
 @endsection

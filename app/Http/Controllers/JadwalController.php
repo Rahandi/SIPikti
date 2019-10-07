@@ -320,8 +320,8 @@ class JadwalController extends Controller
 
     public function tambah(Request $request)
     {
-        dd($request);
-        foreach($request->picked as $id)
+        $picked = explode(',', $request->cekboks);
+        foreach($picked as $id)
         {
             $data = new mahasiswaJadwal();
             $data->mahasiswa_id = $id;
