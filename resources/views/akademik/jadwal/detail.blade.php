@@ -107,12 +107,12 @@
 									<td style="text-align: left;">{{$individu->nama}}</td>
 									<td style="text-align: center;">
 										<div class="row" style="margin: 0px;">
-											<a data-toggle="tooltip" data-placement="top" title="Hapus"><button type="button" id="tombolDel" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" value="{{$individu->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button></a>
+											<a data-toggle="tooltip" data-placement="top" title="Hapus"><button type="button" id="tombolDel" class="btn btn-danger" data-toggle="modal" data-target="#modalCancel" value="{{$individu->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button></a>
 										</div>
 									</td>
 								</tr>
 								<!-- Modal -->
-								<div id="modalDelete" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
+								<div id="modalCancel" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
 									<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
 										<header class="w3-container w3-light-grey w3-round-large"> 
 											<span 
