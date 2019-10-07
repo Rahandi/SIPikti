@@ -125,7 +125,7 @@
 										<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
 											<form action="{{route('jadwal.cancel')}}" method="POST">
 												{{ csrf_field() }}
-												<input type="hidden" name="mhs" value="{{$individu->id}}">
+												<input type="hidden" name="mhs" id="valuemhs" value="{{$individu->id}}">
 												<input type="hidden" name="jdw" value="{{$data->id}}">
 												<button type="submit" id="DeleteButton" class="btn btn-success" style="margin: 1%;">Ya</button>
 												<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Tidak</button>
@@ -172,7 +172,7 @@
 				console.log('id yg passing');
 				Id = $(this).val();
 				console.log(Id);
-				document.getElementById("valueId").value = Id;
+				document.getElementById("valuemhs").value = Id;
 			});
 		});
 	</script>

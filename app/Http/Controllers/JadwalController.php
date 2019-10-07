@@ -320,13 +320,16 @@ class JadwalController extends Controller
 
     public function tambah(Request $request)
     {
-        $picked = explode(',', $request->cekboks);
-        foreach($picked as $id)
+        if ($request->cekboks)
         {
-            $data = new mahasiswaJadwal();
-            $data->mahasiswa_id = $id;
-            $data->jadwal_id = $request->jadwal;
-            $data->save();
+            $picked = explode(',', $request->cekboks);
+            foreach($picked as $id)
+            {
+                $data = new mahasiswaJadwal();
+                $data->mahasiswa_id = $id;
+                $data->jadwal_id = $request->jadwal;
+                $data->save();
+            }
         }
         return redirect()->route('jadwal.detail', ['id' => $request->jadwal]);
     }
