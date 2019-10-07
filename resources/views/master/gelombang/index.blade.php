@@ -31,7 +31,7 @@
 					<table id="list" class="table table-striped table-hover table-bordered" style="width: 100%;">
 						<thead>
 							<tr>
-								<th style="width: 5%;"></th>
+								<th style="width: 5%;">No.</th>
 								<th style="width: 20%; text-align: center;">Nama Gelombang</th>
 								<th style="width: 25%; text-align: center;">Periode Mulai</th>
 								<th style="width: 25%; text-align: center;">Periode Berakhir</th>
@@ -43,7 +43,7 @@
 						
 						@foreach ($data as $datas)
 							<tr>
-								<td></td>
+								<td style="text-align: center;"></td>
 								<td style="text-align: center;" class="sorting_1">{{$datas->nama}}</td>
 								<td style="text-align: center;">{{$datas->mulai}}</td>
 								<td style="text-align: center;">{{$datas->berakhir}}</td>

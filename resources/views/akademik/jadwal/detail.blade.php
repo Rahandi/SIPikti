@@ -74,11 +74,7 @@
 									<td style="text-align: left;">{{$data->dosen[$i]}}</td>
 									<td style="text-align: left;">{{$data->asisten[$i]}}</td>
 									<td style="text-align: center;">
-										<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => $data->matkul[$i]->id])}}"><button type="button" class="btn btn-primary"  
-											@if (!$data->dosen[$i] or !$data->asisten[$i])
-												disabled="disabled"
-											@endif
-											>Download</button></a>
+										<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => $data->matkul[$i]->id])}}"><button type="button" class="btn btn-primary">Download</button></a>
 										
 									</td>
 								</tr>

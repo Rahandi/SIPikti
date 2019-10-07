@@ -347,8 +347,8 @@ class JadwalController extends Controller
 
         $asisten = masterAsisten::find(explode(',', $jadwal->ids_asisten)[$index_mk]);
         $data->asisten = new \stdClass();
-        $data->asisten->nrp = ($mahasiswa)?$mahasiswa->nrp:null;
-        $data->asisten->nama = ($mahasiswa)?$mahasiswa->nama:null;
+        $data->asisten->nrp = ($asisten)?$asisten->nrp:null;
+        $data->asisten->nama = ($asisten)?$asisten->nama:null;
 
         $data->mahasiswa = array();
         $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get();

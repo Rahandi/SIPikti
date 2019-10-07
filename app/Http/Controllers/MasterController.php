@@ -72,6 +72,8 @@ class MasterController extends Controller
         $asisten = new masterAsisten();
         $asisten->nrp = $request->nrp;
         $asisten->nama = $request->nama;
+        $asisten->nohp = $request->nohp;
+        $asisten->email = $request->email;
         $asisten->save();
         return redirect()->route('master.asisten.index');
     }
