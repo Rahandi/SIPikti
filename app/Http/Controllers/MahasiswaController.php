@@ -6,6 +6,7 @@ use App\pendaftar;
 use App\mahasiswa;
 use App\angsuran;
 use App\mahasiswaAngsuran;
+use App\mahasiswaJadwal;
 use App\alamat;
 use App\statusSaatMendaftar;
 use App\sumberInformasi;
@@ -199,9 +200,23 @@ class MahasiswaController extends Controller
     public function delete(Request $request)
     {
         $mahasiswa = mahasiswa::find($request->id);
+
         $pendaftar = pendaftar::where('nomor_pendaftaran', $mahasiswa->nomor_pendaftaran)->get()->first();
         $pendaftar->status = 0;
         $pendaftar->save();
+
+        $mahasiswa_jadwal = mahasiswaJadwal::where('mahasiswa_id', $request->id);
+        foreach($mahasiswa_jadwal as $item)
+        {
+            $item->delete();
+        }
+
+        $mahasiswa_angsuran = mahasiswaAngsuran::where('mahasiswa_id', $request->id);
+        foreach($mahasiswa_angsuran as $item)
+        {
+            $item->delete();
+        }
+
         $mahasiswa->delete();
         return redirect()->back();
     }

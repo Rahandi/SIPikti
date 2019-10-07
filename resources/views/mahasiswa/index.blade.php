@@ -28,7 +28,7 @@
 					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 						<thead>
 							<tr>
-								<th style="width: 5%;"></th>
+								<th style="width: 5%;">No.</th>
 								<th style="width: 20%;text-align: center;">NRP</th>
 								<th style="width: 25%;text-align: center;">Nama</th>
 								<th style="width: 20%;text-align: center;">Tanggal Lahir</th>
@@ -40,7 +40,7 @@
 						@if (isset($individu->nrp))
 							<tr>
 								<td></td>
-								<td style="text-align: left;">{{ $individu->nrp }}</td>
+								<td>{{ $individu->nrp }}</td>
 								<td class="sorting_1" style="text-align: left;">{{ $individu->nama }}</td>
 								<td>{{ $individu->tanggal_lahir }}</td>
 								<td>

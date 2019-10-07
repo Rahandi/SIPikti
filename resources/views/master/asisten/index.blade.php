@@ -31,19 +31,23 @@
 					<table id="list" class="table table-striped table-hover table-bordered" style="width: 100%;">
 						<thead>
 							<tr>
-								<th style="width: 5%;"></th>
-								<th style="width: 30%; text-align: center;">NRP</th>
-								<th style="width: 40%; text-align: center;">Nama Asisten</th>
-								<th style="width: 25%; text-align: center;">Action</th>
+								<th style="width: 5%;">No.</th>
+								<th style="width: 20%; text-align: center;">NRP</th>
+								<th style="width: 25%; text-align: center;">Nama Asisten</th>
+								<th style="width: 15%; text-align: center;">No. HP</th>
+								<th style="width: 20%; text-align: center;">Email</th>
+								<th style="width: 15%; text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody>
 						
 						@foreach ($data as $datas)
 							<tr>
-								<td></td>
-								<td>{{$datas->nrp}}</td>
+								<td style="text-align: center;"></td>
+								<td style="text-align: center;">{{$datas->nrp}}</td>
 								<td>{{$datas->nama}}</td>
+								<td style="text-align: center;">{{$datas->nohp}}</td>
+								<td>{{$datas->email}}</td>
 								<td style="text-align: center;">
 									<div class="row" style="margin: 0px;">
 									<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('master.asisten.edit', $datas->id)}}">

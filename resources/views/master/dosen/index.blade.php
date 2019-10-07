@@ -31,7 +31,7 @@
 					<table id="list" class="table table-striped table-hover table-bordered" style="width: 100%;">
 						<thead>
 							<tr>
-								<th style="width: 5%;"></th>
+								<th style="width: 5%;">No.</th>
 								<th style="width: 70%; text-align: center;">Nama Dosen</th>
 								<th style="width: 25%; text-align: center;">Action</th>
 							</tr>
@@ -40,7 +40,7 @@
 						
 						@foreach ($data as $datas)
 							<tr>
-								<td></td>
+								<td style="text-align: center;"></td>
 								<td>{{$datas->nama}}</td>
 								<td style="text-align: center;">
 									<div class="row" style="margin: 0px;">
