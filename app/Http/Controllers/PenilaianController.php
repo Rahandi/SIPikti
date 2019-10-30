@@ -13,6 +13,8 @@ use App\masterMK;
 use App\masterDosen;
 use App\masterAsisten;
 
+use App\Exports\NilaiExport;
+
 class PenilaianController extends Controller
 {
     public function __construct()
@@ -96,6 +98,6 @@ class PenilaianController extends Controller
         $kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $mk = masterMK::find($master_nilai->id_mk)->nama;
 
-        return Excel::download(new NilaiExport($request->id), $termin . ' ' . $kelas . ' ' . $mk);
+        return Excel::download(new NilaiExport($request->id), $termin . ' ' . $kelas . ' ' . $mk . '.xlsx');
     }
 }

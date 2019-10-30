@@ -9,13 +9,13 @@ use App\masterKelas;
 use App\masterMK;
 use App\masterDosen;
 use App\masterAsisten;
-use App\mahasiswa_jadwal;
+use App\mahasiswaJadwal;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class RekapExport implements FromCollection, WithHeadings
+class NilaiExport implements FromCollection, WithHeadings
 {
     use Exportable;
 
@@ -27,7 +27,7 @@ class RekapExport implements FromCollection, WithHeadings
     public function collection()
     {
         $nama_penilaian = explode(',', $this->master_nilai->nama_penilaian);
-        $rows = $mahasiswa_jadwal::where('jadwal_id', $this->master_nilai->id_jadwal)->get();
+        $rows = mahasiswaJadwal::where('jadwal_id', $this->master_nilai->id_jadwal)->get();
         $data = array();
         for ($i=0; $i < count($rows); $i++)
         {
