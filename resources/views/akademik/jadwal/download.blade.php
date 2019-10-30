@@ -66,7 +66,10 @@
 				</thead>
 				<tbody>
 				@foreach ($data->mahasiswa as $individu)
-					<tr style="page-break-after: always;">
+					<tr 
+					@if ($individu->urut == 15)
+						style="page-break-after: always;"
+					@endif>
 						<td>{{$individu->urut}}</td>
 						<td>{{$individu->nrp}}</td>
 						<td style="text-align: left;">{{$individu->nama}}</td>
@@ -80,25 +83,6 @@
 		</div>
 	</div>
 
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
-<script>
-	$(document).ready(function(){
-		var t = $('#list').DataTable( {
-			"columnDefs": [ {
-				"searchable": false,
-				"orderable": false,
-				"targets": 0,
-			} ],
-			"order": [[ 1, 'asc' ]],
-		} );
-
-		t.on( 'order.dt search.dt', function () {
-			t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-				cell.innerHTML = i+1;
-			} );
-		} ).draw();
-	});
-</script>
 </body>
 </html>

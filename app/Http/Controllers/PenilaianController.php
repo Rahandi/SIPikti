@@ -25,7 +25,7 @@ class PenilaianController extends Controller
         $jadwal = jadwal::all();
         foreach ($jadwal as $item)
         {
-            $temp = array();
+            $temp = new \stdClass();
             $temp->id = $item->id;
             $temp->termin = $item->termin;
             $temp->kelas = masterKelas::find($item->id_kelas)->nama;
@@ -50,6 +50,7 @@ class PenilaianController extends Controller
 
     public function store(Request $request)
     {
+        dd($request);
         $master_nilai = new masterNilai();
         $master_nilai->id_jadwal = $request->id_jadwal;
         $master_nilai->jumlah_penilaian = $request->jumlah_penilaian;

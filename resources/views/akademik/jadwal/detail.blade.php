@@ -93,7 +93,7 @@
 						<table id="list2" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
 							<thead>
 								<tr>
-									<th style="width: 5%;"></th>
+									<th style="width: 5%;">No</th>
 									<th style="width: 25%;text-align: center;">NRP</th>
 									<th style="width: 45%;text-align: center;">Nama</th>
 									<th style="width: 25%;text-align: center;">Action</th>
