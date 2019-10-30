@@ -27,6 +27,7 @@ class NilaiExport implements FromCollection, WithHeadings
     public function collection()
     {
         $nama_penilaian = explode(',', $this->master_nilai->nama_penilaian);
+        $persen_penilaian = explode(',', $this->master_nilai->persen_penilaian);
         $rows = mahasiswaJadwal::where('jadwal_id', $this->master_nilai->id_jadwal)->get();
         $data = array();
         for ($i=0; $i < count($rows); $i++)
@@ -37,9 +38,9 @@ class NilaiExport implements FromCollection, WithHeadings
             $temp['No.'] = $i + 1;
             $temp['NRP'] = $individu->nrp;
             $temp['Nama'] = $individu->nama;
-
-            foreach ($nama_penilaian as $nama) {
-                $temp[$nama] = '';
+            
+            for ($i=0; $i < count($nama_penilaian); $i++) {
+                $temp[$nama_penilaian[$i] . ' (' . $persen_penilaian[$i] . ')'] = '';
             }
 
             array_push($data, $temp);
@@ -50,7 +51,12 @@ class NilaiExport implements FromCollection, WithHeadings
 
     public function headings(): array
     {
-        $head = array_merge(['No.', 'NRP', 'Nama'], explode(',', $this->master_nilai->nama_penilaian));
+        $head = ['No.', 'NRP', 'Nama'];
+        $nama_penilaian = explode(',', $this->master_nilai->nama_penilaian);
+        $persen_penilaian = explode(',', $this->master_nilai->persen_penilaian);
+        for ($i=0; $i < count($nama_penilaian); $i++) { 
+            array_push($head, $nama_penilaian[$i] . ' (' . $persen_penilaian[$i] . ')');
+        }
         return $head;
     }
 }
