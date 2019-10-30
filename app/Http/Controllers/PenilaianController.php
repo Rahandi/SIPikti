@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 use App\nilai;
 use App\jadwal;
@@ -45,19 +46,56 @@ class PenilaianController extends Controller
 
             array_push($data, $temp);
         }
-        return view('akademik.nilai.index', compact('data'));
+
+        $list = array();
+        $master_nilai = masterNilai::all();
+        foreach($master_nilai as $row)
+        {
+            $jadwal = jadwal::find($row->id_jadwal);
+
+            $temp = new \stdClass();
+            $temp->id = $row->id;
+            $temp->termin = $row->termin;
+            $temp->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+            $temp->mata_kuliah = masterMK::find($row->id_mk)->nama;
+            $temp->jml = $row->jumlah_penilaian;
+
+            array_push($list, $temp);
+
+        }
+        return view('akademik.nilai.index', ['data' => $data, 'list' => $list]);
     }
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $master_nilai = new masterNilai();
-        $master_nilai->id_jadwal = $request->id_jadwal;
-        $master_nilai->jumlah_penilaian = $request->jumlah_penilaian;
-        $master_nilai->nama_penilaian = serialize($request->nama_penilaian);
-        $master_nilai->persen_penilaian = serialize($request->persen_penilaian);
+
+        $kelas = explode(',', $request->kelas);
+
+        $master_nilai->termin = $kelas[0];
+        $master_nilai->id_jadwal = $kelas[1];
+        $master_nilai->jumlah_penilaian = $request->jml;
+        $master_nilai->nama_penilaian = implode(',', $request->nama_penilaian);
+        $master_nilai->persen_penilaian = implode(',', $request->prosentase);
+
+        $jadwal = jadwal::find($master_nilai->id_jadwal);
+        $master_nilai->id_mk = explode(',',$jadwal->ids_mk)[$kelas[2]];
+
         $master_nilai->save();
 
         return redirect()->back();
+    }
+
+    public function download(Request $request)
+    {
+        $master_nilai = masterNilai::find($request->id);
+        $jadwal = jadwal::find($master_nilai->id_jadwal);
+
+        $termin = $master_nilai->termin;
+        $kelas = masterKelas::find($jadwal->id_kelas)->nama;
+        $mk = masterMK::find($master_nilai->id_mk)->nama;
+
+        return Excel::download(new NilaiExport($request->id), $termin . ' ' . $kelas . ' ' . $mk);
     }
 }
