@@ -39,8 +39,8 @@ class NilaiExport implements FromCollection, WithHeadings
             $temp['NRP'] = $individu->nrp;
             $temp['Nama'] = $individu->nama;
             
-            for ($i=0; $i < count($nama_penilaian); $i++) {
-                $temp[$nama_penilaian[$i] . ' (' . $persen_penilaian[$i] . ')'] = '';
+            for ($j=0; $j < count($nama_penilaian); $j++) {
+                $temp[$nama_penilaian[$j] . ' (' . $persen_penilaian[$j] . '%)'] = '';
             }
 
             array_push($data, $temp);
@@ -55,7 +55,7 @@ class NilaiExport implements FromCollection, WithHeadings
         $nama_penilaian = explode(',', $this->master_nilai->nama_penilaian);
         $persen_penilaian = explode(',', $this->master_nilai->persen_penilaian);
         for ($i=0; $i < count($nama_penilaian); $i++) { 
-            array_push($head, $nama_penilaian[$i] . ' (' . $persen_penilaian[$i] . ')');
+            array_push($head, $nama_penilaian[$i] . ' (' . $persen_penilaian[$i] . '%)');
         }
         return $head;
     }

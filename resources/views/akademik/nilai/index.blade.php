@@ -75,7 +75,7 @@
 						<tbody>
 							@foreach ($list as $row)
 							<tr>
-								<td>1</td>
+								<td></td>
 								<td>{{$row->termin}}</td>
 								<td>{{$row->kelas}}</td>
 								<td style="text-align: left;">{{$row->mata_kuliah}}</td>
