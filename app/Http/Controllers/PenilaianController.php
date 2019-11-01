@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 use App\nilai;
 use App\jadwal;
@@ -99,5 +100,12 @@ class PenilaianController extends Controller
         $mk = masterMK::find($master_nilai->id_mk)->nama;
 
         return Excel::download(new NilaiExport($request->id), $termin . ' ' . $kelas . ' ' . $mk . '.xlsx');
+    }
+
+    public function upload(Request $request)
+    {
+        $file = $request->file('nilai');
+
+        $data = (new FastExcel)->import();   
     }
 }
