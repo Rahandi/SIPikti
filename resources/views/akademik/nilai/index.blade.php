@@ -55,8 +55,11 @@
 						<tbody>
 						</tbody>
 					</table>
+					<div>
+						<p id="error" style="color:red"></p>
+					</div>
 					<div style="text-align: center; margin-top: 2%;">
-						<a><button type="submit" style="width: 20%;" class="btn btn-info">Submit</button></a>
+						<a><button type="submit" style="width: 20%;" class="btn btn-info" id="submitmasternilai" disabled="disabled">Submit</button></a>
 					</div>
 				</form><br><br>
 				<h4 class="box-title m-b-0">List Penilaian</h4><br>
@@ -89,7 +92,7 @@
 											<a data-toggle="tooltip" data-placement="top" title="Download Template Penilaian"><button type="submit" class="btn btn-primary">Download</button></a>
 										</form>
 										</div>
-										<a class="col-md-6" data-toggle="tooltip" data-placement="top" title="Upload Penilaian"><button type="button" id="tombolUp" data-toggle="modal" class="btn btn-danger" data-target="#modalUpload">Upload</button></a>
+										<a class="col-md-6" data-toggle="tooltip" data-placement="top" title="Upload Penilaian"><button type="button" id="tombolUp" data-toggle="modal" class="btn btn-danger" data-target="#modalUpload" value="{{$row->id}}">Upload</button></a>
 									</div>
 								</td>
 							</tr>
@@ -105,7 +108,7 @@
 							class="w3-button w3-display-topright w3-round-large">&times;</span>
 							<h2>Upload</h2>
 						</header>
-						<form action="" method="POST">
+						<form action="{{route('nilai.upload')}}" method="POST" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<div class="w3-container" style="margin-top: 2%;">
 							<input type="file" name="nilai">
@@ -129,6 +132,28 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
 	<script>
+		function hitung_persenan(){
+			let persenan = document.getElementsByName('prosentase[]')
+			let value = 0
+			for(i=0; i < persenan.length; i++){
+				let integer = parseInt(persenan[i].value, 10)
+				value += (integer) ? integer : 0
+			}
+			console.log(value)
+			if(value == 100){
+				document.getElementById("submitmasternilai").disabled=""
+				document.getElementById('error').innerHTML = ""
+			}
+			else if(value < 100){
+				document.getElementById("submitmasternilai").disabled="disabled"
+				document.getElementById('error').innerHTML = "*jumlah prosentase (".concat(value, ") kurang dari 100")
+			}
+			else{
+				document.getElementById("submitmasternilai").disabled="disabled"
+				document.getElementById('error').innerHTML = "*jumlah prosentase (".concat(value, ") lebih dari 100")
+			}
+		}
+
 		$(document).ready(function(){
 			var t = $('#list2').DataTable( {
 				"columnDefs": [ {
@@ -150,6 +175,8 @@
 		$(document).ready(function(){
 			$(document).on('click', '#tombolUp', function () {
 				console.log('open modal');
+				Id = $(this).val();
+				document.getElementById("valueId").value = Id;
 			});
 		});
 		$( document ).ready(function() {
@@ -159,7 +186,7 @@
 				// console.log(from);
 				$('#tableMK tbody').empty();
 				for (var i = 1; i <= from; i++) {
-					$('#tableMK tbody').append("<tr><td>"+i+"</td><td><input type='number' class='form-control' name='prosentase[]' required='' placeholder='25'></td><td><input type='text' name='nama_penilaian[]' required='' placeholder='Evaluasi Tengah Semester' class='form-control'></td></tr>");
+					$('#tableMK tbody').append("<tr><td>"+i+"</td><td><input onchange='hitung_persenan()' type='number' class='form-control' name='prosentase[]' required='' placeholder='25'></td><td><input type='text' name='nama_penilaian[]' required='' placeholder='Evaluasi Tengah Semester' class='form-control'></td></tr>");
 				}
 			});
 		});

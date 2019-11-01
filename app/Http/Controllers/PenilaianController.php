@@ -8,6 +8,7 @@ use Rap2hpoutre\FastExcel\FastExcel;
 
 use App\nilai;
 use App\jadwal;
+use App\mahasiswa;
 use App\masterNilai;
 use App\masterKelas;
 use App\masterMK;
@@ -101,22 +102,59 @@ class PenilaianController extends Controller
         $kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $mk = masterMK::find($master_nilai->id_mk)->nama;
 
-        return Excel::download(new NilaiExport($request->id), $termin . ' ' . $kelas . ' ' . $mk . '.xlsx');
+        return Excel::download(new NilaiExport($request->id), $termin . '_' . $kelas . '_' . $mk . '.xlsx');
     }
 
     public function upload(Request $request)
     {
-        dd($request);
-        $termin = $request->termin;
-        $kelas = $request->kelas;
-        $matkul = $request->matkul;
+        $master_nilai = masterNilai::find($request->id);
+        $master_nilai->nama_penilaian = explode(',', $master_nilai->nama_penilaian);
+        $master_nilai->persen_penilaian = explode(',', $master_nilai->persen_penilaian);
+        $jadwal = jadwal::find($master_nilai->id_jadwal);
+
+        $termin = $master_nilai->termin;
+        $kelas = masterKelas::find($jadwal->id_kelas)->nama;
+        $matkul = masterMK::find($master_nilai->id_mk)->nama;
         $file = $request->file('nilai');
         $extension = $file->getClientOriginalExtension();
         $filename = $termin . '_' . $kelas . '_' . $matkul . '.' . $extension;
+
+        if($filename != $file->getClientOriginalName())
+        {
+            return 'file salah';
+        }
+
         $path = \storage_path('nilai');
         $file->move($path, $filename);
         $filepath = \storage_path('nilai/' . $filename);
 
         $data = (new FastExcel)->import($filepath);
+        $name = [];
+        $persen = [];
+        for ($i=0; $i < $master_nilai->jumlah_penilaian; $i++) {
+            $nama = $master_nilai->nama_penilaian[$i] . ' ' . '(' . $master_nilai->persen_penilaian[$i] . '%)';
+            array_push($name, $nama);
+            array_push($persen, $master_nilai->persen_penilaian[$i]);
+        }
+
+        foreach ($data as $row) {
+            $mahasiswa = mahasiswa::where('nrp', $row['NRP'])->get()->first();
+
+            $nilai_total = 0;
+            $satuan = [];
+            for ($i=0; $i < count($name); $i++) { 
+                array_push($satuan, $row[$name[$i]]);
+                $nilai_total += $row[$name[$i]] * $persen[$i] / 100.0;
+            }
+
+            $nilai = new nilai();
+            $nilai->id_master_nilai = $request->id;
+            $nilai->id_mahasiswa = $mahasiswa->id;
+            $nilai->nilai = implode(',', $satuan);
+            $nilai->nilai_total = $nilai_total;
+            $nilai->save();
+        }
+
+        return redirect()->back();
     }
 }
