@@ -58,6 +58,8 @@ class PenilaianController extends Controller
 
             $temp = new \stdClass();
             $temp->id = $row->id;
+            $temp->id_kelas = $jadwal->id_kelas;
+            $temp->id_mk = $row->id_mk;
             $temp->termin = $row->termin;
             $temp->kelas = masterKelas::find($jadwal->id_kelas)->nama;
             $temp->mata_kuliah = masterMK::find($row->id_mk)->nama;
@@ -104,8 +106,17 @@ class PenilaianController extends Controller
 
     public function upload(Request $request)
     {
+        dd($request);
+        $termin = $request->termin;
+        $kelas = $request->kelas;
+        $matkul = $request->matkul;
         $file = $request->file('nilai');
+        $extension = $file->getClientOriginalExtension();
+        $filename = $termin . '_' . $kelas . '_' . $matkul . '.' . $extension;
+        $path = \storage_path('nilai');
+        $file->move($path, $filename);
+        $filepath = \storage_path('nilai/' . $filename);
 
-        $data = (new FastExcel)->import();   
+        $data = (new FastExcel)->import($filepath);
     }
 }

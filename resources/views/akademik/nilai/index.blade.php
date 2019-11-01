@@ -108,7 +108,7 @@
 						<form action="" method="POST">
 						{{ csrf_field() }}
 						<div class="w3-container" style="margin-top: 2%;">
-							<input type="file" name="fileup">
+							<input type="file" name="nilai">
 						</div>
 						<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
 							<input type="hidden" name="id" id="valueId" value="">
