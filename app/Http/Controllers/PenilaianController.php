@@ -121,7 +121,7 @@ class PenilaianController extends Controller
 
         if($filename != $file->getClientOriginalName())
         {
-            return 'file salah';
+            return redirect()->back()->with(["success"=>0]);
         }
 
         $path = \storage_path('nilai');
@@ -155,6 +155,6 @@ class PenilaianController extends Controller
             $nilai->save();
         }
 
-        return redirect()->back();
+        return redirect()->back()->with(["success"=>1]);
     }
 }
