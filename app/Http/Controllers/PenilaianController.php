@@ -155,7 +155,7 @@ class PenilaianController extends Controller
                 $nilai_total += $row[$name[$i]] * $persen[$i] / 100.0;
             }
 
-            $nilai = new nilai();
+            $nilai = nilai::findOrCreate($request->id, $mahasiswa->id);
             $nilai->id_master_nilai = $request->id;
             $nilai->id_mahasiswa = $mahasiswa->id;
             $nilai->nilai = implode(',', $satuan);
