@@ -15,8 +15,8 @@ class CreateNilai extends Migration
     {
         Schema::create('nilai', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->tinyInteger('id_master_nilai');
-            $table->tinyInteger('id_mahasiswa');
+            $table->integer('id_master_nilai');
+            $table->integer('id_mahasiswa');
             $table->text('nilai');
             $table->text('nilai_total')->comment = 'persen dari master_nilai';
             $table->timestamps();

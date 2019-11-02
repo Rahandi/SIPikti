@@ -102,11 +102,14 @@ class PenilaianController extends Controller
         $kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $mk = masterMK::find($master_nilai->id_mk)->nama;
 
-        return Excel::download(new NilaiExport($request->id), $termin . '_' . $kelas . '_' . $mk . '.xlsx');
+        $filename = $termin . '_' . $kelas . '_' . $mk . '.xlsx';
+        $filename = preg_replace('/[^a-zA-Z0-9_ .]/', '', $filename);
+        return Excel::download(new NilaiExport($request->id), $filename);
     }
 
     public function upload(Request $request)
     {
+        libxml_disable_entity_loader(false);
         $master_nilai = masterNilai::find($request->id);
         $master_nilai->nama_penilaian = explode(',', $master_nilai->nama_penilaian);
         $master_nilai->persen_penilaian = explode(',', $master_nilai->persen_penilaian);
@@ -118,6 +121,7 @@ class PenilaianController extends Controller
         $file = $request->file('nilai');
         $extension = $file->getClientOriginalExtension();
         $filename = $termin . '_' . $kelas . '_' . $matkul . '.' . $extension;
+        $filename = preg_replace('/[^a-zA-Z0-9_ .]/', '', $filename);
 
         if($filename != $file->getClientOriginalName())
         {
@@ -142,7 +146,8 @@ class PenilaianController extends Controller
 
             $nilai_total = 0;
             $satuan = [];
-            for ($i=0; $i < count($name); $i++) { 
+            for ($i=0; $i < count($name); $i++) {
+                $row[$name[$i]] = ($row[$name[$i]])?$row[$name[$i]]:0;
                 array_push($satuan, $row[$name[$i]]);
                 $nilai_total += $row[$name[$i]] * $persen[$i] / 100.0;
             }
