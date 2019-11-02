@@ -119,13 +119,16 @@ class PenilaianController extends Controller
         $kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $matkul = masterMK::find($master_nilai->id_mk)->nama;
         $file = $request->file('nilai');
+        if(!$file){
+            return redirect()->back()->with("status", "Tidak ada file yang di upload");
+        }
         $extension = $file->getClientOriginalExtension();
         $filename = $termin . '_' . $kelas . '_' . $matkul . '.' . $extension;
         $filename = preg_replace('/[^a-zA-Z0-9_ .]/', '', $filename);
 
         if($filename != $file->getClientOriginalName())
         {
-            return redirect()->back()->with(["success"=>0]);
+            return redirect()->back()->with("status", "File salah");
         }
 
         $path = \storage_path('nilai');
@@ -160,6 +163,6 @@ class PenilaianController extends Controller
             $nilai->save();
         }
 
-        return redirect()->back()->with(["success"=>1]);
+        return redirect()->back()->with("status", "Upload Berhasil");
     }
 }
