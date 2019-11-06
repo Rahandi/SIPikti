@@ -90,24 +90,35 @@
 								<th style="width: 25%;text-align: center;">Action</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody style="width:100%;">
 							@foreach ($list as $row)
-							<tr>
+							<tr style="width:100%;">
 								<td></td>
 								<td>{{$row->termin}}</td>
 								<td>{{$row->kelas}}</td>
 								<td style="text-align: left;">{{$row->mata_kuliah}}</td>
 								<td>{{$row->jml}}</td>
 								<td>
-									<div>
+									<div style="width:100%;">
 										<div class="col-md-6">
 										<form action="{{ route('nilai.download') }}" method="POST">
 											@csrf
 											<input type="hidden" name="id" value="{{$row->id}}">
-											<a data-toggle="tooltip" data-placement="top" title="Download Template Penilaian"><button type="submit" class="btn btn-primary">Download</button></a>
+											<a data-toggle="tooltip" data-placement="top" title="Download Template Penilaian"><button style="width:100%;" type="submit" class="btn btn-primary">Download</button></a>
 										</form>
 										</div>
-										<a class="col-md-6" data-toggle="tooltip" data-placement="top" title="Upload Penilaian"><button type="button" id="tombolUp" data-toggle="modal" class="btn btn-danger" data-target="#modalUpload" value="{{$row->id}}">Upload</button></a>
+										<a class="col-md-6" data-toggle="tooltip" data-placement="top" title="Upload Penilaian"><button type="button" id="tombolUp" style="width:100%;" data-toggle="modal" class="btn btn-warning" data-target="#modalUpload" value="{{$row->id}}">Upload</button></a>
+									</div>
+									<div style="margin:5%;"><br></div>
+									<div style="width:100%;">
+										<div class="col-md-6">
+										<form action="" method="POST">
+											@csrf
+											<input type="hidden" name="id" value="{{$row->id}}">
+											<a data-toggle="tooltip" data-placement="top" title="Hasil Penilaian"><button type="submit" class="btn btn-success" style="width:100%;">Hasil</button></a>
+										</form>
+										</div>
+										<a class="col-md-6" data-toggle="tooltip" data-placement="top" title="Hapus Penilaian"><button style="width:100%;" type="button" id="tombolDel" data-toggle="modal" class="btn btn-danger" data-target="#modalDelete" value="{{$row->id}}">Hapus</button></a>
 									</div>
 								</td>
 							</tr>
@@ -129,7 +140,27 @@
 							<input type="file" name="nilai">
 						</div>
 						<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
-							<input type="hidden" name="id" id="valueId" value="">
+							<input type="hidden" name="id" id="UpValueId" value="">
+							<button type="submit" class="btn btn-success" id="UploadButton" style="margin: 1%;">Submit</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Batal</button>
+						</footer>
+						</form>
+					</div>
+				</div>
+				<div id="modalDelete" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
+					<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
+						<header class="w3-container w3-light-grey w3-round-large"> 
+							<span 
+							class="w3-button w3-display-topright w3-round-large" data-dismiss="modal">&times;</span>
+							<h2>Konfirmasi</h2>
+						</header>
+						<div class="w3-container" style="margin-top: 2%;">
+							<p>Apakah Anda yakin akan menghapus data penilaian ini?</p>
+						</div>
+						<form action="{{ route('nilai.delete') }}" method="POST" enctype="multipart/form-data">
+						{{ csrf_field() }}
+						<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
+							<input type="hidden" name="id" id="DelValueId" value="">
 							<button type="submit" class="btn btn-success" id="DeleteButton" style="margin: 1%;">Submit</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Batal</button>
 						</footer>
@@ -196,7 +227,14 @@
 			$(document).on('click', '#tombolUp', function () {
 				console.log('open modal');
 				Id = $(this).val();
-				document.getElementById("valueId").value = Id;
+				document.getElementById("UpValueId").value = Id;
+			});
+		});
+		$(document).ready(function(){
+			$(document).on('click', '#tombolDel', function () {
+				console.log('open modal');
+				Id = $(this).val();
+				document.getElementById("DelValueId").value = Id;
 			});
 		});
 		function generateJml(){
