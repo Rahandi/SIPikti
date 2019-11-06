@@ -77,6 +77,7 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::post('/store', 'PenilaianController@store')->name('nilai.store');
         Route::post('/download', 'PenilaianController@download')->name('nilai.download');
         Route::post('/upload', 'PenilaianController@upload')->name('nilai.upload');
+        Route::post('/delete', 'PenilaianController@delete')->name('nilai.delete');
     });
 });
 

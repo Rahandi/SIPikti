@@ -165,4 +165,17 @@ class PenilaianController extends Controller
 
         return redirect()->back()->with("status", "Upload Berhasil");
     }
+
+    public function delete(Request $request)
+    {
+        $master_nilai = masterNilai::find($request->id);
+        $master_nilai->delete();
+
+        $nilais = nilai::where('id_master_nilai', $request->id)->get();
+        foreach ($nilais as $nilai ) {
+            $nilai->delete();
+        }
+
+        return redirect()->back();
+    }
 }
