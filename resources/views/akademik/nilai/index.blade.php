@@ -19,6 +19,21 @@
 @endsection
 
 @section('content')
+	<div class="row" style="text-align: center;">
+	@if (session('status'))
+	<div id="modalSuccess" class="modal fade" role="dialog" style="z-index: 9999;">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">{{ session('status') }}</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	@endif
+</div>
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="white-box">
@@ -41,7 +56,7 @@
 					</div>
 					<div class="form-group">
 						<label>Jumlah Kolom Penilaian</label>
-						<input type="text" class="form-control" name="jml" id="jml" placeholder="4" required style="width: 10%;">
+						<input type="text" class="form-control" name="jml" id="jml" placeholder="4" required style="width: 10%;" onchange="generateJml()">
 					</div>
 					<label>Detail Penilaian</label>
 					<table style="width: 100%;text-align: center;" id="tableMK" border="">
@@ -132,6 +147,11 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
 	<script>
+		$(document).ready(function() {
+			$("#modalSuccess").modal({
+				fadeDuration: 100
+			});
+		});
 		function hitung_persenan(){
 			let persenan = document.getElementsByName('prosentase[]')
 			let value = 0
@@ -179,16 +199,14 @@
 				document.getElementById("valueId").value = Id;
 			});
 		});
-		$( document ).ready(function() {
-			$('#jml').focusout(function(){
-				var from = $('#jml').val();
-				console.log("change!");
-				// console.log(from);
-				$('#tableMK tbody').empty();
-				for (var i = 1; i <= from; i++) {
-					$('#tableMK tbody').append("<tr><td>"+i+"</td><td><input onchange='hitung_persenan()' type='number' class='form-control' name='prosentase[]' required='' placeholder='25'></td><td><input type='text' name='nama_penilaian[]' required='' placeholder='Evaluasi Tengah Semester' class='form-control'></td></tr>");
-				}
-			});
-		});
+		function generateJml(){
+			var from = $('#jml').val();
+			console.log("change!");
+			// console.log(from);
+			$('#tableMK tbody').empty();
+			for (var i = 1; i <= from; i++) {
+				$('#tableMK tbody').append("<tr><td>"+i+"</td><td><input onchange='hitung_persenan()' type='number' class='form-control' name='prosentase[]' required='' placeholder='25'></td><td><input type='text' name='nama_penilaian[]' required='' placeholder='Evaluasi Tengah Semester' class='form-control'></td></tr>");
+			}
+		};
 	</script>
 @endsection
