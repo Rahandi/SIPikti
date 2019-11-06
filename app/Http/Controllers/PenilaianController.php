@@ -145,8 +145,8 @@ class PenilaianController extends Controller
         }
 
         foreach ($data as $row) {
-            $mahasiswa = mahasiswa::where('nrp', $row['NRP'])->get()->first();
-
+            $mahasiswa = mahasiswa::where('nrp', strval($row['NRP']))->get()->first();
+	    //dd(mahasiswa::where('nrp', strval($row['NRP']))->get());
             $nilai_total = 0;
             $satuan = [];
             for ($i=0; $i < count($name); $i++) {
