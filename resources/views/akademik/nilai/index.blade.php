@@ -112,7 +112,7 @@
 									<div style="margin:5%;"><br></div>
 									<div style="width:100%;">
 										<div class="col-md-6">
-										<form action="" method="POST">
+										<form action="{{ route('nilai.total') }}" method="POST">
 											@csrf
 											<input type="hidden" name="id" value="{{$row->id}}">
 											<a data-toggle="tooltip" data-placement="top" title="Hasil Penilaian"><button type="submit" class="btn btn-success" style="width:100%;">Hasil</button></a>

@@ -16,6 +16,7 @@ use App\masterDosen;
 use App\masterAsisten;
 
 use App\Exports\NilaiExport;
+use App\Exports\NilaiAkhirExport;
 
 class PenilaianController extends Controller
 {
@@ -177,5 +178,19 @@ class PenilaianController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function nilai_total(Request $request)
+    {
+        $master_nilai = masterNilai::find($request->id);
+        $jadwal = jadwal::find($master_nilai->id_jadwal);
+
+        $termin = $master_nilai->termin;
+        $kelas = masterKelas::find($jadwal->id_kelas)->nama;
+        $mk = masterMK::find($master_nilai->id_mk)->nama;
+
+        $filename = $termin . '_' . $kelas . '_' . $mk . '_nilai_akhir' . '.xlsx';
+        $filename = preg_replace('/[^a-zA-Z0-9_ .]/', '', $filename);
+        return Excel::download(new NilaiAkhirExport($request->id), $filename);
     }
 }
