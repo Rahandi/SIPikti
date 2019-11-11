@@ -14,7 +14,7 @@ class AddSksToMasterMk extends Migration
     public function up()
     {
         Schema::table('master_mk', function (Blueprint $table) {
-            $table->string('tanggal')->after('semester')->nullable();            
+            $table->string('sks')->after('semester')->nullable();            
         });
     }
 
