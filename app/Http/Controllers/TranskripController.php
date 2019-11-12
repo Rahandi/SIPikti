@@ -24,8 +24,8 @@ class TranskripController extends Controller
 
     public function sementara(Request $request)
     {
-        $mahasiswa = mahasiswa::find(7);
-        $nilais = nilai::where('id_mahasiswa', 7)->get();
+        $mahasiswa = mahasiswa::find($request->id);
+        $nilais = nilai::where('id_mahasiswa', $request->id)->get();
 
         $data = new \stdClass();
         $data->nama = $mahasiswa->nama;
