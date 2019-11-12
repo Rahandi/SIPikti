@@ -33,7 +33,8 @@
 							<tr>
 								<th style="width: 5%;">No.</th>
 								<th style="width: 50%; text-align: center;">Nama Mata Kuliah</th>
-								<th style="width: 20%; text-align: center;">Termin</th>
+								<th style="width: 10%; text-align: center;">Termin</th>
+								<th style="width: 10%; text-align: center;">SKS</th>
 								<th style="width: 25%; text-align: center;">Action</th>
 								<th style="display: none;">created</th>
 							</tr>
@@ -45,6 +46,7 @@
 								<td style="text-align: center;"></td>
 								<td class="sorting_1">{{$datas->nama}}</td>
 								<td style="text-align: center;">{{$datas->semester}}</td>
+								<td style="text-align: center;">{{$datas->sks}}</td>
 								<td style="text-align: center;">
 									<div class="row" style="margin: 0px;">
 									<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('master.mk.edit', $datas->id)}}">
