@@ -19,7 +19,7 @@ class TranskripController extends Controller
     public function index()
     {
         $data = mahasiswa::all();
-        return view('akademik.transkrip.index', compac('data'));
+        return view('akademik.transkrip.index', compact('data'));
     }
 
     public function sementara(Request $request)
@@ -27,16 +27,16 @@ class TranskripController extends Controller
         $mahasiswa = mahasiswa::find(7);
         $nilais = nilai::where('id_mahasiswa', 7)->get();
 
-        $return_nilai = new \stdClass();
-        $return_nilai->nama = $mahasiswa->nama;
-        $return_nilai->nrp = $mahasiswa->nrp;
-        $return_nilai->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
+        $data = new \stdClass();
+        $data->nama = $mahasiswa->nama;
+        $data->nrp = $mahasiswa->nrp;
+        $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
         
         $nrp_split = str_split($mahasiswa->nrp);
-        $return_nilai->tahun_masuk = '20' . $nrp_split[2] . $nrp_split[3];
-        $return_nilai->tahun_lulus = '20' . ((int)($nrp_split[2] . $nrp_split[3]) + 1);
+        $data->tahun_masuk = '20' . $nrp_split[2] . $nrp_split[3];
+        $data->tahun_lulus = '20' . ((int)($nrp_split[2] . $nrp_split[3]) + 1);
         
-        $return_nilai->nilai = array();
+        $data->nilai = array();
         $total = 0;
         $hitung = 0;
         $total_sks = 0;
@@ -50,15 +50,16 @@ class TranskripController extends Controller
             $temp->sks = $master_mk->sks;
             $temp->nilai = ((float)$nilai->nilai_total / 100.0) * 4;
             $temp->nilai_huruf = $this->parse_nilai($temp->nilai);
-            array_push($return_nilai->nilai, $temp);
+            array_push($data->nilai, $temp);
 
             $total += $temp->nilai;
             $hitung += 1;
             $total_sks += $temp->sks;
         }
-        $return_nilai->ipk = number_format((float)($total / $hitung), 2, '.', '');
-        $return_nilai->total_sks = $total_sks;
-        dd($return_nilai);
+        $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
+        $data->total_sks = $total_sks;
+        
+        return view('akademik.transkrip.sementara', compact('data'));
     }
 
     private function parse_nilai($nilai){

@@ -82,7 +82,7 @@ Route::group(['prefix' => 'akademik'], function () {
     });
 
     Route::group(['prefix' => 'transkrip'], function () {
-        Route::get('/', 'TranskripController@index')->name('transkrip.index');
+        Route::get('/', 'TranskripController@index')->name('transkrip');
 
         Route::get('/download', 'TranskripController@sementara')->name('transkrip.sementara');
     });
