@@ -80,6 +80,12 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::post('/delete', 'PenilaianController@delete')->name('nilai.delete');
         Route::post('/nilai_total', 'PenilaianController@nilai_total')->name('nilai.total');
     });
+
+    Route::group(['prefix' => 'transkrip'], function () {
+        Route::get('/', 'TranskripController@index')->name('transkrip.index');
+
+        Route::post('/download', 'TranskripController@download')->name('transkrip.download');
+    });
 });
 
 Route::group(['prefix' => 'keuangan'], function () {
