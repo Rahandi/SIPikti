@@ -50,9 +50,13 @@
                                     <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-TA-KP" href="">
                                         <button type="button" class="btn btn-success">TA-KP</button>
                                     </a>
-                                    <a data-toggle="tooltip" data-placement="top" title="Transkrip Sementara" href="">
-                                        <button type="button" class="btn btn-info">Sementara</button>
-                                    </a>
+                                    <form action="{{ route('transkrip.sementara') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$individu->id}}">
+                                        <a data-toggle="tooltip" data-placement="top" title="Transkrip Sementara">
+                                            <button type="submit" class="btn btn-info">Sementara</button>
+                                        </a>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

@@ -84,7 +84,7 @@ Route::group(['prefix' => 'akademik'], function () {
     Route::group(['prefix' => 'transkrip'], function () {
         Route::get('/', 'TranskripController@index')->name('transkrip');
 
-        Route::get('/download', 'TranskripController@sementara')->name('transkrip.sementara');
+        Route::post('/download', 'TranskripController@sementara')->name('transkrip.sementara');
     });
 });
 
@@ -160,3 +160,7 @@ Route::get('/updategelombang', 'MahasiswaController@update_gelombang');
 Route::post('/daftaroke','PendaftarController@storekhusus');
 
 Auth::routes();
+
+Route::get('/keuangan/toga', function () {
+    return view('keuangan.toga.index');
+})->name('toga');
