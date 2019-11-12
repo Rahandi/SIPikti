@@ -22,18 +22,24 @@ class TranskripController extends Controller
         return view('akademik.transkrip.index', compac('data'));
     }
 
-    public function download(Request $request)
+    public function sementara(Request $request)
     {
-        $mahasiswa = mahasiswa::find($request->id);
-        $nilais = nilai::where('id_mahasiswa', $request->id)->get();
+        $mahasiswa = mahasiswa::find(7);
+        $nilais = nilai::where('id_mahasiswa', 7)->get();
 
         $return_nilai = new \stdClass();
         $return_nilai->nama = $mahasiswa->nama;
         $return_nilai->nrp = $mahasiswa->nrp;
         $return_nilai->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
+        
+        $nrp_split = str_split($mahasiswa->nrp);
+        $return_nilai->tahun_masuk = '20' . $nrp_split[2] . $nrp_split[3];
+        $return_nilai->tahun_lulus = '20' . ((int)($nrp_split[2] . $nrp_split[3]) + 1);
+        
         $return_nilai->nilai = array();
         $total = 0;
         $hitung = 0;
+        $total_sks = 0;
         foreach ($nilais as $nilai) {
             $id_master_nilai = $nilai->id_master_nilai;
             $master_nilai = masterNilai::find($id_master_nilai);
@@ -42,10 +48,40 @@ class TranskripController extends Controller
             $temp->nama = $master_mk->nama;
             $temp->semester = $master_nilai->termin;
             $temp->sks = $master_mk->sks;
-            $temp->nilai = ($nilai->nilai_total / 100.0) * 4;
+            $temp->nilai = ((float)$nilai->nilai_total / 100.0) * 4;
+            $temp->nilai_huruf = $this->parse_nilai($temp->nilai);
             array_push($return_nilai->nilai, $temp);
+
             $total += $temp->nilai;
             $hitung += 1;
+            $total_sks += $temp->sks;
+        }
+        $return_nilai->ipk = number_format((float)($total / $hitung), 2, '.', '');
+        $return_nilai->total_sks = $total_sks;
+        dd($return_nilai);
+    }
+
+    private function parse_nilai($nilai){
+        if($nilai == 4.0){
+            return 'A';
+        }
+        if($nilai >= 3.5){
+            return 'AB';
+        }
+        if($nilai >= 3.0){
+            return 'B';
+        }
+        if($nilai >= 2.5){
+            return 'BC';
+        }
+        if($nilai >= 2.0){
+            return 'C';
+        }
+        if($nilai >= 1.0){
+            return 'D';
+        }
+        if($nilai >= 0.0){
+            return 'E';
         }
     }
 
