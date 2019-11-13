@@ -84,26 +84,39 @@ Route::group(['prefix' => 'akademik'], function () {
     Route::group(['prefix' => 'transkrip'], function () {
         Route::get('/', 'TranskripController@index')->name('transkrip');
 
-        Route::post('/download', 'TranskripController@sementara')->name('transkrip.sementara');
+        Route::post('/sementara', 'TranskripController@sementara')->name('transkrip.sementara');
     });
 });
 
 Route::group(['prefix' => 'keuangan'], function () {
-    Route::get('/angsuran', 'AngsuranController@index')->name('angsuran');
-    Route::get('/angsuran/create', 'AngsuranController@create')->name('angsuran.create');
-    Route::get('/angsuran/edit/{id}', 'AngsuranController@edit')->name('angsuran.edit');
-    Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran');
-    Route::get('/pembayaran/detail/{id}', 'PembayaranController@detail')->name('pembayaran.detail');
+    Route::group(['prefix' => 'angsuran'], function () {
+        Route::get('/', 'AngsuranController@index')->name('angsuran');
+        Route::get('/create', 'AngsuranController@create')->name('angsuran.create');
+        Route::get('/edit/{id}', 'AngsuranController@edit')->name('angsuran.edit');
+
+        Route::post('/store', 'AngsuranController@store')->name('angsuran.store');
+        Route::post('/update', 'AngsuranController@update')->name('angsuran.update');
+        Route::post('/delete', 'AngsuranController@delete')->name('angsuran.delete');
+    });
+    
+    Route::group(['prefix' => 'pembayan'], function () {
+        Route::get('/', 'PembayaranController@index')->name('pembayaran');
+        Route::get('/detail/{id}', 'PembayaranController@detail')->name('pembayaran.detail');
+
+        Route::post('/select', 'PembayaranController@selectAngsuran')->name('pembayaran.select');
+        Route::post('/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
+        Route::post('/batalbayar', 'PembayaranController@deleteBayarAngsuran')->name('pembayaran.batalbayar');
+        Route::post('/kwitansi', 'PembayaranController@kwitansi')->name('pembayaran.kwitansi');
+    });
+
+    Route::group(['prefix' => 'toga'], function () {
+        Route::get('/', 'TogaController@index')->name('toga');
+
+        Route::get('/kwitansi', 'TogaController@kwitansi')->name('toga.kwitansi');
+    });
+    
     Route::get('/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
     Route::get('/rekap/download', 'PembayaranController@download')->name('pembayaran.rekap.download');
-
-    Route::post('/angsuran/store', 'AngsuranController@store')->name('angsuran.store');
-    Route::post('/angsuran/update', 'AngsuranController@update')->name('angsuran.update');
-    Route::post('/angsuran/delete', 'AngsuranController@delete')->name('angsuran.delete');
-    Route::post('/pembayaran/select', 'PembayaranController@selectAngsuran')->name('pembayaran.select');
-    Route::post('/pembayaran/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
-    Route::post('/pembayaran/batalbayar', 'PembayaranController@deleteBayarAngsuran')->name('pembayaran.batalbayar');
-    Route::post('/pembayaran/kwitansi', 'PembayaranController@kwitansi')->name('pembayaran.kwitansi');
 });
 
 Route::group(['prefix'=>'master'], function(){

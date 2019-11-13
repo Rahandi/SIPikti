@@ -57,12 +57,28 @@ class TranskripController extends Controller
             $total_sks += $temp->sks;
         }
         $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
+        $data->predikat = $this->parse_predikat($data->ipk);
         $data->total_sks = $total_sks;
         
         return view('akademik.transkrip.sementara', compact('data'));
     }
 
-    private function parse_nilai($nilai){
+    private function parse_predikat($ipk)
+    {
+        if ($ipk > 3.5){
+            return 'Dengan Pujian';
+        }
+        if ($ipk > 2.75){
+            return 'Sangat Memuaskan';
+        }
+        if ($ipk >= 2.0){
+            return 'Memuaskan';
+        }
+        return '-';
+    }
+
+    private function parse_nilai($nilai)
+    {
         if($nilai == 4.0){
             return 'A';
         }
