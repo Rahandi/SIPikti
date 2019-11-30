@@ -115,7 +115,7 @@ Route::group(['prefix' => 'keuangan'], function () {
     Route::group(['prefix' => 'toga'], function () {
         Route::get('/', 'TogaController@index')->name('toga');
 
-        Route::get('/kwitansi', 'TogaController@kwitansi')->name('toga.kwitansi');
+        Route::get('/kwitansi/{id}', 'TogaController@kwitansi')->name('toga.kwitansi');
     });
     
     Route::get('/rekap', 'PembayaranController@rekap')->name('pembayaran.rekap');
@@ -176,7 +176,3 @@ Route::get('/updategelombang', 'MahasiswaController@update_gelombang');
 Route::post('/daftaroke','PendaftarController@storekhusus');
 
 Auth::routes();
-
-Route::get('/keuangan/toga', function () {
-    return view('keuangan.toga.index');
-})->name('toga');

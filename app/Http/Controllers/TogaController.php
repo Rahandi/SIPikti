@@ -19,17 +19,21 @@ class TogaController extends Controller
     public function index()
     {
         $data = mahasiswa::all();
+        foreach ($data as $m) {
+            $jadwal = mahasiswaJadwal::where('mahasiswa_id', $m->id)->first();
+            $m->jadwal = ($jadwal) ? $jadwal : NULL;
+        }
         return view('keuangan.toga.index', compact('data'));
     }
 
-    public function kwitansi(Request $request)
+    public function kwitansi($id)
     {
-        $mahasiswa = mahasiswa::find($request->id);
-        $mahasiswaJadwal = mahasiswaJadwal::where('mahasiswa_id', $request->id)->first();
+        $mahasiswa = mahasiswa::find($id);
+        $mahasiswaJadwal = mahasiswaJadwal::where('mahasiswa_id', $id)->first();
         $jadwal = jadwal::find($mahasiswaJadwal->jadwal_id);
         $kelas = masterKelas::find($jadwal->id_kelas);
 
-        $data = new \strClass();
+        $data = new \stdClass();
         $data->mahasiswa = $mahasiswa->nama;
         $data->kelas = $kelas->nama;
         return view ('keuangan.toga.kwitansi', compact('data'));
