@@ -13,6 +13,10 @@
 		i.material-icons {
 			vertical-align: middle;
 		}
+		.bordering, .bordering th, .bordering td {
+            border-collapse: collapse;
+            border: 1px black solid;
+        }
 	</style>
 	<style>@page { size: A4 landscape }</style>
 </head>
@@ -53,7 +57,7 @@
 		</div>
 		<br>
 		<div class="row" style="text-align: center;width: 100%;">
-			<table id="list" border="" style="width: 100%;">
+			<table id="list" class="bordering" style="width: 100%;">
 				<thead>
 				<tr>
 					<th style="width: 3%;">No.</th>

@@ -101,6 +101,7 @@ class MasterController extends Controller
         $mk = new masterMK();
         $mk->nama = $request->nama;
         $mk->semester = $request->semester;
+        $mk->sks = $request->sks;
         $mk->save();
         return redirect()->route('master.mk.index');
     }
@@ -183,6 +184,7 @@ class MasterController extends Controller
         $mk = masterMK::find($request->id);
         $mk->nama = $request->nama;
         $mk->semester = $request->semester;
+        $mk->sks = $request->sks;
         $mk->save();
         return redirect()->route('master.mk.index');
     }
