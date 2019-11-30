@@ -178,7 +178,7 @@
         <div class="row" style="margin-left: 63%; font-size: 14px; margin-top: 4%;">
             <p>Surabaya, 31 Oktober 2019</p>
             <p>Ketua PIKTI ITS</p>
-            <p><img src="{{ asset('images/ttd_abdul_munif.jpg') }}" alt="ttd"></p>
+            <p></p>
             <p>Abdul Munif, S.Kom., M.Sc.</p>
             <p>NIP 19860823 201504 1 004</p>
         </div>

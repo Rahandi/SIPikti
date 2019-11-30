@@ -27,45 +27,83 @@
                     <thead>
                         <tr>
                             <th style="width: 5%;">No.</th>
-                            <th style="width: 20%;text-align: center;">NRP</th>
-                            <th style="width: 25%;text-align: center;">Nama</th>
-                            <th style="width: 40%;text-align: center;">Transkrip</th>
+                            <th style="width: 15%;text-align: center;">NRP</th>
+                            <th style="width: 45%;text-align: center;">Nama</th>
+                            <th style="width: 35%;text-align: center;">Transkrip</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach ($data as $individu)
                     @if (isset($individu->nrp))
                         <tr>
-                            <td></td>
-                            <td>{{ $individu->nrp }}</td>
-                            <td class="sorting_1" style="text-align: left;">{{ $individu->nama }}</td>
+                            <td style="vertical-align: middle"></td>
+                            <td style="vertical-align: middle">{{ $individu->nrp }}</td>
+                            <td class="sorting_1" style="text-align: left;vertical-align: middle">{{ $individu->nama }}</td>
                             <td>
-                                <div class="row" style="margin: 0px;">
-                                    <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-KP_KOMPRE" href="">
-                                        <button type="button" class="btn btn-warning">KP</button>
-                                    </a>
-                                    <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-TA" href="">
-                                        <button type="button" class="btn btn-danger">TA</button>
-                                    </a>
-                                    <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-TA-KP" href="">
-                                        <button type="button" class="btn btn-success">TA-KP</button>
-                                    </a>
+                                <table>
+                                    <tr>
+                                    <td>
+                                    <form action="{{ route('transkrip.kp') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$individu->id}}">
+                                        <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-KP_KOMPRE">
+                                            <button type="submit" class="btn btn-warning"
+                                            @if ($individu->nilai == null)
+                                                disabled
+                                            @endif
+                                            >KP</button>
+                                        </a>
+                                    </form>
+                                    </td>
+                                    <td>
+                                    <form action="{{ route('transkrip.ta') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$individu->id}}">
+                                        <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-TA">
+                                            <button type="submit" class="btn btn-danger"
+                                            @if($individu->nilai == null)
+                                                disabled
+                                            @endif
+                                            >TA</button>
+                                        </a>
+                                    </form>
+                                    </td>
+                                    <td>
+                                    <form action="{{ route('transkrip.takp') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$individu->id}}">
+                                        <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-TA-KP">
+                                            <button type="submit" class="btn btn-success"
+                                            @if($individu->nilai == null)
+                                                disabled
+                                            @endif
+                                            >TA-KP</button>
+                                        </a>
+                                    </form>
+                                    </td>
+                                    <td>
                                     <form action="{{ route('transkrip.sementara') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$individu->id}}">
                                         <a data-toggle="tooltip" data-placement="top" title="Transkrip Sementara">
-                                            <button type="submit" class="btn btn-info">Sementara</button>
+                                            <button type="submit" class="btn btn-info"
+                                            @if($individu->nilai == null)
+                                                disabled
+                                            @endif
+                                            >Sementara</button>
                                         </a>
                                     </form>
-                                </div>
+                                    </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                     @endif
                     @endforeach
                     </tbody>
                 </table>
-            
             </div>
+        </div>
     </div>
 </div>
 </div>
