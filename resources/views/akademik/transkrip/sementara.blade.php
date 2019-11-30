@@ -95,7 +95,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="row" style="font-size: 12px; margin-top: 7%;">
+        <div class="row" style="font-size: 12px; margin-top: 3%;">
             <table>
                 <thead style="text-align: left">
                     <th>KETERANGAN NILAI</th>
@@ -175,7 +175,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="row" style="margin-left: 63%; font-size: 14px; margin-top: 4%;">
+        <div class="row" style="margin-left: 63%; font-size: 14px; margin-top: 3%;">
             <p>Surabaya, 31 Oktober 2019</p>
             <p>Ketua PIKTI ITS</p>
             <p><img src="{{ asset('images/ttd_abdul_munif.jpg') }}" alt="ttd"></p>

@@ -26,7 +26,8 @@
 <body onload="window.print()" class="A4 potrait">
 	<div class="container" style="width:100%; margin: 10% 15% 15% 10%;">
 		<div class="row" style="text-align: center; font-size: 17px;">
-			<b>TRANSKRIP AKADEMIK SEMENTARA</b><br>
+            <b>TRANSKRIP AKADEMIK</b><br>
+            No. xxx<br>
 		</div>
 		<div class="row" style="text-align: left; font-size: 14px; margin-top: 3%;">
 			<table style="width:100%">
@@ -95,7 +96,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="row" style="font-size: 12px; margin-top: 7%;">
+        <div class="row" style="font-size: 12px; margin-top: 3%;">
             <table>
                 <thead style="text-align: left">
                     <th>KETERANGAN NILAI</th>
@@ -175,13 +176,24 @@
                 </tbody>
             </table>
         </div>
-        <div class="row" style="margin-left: 63%; font-size: 14px; margin-top: 4%;">
-            <p>Surabaya, 31 Oktober 2019</p>
-            <p>Ketua PIKTI ITS</p>
-            <p></p>
-            <p>Abdul Munif, S.Kom., M.Sc.</p>
-            <p>NIP 19860823 201504 1 004</p>
-        </div>
+        <table style="margin-top: 3%; font-size: 14px; width:100%">
+            <tr>
+                <td>
+                    <p>Mengetahui,</p>
+                    <p>Kepala UPT Pusat Pelatihan dan Sertifikasi Profesi</p>
+                    <p><br><br><br><br><br><br></p>
+                    <p>Arya Yudhi Wijaya, S.Kom., M. Kom.</p>
+                    <p>NIP 19840904 201012 1 002</p>
+                </td>
+                <td>
+                    <p>Surabaya, 31 Oktober 2019</p>
+                    <p>Ketua PIKTI ITS</p>
+                    <p><img src="{{ asset('images/ttd_abdul_munif.jpg') }}" alt="ttd"></p>
+                    <p>Abdul Munif, S.Kom., M.Sc.</p>
+                    <p>NIP 19860823 201504 1 004</p>
+                </td>
+            </tr>
+        </table>
 	</div>
 
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
