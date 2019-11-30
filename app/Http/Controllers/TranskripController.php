@@ -18,7 +18,13 @@ class TranskripController extends Controller
 
     public function index()
     {
-        $data = mahasiswa::all();
+        $data = [];
+        $mahasiswas = mahasiswa::all();
+        foreach($mahasiswas as $mahasiswa)
+        {
+            $nilai = nilai::where('id_mahasiswa', $mahasiswa->id)->get();
+            $mahasiswa->nilai = (count($nilai) > 0) ? $nilai : NULL;
+        }
         return view('akademik.transkrip.index', compact('data'));
     }
 
@@ -61,6 +67,129 @@ class TranskripController extends Controller
         $data->total_sks = $total_sks;
         
         return view('akademik.transkrip.sementara', compact('data'));
+    }
+
+    public function ta(Request $request)
+    {
+        $mahasiswa = mahasiswa::find($request->id);
+        $nilais = nilai::where('id_mahasiswa', $request->id)->get();
+
+        $data = new \stdClass();
+        $data->nama = $mahasiswa->nama;
+        $data->nrp = $mahasiswa->nrp;
+        $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
+        
+        $nrp_split = str_split($mahasiswa->nrp);
+        $data->tahun_masuk = '20' . $nrp_split[2] . $nrp_split[3];
+        $data->tahun_lulus = '20' . ((int)($nrp_split[2] . $nrp_split[3]) + 1);
+        
+        $data->nilai = array();
+        $total = 0;
+        $hitung = 0;
+        $total_sks = 0;
+        foreach ($nilais as $nilai) {
+            $id_master_nilai = $nilai->id_master_nilai;
+            $master_nilai = masterNilai::find($id_master_nilai);
+            $master_mk = masterMK::find($master_nilai->id_mk);
+            $temp = new \stdClass();
+            $temp->nama = $master_mk->nama;
+            $temp->semester = $master_nilai->termin;
+            $temp->sks = $master_mk->sks;
+            $temp->nilai = ((float)$nilai->nilai_total / 100.0) * 4;
+            $temp->nilai_huruf = $this->parse_nilai($temp->nilai);
+            array_push($data->nilai, $temp);
+
+            $total += $temp->nilai;
+            $hitung += 1;
+            $total_sks += $temp->sks;
+        }
+        $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
+        $data->predikat = $this->parse_predikat($data->ipk);
+        $data->total_sks = $total_sks;
+        
+        return view('akademik.transkrip.ta', compact('data'));
+    }
+
+    public function ta-kp(Request $request)
+    {
+        $mahasiswa = mahasiswa::find($request->id);
+        $nilais = nilai::where('id_mahasiswa', $request->id)->get();
+
+        $data = new \stdClass();
+        $data->nama = $mahasiswa->nama;
+        $data->nrp = $mahasiswa->nrp;
+        $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
+        
+        $nrp_split = str_split($mahasiswa->nrp);
+        $data->tahun_masuk = '20' . $nrp_split[2] . $nrp_split[3];
+        $data->tahun_lulus = '20' . ((int)($nrp_split[2] . $nrp_split[3]) + 1);
+        
+        $data->nilai = array();
+        $total = 0;
+        $hitung = 0;
+        $total_sks = 0;
+        foreach ($nilais as $nilai) {
+            $id_master_nilai = $nilai->id_master_nilai;
+            $master_nilai = masterNilai::find($id_master_nilai);
+            $master_mk = masterMK::find($master_nilai->id_mk);
+            $temp = new \stdClass();
+            $temp->nama = $master_mk->nama;
+            $temp->semester = $master_nilai->termin;
+            $temp->sks = $master_mk->sks;
+            $temp->nilai = ((float)$nilai->nilai_total / 100.0) * 4;
+            $temp->nilai_huruf = $this->parse_nilai($temp->nilai);
+            array_push($data->nilai, $temp);
+
+            $total += $temp->nilai;
+            $hitung += 1;
+            $total_sks += $temp->sks;
+        }
+        $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
+        $data->predikat = $this->parse_predikat($data->ipk);
+        $data->total_sks = $total_sks;
+        
+        return view('akademik.transkrip.ta-kp', compact('data'));
+    }
+
+    public function kp-kompre(Request $request)
+    {
+        $mahasiswa = mahasiswa::find($request->id);
+        $nilais = nilai::where('id_mahasiswa', $request->id)->get();
+
+        $data = new \stdClass();
+        $data->nama = $mahasiswa->nama;
+        $data->nrp = $mahasiswa->nrp;
+        $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
+        
+        $nrp_split = str_split($mahasiswa->nrp);
+        $data->tahun_masuk = '20' . $nrp_split[2] . $nrp_split[3];
+        $data->tahun_lulus = '20' . ((int)($nrp_split[2] . $nrp_split[3]) + 1);
+        
+        $data->nilai = array();
+        $total = 0;
+        $hitung = 0;
+        $total_sks = 0;
+        foreach ($nilais as $nilai) {
+            $id_master_nilai = $nilai->id_master_nilai;
+            $master_nilai = masterNilai::find($id_master_nilai);
+            $master_mk = masterMK::find($master_nilai->id_mk);
+            $temp = new \stdClass();
+            $temp->nama = $master_mk->nama;
+            $temp->semester = $master_nilai->termin;
+            $temp->sks = $master_mk->sks;
+            $temp->nilai = ((float)$nilai->nilai_total / 100.0) * 4;
+            $temp->nilai_huruf = $this->parse_nilai($temp->nilai);
+            array_push($data->nilai, $temp);
+
+            $total += $temp->nilai;
+            $hitung += 1;
+            $total_sks += $temp->sks;
+        }
+        $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
+        $data->predikat = $this->parse_predikat($data->ipk);
+        $data->total_sks = $total_sks;
+        
+        return view('akademik.transkrip.kp-kompre', compact('data'));
     }
 
     private function parse_predikat($ipk)
