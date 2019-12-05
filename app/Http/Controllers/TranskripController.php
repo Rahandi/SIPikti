@@ -8,6 +8,7 @@ use App\mahasiswa;
 use App\nilai;
 use App\masterNilai;
 use App\masterMK;
+use App\config;
 
 class TranskripController extends Controller
 {
@@ -29,6 +30,24 @@ class TranskripController extends Controller
 
     public function sementara(Request $request)
     {
+        $pejabat1 = config::where('name', 'pejabat 1')->first();
+        $pejabat2 = config::where('name', 'pejabat 2')->first();
+
+        $pejabat = new \stdClass();
+        $pejabat->satu = new \stdClass();
+        $pejabat->dua = new \stdClass();
+
+        $temp1 = explode('|', $pejabat1->data);
+        $temp2 = explode('|', $pejabat2->data);
+
+        $pejabat->satu->jabatan = $temp1[0];
+        $pejabat->satu->nama = $temp1[1];
+        $pejabat->satu->nip = $temp1[2];
+
+        $pejabat->dua->jabatan = $temp2[0];
+        $pejabat->dua->nama = $temp2[1];
+        $pejabat->dua->nip = $temp2[2];
+
         $mahasiswa = mahasiswa::find($request->id);
         $nilais = nilai::where('id_mahasiswa', $request->id)->get();
 
@@ -64,12 +83,31 @@ class TranskripController extends Controller
         $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
         $data->predikat = $this->parse_predikat($data->ipk);
         $data->total_sks = $total_sks;
+        $data->pejabat = $pejabat;
         
         return view('akademik.transkrip.sementara', compact('data'));
     }
 
     public function kp(Request $request)
     {
+        $pejabat1 = config::where('name', 'pejabat 1')->first();
+        $pejabat2 = config::where('name', 'pejabat 2')->first();
+
+        $pejabat = new \stdClass();
+        $pejabat->satu = new \stdClass();
+        $pejabat->dua = new \stdClass();
+
+        $temp1 = explode('|', $pejabat1->data);
+        $temp2 = explode('|', $pejabat2->data);
+
+        $pejabat->satu->jabatan = $temp1[0];
+        $pejabat->satu->nama = $temp1[1];
+        $pejabat->satu->nip = $temp1[2];
+
+        $pejabat->dua->jabatan = $temp2[0];
+        $pejabat->dua->nama = $temp2[1];
+        $pejabat->dua->nip = $temp2[2];
+
         $mahasiswa = mahasiswa::find($request->id);
         $nilais = nilai::where('id_mahasiswa', $request->id)->get();
 
@@ -105,12 +143,31 @@ class TranskripController extends Controller
         $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
         $data->predikat = $this->parse_predikat($data->ipk);
         $data->total_sks = $total_sks;
+        $data->pejabat = $pejabat;
         
         return view('akademik.transkrip.kp', compact('data'));
     }
 
     public function ta(Request $request)
     {
+        $pejabat1 = config::where('name', 'pejabat 1')->first();
+        $pejabat2 = config::where('name', 'pejabat 2')->first();
+
+        $pejabat = new \stdClass();
+        $pejabat->satu = new \stdClass();
+        $pejabat->dua = new \stdClass();
+
+        $temp1 = explode('|', $pejabat1->data);
+        $temp2 = explode('|', $pejabat2->data);
+
+        $pejabat->satu->jabatan = $temp1[0];
+        $pejabat->satu->nama = $temp1[1];
+        $pejabat->satu->nip = $temp1[2];
+
+        $pejabat->dua->jabatan = $temp2[0];
+        $pejabat->dua->nama = $temp2[1];
+        $pejabat->dua->nip = $temp2[2];
+
         $mahasiswa = mahasiswa::find($request->id);
         $nilais = nilai::where('id_mahasiswa', $request->id)->get();
 
@@ -146,12 +203,31 @@ class TranskripController extends Controller
         $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
         $data->predikat = $this->parse_predikat($data->ipk);
         $data->total_sks = $total_sks;
+        $data->pejabat = $pejabat;
         
         return view('akademik.transkrip.ta', compact('data'));
     }
 
     public function takp(Request $request)
     {
+        $pejabat1 = config::where('name', 'pejabat 1')->first();
+        $pejabat2 = config::where('name', 'pejabat 2')->first();
+
+        $pejabat = new \stdClass();
+        $pejabat->satu = new \stdClass();
+        $pejabat->dua = new \stdClass();
+
+        $temp1 = explode('|', $pejabat1->data);
+        $temp2 = explode('|', $pejabat2->data);
+
+        $pejabat->satu->jabatan = $temp1[0];
+        $pejabat->satu->nama = $temp1[1];
+        $pejabat->satu->nip = $temp1[2];
+
+        $pejabat->dua->jabatan = $temp2[0];
+        $pejabat->dua->nama = $temp2[1];
+        $pejabat->dua->nip = $temp2[2];
+
         $mahasiswa = mahasiswa::find($request->id);
         $nilais = nilai::where('id_mahasiswa', $request->id)->get();
 
@@ -187,8 +263,49 @@ class TranskripController extends Controller
         $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
         $data->predikat = $this->parse_predikat($data->ipk);
         $data->total_sks = $total_sks;
+        $data->pejabat = $pejabat;
         
         return view('akademik.transkrip.takp', compact('data'));
+    }
+
+    public function pejabat()
+    {
+        $pejabat1 = config::where('name', 'pejabat 1')->first();
+        $pejabat2 = config::where('name', 'pejabat 2')->first();
+
+        $data = new \stdClass();
+        $data->satu = new \stdClass();
+        $data->dua = new \stdClass();
+
+        $temp1 = explode('|', $pejabat1->data);
+        $temp2 = explode('|', $pejabat2->data);
+
+        $data->satu->jabatan = $temp1[0];
+        $data->satu->nama = $temp1[1];
+        $data->satu->nip = $temp1[2];
+
+        $data->dua->jabatan = $temp2[0];
+        $data->dua->nama = $temp2[1];
+        $data->dua->nip = $temp2[2];
+
+        return view('akademik.transkrip.pejabat', compact('data'));
+    }
+
+    public function pejabat_update(Request $request)
+    {
+        $pejabat1 = config::where('name', 'pejabat 1')->first();
+        $pejabat2 = config::where('name', 'pejabat 2')->first();
+
+        $pejabatsatu = [$request->pejabat1_jabatan, $request->pejabat1_nama, $request->pejabat1_nip];
+        $pejabatdua = [$request->pejabat2_jabatan, $request->pejabat2_nama, $request->pejabat2_nip];
+
+        $pejabat1->data = implode('|', $pejabatsatu);
+        $pejabat2->data = implode('|', $pejabatdua);
+
+        $pejabat1->save();
+        $pejabat2->save();
+
+        return redirect()->back();
     }
 
     private function parse_predikat($ipk)

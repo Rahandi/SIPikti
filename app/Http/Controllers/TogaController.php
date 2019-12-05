@@ -9,6 +9,7 @@ use App\mahasiswaJadwal;
 use App\jadwal;
 use App\masterKelas;
 use App\toga;
+use App\config;
 
 class TogaController extends Controller
 {
@@ -20,15 +21,22 @@ class TogaController extends Controller
     public function index()
     {
         $data = mahasiswa::all();
+        $config = config::where('name', 'harga toga')->first();
         foreach ($data as $m) {
             $jadwal = mahasiswaJadwal::where('mahasiswa_id', $m->id)->first();
             $m->jadwal = ($jadwal) ? $jadwal : NULL;
         }
-        return view('keuangan.toga.index', compact('data'));
+        return view('keuangan.toga.index', ['data' => $data, 'harga_toga' => $config->data]);
     }
 
     public function kwitansi($id)
     {
+        $config = config::where('name', 'harga toga')->first();
+        $harga = strrev($config->data);
+        $harga = str_split($harga, "3");
+        $harga = implode('.', $harga);
+        $harga = strrev($harga);
+
         $toga = toga::where('mahasiswa_id', $id)->first();
         if(!$toga)
         {
@@ -72,7 +80,17 @@ class TogaController extends Controller
         $data->kelas = $toga->kelas;
         $data->nomor = $toga->nomor;
         $data->date = $this->get_date();
+        $data->harga = $harga;
         return view ('keuangan.toga.kwitansi', compact('data'));
+    }
+
+    public function update_harga_toga(Request $request)
+    {
+        $config = config::where('name', 'harga toga')->first();
+        $config->data = $request->harga;
+        $config->save();
+
+        return redirect()->back();
     }
 
     private function get_date()

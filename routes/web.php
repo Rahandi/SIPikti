@@ -170,6 +170,11 @@ Route::group(['prefix'=>'master'], function(){
     });
 });
 
+Route::post('/harga_toga', 'TogaController@update_harga_toga')->name('update_harga_toga');
+
+Route::get('/pejabat', 'TranskripController@pejabat')->name('pejabat');
+Route::post('/pejabat', 'TranskripController@pejabat_update')->name('pejabat.update');
+
 // unrelevant
 Route::get('/coba', 'HomeController@generateNoPendaftaran');
 Route::get('/updategelombang', 'MahasiswaController@update_gelombang');
