@@ -56,6 +56,8 @@ class PenilaianController extends Controller
         $master_nilai = masterNilai::all();
         foreach($master_nilai as $row)
         {
+            $nilai = nilai::where('id_master_nilai', $row->id)->first();
+
             $jadwal = jadwal::find($row->id_jadwal);
 
             $temp = new \stdClass();
@@ -66,6 +68,7 @@ class PenilaianController extends Controller
             $temp->kelas = masterKelas::find($jadwal->id_kelas)->nama;
             $temp->mata_kuliah = masterMK::find($row->id_mk)->nama;
             $temp->jml = $row->jumlah_penilaian;
+            $temp->exist = ($nilai) ? True : False;
 
             array_push($list, $temp);
 
