@@ -12,42 +12,62 @@
     <div class="container" style="margin: 3%; font-family: Tahoma;">
         <table style="width:100%">
             <tr>
-                <td style="width:31%; font-size:13px; border: 1px solid black; padding:2%;">
-                    <p>Kwitansi No. _________</p><br>
+                <td style="width:27%; font-size:13px; border: 1px solid black; padding:2%;">
+                    <p>Kwitansi No. PKT{{$data->nomor}}</p>
                     <p>Kepada : <b>PIKTI - ITS</b></p>
-                    <p>Sudah terima dari : </p>
-                    <p>{{$data->mahasiswa}}, Kelas : {{$data->kelas}}</p>
+                    <p>Telah terima dari : </p>
+                    <p>{{$data->mahasiswa}}</p>
+                    <p>NRP: {{$data->nrp}}, Kelas : {{$data->kelas}}</p>
                     <p>Jumlah Uang :</p>
                     <p style="text-align: center"><b>Rp 300.000</b></p>
                     <p>Untuk Pembayaran : </p>
                     <p style="text-align: center"><b>JAMINAN TOGA</b></p>
-                    <p>Tgl : _________</p>
+                    <p>Tgl : {{$data->date}}</p>
                 </td>
                 <td style="width:2%;">
 
                 </td>
-                <td style="width:67%; border: 1px solid black; padding:2%;">
+                <td style="width:71%; border: 1px solid black; padding:2%;">
                     <table style="width:100%">
                         <tr>
                             <td style="width: 10%; border: 1px solid black; font-size: 40px; text-align: center; font-family: 'Times New Roman', Times, serif;">
                                 <p>P<br>I<br>K<br>T<br>I</p>
                             </td>
-                            <td style="width:90%; padding:2%; font-size:14px;">
-                                <p>NO. __________</p>
-                                <p><b>Telah terima dari&nbsp;&nbsp;&nbsp;&nbsp;:</b>&nbsp;{{$data->mahasiswa}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Kelas : </b>{{$data->kelas}}</p>
-                                <p><b>Uang sejumlah&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Tiga Ratus Ribu Rupiah</b></p>
-                                <p><b>Untuk Pembayaran:&nbsp;</b><b style="font-size: 20px;">JAMINAN TOGA</b></p>
+                            <td style="width:90%; padding:0% 2% 0% 2%; font-size:14px;">
+                                <p>NO. PKT{{$data->nomor}}</p>
+                                <table>
+                                    <tr>
+                                        <td><b>Telah terima dari</b></td>
+                                        <td>:</td>
+                                        <td>{{$data->mahasiswa}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td><b>NRP</b>: {{$data->nrp}}, <b>Kelas</b> {{$data->kelas}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Uang sejumlah</b></td>
+                                        <td>:</td>
+                                        <td><b>Tiga Ratus Ribu Rupiah</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Untuk Pembayaran</b></td>
+                                        <td>:</td>
+                                        <td><b style="font-size: 20px;">JAMINAN TOGA</b></td>
+                                    </tr>
+                                </table>
                                 <table style="width:100%;">
                                     <tr>
                                         <td style="font-size:11px">
-                                            <p>Toga sudah diambil, tgl : _______</p>
+                                            <p>Toga telah diambil, tgl : _______________</p>
                                         </td>
-                                        <td style="text-align: right">
-                                            <p>Sby, _____________</p>
+                                        <td style="text-align: right; font-size:13px;">
+                                            <p>Sby, {{$data->date}}</p>
                                         </td>
                                     </tr>
                                 </table>
-                                <p style="font-size:11px;">Jaminan toga sudah diambil, tgl : __________</p>
+                                <p style="font-size:11px;">Jaminan toga telah diambil, tgl : _______________</p>
                                 <table style="width:100%;">
                                     <tr>
                                         <td>
