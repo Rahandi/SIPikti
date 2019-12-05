@@ -21,13 +21,38 @@
 @section('content')
 	<div class="row" style="text-align: center;">
 	@if (session('status'))
-	<div id="modalSuccess" class="modal fade" role="dialog" style="z-index: 9999;">
-		<div class="modal-dialog">
+	<div id="modalSuccess" class="modal fade" role="dialog" style="z-index: 9999; width:100%;">
+		<div class="modal-dialog" style="width: 75%;">
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">{{ session('status') }}</h4>
+					<h4 class="modal-title"><b>{{ session('status') }}</b></h4>
+					Review Data Ter-Upload
+					<table id="list2" class="table table-striped table-hover table-bordered" style="width: 100%; font-size: 13px;">
+						<thead>
+							<tr>
+								<th style="width: 1%; text-align: center">No.</th>
+								<th style="width: 5%; text-align: center">NRP</th>
+								<th style="width: 31%; text-align: center">Nama</th>
+								<th style="width: 24%; text-align: center">Nilai Rata-Rata<br>(Basis 100)</th>
+								<th style="width: 23%; text-align: center">Nilai Rata-Rata<br>(Basis 4)</th>
+								<th style="width: 15%; text-align: center">Nilai Huruf</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (session('data') as $item)
+								<tr>
+									<td></td>
+									<td>{{$item->nrp}}</td>
+									<td style="text-align: left">{{$item->nama}}</td>
+									<td>{{$item->nilai100}}</td>
+									<td>{{$item->nilai4}}</td>
+									<td>{{$item->nilai_huruf}}</td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
@@ -115,7 +140,11 @@
 										<form action="{{ route('nilai.total') }}" method="POST">
 											@csrf
 											<input type="hidden" name="id" value="{{$row->id}}">
-											<a data-toggle="tooltip" data-placement="top" title="Hasil Penilaian"><button type="submit" class="btn btn-success" style="width:100%;">Hasil</button></a>
+											<a data-toggle="tooltip" data-placement="top" title="Hasil Penilaian"><button type="submit" class="btn btn-success" style="width:100%;"
+											@if ($row->exist == false)
+												disabled
+											@endif
+											>Hasil</button></a>
 										</form>
 										</div>
 										<a class="col-md-6" data-toggle="tooltip" data-placement="top" title="Hapus Penilaian"><button style="width:100%;" type="button" id="tombolDel" data-toggle="modal" class="btn btn-danger" data-target="#modalDelete" value="{{$row->id}}">Hapus</button></a>
@@ -137,7 +166,7 @@
 						<form action="{{route('nilai.upload')}}" method="POST" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<div class="w3-container" style="margin-top: 2%;">
-							<input type="file" name="nilai">
+							<input type="file" name="nilai"><br>
 						</div>
 						<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
 							<input type="hidden" name="id" id="UpValueId" value="">

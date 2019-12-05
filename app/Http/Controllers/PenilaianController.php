@@ -168,7 +168,7 @@ class PenilaianController extends Controller
             $nilai->nilai_total = $nilai_total;
             $nilai->save();
 
-            $temp = \stdClass();
+            $temp = new \stdClass();
             $temp->nrp = $mahasiswa->nrp;
             $temp->nama = $mahasiswa->nama;
             $temp->nilai100 = $nilai_total;
