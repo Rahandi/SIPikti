@@ -148,6 +148,8 @@ class PenilaianController extends Controller
             array_push($persen, $master_nilai->persen_penilaian[$i]);
         }
 
+        $return = array();
+
         foreach ($data as $row) {
             $mahasiswa = mahasiswa::where('nrp', strval($row['NRP']))->get()->first();
             
@@ -165,9 +167,18 @@ class PenilaianController extends Controller
             $nilai->nilai = implode(',', $satuan);
             $nilai->nilai_total = $nilai_total;
             $nilai->save();
+
+            $temp = \stdClass();
+            $temp->nrp = $mahasiswa->nrp;
+            $temp->nama = $mahasiswa->nama;
+            $temp->nilai100 = $nilai_total;
+            $temp->nilai4 = ($nilai_total / 100) * 4;
+            $temp->nilai_huruf = $this->parse_nilai($temp->nilai4);
+
+            array_push($return, $temp);
         }
 
-        return redirect()->back()->with("status", "Upload Berhasil");
+        return redirect()->back()->with("status", "Upload Berhasil")->with('data', $return);
     }
 
     public function delete(Request $request)
@@ -195,5 +206,30 @@ class PenilaianController extends Controller
         $filename = $termin . '_' . $kelas . '_' . $mk . '_nilai_akhir' . '.xlsx';
         $filename = preg_replace('/[^a-zA-Z0-9_ .]/', '', $filename);
         return Excel::download(new NilaiAkhirExport($request->id), $filename);
+    }
+
+    private function parse_nilai($nilai)
+    {
+        if($nilai == 4.0){
+            return 'A';
+        }
+        if($nilai >= 3.5){
+            return 'AB';
+        }
+        if($nilai >= 3.0){
+            return 'B';
+        }
+        if($nilai >= 2.5){
+            return 'BC';
+        }
+        if($nilai >= 2.0){
+            return 'C';
+        }
+        if($nilai >= 1.0){
+            return 'D';
+        }
+        if($nilai >= 0.0){
+            return 'E';
+        }
     }
 }
