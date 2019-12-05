@@ -23,19 +23,21 @@ class TogaController extends Controller
         $config = config::where('name', 'harga toga')->first();
 
         $harga = new \stdClass();
-        $harga->string = strrev($config->data);
+        $harga->string = strrev(explode('|', $config->data)[0]);
         $harga->string = str_split($harga->string, "3");
         $harga->string = implode('.', $harga->string);
         $harga->string = strrev($harga->string);
 
-        $harga->number = $config->data;
+        $harga->number = explode('|', $config->data)[0];
+        $harga->terbilang = explode('|', $config->data)[1];
 
         $data = mahasiswa::all();
         foreach ($data as $m) {
-            $jadwal = mahasiswaJadwal::where('mahasiswa_id', $m->id)->first();
-            if($jadwal)
+            $mahasiswajadwal = mahasiswaJadwal::where('mahasiswa_id', $m->id)->first();
+            if($mahasiswajadwal)
             {
-                $m->jadwal = $jadwal;
+                $m->jadwal = $mahasiswajadwal;
+                $jadwal = jadwal::find($mahasiswajadwal->jadwal_id);
                 $m->kelas = masterKelas::find($jadwal->id_kelas)->nama;
             }
             else
@@ -50,10 +52,11 @@ class TogaController extends Controller
     public function kwitansi($id)
     {
         $config = config::where('name', 'harga toga')->first();
-        $harga = strrev($config->data);
+        $harga = strrev(explode('|', $config->data)[0]);
         $harga = str_split($harga, "3");
         $harga = implode('.', $harga);
         $harga = strrev($harga);
+        $terbilang = explode('|', $config->data)[1];
 
         $toga = toga::where('mahasiswa_id', $id)->first();
         if(!$toga)
@@ -99,13 +102,15 @@ class TogaController extends Controller
         $data->nomor = $toga->nomor;
         $data->date = $this->get_date();
         $data->harga = $harga;
+        $data->terbilang = $terbilang;
         return view ('keuangan.toga.kwitansi', compact('data'));
     }
 
     public function update_harga_toga(Request $request)
     {
         $config = config::where('name', 'harga toga')->first();
-        $config->data = $request->harga;
+        $config->data = [$request->number, $request->terbilang];
+        $config->data = implode('|', $config->data);
         $config->save();
 
         return redirect()->back();

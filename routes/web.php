@@ -83,11 +83,13 @@ Route::group(['prefix' => 'akademik'], function () {
 
     Route::group(['prefix' => 'transkrip'], function () {
         Route::get('/', 'TranskripController@index')->name('transkrip');
+        Route::get('/pejabat', 'TranskripController@pejabat')->name('pejabat');
 
         Route::post('/sementara', 'TranskripController@sementara')->name('transkrip.sementara');
         Route::post('/kp', 'TranskripController@kp')->name('transkrip.kp');
         Route::post('/ta', 'TranskripController@ta')->name('transkrip.ta');
         Route::post('/takp', 'TranskripController@takp')->name('transkrip.takp');
+        Route::post('/pejabat', 'TranskripController@pejabat_update')->name('pejabat.update');
     });
 });
 
@@ -172,8 +174,7 @@ Route::group(['prefix'=>'master'], function(){
 
 Route::post('/harga_toga', 'TogaController@update_harga_toga')->name('update_harga_toga');
 
-Route::get('/pejabat', 'TranskripController@pejabat')->name('pejabat');
-Route::post('/pejabat', 'TranskripController@pejabat_update')->name('pejabat.update');
+
 
 // unrelevant
 Route::get('/coba', 'HomeController@generateNoPendaftaran');

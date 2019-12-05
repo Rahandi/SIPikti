@@ -305,7 +305,7 @@ class TranskripController extends Controller
         $pejabat1->save();
         $pejabat2->save();
 
-        return redirect()->back();
+        return redirect()->route('transkrip');
     }
 
     private function parse_predikat($ipk)

@@ -15,7 +15,7 @@ class ConfigSeeder extends Seeder
     {
         config::create([
             'name' => 'harga toga',
-            'data' => 300000
+            'data' => '300000|Tiga Ratus Ribu Rupiah'
         ]);
 
         config::create([

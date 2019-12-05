@@ -9,6 +9,7 @@
 	<style>@page { size: A4 potrait }</style>
 </head>
 <body onload="window.print()" class="A4 potrait">
+    {{-- {{dd($data)}} --}}
     <div class="container" style="margin: 3%; font-family: Tahoma;">
         <table style="width:100%">
             <tr>
@@ -19,7 +20,7 @@
                     <p>{{$data->mahasiswa}}</p>
                     <p>NRP: {{$data->nrp}}, Kelas : {{$data->kelas}}</p>
                     <p>Jumlah Uang :</p>
-                    <p style="text-align: center"><b>Rp 300.000</b></p>
+                    <p style="text-align: center"><b>Rp {{$data->harga}}</b></p>
                     <p>Untuk Pembayaran : </p>
                     <p style="text-align: center"><b>JAMINAN TOGA</b></p>
                     <p>Tgl : {{$data->date}}</p>
@@ -49,7 +50,7 @@
                                     <tr>
                                         <td><b>Uang sejumlah</b></td>
                                         <td>:</td>
-                                        <td><b>Tiga Ratus Ribu Rupiah</b></td>
+                                        <td><b>{{$data->terbilang}} Rupiah</b></td>
                                     </tr>
                                     <tr>
                                         <td><b>Untuk Pembayaran</b></td>
@@ -71,7 +72,7 @@
                                 <table style="width:100%;">
                                     <tr>
                                         <td>
-                                            <p style="font-size: 18px;"><b>Rp 300,000</b></p>
+                                            <p style="font-size: 18px;"><b>Rp {{$data->harga}}</b></p>
                                         </td>
                                         <td style="text-align: right">
                                             (_______________)

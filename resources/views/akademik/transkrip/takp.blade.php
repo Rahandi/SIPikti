@@ -182,19 +182,19 @@
         </div>
         <table style="margin-top: 3%; font-size: 14px; width:100%">
             <tr>
-                <td>
+                <td style="width:65%">
                     <p>Mengetahui,</p>
-                    <p>Kepala UPT Pusat Pelatihan dan Sertifikasi Profesi</p>
+                    <p>{{$data->pejabat->satu->jabatan}}</p>
                     <p><br><br><br><br><br><br></p>
-                    <p>Arya Yudhi Wijaya, S.Kom., M. Kom.</p>
-                    <p>NIP 19840904 201012 1 002</p>
+                    <p>{{$data->pejabat->satu->nama}}</p>
+                    <p>NIP {{$data->pejabat->satu->nip}}</p>
                 </td>
                 <td>
                     <p>Surabaya, 31 Oktober 2019</p>
-                    <p>Ketua PIKTI ITS</p>
-                    <p><img src="{{ asset('images/ttd_abdul_munif.jpg') }}" alt="ttd"></p>
-                    <p>Abdul Munif, S.Kom., M.Sc.</p>
-                    <p>NIP 19860823 201504 1 004</p>
+                    <p>{{$data->pejabat->dua->jabatan}}</p>
+                    <p><br><br><br><br><br><br></p>
+                    <p>{{$data->pejabat->dua->nama}}</p>
+                    <p>NIP {{$data->pejabat->dua->nip}}</p>
                 </td>
             </tr>
         </table>

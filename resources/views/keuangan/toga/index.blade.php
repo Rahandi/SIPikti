@@ -29,11 +29,11 @@
                             class="w3-button w3-display-topright w3-round-large">&times;</span>
                             <h2>Biaya Toga</h2>
                         </header>
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('update_harga_toga')}}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="w3-container" style="margin-top: 2%;">
-                            Biaya (tanpa titik) <input class="form-control" type="number" value="300000" placeholder="contoh: 300000"><br>
-                            Terbilang (tanpa Rupiah) <input class="form-control" type="text" value="Tiga Ratus Ribu" placeholder="contoh: Tiga Ratus Ribu"><br>
+                            Biaya (tanpa titik) <input class="form-control" type="number" value="{{$harga->number}}" name="number" placeholder="contoh: 300000"><br>
+                            Terbilang (tanpa Rupiah) <input class="form-control" type="text" value="{{$harga->terbilang}}" name="terbilang" placeholder="contoh: Tiga Ratus Ribu"><br>
                         </div>
                         <footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
                             <button type="submit" class="btn btn-success" id="BiayaSubmit" style="margin: 1%;">Simpan</button>
@@ -44,7 +44,7 @@
                 </div>
 
                 <h3 class="box-title m-b-0">Biaya Toga</h3>
-                <p>Rp 300.000<br>Tiga Ratus Ribu Rupiah</p>
+                <p>Rp {{$harga->string}}<br>{{$harga->terbilang}} Rupiah</p>
                 <a><button type="button" id="editBiaya" data-toggle="modal" class="btn btn-warning" data-target="#modalBiaya">Ubah Biaya Toga</button></a>
 
                 <h3 class="box-title m-b-0" style="margin-top:3%;">Kwitansi Toga</h3>
@@ -63,7 +63,7 @@
                     @if (isset($individu->nrp))
                         <tr>
                             <td style="vertical-align: middle"></td>
-                            <td></td>
+                            <td>{{ $individu->kelas }}</td>
                             <td style="vertical-align: middle">{{ $individu->nrp }}</td>
                             <td class="sorting_1" style="text-align: left;vertical-align: middle">{{ $individu->nama }}</td>
                             <td>

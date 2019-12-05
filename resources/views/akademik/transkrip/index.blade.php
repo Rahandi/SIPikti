@@ -22,7 +22,8 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="white-box">
-            <div class="row row-in">
+            <div style="text-align: right"><a href="{{route('pejabat')}}"><button type="button" class="btn btn-warning">Ubah Data Pejabat</button></a></div>
+            <br>
                 <table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
                     <thead>
                         <tr>
@@ -47,7 +48,7 @@
                                         @csrf
                                         <input type="hidden" name="id" value="{{$individu->id}}">
                                         <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-KP_KOMPRE">
-                                            <button type="submit" class="btn btn-warning"
+                                            <button type="submit" class="btn btn-primary"
                                             @if ($individu->nilai == null)
                                                 disabled
                                             @endif
@@ -102,7 +103,6 @@
                     @endforeach
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 </div>
