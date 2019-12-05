@@ -8,6 +8,7 @@ use App\mahasiswa;
 use App\mahasiswaJadwal;
 use App\jadwal;
 use App\masterKelas;
+use App\toga;
 
 class TogaController extends Controller
 {
@@ -28,14 +29,83 @@ class TogaController extends Controller
 
     public function kwitansi($id)
     {
-        $mahasiswa = mahasiswa::find($id);
-        $mahasiswaJadwal = mahasiswaJadwal::where('mahasiswa_id', $id)->first();
-        $jadwal = jadwal::find($mahasiswaJadwal->jadwal_id);
-        $kelas = masterKelas::find($jadwal->id_kelas);
+        $toga = toga::where('mahasiswa_id', $id)->first();
+        if(!$toga)
+        {
+            $mahasiswa = mahasiswa::find($id);
+            $mahasiswaJadwal = mahasiswaJadwal::where('mahasiswa_id', $id)->first();
+            $jadwal = jadwal::find($mahasiswaJadwal->jadwal_id);
+            $kelas = masterKelas::find($jadwal->id_kelas);
+
+            $nomor = toga::select('nomor')->orderBy('id', 'desc')->first();
+            if(!$nomor)
+            {
+                $nomor = '00-00';
+            }
+            else
+            {
+                $nomor = $nomor->nomor;
+            }
+            $nomor = explode('-', $nomor);
+            $nomor[1] = (int)$nomor[1];
+            $tahun = date('y');
+            if($tahun != $nomor[0])
+            {
+                $nomor = [$tahun, 0];
+            }
+            $nomor[1] = $nomor[1] + 1;
+            $nomor[1] = str_pad($nomor[1], 3, '0', STR_PAD_LEFT);
+
+            $toga = new toga();
+            $toga->mahasiswa_id = $mahasiswa->id;
+            $toga->nama = $mahasiswa->nama;
+            $toga->nrp = $mahasiswa->nrp;
+            $toga->kelas = $kelas->nama;
+            $toga->nomor = implode('-', $nomor);
+
+            $toga->save();
+        }
 
         $data = new \stdClass();
-        $data->mahasiswa = $mahasiswa->nama;
-        $data->kelas = $kelas->nama;
+        $data->mahasiswa = $toga->nama;
+        $data->nrp = $toga->nrp;
+        $data->kelas = $toga->kelas;
+        $data->nomor = $toga->nomor;
+        $data->date = $this->get_date();
         return view ('keuangan.toga.kwitansi', compact('data'));
+    }
+
+    private function get_date()
+    {
+        $month = date("F");
+        if ($month == 'January'){
+            $month = 'Januari';
+        }
+        elseif ($month == 'February'){
+            $month = 'Februari';
+        }
+        elseif ($month == 'March'){
+            $month = 'Maret';
+        }
+        elseif ($month == 'May'){
+            $month = 'Mei';
+        }
+        elseif ($month == 'June'){
+            $month = 'Juni';
+        }
+        elseif ($month == 'July'){
+            $month = 'Juli';
+        }
+        elseif ($month == 'August'){
+            $month = 'Agustus';
+        }
+        elseif ($month == 'October'){
+            $month = 'Oktober';
+        }
+        elseif ($month == 'December'){
+            $month = 'Desember';
+        }
+        $date = date('d ').$month.date(' Y');
+        return $date;
     }
 }
