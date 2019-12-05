@@ -20,8 +20,17 @@ class TogaController extends Controller
 
     public function index()
     {
-        $data = mahasiswa::all();
         $config = config::where('name', 'harga toga')->first();
+
+        $harga = new \stdClass();
+        $harga->string = strrev($config->data);
+        $harga->string = str_split($harga->string, "3");
+        $harga->string = implode('.', $harga->string);
+        $harga->string = strrev($harga->string);
+
+        $harga->number = $config->data;
+
+        $data = mahasiswa::all();
         foreach ($data as $m) {
             $jadwal = mahasiswaJadwal::where('mahasiswa_id', $m->id)->first();
             if($jadwal)
@@ -35,7 +44,7 @@ class TogaController extends Controller
                 $m->kelas = NULL;
             }
         }
-        return view('keuangan.toga.index', ['data' => $data, 'harga_toga' => $config->data]);
+        return view('keuangan.toga.index', ['data' => $data, 'harga' => $harga]);
     }
 
     public function kwitansi($id)
