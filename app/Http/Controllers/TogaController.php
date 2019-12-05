@@ -24,7 +24,16 @@ class TogaController extends Controller
         $config = config::where('name', 'harga toga')->first();
         foreach ($data as $m) {
             $jadwal = mahasiswaJadwal::where('mahasiswa_id', $m->id)->first();
-            $m->jadwal = ($jadwal) ? $jadwal : NULL;
+            if($jadwal)
+            {
+                $m->jadwal = $jadwal;
+                $m->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+            }
+            else
+            {
+                $m->jadwal = NULL;
+                $m->kelas = NULL;
+            }
         }
         return view('keuangan.toga.index', ['data' => $data, 'harga_toga' => $config->data]);
     }
