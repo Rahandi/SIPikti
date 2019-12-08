@@ -82,7 +82,7 @@
                     @for ($i = 0; $i < count($data->nilai); $i++)
                         <tr>
                             <td>{{$i+1}}</td>
-                            <td></td>
+                            <td>{{$data->nilai[$i]->kode}}</td>
                             <td style="text-align: left">{{$data->nilai[$i]->nama}}</td>
                             <td>{{$data->nilai[$i]->semester}}</td>
                             <td>{{$data->nilai[$i]->sks}}</td>

@@ -26,10 +26,11 @@
             <br>
                 <table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
                     <thead>
-                        <tr>{{dd($data[0])}}
+                        <tr>
                             <th style="width: 5%;">No.</th>
+                            <th style="width: 10%;text-align: center;">Kelas</th>
                             <th style="width: 15%;text-align: center;">NRP</th>
-                            <th style="width: 45%;text-align: center;">Nama</th>
+                            <th style="width: 35%;text-align: center;">Nama</th>
                             <th style="width: 35%;text-align: center;">Transkrip</th>
                         </tr>
                     </thead>
@@ -38,6 +39,7 @@
                     @if (isset($individu->nrp))
                         <tr>
                             <td style="vertical-align: middle"></td>
+                            <td style="vertical-align: middle">{{ $individu->kelas }}</td>
                             <td style="vertical-align: middle">{{ $individu->nrp }}</td>
                             <td class="sorting_1" style="text-align: left;vertical-align: middle">{{ $individu->nama }}</td>
                             <td>
