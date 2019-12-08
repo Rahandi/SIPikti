@@ -108,7 +108,7 @@
 						<thead>
 							<tr>
 								<th style="width: 5%;">No</th>
-								<th style="width: 10%;text-align: center;">Termin</th>
+								<th style="width: 10%;text-align: center;">Semester</th>
 								<th style="width: 10%;text-align: center;">Kelas</th>
 								<th style="width: 30%;text-align: center;">Mata Kuliah</th>
 								<th style="width: 20%;text-align: center;">Jumlah Penilaian</th>

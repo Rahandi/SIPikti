@@ -22,8 +22,9 @@
 				{{csrf_field()}}
 				<table style="width: 100%;">
 					<tr>
-						<th style="width: 10%; text-align: center;">Termin</th>
-						<th style="width: 60%; text-align: center;">Nama Mata Kuliah</th>
+						<th style="width: 10%; text-align: center;">Semester</th>
+						<th style="width: 15%; text-align: center;">Kode MK</th>
+						<th style="width: 45%; text-align: center;">Nama Mata Kuliah</th>
 						<th style="width: 15%; text-align: center;">Jumlah SKS</th>
 						<th rowspan="2" style="width: 15%;">
 							<a><button type="submit" style="width: 100%;" class="btn btn-info">Submit</button></a>
@@ -33,6 +34,11 @@
 						<td>
 							<div class="form-group">
 								<input style="text-align: center;" type="text" class="form-control" id="inp1" name="semester" placeholder="1" required>
+							</div>
+						</td>
+						<td>
+							<div class="form-group">
+								<input style="text-align: center;" type="text" class="form-control" id="inp1" name="kode_mk" placeholder="IF190213" required>
 							</div>
 						</td>
 						<td>

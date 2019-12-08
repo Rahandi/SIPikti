@@ -22,8 +22,9 @@
 				{{csrf_field()}}
 				<table style="width: 100%;">
 					<tr>
-						<th style="width: 10%; text-align: center;">Termin</th>
-						<th style="width: 60%; text-align: center;">Nama Mata Kuliah</th>
+						<th style="width: 10%; text-align: center;">Semester</th>
+						<th style="width: 15%; text-align: center;">Kode MK</th>
+						<th style="width: 45%; text-align: center;">Nama Mata Kuliah</th>
 						<th style="width: 15%; text-align: center;">Jumlah SKS</th>
 						<th rowspan="2" style="width: 15%;">
 							<input type="hidden" name="id" value="{{$data->id}}">
@@ -38,12 +39,17 @@
 						</td>
 						<td>
 							<div class="form-group">
+								<input style="text-align: center;" type="text" class="form-control" id="inp1" name="kode_mk" placeholder="IF190213" value="{{$data->kode_mk}}" required>
+							</div>
+						</td>
+						<td>
+							<div class="form-group">
 								<input style="text-align: center;" type="text" class="form-control" id="inp2" name="nama" placeholder="Pemrograman Java" value="{{$data->nama}}" required>
 							</div>
 						</td>
 						<td>
 							<div class="form-group">
-								<input style="text-align: center;" type="number" class="form-control" id="inp2" name="sks" placeholder="2" required>
+								<input style="text-align: center;" type="number" class="form-control" id="inp2" name="sks" placeholder="2" value="{{$data->sks}}" required>
 							</div>
 						</td>
 						<td></td>

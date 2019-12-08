@@ -32,8 +32,9 @@
 						<thead>
 							<tr>
 								<th style="width: 5%;">No.</th>
-								<th style="width: 50%; text-align: center;">Nama Mata Kuliah</th>
-								<th style="width: 10%; text-align: center;">Termin</th>
+								<th style="width: 15%; text-align: center;">Kode MK</th>
+								<th style="width: 35%; text-align: center;">Nama Mata Kuliah</th>
+								<th style="width: 10%; text-align: center;">Semester</th>
 								<th style="width: 10%; text-align: center;">SKS</th>
 								<th style="width: 25%; text-align: center;">Action</th>
 								<th style="display: none;">created</th>
@@ -44,6 +45,7 @@
 						@foreach ($data as $datas)
 							<tr>
 								<td style="text-align: center;"></td>
+								<td style="text-align: center;">{{$datas->kode_mk}}</td>
 								<td class="sorting_1">{{$datas->nama}}</td>
 								<td style="text-align: center;">{{$datas->semester}}</td>
 								<td style="text-align: center;">{{$datas->sks}}</td>
@@ -57,7 +59,7 @@
 									</a>
 									</div>
 								</td>
-								<td class="sorting_1" style="display: none;">{{$datas->id}}</td>
+								<td style="display: none;">{{$datas->id}}</td>
 							</tr>
 
 							<!-- Modal -->
@@ -74,7 +76,7 @@
 									<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
 										<form action="{{route('master.mk.delete')}}" method="POST">
 											{{ csrf_field() }}
-											<input type="hidden" name="id" id="valueId" value="">
+											<input type="hidden" name="find" id="valueId" value="">
 											<button type="submit" class="btn btn-success" id="DeleteButton" style="margin: 1%;">Ya</button>
 											<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Tidak</button>
 										</form>
@@ -102,7 +104,7 @@
 					"orderable": false,
 					"targets": 0,
 				} ],
-				"order": [[ 4, 'asc' ]],
+				"order": [[ 3, 'asc' ]],
 			} );
 
 			t.on( 'order.dt search.dt', function () {

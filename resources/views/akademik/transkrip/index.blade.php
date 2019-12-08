@@ -26,7 +26,7 @@
             <br>
                 <table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
                     <thead>
-                        <tr>
+                        <tr>{{dd($data[0])}}
                             <th style="width: 5%;">No.</th>
                             <th style="width: 15%;text-align: center;">NRP</th>
                             <th style="width: 45%;text-align: center;">Nama</th>
