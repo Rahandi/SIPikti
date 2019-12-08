@@ -324,22 +324,22 @@ class TranskripController extends Controller
 
     private function parse_nilai($nilai)
     {
-        if($nilai >= 86){
+        if($nilai >= 85.5){
             return 'A';
         }
-        if($nilai >= 76){
+        if($nilai >= 75.5){
             return 'AB';
         }
-        if($nilai >= 66){
+        if($nilai >= 65.5){
             return 'B';
         }
-        if($nilai >= 61){
+        if($nilai >= 60.5){
             return 'BC';
         }
-        if($nilai >= 56){
+        if($nilai >= 55.5){
             return 'C';
         }
-        if($nilai >= 41){
+        if($nilai >= 40.5){
             return 'D';
         }
         if($nilai >= 0){
