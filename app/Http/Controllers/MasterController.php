@@ -99,6 +99,7 @@ class MasterController extends Controller
     public function store_mk(Request $request)
     {
         $mk = new masterMK();
+        $mk->kode_mk = $request->kode_mk;
         $mk->nama = $request->nama;
         $mk->semester = $request->semester;
         $mk->sks = $request->sks;
@@ -182,6 +183,7 @@ class MasterController extends Controller
     public function update_mk(Request $request)
     {
         $mk = masterMK::find($request->id);
+        $mk->kode_mk = $request->kode_mk;
         $mk->nama = $request->nama;
         $mk->semester = $request->semester;
         $mk->sks = $request->sks;
