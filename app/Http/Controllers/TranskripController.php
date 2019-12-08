@@ -72,8 +72,8 @@ class TranskripController extends Controller
             $temp->nama = $master_mk->nama;
             $temp->semester = $master_nilai->termin;
             $temp->sks = $master_mk->sks;
-            $temp->nilai = ((float)$nilai->nilai_total / 100.0) * 4;
-            $temp->nilai_huruf = $this->parse_nilai($temp->nilai);
+            $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
+            $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
             array_push($data->nilai, $temp);
 
             $total += $temp->nilai;
@@ -132,8 +132,8 @@ class TranskripController extends Controller
             $temp->nama = $master_mk->nama;
             $temp->semester = $master_nilai->termin;
             $temp->sks = $master_mk->sks;
-            $temp->nilai = ((float)$nilai->nilai_total / 100.0) * 4;
-            $temp->nilai_huruf = $this->parse_nilai($temp->nilai);
+            $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
+            $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
             array_push($data->nilai, $temp);
 
             $total += $temp->nilai;
@@ -192,8 +192,8 @@ class TranskripController extends Controller
             $temp->nama = $master_mk->nama;
             $temp->semester = $master_nilai->termin;
             $temp->sks = $master_mk->sks;
-            $temp->nilai = ((float)$nilai->nilai_total / 100.0) * 4;
-            $temp->nilai_huruf = $this->parse_nilai($temp->nilai);
+            $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
+            $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
             array_push($data->nilai, $temp);
 
             $total += $temp->nilai;
@@ -252,8 +252,8 @@ class TranskripController extends Controller
             $temp->nama = $master_mk->nama;
             $temp->semester = $master_nilai->termin;
             $temp->sks = $master_mk->sks;
-            $temp->nilai = ((float)$nilai->nilai_total / 100.0) * 4;
-            $temp->nilai_huruf = $this->parse_nilai($temp->nilai);
+            $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
+            $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
             array_push($data->nilai, $temp);
 
             $total += $temp->nilai;
@@ -324,26 +324,51 @@ class TranskripController extends Controller
 
     private function parse_nilai($nilai)
     {
-        if($nilai == 4.0){
+        if($nilai >= 86){
             return 'A';
         }
-        if($nilai >= 3.5){
+        if($nilai >= 76){
             return 'AB';
         }
-        if($nilai >= 3.0){
+        if($nilai >= 66){
             return 'B';
         }
-        if($nilai >= 2.5){
+        if($nilai >= 61){
             return 'BC';
         }
-        if($nilai >= 2.0){
+        if($nilai >= 56){
             return 'C';
         }
-        if($nilai >= 1.0){
+        if($nilai >= 41){
             return 'D';
         }
-        if($nilai >= 0.0){
+        if($nilai >= 0){
             return 'E';
+        }
+    }
+
+    private function parse_nilai4($nilai_huruf)
+    {
+        if($nilai_huruf == 'A'){
+            return 4.0;
+        }
+        if($nilai_huruf == 'AB'){
+            return 3.5;
+        }
+        if($nilai_huruf == 'B'){
+            return 3.0;
+        }
+        if($nilai_huruf == 'BC'){
+            return 2.5;
+        }
+        if($nilai_huruf == 'C'){
+            return 2.0;
+        }
+        if($nilai_huruf == 'D'){
+            return 1.0;
+        }
+        if($nilai_huruf == 'E'){
+            return 0.0;
         }
     }
 
