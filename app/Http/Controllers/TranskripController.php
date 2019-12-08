@@ -29,10 +29,17 @@ class TranskripController extends Controller
             $mahasiswa->nilai = (count($nilai) > 0) ? $nilai : NULL;
 
             $mahasiswajadwal = mahasiswaJadwal::where('mahasiswa_id', $mahasiswa->id)->first();
-            $jadwal = jadwal::find($mahasiswajadwal->jadwal_id);
-            $kelas = masterKelas::find($jadwal->id_kelas);
+            if($mahasiswajadwal)
+            {
+                $jadwal = jadwal::find($mahasiswajadwal->jadwal_id);
+                $kelas = masterKelas::find($jadwal->id_kelas);
+                $mahasiswa->kelas = $kelas->nama;
+            }
+            else
+            {
+                $mahasiswa->kelas = NULL;
+            }
             
-            $mahasiswa->kelas = $kelas->nama;
         }
         return view('akademik.transkrip.index', compact('data'));
     }
