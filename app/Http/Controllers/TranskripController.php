@@ -9,6 +9,9 @@ use App\nilai;
 use App\masterNilai;
 use App\masterMK;
 use App\config;
+use App\mahasiswaJadwal;
+use App\jadwal;
+use App\masterKelas;
 
 class TranskripController extends Controller
 {
@@ -24,6 +27,12 @@ class TranskripController extends Controller
         {
             $nilai = nilai::where('id_mahasiswa', $mahasiswa->id)->get();
             $mahasiswa->nilai = (count($nilai) > 0) ? $nilai : NULL;
+
+            $mahasiswajadwal = mahasiswaJadwal::where('mahasiswa_id', $mahasiswa->id)->first();
+            $jadwal = jadwal::find($mahasiswajadwal->jadwal_id);
+            $kelas = masterKelas::find($jadwal->id_kelas);
+            
+            $mahasiswa->kelas = $kelas->nama;
         }
         return view('akademik.transkrip.index', compact('data'));
     }
