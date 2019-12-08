@@ -88,6 +88,7 @@ class TranskripController extends Controller
             $temp->nama = $master_mk->nama;
             $temp->semester = $master_nilai->termin;
             $temp->sks = $master_mk->sks;
+            $temp->kode = $master_mk->kode_mk;
             $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
             $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
             array_push($data->nilai, $temp);
