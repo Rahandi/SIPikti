@@ -103,8 +103,8 @@
 							<thead>
 								<tr>
 									<th style="width: 20%;text-align: center;">Nama Pembayaran</th>
-									<th style="width: 20%;text-align: center;">Total Biaya</th>
-									<th style="width: 20%;text-align: center;">Tanggal Bayar</th>
+									<th style="width: 17%;text-align: center;">Total Biaya</th>
+									<th style="width: 23%;text-align: center;">Tanggal Bayar</th>
 									<th style="width: 25%;text-align: center;">Action</th>
 								</tr>
 							</thead>
@@ -113,7 +113,15 @@
 								<tr>
 									<td class="sorting_1" style="text-align: left;">{{ $index }}</td>
 									<td>Rp {{ $data_bayar['biaya'] }}</td>
-									<td>{{ $data_bayar['tanggal_bayar'] }}</td>
+									<td>
+										{{ $data_bayar['tanggal_bayar'] }}
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<a><button type="button" class="btn btn-basic" data-toggle="modal" data-target="#modalUbah" id="tombolEdit" value="{{$index}}"
+										@if ($data_bayar['tanda'] != 1)
+											style="display: none"
+										@endif
+										>Ubah Tanggal</button></a>
+									</td>
 									<td>
 										<div class="row" style="width: 100%;">
 											<div class="col-md-4">
@@ -161,6 +169,26 @@
 										</div>
 									</td>
 								</tr>
+								<!-- Modal -->
+								<div id="modalUbah" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
+									<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
+										<header class="w3-container w3-light-grey w3-round-large"> 
+											<span data-dismiss="modal" class="w3-button w3-display-topright w3-round-large">&times;</span>
+											<h2>Ubah Tanggal Bayar</h2>
+										</header>
+										<div class="w3-container" style="margin-top: 2%;">
+											<input type="date" name="tglbayar" value="">
+										</div>
+										<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
+											<form action="{{route('delete')}}" method="POST">
+												{{ csrf_field() }}
+												<input type="hidden" name="id" id="valueId" value="">
+												<button type="submit" class="btn btn-success" id="UbahTanggal" style="margin: 1%;">Simpan</button>
+											</form>
+											<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Batal</button>
+										</footer>
+									</div>
+								</div>
 							@endforeach
 							</tbody>
 						</table>
@@ -172,10 +200,10 @@
 @endsection
 
 @section('js')
-	<script type="text/javascript" src="{{ URL::asset('js/sipikti.js') }}"></script>
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
+
 	<script src="{{ URL::asset('plugins/bower_components/switchery/dist/switchery.min.js') }}"></script>
 	<script src="{{ URL::asset('plugins/bower_components/custom-select/custom-select.min.js') }}" type="text/javascript"></script>
 	<script src="{{ URL::asset('plugins/bower_components/bootstrap-select/bootstrap-select.min.js') }}" type="text/javascript"></script>
@@ -202,6 +230,15 @@
 				window.location.reload()
 			},500);
 		}
+		var Id;
+		$(document).ready(function(){
+			$(document).on('click', '#tombolEdit', function () {
+				console.log('id yg passing');
+				Id = $(this).val();
+				console.log(Id);
+				document.getElementById("valueId").value = Id;
+			});
+		});
 	</script>
 	<script src="{{ URL::asset('plugins/bower_components/styleswitcher/jQuery.style.switcher.js') }}"></script>
 @endsection

@@ -22,7 +22,29 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="white-box">
-            <div style="text-align: right"><a href="{{route('pejabat')}}"><button type="button" class="btn btn-warning">Ubah Data Pejabat</button></a></div>
+            <div id="modalUbahNo" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
+                <div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
+                    <header class="w3-container w3-light-grey w3-round-large"> 
+                        <span data-dismiss="modal" 
+                        class="w3-button w3-display-topright w3-round-large">&times;</span>
+                        <h2>Ubah Nomor Transkrip</h2>
+                    </header>
+                    <form action="" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="w3-container" style="margin-top: 2%;">
+                        (Tanpa Tahun)<input class="form-control" type="text" value="B/81861/IT2.VIII.2.3/DL.01/" name="noTranskrip" placeholder="contoh: B/81861/IT2.VIII.2.3/DL.01/"><br>
+                    </div>
+                    <footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
+                        <button type="submit" class="btn btn-success" id="noTranskripnya" style="margin: 1%;">Simpan</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Batal</button>
+                    </footer>
+                    </form>
+                </div>
+            </div>
+            <div style="text-align: right">
+                <a><button type="button" class="btn btn-default" id="editNo" data-toggle="modal" data-target="#modalUbahNo">Ubah Nomor Transkrip</button></a>
+                <a href="{{route('pejabat')}}"><button type="button" class="btn btn-warning">Ubah Data Pejabat</button></a>
+            </div>
             <br>
                 <table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
                     <thead>
@@ -62,12 +84,12 @@
                                     <form action="{{ route('transkrip.ta') }}" method="POST" target="_blank">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$individu->id}}">
-                                        <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-TA">
+                                        <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-Proyek Akhir">
                                             <button type="submit" class="btn btn-danger"
                                             @if($individu->nilai == null)
                                                 disabled
                                             @endif
-                                            >TA</button>
+                                            >PA</button>
                                         </a>
                                     </form>
                                     </td>
@@ -75,12 +97,12 @@
                                     <form action="{{ route('transkrip.takp') }}" method="POST" target="_blank">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$individu->id}}">
-                                        <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-TA-KP">
+                                        <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-PA-KP">
                                             <button type="submit" class="btn btn-success"
                                             @if($individu->nilai == null)
                                                 disabled
                                             @endif
-                                            >TA-KP</button>
+                                            >PA-KP</button>
                                         </a>
                                     </form>
                                     </td>
