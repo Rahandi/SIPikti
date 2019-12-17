@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('pagetitle')
-	Nilai
+	Detail Penilaian
 @endsection
 
 @section('css')
@@ -19,6 +19,7 @@
 @endsection
 
 @section('content')
+{{dd($data)}}
 	<div class="row" style="text-align: center;">
 	@if (session('status'))
 	<div id="modalSuccess" class="modal fade" role="dialog" style="z-index: 9999; width:100%;">
@@ -27,7 +28,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title"><b>{{ session('status') }}</b></h4>
+					<h4 class="modal-title"><b>ses</b></h4>
 					Review Data Ter-Upload
 					<table id="list2" class="table table-striped table-hover table-bordered" style="width: 100%; font-size: 13px;">
 						<thead>
@@ -41,16 +42,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach (session('data') as $item)
 								<tr>
 									<td></td>
-									<td>{{$item->nrp}}</td>
-									<td style="text-align: left">{{$item->nama}}</td>
-									<td>{{$item->nilai100}}</td>
-									<td>{{$item->nilai4}}</td>
-									<td>{{$item->nilai_huruf}}</td>
+									<td>$item->nrp}}</td>
+									<td style="text-align: left">$item->nama}}</td>
+									<td>$item->nilai100}}</td>
+									<td>$item->nilai4}}</td>
+									<td>$item->nilai_huruf}}</td>
 								</tr>
-							@endforeach
 						</tbody>
 					</table>
 				</div>
@@ -72,11 +71,11 @@
 						<label>Kelas</label>
 						<select class="form-control selectpicker" data-style="btn-info btn-outline" name="kelas" id="kelas" required="">
 							<option value="">Tahun&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;Semester&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;Kelas&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;Mata Kuliah</option>
-							@foreach ($data as $kls)
-							@for ($i = 0; $i< count($kls->mk); $i++)
-							<option value="{{$kls->termin}},{{$kls->id}},{{$i}}">2019&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->termin}}&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->kelas}}&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->mk[$i]}}</option>
-							@endfor
-							@endforeach
+							{{-- @foreach ($data as $kls) --}}
+							{{-- @for ($i = 0; $i< count($kls->mk); $i++) --}}
+							{{-- <option value="{{$kls->termin}},{{$kls->id}},{{$i}}">2019&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->termin}}&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->kelas}}&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->mk[$i]}}</option> --}}
+							{{-- @endfor --}}
+							{{-- @endforeach --}}
 						</select>
 					</div>
 					<div class="form-group">
@@ -113,23 +112,43 @@
 								<th style="width: 10%;text-align: center;">Kelas</th>
 								<th style="width: 30%;text-align: center;">Mata Kuliah</th>
 								<th style="width: 20%;text-align: center;">Jumlah Penilaian</th>
-								<th style="width: 15%;text-align: center;">Action</th>
+								<th style="width: 25%;text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody style="width:100%;">
-							@foreach ($list as $row)
+							{{-- @foreach ($list as $row) --}}
 							<tr style="width:100%;">
 								<td></td>
-								<td>2019</td>
-								<td>{{$row->termin}}</td>
-								<td>{{$row->kelas}}</td>
-								<td style="text-align: left;">{{$row->mata_kuliah}}</td>
-								<td>{{$row->jml}}</td>
+								<td>$row->termin}}</td>
+								<td>$row->kelas}}</td>
+								<td style="text-align: left;">$row->mata_kuliah}}</td>
+								<td>$row->jml}}</td>
 								<td>
-									<a href="{{route('nilai.detail')}}"><button class="btn btn-info">Detail</button></a>
+									<div style="width:100%;">
+										<div class="col-md-6">
+										<form action="{{ route('nilai.download') }}" method="POST">
+											@csrf
+											<input type="hidden" name="id" value="">
+											<a data-toggle="tooltip" data-placement="top" title="Download Template Penilaian"><button style="width:100%;" type="submit" class="btn btn-primary">Download</button></a>
+										</form>
+										</div>
+										<a class="col-md-6" data-toggle="tooltip" data-placement="top" title="Upload Penilaian"><button type="button" id="tombolUp" style="width:100%;" data-toggle="modal" class="btn btn-warning" data-target="#modalUpload" value="">Upload</button></a>
+									</div>
+									<div style="margin:5%;"><br></div>
+									<div style="width:100%;">
+										<div class="col-md-6">
+										<form action="{{ route('nilai.total') }}" method="POST">
+											@csrf
+											<input type="hidden" name="id" value="">
+											<a data-toggle="tooltip" data-placement="top" title="Hasil Penilaian"><button type="submit" class="btn btn-success" style="width:100%;"
+											>Hasil</button></a>
+										</form>
+										</div>
+										<a class="col-md-6" data-toggle="tooltip" data-placement="top" title="Hapus Penilaian"><button style="width:100%;" type="button" id="tombolDel" data-toggle="modal" class="btn btn-danger" data-target="#modalDelete" value="{">Hapus</button></a>
+									</div>
 								</td>
 							</tr>
-							@endforeach
+							{{-- @endforeach --}}
 						</tbody>
 					</table>
 				</div>

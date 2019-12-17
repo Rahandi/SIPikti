@@ -73,12 +73,21 @@ Route::group(['prefix' => 'akademik'], function () {
 
     Route::group(['prefix' => 'nilai'], function () {
         Route::get('/', 'PenilaianController@index')->name('nilai');
+        Route::get('/detail', function () {
+            return view('akademik/nilai/detail');
+        })->name('nilai.detail');
 
         Route::post('/store', 'PenilaianController@store')->name('nilai.store');
         Route::post('/download', 'PenilaianController@download')->name('nilai.download');
         Route::post('/upload', 'PenilaianController@upload')->name('nilai.upload');
         Route::post('/delete', 'PenilaianController@delete')->name('nilai.delete');
         Route::post('/nilai_total', 'PenilaianController@nilai_total')->name('nilai.total');
+    });
+
+    Route::group(['prefix' => 'pakp'], function () {
+        Route::get('/', function () {
+            return view('akademik/pakp/index');
+        })->name('pakp');
     });
 
     Route::group(['prefix' => 'transkrip'], function () {
