@@ -116,6 +116,8 @@
 									<td>
 										{{ $data_bayar['tanggal_bayar'] }}
 										&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="hidden" id="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
+										<input type="hidden" id="jenis_bayar" value="{{$index}}">
 										<a><button type="button" class="btn btn-basic" data-toggle="modal" data-target="#modalUbah" id="tombolEdit" value="{{$index}}"
 										@if ($data_bayar['tanda'] != 1)
 											style="display: none"
@@ -177,12 +179,13 @@
 											<h2>Ubah Tanggal Bayar</h2>
 										</header>
 										<div class="w3-container" style="margin-top: 2%;">
-											<input type="date" name="tglbayar" value="">
+											<form action="{{route('pembayaran.ubahtanggal')}}" method="post">
+												@csrf
+												<input type="date" name="tglbayar" value="{{ $data_bayar['tanggal_asli'] }}">
 										</div>
 										<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
-											<form action="{{route('delete')}}" method="POST">
-												{{ csrf_field() }}
-												<input type="hidden" name="id" id="valueId" value="">
+												<input type="hidden" name="mahasiswa_angsuran" id="mhsId" value="">
+												<input type="hidden" name="jenis_bayar" id="jenisAng" value="">
 												<button type="submit" class="btn btn-success" id="UbahTanggal" style="margin: 1%;">Simpan</button>
 											</form>
 											<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Batal</button>
@@ -230,13 +233,16 @@
 				window.location.reload()
 			},500);
 		}
-		var Id;
+		var mhsId, ang;
 		$(document).ready(function(){
 			$(document).on('click', '#tombolEdit', function () {
 				console.log('id yg passing');
-				Id = $(this).val();
-				console.log(Id);
-				document.getElementById("valueId").value = Id;
+				mhsId = $('#mahasiswa_angsuran').val();
+				ang = $('#jenis_bayar').val();
+				console.log(mhsId);
+				console.log(ang);
+				document.getElementById("mhsId").value = mhsId;
+				document.getElementById("jenisAng").value = ang;
 			});
 		});
 	</script>

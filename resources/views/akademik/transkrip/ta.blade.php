@@ -27,7 +27,7 @@
 	<div class="container" style="width:100%; margin-top: 20%; padding-right: 15%; margin-bottom: 10%; margin-left: 10%;">
 		<div class="row" style="text-align: center; font-size: 17px;">
             <b>TRANSKRIP AKADEMIK</b><br>
-            No. : B/81861/IT2.VIII.2.3/DL.01/2019<br>
+            No. : {{$data->nomor_transkrip}}<br>
 		</div>
 		<div class="row" style="text-align: left; font-size: 14px; margin-top: 3%;">
 			<table style="width:100%">

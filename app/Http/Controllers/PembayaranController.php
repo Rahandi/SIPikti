@@ -34,6 +34,7 @@ class PembayaranController extends Controller
             $datanya = unserialize($pembayaran->data_pembayaran);
             foreach($datanya as $key => $value){
                 $datanya[$key]['biaya'] = strrev(rtrim(chunk_split(strrev($datanya[$key]['biaya']), 3, '.'), '.'));
+                $datanya[$key]['tanggal_asli'] = $this->parse_date_to_number($datanya[$key]['tanggal_bayar']);
             }
             $pembayaran->data_pembayaran = $datanya;
             $data = array(
@@ -105,6 +106,21 @@ class PembayaranController extends Controller
             'administrator' => Auth::user()->name
         );
         return view('pembayaran.kwitansi', compact('data'));
+    }
+
+    public function ubahTanggal(Request $request)
+    {
+        $date = $request->tglbayar;
+        $date = $this->parse_date_to_indo($date);
+        $id_mahasiswa_angsuran = $request->mahasiswa_angsuran;
+        $jenis_terbayar = $request->jenis_bayar;
+        $mahasiswa_angsuran = mahasiswaAngsuran::find($id_mahasiswa_angsuran);
+        $data_pembayaran = unserialize($mahasiswa_angsuran->data_pembayaran);
+        $data_pembayaran[$jenis_terbayar]['tanggal_bayar'] = $date;
+        $mahasiswa_angsuran->data_pembayaran = serialize($data_pembayaran);
+        $mahasiswa_angsuran->save();
+
+        return redirect()->back();
     }
 
     public function deleteBayarAngsuran(Request $request)
@@ -193,6 +209,123 @@ class PembayaranController extends Controller
         {
             $mahasiswa->nrp = $nrp;
             $mahasiswa->save();
+        }
+    }
+
+    private function parse_date_to_indo($date)
+    {
+        $parted = explode('-', $date);
+        if ($parted[1] == '01')
+        {
+            $parted[1] = 'Januari';
+        }
+        elseif ($parted[1] == '02')
+        {
+            $parted[1] = 'Februari';
+        }
+        elseif ($parted[1] == '03')
+        {
+            $parted[1] = 'Maret';
+        }
+        elseif ($parted[1] == '04')
+        {
+            $parted[1] = 'April';
+        }
+        elseif ($parted[1] == '05')
+        {
+            $parted[1] = 'Mei';
+        }
+        elseif ($parted[1] == '06')
+        {
+            $parted[1] = 'Juni';
+        }
+        elseif ($parted[1] == '07')
+        {
+            $parted[1] = 'Juli';
+        }
+        elseif ($parted[1] == '08')
+        {
+            $parted[1] = 'Agustus';
+        }
+        elseif ($parted[1] == '09')
+        {
+            $parted[1] = 'September';
+        }
+        elseif ($parted[1] == '10')
+        {
+            $parted[1] = 'Oktober';
+        }
+        elseif ($parted[1] == '11')
+        {
+            $parted[1] = 'November';
+        }
+        elseif ($parted[1] == '12')
+        {
+            $parted[1] = 'Desember';
+        }
+        $diwalik = [$parted[2], $parted[1], $parted[0]];
+        return implode(' ', $diwalik);
+    }
+
+    private function parse_date_to_number($date)
+    {
+        if($date)
+        {
+            $parted = explode(' ', $date);
+            if ($parted[1] == 'Januari')
+            {
+                $parted[1] = '01';
+            }
+            elseif ($parted[1] == 'Februari')
+            {
+                $parted[1] = '02';
+            }
+            elseif ($parted[1] == 'Maret')
+            {
+                $parted[1] = '03';
+            }
+            elseif ($parted[1] == 'April')
+            {
+                $parted[1] = '04';
+            }
+            elseif ($parted[1] == 'Mei')
+            {
+                $parted[1] = '05';
+            }
+            elseif ($parted[1] == 'Juni')
+            {
+                $parted[1] = '06';
+            }
+            elseif ($parted[1] == 'Juli')
+            {
+                $parted[1] = '07';
+            }
+            elseif ($parted[1] == 'Agustus')
+            {
+                $parted[1] = '08';
+            }
+            elseif ($parted[1] == 'September')
+            {
+                $parted[1] = '09';
+            }
+            elseif ($parted[1] == 'Oktober')
+            {
+                $parted[1] = '10';
+            }
+            elseif ($parted[1] == 'November')
+            {
+                $parted[1] = '11';
+            }
+            elseif ($parted[1] == 'Desember')
+            {
+                $parted[1] = '12';
+            }
+            $diwalik = [$parted[2], $parted[1], $parted[0]];
+            return implode('-', $diwalik);
+        }
+        else
+        {
+            return $date;
         }
     }
 

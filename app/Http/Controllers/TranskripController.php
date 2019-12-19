@@ -22,6 +22,7 @@ class TranskripController extends Controller
 
     public function index()
     {
+        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first()->data;
         $data = mahasiswa::all();
         foreach($data as $mahasiswa)
         {
@@ -41,13 +42,14 @@ class TranskripController extends Controller
             }
             
         }
-        return view('akademik.transkrip.index', compact('data'));
+        return view('akademik.transkrip.index', ['data' => $data, 'nomor_transkrip' => $nomor_transkrip]);
     }
 
     public function sementara(Request $request)
     {
         $pejabat1 = config::where('name', 'pejabat 1')->first();
         $pejabat2 = config::where('name', 'pejabat 2')->first();
+        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
 
         $pejabat = new \stdClass();
         $pejabat->satu = new \stdClass();
@@ -68,6 +70,7 @@ class TranskripController extends Controller
         $nilais = nilai::where('id_mahasiswa', $request->id)->get();
 
         $data = new \stdClass();
+        $data->nomor_transkrip = $nomor_transkrip->data . date('Y');
         $data->nama = $mahasiswa->nama;
         $data->nrp = $mahasiswa->nrp;
         $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
@@ -109,6 +112,7 @@ class TranskripController extends Controller
     {
         $pejabat1 = config::where('name', 'pejabat 1')->first();
         $pejabat2 = config::where('name', 'pejabat 2')->first();
+        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
 
         $pejabat = new \stdClass();
         $pejabat->satu = new \stdClass();
@@ -129,6 +133,7 @@ class TranskripController extends Controller
         $nilais = nilai::where('id_mahasiswa', $request->id)->get();
 
         $data = new \stdClass();
+        $data->nomor_transkrip = $nomor_transkrip->data . date('Y');
         $data->nama = $mahasiswa->nama;
         $data->nrp = $mahasiswa->nrp;
         $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
@@ -170,6 +175,7 @@ class TranskripController extends Controller
     {
         $pejabat1 = config::where('name', 'pejabat 1')->first();
         $pejabat2 = config::where('name', 'pejabat 2')->first();
+        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
 
         $pejabat = new \stdClass();
         $pejabat->satu = new \stdClass();
@@ -190,6 +196,7 @@ class TranskripController extends Controller
         $nilais = nilai::where('id_mahasiswa', $request->id)->get();
 
         $data = new \stdClass();
+        $data->nomor_transkrip = $nomor_transkrip->data . date('Y');
         $data->nama = $mahasiswa->nama;
         $data->nrp = $mahasiswa->nrp;
         $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
@@ -231,6 +238,7 @@ class TranskripController extends Controller
     {
         $pejabat1 = config::where('name', 'pejabat 1')->first();
         $pejabat2 = config::where('name', 'pejabat 2')->first();
+        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
 
         $pejabat = new \stdClass();
         $pejabat->satu = new \stdClass();
@@ -251,6 +259,7 @@ class TranskripController extends Controller
         $nilais = nilai::where('id_mahasiswa', $request->id)->get();
 
         $data = new \stdClass();
+        $data->nomor_transkrip = $nomor_transkrip->data . date('Y');
         $data->nama = $mahasiswa->nama;
         $data->nrp = $mahasiswa->nrp;
         $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
@@ -315,6 +324,7 @@ class TranskripController extends Controller
     {
         $pejabat1 = config::where('name', 'pejabat 1')->first();
         $pejabat2 = config::where('name', 'pejabat 2')->first();
+        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
 
         $pejabatsatu = [$request->pejabat1_jabatan, $request->pejabat1_nama, $request->pejabat1_nip];
         $pejabatdua = [$request->pejabat2_jabatan, $request->pejabat2_nama, $request->pejabat2_nip];
@@ -326,6 +336,14 @@ class TranskripController extends Controller
         $pejabat2->save();
 
         return redirect()->route('transkrip');
+    }
+
+    public function nomor_transkrip_update(Request $request)
+    {
+        $config = config::where('name', 'nomor_transkrip')->first();
+        $config->data = $request->nomor_transkrip;
+        $config->save();
+        return redirect()->back();
     }
 
     private function parse_predikat($ipk)

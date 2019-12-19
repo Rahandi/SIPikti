@@ -27,5 +27,10 @@ class ConfigSeeder extends Seeder
             'name' => 'pejabat 2',
             'data' => 'Ketua PIKTI ITS|Abdul Munif, S.Kom., M.Sc.|19860823 201504 1 004'
         ]);
+
+        config::create([
+            'name' => 'nomor_transkrip',
+            'data' => 'B/81861/IT2.VIII.2.3/DL.01/'
+        ]);
     }
 }

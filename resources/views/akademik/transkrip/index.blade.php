@@ -29,10 +29,10 @@
                         class="w3-button w3-display-topright w3-round-large">&times;</span>
                         <h2>Ubah Nomor Transkrip</h2>
                     </header>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('transkrip.update')}}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="w3-container" style="margin-top: 2%;">
-                        (Tanpa Tahun)<input class="form-control" type="text" value="B/81861/IT2.VIII.2.3/DL.01/" name="noTranskrip" placeholder="contoh: B/81861/IT2.VIII.2.3/DL.01/"><br>
+                        (Tanpa Tahun)<input class="form-control" type="text" value="{{$nomor_transkrip}}" name="nomor_transkrip" placeholder="contoh: B/81861/IT2.VIII.2.3/DL.01/"><br>
                     </div>
                     <footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
                         <button type="submit" class="btn btn-success" id="noTranskripnya" style="margin: 1%;">Simpan</button>

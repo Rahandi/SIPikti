@@ -128,7 +128,7 @@
             listKat = ['pa','kp','kompre','pakp'];
             // clear all tr th
             for (i=0; i<listKat.length; i++){
-                
+                i=0;
             }
             // var nama_kls = <?php echo json_encode($data->masterKelas); ?>;
             // console.log(nama_kls);

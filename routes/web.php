@@ -99,6 +99,7 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::post('/ta', 'TranskripController@ta')->name('transkrip.ta');
         Route::post('/takp', 'TranskripController@takp')->name('transkrip.takp');
         Route::post('/pejabat', 'TranskripController@pejabat_update')->name('pejabat.update');
+        Route::post('/update_nomor', 'TranskripController@nomor_transkrip_update')->name('transkrip.update');
     });
 });
 
@@ -113,7 +114,7 @@ Route::group(['prefix' => 'keuangan'], function () {
         Route::post('/delete', 'AngsuranController@delete')->name('angsuran.delete');
     });
     
-    Route::group(['prefix' => 'pembayan'], function () {
+    Route::group(['prefix' => 'pembayaran'], function () {
         Route::get('/', 'PembayaranController@index')->name('pembayaran');
         Route::get('/detail/{id}', 'PembayaranController@detail')->name('pembayaran.detail');
 
@@ -121,6 +122,7 @@ Route::group(['prefix' => 'keuangan'], function () {
         Route::post('/bayar', 'PembayaranController@bayarAngsuran')->name('pembayaran.bayar');
         Route::post('/batalbayar', 'PembayaranController@deleteBayarAngsuran')->name('pembayaran.batalbayar');
         Route::post('/kwitansi', 'PembayaranController@kwitansi')->name('pembayaran.kwitansi');
+        Route::post('/ubahtanggal', 'PembayaranController@ubahTanggal')->name('pembayaran.ubahtanggal');
     });
 
     Route::group(['prefix' => 'toga'], function () {

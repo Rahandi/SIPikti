@@ -23,17 +23,8 @@
 		<div class="col-sm-12">
 			<div class="white-box">
 				<div style="text-align: left;">
-					<h3 class="box-title m-b-0">Penilaian PA-KP</h3>
-					<p class="text-muted m-b-30"><i>Proyek Akhir, Kerja Praktek, dan Komprehensif</i></p>
-                </div>
-                <div class="form-group" style="width:30%;">
-                    <label for="kat">Kategori</label>
-                    <select class="form-control selectpicker" data-style="btn-info btn-outline" name="kategori" id="kat">
-                        <option value="pa">Proyek Akhir (PA)</option>
-                        <option value="kp">Kerja Praktek (KP)</option>
-                        <option value="kompre">Komprehensif</option>
-                        <option value="pakp">PA - KP</option>
-                    </select>
+					<h3 class="box-title m-b-0">Detail Penilaian (Mata Kuliah)</h3>
+					<p class="text-muted m-b-30"><i>Tahun | semester | kelas | mata kuliah</i></p>
                 </div>
                 
                 <p><b>Mahasiswa</b></p>
