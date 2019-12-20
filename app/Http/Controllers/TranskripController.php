@@ -49,7 +49,6 @@ class TranskripController extends Controller
     {
         $pejabat1 = config::where('name', 'pejabat 1')->first();
         $pejabat2 = config::where('name', 'pejabat 2')->first();
-        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
 
         $pejabat = new \stdClass();
         $pejabat->satu = new \stdClass();
@@ -167,6 +166,7 @@ class TranskripController extends Controller
 
     private function sementara($id)
     {
+        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
         $mahasiswa = mahasiswa::find($id);
         $nilais = nilai::where('id_mahasiswa', $id)->get();
 
@@ -210,6 +210,7 @@ class TranskripController extends Controller
 
     private function kp($id)
     {
+        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
         $mahasiswa = mahasiswa::find($id);
         $nilais = nilai::where('id_mahasiswa', $id)->get();
 
@@ -253,6 +254,7 @@ class TranskripController extends Controller
 
     private function ta($id)
     {
+        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
         $mahasiswa = mahasiswa::find($id);
         $nilais = nilai::where('id_mahasiswa', $id)->get();
 
@@ -296,6 +298,7 @@ class TranskripController extends Controller
 
     private function takp($id)
     {
+        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
         $mahasiswa = mahasiswa::find($id);
         $nilais = nilai::where('id_mahasiswa', $id)->get();
 
