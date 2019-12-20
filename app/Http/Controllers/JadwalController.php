@@ -60,6 +60,7 @@ class JadwalController extends Controller
     {
         $jadwal = new jadwal();
         $jadwal->termin = $request->termin;
+        $jadwal->tahun = $request->tahun;
         $jadwal->id_kelas = masterKelas::where('nama','=',$request->kelas)->first()->id;
         
         $mk = array();
@@ -132,6 +133,7 @@ class JadwalController extends Controller
     {
         $jadwal = jadwal::find($request->id);
         $jadwal->termin = $request->termin;
+        $jadwal->tahun = $request->tahun;
         $jadwal->id_kelas = masterKelas::where('nama','=',$request->kelas)->first()->id;
         
         $mk = array();

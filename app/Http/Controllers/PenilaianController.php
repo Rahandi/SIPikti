@@ -78,23 +78,31 @@ class PenilaianController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
-        $master_nilai = new masterNilai();
-
         $kelas = explode(',', $request->kelas);
 
-        $master_nilai->termin = $kelas[0];
-        $master_nilai->id_jadwal = $kelas[1];
-        $master_nilai->jumlah_penilaian = $request->jml;
-        $master_nilai->nama_penilaian = implode(',', $request->nama_penilaian);
-        $master_nilai->persen_penilaian = implode(',', $request->prosentase);
+        $master_nilai = masterNilai::where('id_jadwal', $kelas[1])->first();
+        if (!$master_nilai)
+        {
+            $master_nilai = new masterNilai();
 
-        $jadwal = jadwal::find($master_nilai->id_jadwal);
-        $master_nilai->id_mk = explode(',',$jadwal->ids_mk)[$kelas[2]];
+            $master_nilai->termin = $kelas[0];
+            $master_nilai->id_jadwal = $kelas[1];
+            $master_nilai->jumlah_penilaian = $request->jml;
+            $master_nilai->nama_penilaian = implode(',', $request->nama_penilaian);
+            $master_nilai->persen_penilaian = implode(',', $request->prosentase);
 
-        $master_nilai->save();
+            $jadwal = jadwal::find($master_nilai->id_jadwal);
+            $master_nilai->id_mk = explode(',',$jadwal->ids_mk)[$kelas[2]];
 
-        return redirect()->back();
+            $master_nilai->save();
+
+
+            return redirect()->back();
+        }
+        else
+        {
+            return redirect()->back()->with('status', 'penilaian sudah ada');
+        }
     }
 
     public function download(Request $request)
