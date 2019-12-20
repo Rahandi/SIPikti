@@ -84,10 +84,10 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::post('/nilai_total', 'PenilaianController@nilai_total')->name('nilai.total');
     });
 
-    Route::group(['prefix' => 'pakp'], function () {
+    Route::group(['prefix' => 'takp'], function () {
         Route::get('/', function () {
-            return view('akademik/pakp/index');
-        })->name('pakp');
+            return view('akademik/takp/index');
+        })->name('takp');
     });
 
     Route::group(['prefix' => 'transkrip'], function () {

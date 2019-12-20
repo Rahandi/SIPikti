@@ -126,7 +126,7 @@
 							<li><a href="{{ route('jadwal') }}"><i class="material-icons">date_range</i><span class="hide-menu">  Jadwal</span></a></li>
 							<li><a href="{{ route('nilai') }}"><i class="material-icons">ballot</i><span class="hide-menu">  Nilai</span></a></li>
 							<li><a href="{{ route('transkrip') }}"><i class="material-icons">assignment</i><span class="hide-menu">  Transkrip</span></a></li>
-							<li><a href="{{ route('pakp') }}"><i class="material-icons">assignment</i><span class="hide-menu">  PA - KP</span></a></li>
+							<li><a href="{{ route('takp') }}"><i class="material-icons">assignment</i><span class="hide-menu">  PA - KP</span></a></li>
 						</ul>
 					</li>
 					<li><a class="dropdown-toggle waves-effect" data-toggle="dropdown" href="/keuangan"><i class="material-icons">attach_money</i> <span class="hide-menu">Keuangan<span class="fa arrow"></span></span></a>
