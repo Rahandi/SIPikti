@@ -336,7 +336,6 @@ class TranskripController extends Controller
         $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
         $data->predikat = $this->parse_predikat($data->ipk);
         $data->total_sks = $total_sks;
-        $data->pejabat = $pejabat;
         
         return $data;
     }
