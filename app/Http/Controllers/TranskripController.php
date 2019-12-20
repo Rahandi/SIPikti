@@ -42,7 +42,14 @@ class TranskripController extends Controller
             }
             
         }
-        return view('akademik.transkrip.index', ['data' => $data, 'nomor_transkrip' => $nomor_transkrip]);
+
+        $jadwals = jadwal::all();
+        foreach($jadwals as $jadwal)
+        {
+            $jadwal->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+        }
+
+        return view('akademik.transkrip.index', ['data' => $data, 'nomor_transkrip' => $nomor_transkrip, 'jadwal' => $jadwals]);
     }
 
     public function transkrip(Request $request, $transkrip)
