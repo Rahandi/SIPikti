@@ -45,7 +45,7 @@ class TranskripController extends Controller
         return view('akademik.transkrip.index', ['data' => $data, 'nomor_transkrip' => $nomor_transkrip]);
     }
 
-    public function sementara(Request $request)
+    public function transkrip(Request $request, $transkrip)
     {
         $pejabat1 = config::where('name', 'pejabat 1')->first();
         $pejabat2 = config::where('name', 'pejabat 2')->first();
@@ -66,53 +66,38 @@ class TranskripController extends Controller
         $pejabat->dua->nama = $temp2[1];
         $pejabat->dua->nip = $temp2[2];
 
-        $mahasiswa = mahasiswa::find($request->id);
-        $nilais = nilai::where('id_mahasiswa', $request->id)->get();
-
-        $data = new \stdClass();
-        $data->nomor_transkrip = $nomor_transkrip->data . date('Y');
-        $data->nama = $mahasiswa->nama;
-        $data->nrp = $mahasiswa->nrp;
-        $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
-        
-        $nrp_split = str_split($mahasiswa->nrp);
-        $data->tahun_masuk = '20' . $nrp_split[2] . $nrp_split[3];
-        $data->tahun_lulus = '20' . ((int)($nrp_split[2] . $nrp_split[3]) + 1);
-        
-        $data->nilai = array();
-        $total = 0;
-        $hitung = 0;
-        $total_sks = 0;
-        foreach ($nilais as $nilai) {
-            $id_master_nilai = $nilai->id_master_nilai;
-            $master_nilai = masterNilai::find($id_master_nilai);
-            $master_mk = masterMK::find($master_nilai->id_mk);
-            $temp = new \stdClass();
-            $temp->nama = $master_mk->nama;
-            $temp->semester = $master_nilai->termin;
-            $temp->sks = $master_mk->sks;
-            $temp->kode = $master_mk->kode_mk;
-            $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
-            $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
-            array_push($data->nilai, $temp);
-
-            $total += $temp->nilai;
-            $hitung += 1;
-            $total_sks += $temp->sks;
+        if ($transkrip == 'sementara')
+        {
+            $data = $this->sementara($request->id);
+            $data->pejabat = $pejabat;
+            return view('akademik.transkrip.sementara', compact('data'));
         }
-        $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
-        $data->predikat = $this->parse_predikat($data->ipk);
-        $data->total_sks = $total_sks;
-        $data->pejabat = $pejabat;
-        
-        return view('akademik.transkrip.sementara', compact('data'));
+        elseif ($transkrip == 'kp')
+        {
+            $data = $this->kp($request->id);
+            $data->pejabat = $pejabat;
+            return view('akademik.transkrip.kp', compact('data'));
+        }
+        elseif ($transkrip == 'ta')
+        {
+            $data = $this->ta($request->id);
+            $data->pejabat = $pejabat;
+            return view('akademik.transkrip.ta', compact('data'));
+        }
+        elseif ($transkrip == 'takp')
+        {
+            $data = $this->takp($request->id);
+            $data->pejabat = $pejabat;
+            return view('akademik.transkrip.takp', compact('data'));
+        }
+
+        return redirect()->route('transkrip');
     }
 
-    public function kp(Request $request)
+    public function transkrip_kelas(Request $request, $transkrip)
     {
         $pejabat1 = config::where('name', 'pejabat 1')->first();
         $pejabat2 = config::where('name', 'pejabat 2')->first();
-        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
 
         $pejabat = new \stdClass();
         $pejabat->satu = new \stdClass();
@@ -129,71 +114,61 @@ class TranskripController extends Controller
         $pejabat->dua->nama = $temp2[1];
         $pejabat->dua->nip = $temp2[2];
 
-        $mahasiswa = mahasiswa::find($request->id);
-        $nilais = nilai::where('id_mahasiswa', $request->id)->get();
+        $data = [];
 
-        $data = new \stdClass();
-        $data->nomor_transkrip = $nomor_transkrip->data . date('Y');
-        $data->nama = $mahasiswa->nama;
-        $data->nrp = $mahasiswa->nrp;
-        $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
-        
-        $nrp_split = str_split($mahasiswa->nrp);
-        $data->tahun_masuk = '20' . $nrp_split[2] . $nrp_split[3];
-        $data->tahun_lulus = '20' . ((int)($nrp_split[2] . $nrp_split[3]) + 1);
-        
-        $data->nilai = array();
-        $total = 0;
-        $hitung = 0;
-        $total_sks = 0;
-        foreach ($nilais as $nilai) {
-            $id_master_nilai = $nilai->id_master_nilai;
-            $master_nilai = masterNilai::find($id_master_nilai);
-            $master_mk = masterMK::find($master_nilai->id_mk);
-            $temp = new \stdClass();
-            $temp->nama = $master_mk->nama;
-            $temp->semester = $master_nilai->termin;
-            $temp->sks = $master_mk->sks;
-            $temp->kode = $master_mk->kode_mk;
-            $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
-            $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
-            array_push($data->nilai, $temp);
-
-            $total += $temp->nilai;
-            $hitung += 1;
-            $total_sks += $temp->sks;
+        $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $request->jawdal_id);
+        foreach($mahasiswa_jadwal as $mahasiswa)
+        {
+            if ($transkrip == 'sementara')
+            {
+                $datas = $this->sementara($mahasiswa->mahasiswa_id);
+                $datas->pejabat = $pejabat;
+                array_push($data, $datas);
+            }
+            elseif ($transkrip == 'kp')
+            {
+                $datas = $this->kp($mahasiswa->mahasiswa_id);
+                $datas->pejabat = $pejabat;
+                array_push($data, $datas);
+            }
+            elseif ($transkrip == 'ta')
+            {
+                $datas = $this->ta($mahasiswa->mahasiswa_id);
+                $datas->pejabat = $pejabat;
+                array_push($data, $datas);
+            }
+            elseif ($transkrip == 'takp')
+            {
+                $datas = $this->takp($mahasiswa->mahasiswa_id);
+                $datas->pejabat = $pejabat;
+                array_push($data, $datas);
+            }
         }
-        $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
-        $data->predikat = $this->parse_predikat($data->ipk);
-        $data->total_sks = $total_sks;
-        $data->pejabat = $pejabat;
-        
-        return view('akademik.transkrip.kp', compact('data'));
+
+        if ($transkrip == 'sementara')
+        {
+            return view('akademik.transkrip.sementara_kelas', compact('data'));
+        }
+        elseif ($transkrip == 'kp')
+        {
+            return view('akademik.transkrip.kp_kelas', compact('data'));
+        }
+        elseif ($transkrip == 'ta')
+        {
+            return view('akademik.transkrip.ta_kelas', compact('data'));
+        }
+        elseif ($transkrip == 'takp')
+        {
+            return view('akademik.transkrip.takp_kelas', compact('data'));
+        }
+
+        return redirect()->route('transkrip');
     }
 
-    public function ta(Request $request)
+    private function sementara($id)
     {
-        $pejabat1 = config::where('name', 'pejabat 1')->first();
-        $pejabat2 = config::where('name', 'pejabat 2')->first();
-        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
-
-        $pejabat = new \stdClass();
-        $pejabat->satu = new \stdClass();
-        $pejabat->dua = new \stdClass();
-
-        $temp1 = explode('|', $pejabat1->data);
-        $temp2 = explode('|', $pejabat2->data);
-
-        $pejabat->satu->jabatan = $temp1[0];
-        $pejabat->satu->nama = $temp1[1];
-        $pejabat->satu->nip = $temp1[2];
-
-        $pejabat->dua->jabatan = $temp2[0];
-        $pejabat->dua->nama = $temp2[1];
-        $pejabat->dua->nip = $temp2[2];
-
-        $mahasiswa = mahasiswa::find($request->id);
-        $nilais = nilai::where('id_mahasiswa', $request->id)->get();
+        $mahasiswa = mahasiswa::find($id);
+        $nilais = nilai::where('id_mahasiswa', $id)->get();
 
         $data = new \stdClass();
         $data->nomor_transkrip = $nomor_transkrip->data . date('Y');
@@ -229,34 +204,100 @@ class TranskripController extends Controller
         $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
         $data->predikat = $this->parse_predikat($data->ipk);
         $data->total_sks = $total_sks;
-        $data->pejabat = $pejabat;
         
-        return view('akademik.transkrip.ta', compact('data'));
+        return $data;
     }
 
-    public function takp(Request $request)
+    private function kp($id)
     {
-        $pejabat1 = config::where('name', 'pejabat 1')->first();
-        $pejabat2 = config::where('name', 'pejabat 2')->first();
-        $nomor_transkrip = config::where('name', 'nomor_transkrip')->first();
+        $mahasiswa = mahasiswa::find($id);
+        $nilais = nilai::where('id_mahasiswa', $id)->get();
 
-        $pejabat = new \stdClass();
-        $pejabat->satu = new \stdClass();
-        $pejabat->dua = new \stdClass();
+        $data = new \stdClass();
+        $data->nomor_transkrip = $nomor_transkrip->data . date('Y');
+        $data->nama = $mahasiswa->nama;
+        $data->nrp = $mahasiswa->nrp;
+        $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
+        
+        $nrp_split = str_split($mahasiswa->nrp);
+        $data->tahun_masuk = '20' . $nrp_split[2] . $nrp_split[3];
+        $data->tahun_lulus = '20' . ((int)($nrp_split[2] . $nrp_split[3]) + 1);
+        
+        $data->nilai = array();
+        $total = 0;
+        $hitung = 0;
+        $total_sks = 0;
+        foreach ($nilais as $nilai) {
+            $id_master_nilai = $nilai->id_master_nilai;
+            $master_nilai = masterNilai::find($id_master_nilai);
+            $master_mk = masterMK::find($master_nilai->id_mk);
+            $temp = new \stdClass();
+            $temp->nama = $master_mk->nama;
+            $temp->semester = $master_nilai->termin;
+            $temp->sks = $master_mk->sks;
+            $temp->kode = $master_mk->kode_mk;
+            $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
+            $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
+            array_push($data->nilai, $temp);
 
-        $temp1 = explode('|', $pejabat1->data);
-        $temp2 = explode('|', $pejabat2->data);
+            $total += $temp->nilai;
+            $hitung += 1;
+            $total_sks += $temp->sks;
+        }
+        $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
+        $data->predikat = $this->parse_predikat($data->ipk);
+        $data->total_sks = $total_sks;
+        
+        return $data;
+    }
 
-        $pejabat->satu->jabatan = $temp1[0];
-        $pejabat->satu->nama = $temp1[1];
-        $pejabat->satu->nip = $temp1[2];
+    private function ta($id)
+    {
+        $mahasiswa = mahasiswa::find($id);
+        $nilais = nilai::where('id_mahasiswa', $id)->get();
 
-        $pejabat->dua->jabatan = $temp2[0];
-        $pejabat->dua->nama = $temp2[1];
-        $pejabat->dua->nip = $temp2[2];
+        $data = new \stdClass();
+        $data->nomor_transkrip = $nomor_transkrip->data . date('Y');
+        $data->nama = $mahasiswa->nama;
+        $data->nrp = $mahasiswa->nrp;
+        $data->ttl = $mahasiswa->tempat_lahir . ', ' . $this->parse_date($mahasiswa->tanggal_lahir);
+        
+        $nrp_split = str_split($mahasiswa->nrp);
+        $data->tahun_masuk = '20' . $nrp_split[2] . $nrp_split[3];
+        $data->tahun_lulus = '20' . ((int)($nrp_split[2] . $nrp_split[3]) + 1);
+        
+        $data->nilai = array();
+        $total = 0;
+        $hitung = 0;
+        $total_sks = 0;
+        foreach ($nilais as $nilai) {
+            $id_master_nilai = $nilai->id_master_nilai;
+            $master_nilai = masterNilai::find($id_master_nilai);
+            $master_mk = masterMK::find($master_nilai->id_mk);
+            $temp = new \stdClass();
+            $temp->nama = $master_mk->nama;
+            $temp->semester = $master_nilai->termin;
+            $temp->sks = $master_mk->sks;
+            $temp->kode = $master_mk->kode_mk;
+            $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
+            $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
+            array_push($data->nilai, $temp);
 
-        $mahasiswa = mahasiswa::find($request->id);
-        $nilais = nilai::where('id_mahasiswa', $request->id)->get();
+            $total += $temp->nilai;
+            $hitung += 1;
+            $total_sks += $temp->sks;
+        }
+        $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
+        $data->predikat = $this->parse_predikat($data->ipk);
+        $data->total_sks = $total_sks;
+        
+        return $data;
+    }
+
+    private function takp($id)
+    {
+        $mahasiswa = mahasiswa::find($id);
+        $nilais = nilai::where('id_mahasiswa', $id)->get();
 
         $data = new \stdClass();
         $data->nomor_transkrip = $nomor_transkrip->data . date('Y');
@@ -294,7 +335,7 @@ class TranskripController extends Controller
         $data->total_sks = $total_sks;
         $data->pejabat = $pejabat;
         
-        return view('akademik.transkrip.takp', compact('data'));
+        return $data;
     }
 
     public function pejabat()

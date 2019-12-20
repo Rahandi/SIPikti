@@ -94,10 +94,11 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::get('/', 'TranskripController@index')->name('transkrip');
         Route::get('/pejabat', 'TranskripController@pejabat')->name('pejabat');
 
-        Route::post('/sementara', 'TranskripController@sementara')->name('transkrip.sementara');
-        Route::post('/kp', 'TranskripController@kp')->name('transkrip.kp');
-        Route::post('/ta', 'TranskripController@ta')->name('transkrip.ta');
-        Route::post('/takp', 'TranskripController@takp')->name('transkrip.takp');
+        Route::post('/{transkrip}', 'TranskripController@transkrip')->name('transkrip.transkrip');
+        // Route::post('/sementara', 'TranskripController@sementara')->name('transkrip.sementara');
+        // Route::post('/kp', 'TranskripController@kp')->name('transkrip.kp');
+        // Route::post('/ta', 'TranskripController@ta')->name('transkrip.ta');
+        // Route::post('/takp', 'TranskripController@takp')->name('transkrip.takp');
         Route::post('/pejabat', 'TranskripController@pejabat_update')->name('pejabat.update');
         Route::post('/update_nomor', 'TranskripController@nomor_transkrip_update')->name('transkrip.update');
     });

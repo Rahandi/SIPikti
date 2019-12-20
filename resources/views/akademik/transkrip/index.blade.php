@@ -68,7 +68,7 @@
                                 <table>
                                     <tr>
                                     <td>
-                                    <form action="{{ route('transkrip.kp') }}" method="POST" target="_blank">
+                                    <form action="{{ route('transkrip.transkrip', ['transkrip' => 'kp']) }}" method="POST" target="_blank">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$individu->id}}">
                                         <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-KP_KOMPRE">
@@ -81,7 +81,7 @@
                                     </form>
                                     </td>
                                     <td>
-                                    <form action="{{ route('transkrip.ta') }}" method="POST" target="_blank">
+                                    <form action="{{ route('transkrip.transkrip', ['transkrip' => 'ta']) }}" method="POST" target="_blank">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$individu->id}}">
                                         <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-Proyek Akhir">
@@ -94,7 +94,7 @@
                                     </form>
                                     </td>
                                     <td>
-                                    <form action="{{ route('transkrip.takp') }}" method="POST" target="_blank">
+                                    <form action="{{ route('transkrip.transkrip', ['transkrip' => 'takp']) }}" method="POST" target="_blank">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$individu->id}}">
                                         <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-PA-KP">
@@ -107,7 +107,7 @@
                                     </form>
                                     </td>
                                     <td>
-                                    <form action="{{ route('transkrip.sementara') }}" method="POST" target="_blank">
+                                    <form action="{{ route('transkrip.transkrip', ['transkrip' => 'sementara']) }}" method="POST" target="_blank">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$individu->id}}">
                                         <a data-toggle="tooltip" data-placement="top" title="Transkrip Sementara">
