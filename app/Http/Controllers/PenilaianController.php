@@ -49,25 +49,8 @@ class PenilaianController extends Controller
                 array_push($temp->dosen, masterDosen::find($ids_dosen[$i])->nama);
                 array_push($temp->asisten, masterAsisten::find($ids_asisten[$i])->nama);
             }
-
-            $marker = FALSE;
-
-            foreach($master_nilai as $nilai)
-            {
-                if($item->id == $nilai->id_jadwal)
-                {
-                    $maker = TRUE;
-                }
-                if($marker)
-                {
-                    break;
-                }
-            }
-
-            if(!$marker)
-            {
-                array_push($data, $temp);
-            }
+            
+            array_push($data, $temp);
         }
 
         $list = array();
