@@ -122,7 +122,8 @@ class TranskripController extends Controller
 
         $data = [];
 
-        $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $request->jawdal_id);
+        $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $request->jadwal_id)->get();
+        // dd($request->jadwal_id);
         foreach($mahasiswa_jadwal as $mahasiswa)
         {
             if ($transkrip == 'sementara')
@@ -153,19 +154,19 @@ class TranskripController extends Controller
 
         if ($transkrip == 'sementara')
         {
-            return view('akademik.transkrip.sementara_kelas', compact('data'));
+            return view('akademik.transkrip.sementara_kelas', ['datas' => $data]);
         }
         elseif ($transkrip == 'kp')
         {
-            return view('akademik.transkrip.kp_kelas', compact('data'));
+            return view('akademik.transkrip.kp_kelas', ['datas' => $data]);
         }
         elseif ($transkrip == 'ta')
         {
-            return view('akademik.transkrip.ta_kelas', compact('data'));
+            return view('akademik.transkrip.ta_kelas', ['datas' => $data]);
         }
         elseif ($transkrip == 'takp')
         {
-            return view('akademik.transkrip.takp_kelas', compact('data'));
+            return view('akademik.transkrip.takp_kelas', ['datas' => $data]);
         }
 
         return redirect()->route('transkrip');

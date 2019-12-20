@@ -24,9 +24,11 @@
 	<style>@page { size: legal potrait }</style>
 </head>
 <body onload="window.print()" class="legal potrait" style="width: 100%">
-	<div class="container" style="width:100%; margin-top: 27%; padding-right: 14%; margin-bottom: 10%; margin-left: 12%;">
+    @foreach ($datas as $data)
+	<div class="container" style="width:100%; margin-top: 27%; padding-right: 14%; margin-bottom: 10%; margin-left: 12%; page-break-after: always">
 		<div class="row" style="text-align: center; font-size: 17px;">
-			<b>TRANSKRIP AKADEMIK SEMENTARA</b><br>
+            <b>TRANSKRIP AKADEMIK</b><br>
+            No. : {{$data->nomor_transkrip}}<br>
 		</div>
 		<div class="row" style="text-align: left; font-size: 14px; margin-top: 3%;">
 			<table style="width:100%">
@@ -175,15 +177,26 @@
                 </tbody>
             </table>
         </div>
-        <div class="row" style="margin-left: 63%; font-size: 14px; margin-top: 3%;">
-            <p>Surabaya, 31 Oktober 2019<br>
-            {{$data->pejabat->dua->jabatan}}</p>
-            <p><br><br><br><br><br><br></p>
-            <p>{{$data->pejabat->dua->nama}}<br>
-            NIP {{$data->pejabat->dua->nip}}</p>
-        </div>
+        <table style="margin-top: 3%; font-size: 14px; width:100%">
+            <tr>
+                <td style="width:65%">
+                    <p>Mengetahui,<br>
+                    {{$data->pejabat->satu->jabatan}}</p>
+                    <p><br><br><br><br><br><br></p>
+                    <p>{{$data->pejabat->satu->nama}}<br>
+                    NIP {{$data->pejabat->satu->nip}}</p>
+                </td>
+                <td>
+                    <p>Surabaya, 31 Oktober 2019<br>
+                    {{$data->pejabat->dua->jabatan}}</p>
+                    <p><br><br><br><br><br><br></p>
+                    <p>{{$data->pejabat->dua->nama}}<br>
+                    NIP {{$data->pejabat->dua->nip}}</p>
+                </td>
+            </tr>
+        </table>
 	</div>
-
+    @endforeach
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
 </body>
 </html>

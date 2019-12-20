@@ -24,7 +24,8 @@
 	<style>@page { size: legal potrait }</style>
 </head>
 <body onload="window.print()" class="legal potrait" style="width: 100%">
-	<div class="container" style="width:100%; margin-top: 27%; padding-right: 14%; margin-bottom: 10%; margin-left: 12%;">
+    @foreach ($datas as $data)
+	<div class="container" style="width:100%; margin-top: 27%; padding-right: 14%; margin-bottom: 10%; margin-left: 12%; page-break-after: always">
 		<div class="row" style="text-align: center; font-size: 17px;">
 			<b>TRANSKRIP AKADEMIK SEMENTARA</b><br>
 		</div>
@@ -183,7 +184,7 @@
             NIP {{$data->pejabat->dua->nip}}</p>
         </div>
 	</div>
-
+    @endforeach
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
 </body>
 </html>

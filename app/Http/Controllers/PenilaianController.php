@@ -34,6 +34,7 @@ class PenilaianController extends Controller
         {
             $temp = new \stdClass();
             $temp->id = $item->id;
+            $temp->tahun = $item->tahun;
             $temp->termin = $item->termin;
             $temp->kelas = masterKelas::find($item->id_kelas)->nama;
             $temp->mk = array();
@@ -63,6 +64,7 @@ class PenilaianController extends Controller
 
             $temp = new \stdClass();
             $temp->id = $row->id;
+            $temp->tahun = $jadwal->tahun;
             $temp->id_kelas = $jadwal->id_kelas;
             $temp->id_mk = $row->id_mk;
             $temp->termin = $row->termin;
@@ -97,12 +99,11 @@ class PenilaianController extends Controller
 
             $master_nilai->save();
 
-
             return redirect()->back();
         }
         else
         {
-            return redirect()->back()->with('status', 'penilaian sudah ada');
+            return redirect()->back()->with("status", "Penilaian Sudah Ada");
         }
     }
 

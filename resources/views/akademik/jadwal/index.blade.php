@@ -32,11 +32,12 @@
 						<thead>
 							<tr>
 								<th style="width: 5%;">No.</th>
-								<th style="width: 10%; text-align: center;">Semester</th>
+								<th style="width: 3%; text-align: center;">Tahun</th>
+								<th style="width: 5%; text-align: center;">Semester</th>
 								<th style="width: 10%; text-align: center;">Kelas</th>
 								<th style="width: 15%; text-align: center;">Jam</th>
 								<th style="width: 30%; text-align: center;">Mata Kuliah</th>
-								<th style="width: 15%; text-align: center;">Action</th>
+								<th style="width: 17%; text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -44,7 +45,8 @@
 						@foreach ($data as $datas)
 							<tr>
 								<td></td>
-								<td class="sorting_1">{{$datas->termin}}</td>
+								<td class="sorting_1">{{$datas->tahun}}</td>
+								<td>{{$datas->termin}}</td>
 								<td>{{$datas->kelas}}<br><span class="label label-danger">{{ $datas->hitung }}/30</span></td>
 								<td>{{$datas->jam_sk}}</td>
 								<td>{{$datas->mk}}</td>

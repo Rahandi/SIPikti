@@ -33,11 +33,15 @@
 			<form action="{{route('jadwal.store')}}" method="POST" data-toggle="validator">
 				{{csrf_field()}}
 				<div class="form-group" style="width: 100%;">
-					<div class="col-md-4">
+					<div class="col-md-3">
+						<label for="inp1" class="control-label">Tahun</label>
+						<input type="text" class="form-control text" data-style="btn-info btn-outline" id="inp1" name="tahun" placeholder="2019" required>
+					</div>
+					<div class="col-md-3">
 						<label for="inp1" class="control-label">Semester</label>
 						<input type="text" class="form-control text" data-style="btn-info btn-outline" id="inp1" name="termin" placeholder="1" required>
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-6">
 						<label for="kelas" class="control-label">Kelas</label>
 						<select class="form-control selectpicker" name="kelas" id="kelas" required="" onchange="getKelas()">
 							<option value="0">Select Here</option>

@@ -21,10 +21,10 @@
             border: 1px black solid;
         }
 	</style>
-	<style>@page { size: F4 potrait }</style>
+	<style>@page { size: legal potrait }</style>
 </head>
-<body onload="window.print()" class="F4 potrait" style="widrh:100%">
-	<div class="container" style="width:100%; margin-top: 20%; padding-right: 15%; margin-bottom: 10%; margin-left: 10%;">
+<body onload="window.print()" class="legal potrait" style="width:100%">
+	<div class="container" style="width:100%; margin-top: 27%; padding-right: 14%; margin-bottom: 10%; margin-left: 12%;">
 		<div class="row" style="text-align: center; font-size: 17px;">
             <b>TRANSKRIP AKADEMIK</b><br>
             No. : {{$data->nomor_transkrip}}<br>
@@ -183,18 +183,18 @@
         <table style="margin-top: 2%; font-size: 14px; width:100%">
             <tr>
                 <td style="width:65%">
-                    <p>Mengetahui,</p>
-                    <p>{{$data->pejabat->satu->jabatan}}</p>
+                    <p>Mengetahui,<br>
+                    {{$data->pejabat->satu->jabatan}}</p>
                     <p><br><br><br><br></p>
-                    <p>{{$data->pejabat->satu->nama}}</p>
-                    <p>NIP {{$data->pejabat->satu->nip}}</p>
+                    <p>{{$data->pejabat->satu->nama}}<br>
+                    NIP {{$data->pejabat->satu->nip}}</p>
                 </td>
                 <td>
-                    <p>Surabaya, 31 Oktober 2019</p>
-                    <p>{{$data->pejabat->dua->jabatan}}</p>
+                    <p>Surabaya, 31 Oktober 2019<br>
+                    {{$data->pejabat->dua->jabatan}}</p>
                     <p><br><br><br><br></p>
-                    <p>{{$data->pejabat->dua->nama}}</p>
-                    <p>NIP {{$data->pejabat->dua->nip}}</p>
+                    <p>{{$data->pejabat->dua->nama}}<br>
+                    NIP {{$data->pejabat->dua->nip}}</p>
                 </td>
             </tr>
         </table>

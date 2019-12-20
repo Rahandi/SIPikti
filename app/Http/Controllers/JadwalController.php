@@ -26,6 +26,7 @@ class JadwalController extends Controller
         {
             $temp = new \stdClass();
             $temp->id = $jadwals->id;
+            $temp->tahun = $jadwals->tahun;
             $temp->termin = $jadwals->termin;
             $kelas = masterKelas::find($jadwals->id_kelas);
             $temp->kelas = $kelas->nama;

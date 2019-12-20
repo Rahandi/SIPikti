@@ -41,9 +41,40 @@
                     </form>
                 </div>
             </div>
-            <div style="text-align: right">
-                <a><button type="button" class="btn btn-default" id="editNo" data-toggle="modal" data-target="#modalUbahNo">Ubah Nomor Transkrip</button></a>
-                <a href="{{route('pejabat')}}"><button type="button" class="btn btn-warning">Ubah Data Pejabat</button></a>
+            <div id="modalDownload" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
+                <div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 55%;">
+                    <header class="w3-container w3-light-grey w3-round-large"> 
+                        <span data-dismiss="modal" 
+                        class="w3-button w3-display-topright w3-round-large">&times;</span>
+                        <h2>Pilih Kelas yang Akan Diunduh Transkrip</h2>
+                    </header>
+                    <form action="{{route('transkrip.kelas', ['transkrip'=>''])}}" method="POST" target="_blank" enctype="multipart/form-data" id="transkrip_kelas">
+                    {{ csrf_field() }}
+                    <div class="w3-container" style="margin-top: 2%;">
+                        <select class="form-control selectpicker" data-style="btn-info btn-outline" name="jadwal_id" id="jadwal_id" required="">
+							<option value="">Tahun&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;Kelas</option>
+							@foreach ($jadwal as $jdw)
+							<option value="{{$jdw->id}}">{{$jdw->tahun}}&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$jdw->kelas}}</option>
+							@endforeach
+						</select>
+                    </div>
+                    <footer class="w3-container w3-light-grey w3-round-large" style="text-align: center;">
+                        <button type="submit" class="btn btn-success" id="download1" style="margin: 1%;" onmouseover="ganti('{{route('transkrip.kelas', ['transkrip'=>'ta'])}}')">Transkrip PA</button>
+                        <button type="submit" class="btn btn-info" id="download2" style="margin: 1%;" onmouseover="ganti('{{route('transkrip.kelas', ['transkrip'=>'kp'])}}')">Transkrip KP / Kompre</button>
+                        <button type="submit" class="btn btn-primary" id="download3" style="margin: 1%;" onmouseover="ganti('{{route('transkrip.kelas', ['transkrip'=>'takp'])}}')">Transkrip PA - KP</button>
+                        <button type="submit" class="btn btn-danger" id="download4" style="margin: 1%;" onmouseover="ganti('{{route('transkrip.kelas', ['transkrip'=>'sementara'])}}')">Transkrip Sementara</button>
+                    </footer>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <a><button type="button" class="btn btn-info" id="editNo" data-toggle="modal" data-target="#modalDownload">Transkrip per Kelas</button></a>
+                </div>
+                <div class="col-md-6" style="text-align: right">
+                    <a><button type="button" class="btn btn-default" id="editNo" data-toggle="modal" data-target="#modalUbahNo">Ubah Nomor Transkrip</button></a>
+                    <a href="{{route('pejabat')}}"><button type="button" class="btn btn-warning">Ubah Data Pejabat</button></a>
+                </div>
             </div>
             <br>
                 <table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
@@ -164,5 +195,9 @@
             document.getElementById("valueId").value = Id;
         });
     });
+    function ganti(linknya)
+    {
+        document.getElementById('transkrip_kelas').action = linknya
+    }
 </script>
 @endsection

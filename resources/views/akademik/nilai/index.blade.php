@@ -28,31 +28,6 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title"><b>{{ session('status') }}</b></h4>
-					Review Data Ter-Upload
-					<table id="list2" class="table table-striped table-hover table-bordered" style="width: 100%; font-size: 13px;">
-						<thead>
-							<tr>
-								<th style="width: 1%; text-align: center">No.</th>
-								<th style="width: 5%; text-align: center">NRP</th>
-								<th style="width: 31%; text-align: center">Nama</th>
-								<th style="width: 24%; text-align: center">Nilai Rata-Rata<br>(Basis 100)</th>
-								<th style="width: 23%; text-align: center">Nilai Rata-Rata<br>(Basis 4)</th>
-								<th style="width: 15%; text-align: center">Nilai Huruf</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach (session('data') as $item)
-								<tr>
-									<td></td>
-									<td>{{$item->nrp}}</td>
-									<td style="text-align: left">{{$item->nama}}</td>
-									<td>{{$item->nilai100}}</td>
-									<td>{{$item->nilai4}}</td>
-									<td>{{$item->nilai_huruf}}</td>
-								</tr>
-							@endforeach
-						</tbody>
-					</table>
 				</div>
 			</div>
 		</div>
@@ -74,7 +49,7 @@
 							<option value="">Tahun&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;Semester&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;Kelas&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;Mata Kuliah</option>
 							@foreach ($data as $kls)
 							@for ($i = 0; $i< count($kls->mk); $i++)
-							<option value="{{$kls->termin}},{{$kls->id}},{{$i}}">2019&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->termin}}&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->kelas}}&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->mk[$i]}}</option>
+							<option value="{{$kls->termin}},{{$kls->id}},{{$i}}">{{$kls->tahun}}&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->termin}}&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->kelas}}&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$kls->mk[$i]}}</option>
 							@endfor
 							@endforeach
 						</select>
@@ -120,7 +95,7 @@
 							@foreach ($list as $row)
 							<tr style="width:100%;">
 								<td></td>
-								<td>2019</td>
+								<td>{{$row->tahun}}</td>
 								<td>{{$row->termin}}</td>
 								<td>{{$row->kelas}}</td>
 								<td style="text-align: left;">{{$row->mata_kuliah}}</td>
