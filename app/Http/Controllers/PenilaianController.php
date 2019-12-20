@@ -29,6 +29,7 @@ class PenilaianController extends Controller
     {
         $data = array();
         $jadwal = jadwal::all();
+        $master_nilai = masterNilai::all();
         foreach ($jadwal as $item)
         {
             $temp = new \stdClass();
@@ -49,7 +50,24 @@ class PenilaianController extends Controller
                 array_push($temp->asisten, masterAsisten::find($ids_asisten[$i])->nama);
             }
 
-            array_push($data, $temp);
+            $marker = FALSE;
+
+            foreach($master_nilai as $nilai)
+            {
+                if($item->id == $nilai->id_jadwal)
+                {
+                    $maker = TRUE;
+                }
+                if($marker)
+                {
+                    break;
+                }
+            }
+
+            if(!$marker)
+            {
+                array_push($data, $temp);
+            }
         }
 
         $list = array();
@@ -113,8 +131,9 @@ class PenilaianController extends Controller
         $termin = $master_nilai->termin;
         $kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $mk = masterMK::find($master_nilai->id_mk)->nama;
+        $tahun = $jadwal->tahun;
 
-        $filename = $termin . '_' . $kelas . '_' . $mk . '.xlsx';
+        $filename = $termin . '_' . $kelas . '_' . $mk . '_' . $tahun . '.xlsx';
         $filename = preg_replace('/[^a-zA-Z0-9_ .]/', '', $filename);
         return Excel::download(new NilaiExport($request->id), $filename);
     }
@@ -130,12 +149,13 @@ class PenilaianController extends Controller
         $termin = $master_nilai->termin;
         $kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $matkul = masterMK::find($master_nilai->id_mk)->nama;
+        $tahun = $jadwal->tahun;
         $file = $request->file('nilai');
         if(!$file){
             return redirect()->back()->with("status", "Tidak ada file yang di upload");
         }
         $extension = $file->getClientOriginalExtension();
-        $filename = $termin . '_' . $kelas . '_' . $matkul . '.' . $extension;
+        $filename = $termin . '_' . $kelas . '_' . $matkul . '_' . $tahun . '.' . $extension;
         $filename = preg_replace('/[^a-zA-Z0-9_ .]/', '', $filename);
 
         if($filename != $file->getClientOriginalName())
