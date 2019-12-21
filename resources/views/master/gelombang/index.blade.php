@@ -52,7 +52,8 @@
 									<a data-toggle="tooltip" data-placement="top" title="Edit" href="{{route('master.gelombang.edit', $datas->id)}}">
 										<button class="btn btn-warning"><i class="material-icons" style="font-size: 18px;">mode_edit</i></button>
 									</a>
-									<a data-toggle="tooltip" data-placement="top" title="Hapus">
+									{{-- semua data master, button delete ditiadakan --}}
+									<a data-toggle="tooltip" data-placement="top" title="Hapus" style="display: none;">
 										<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" id="tombolDel" value="{{$datas->id}}"><i class="material-icons" style="font-size: 18px;">delete</i></button>
 									</a>
 									</div>
