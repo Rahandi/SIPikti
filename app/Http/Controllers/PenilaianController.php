@@ -117,7 +117,7 @@ class PenilaianController extends Controller
         $mk = masterMK::find($master_nilai->id_mk)->nama;
         $tahun = $jadwal->tahun;
 
-        $filename = $termin . '_' . $kelas . '_' . $mk . '_' . $tahun . '.xlsx';
+        $filename = $tahun . '_' . $termin . '_' . $kelas . '_' . $mk . '.xlsx';
         $filename = preg_replace('/[^a-zA-Z0-9_ .]/', '', $filename);
         return Excel::download(new NilaiExport($request->id), $filename);
     }
@@ -139,7 +139,7 @@ class PenilaianController extends Controller
             return redirect()->back()->with("status", "Tidak ada file yang di upload");
         }
         $extension = $file->getClientOriginalExtension();
-        $filename = $termin . '_' . $kelas . '_' . $matkul . '_' . $tahun . '.' . $extension;
+        $filename = $tahun . '_' . $termin . '_' . $kelas . '_' . $matkul . '.' . $extension;
         $filename = preg_replace('/[^a-zA-Z0-9_ .]/', '', $filename);
 
         if($filename != $file->getClientOriginalName())
@@ -210,12 +210,13 @@ class PenilaianController extends Controller
     {
         $master_nilai = masterNilai::find($request->id);
         $jadwal = jadwal::find($master_nilai->id_jadwal);
+        $tahun = $jadwal->tahun;
 
         $termin = $master_nilai->termin;
         $kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $mk = masterMK::find($master_nilai->id_mk)->nama;
 
-        $filename = $termin . '_' . $kelas . '_' . $mk . '_nilai_akhir' . '.xlsx';
+        $filename = $tahun . '_' . $termin . '_' . $kelas . '_' . $mk . '_nilai_akhir' . '.xlsx';
         $filename = preg_replace('/[^a-zA-Z0-9_ .]/', '', $filename);
         return Excel::download(new NilaiAkhirExport($request->id), $filename);
     }
