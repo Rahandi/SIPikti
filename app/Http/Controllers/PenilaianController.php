@@ -225,7 +225,7 @@ class PenilaianController extends Controller
         $master_nilai = masterNilai::find($id);
         $nilais = nilai::where('id_master_nilai', $id)->get();
 
-        $name = $master_nilai->nama_penilaian;
+        $name = explode(',',$master_nilai->nama_penilaian);
         $jumlah = intval($master_nilai->jumlah_penilaian);
         $percentage = $master_nilai->persen_penilaian;
 
