@@ -248,7 +248,7 @@ class PenilaianController extends Controller
         {
             $temp = new \stdClass();
             $temp->mahasiswa = mahasiswa::find($nilai->id_mahasiswa);
-            $temp->total = $nilai->nilai_total;
+            $temp->total = number_format((float)$nilai->nilai_total, 2, '.', '');
             $temp->terpisah = explode(',', $nilai->nilai);
             $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
             array_push($data, $temp);
