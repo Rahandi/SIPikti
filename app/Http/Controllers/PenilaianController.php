@@ -220,6 +220,35 @@ class PenilaianController extends Controller
         return Excel::download(new NilaiAkhirExport($request->id), $filename);
     }
 
+    public function detail(Request $request)
+    {
+        $master_nilai = masterNilai::find($request->id);
+        $nilais = nilai::where('id_master_nilai', $request->id)->get();
+
+        $name = $master_nilai->nama_penilaian;
+        $jumlah = intval($master_nilai->jumlah_penilaian);
+        $percentage = $master_nilai->persen_penilaian;
+
+        $header = [];
+        for ($i=0; $i < $jumlah; $i++) { 
+            $temp = $name[$i] . ' (' . $percentage[$i] . ')';
+            array_push($header, $temp);
+        }
+
+        $data = [];
+        foreach($nilais as $nilai)
+        {
+            $temp = new \stdClass();
+            $temp->mahasiswa = mahasiswa::find($nilai->id_mahasiswa);
+            $temp->terpisah = $nilai->nilai;
+            $temp->total = $nilai->total;
+            $temp->terpisah = explode(',', $terpisah);
+            $temp->nilai_huruf = $this->parse_nilai($total);
+        }
+
+        return view('akademik.nilai.detail', ['header' => $header, 'data' => $data]);
+    }
+
     private function parse_nilai($nilai)
     {
         if($nilai >= 85.5){
