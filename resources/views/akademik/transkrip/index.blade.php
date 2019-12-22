@@ -57,7 +57,7 @@
 							<option value="{{$jdw->id}}">{{$jdw->tahun}}&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;{{$jdw->kelas}}</option>
 							@endforeach
 						</select>
-                    </div>
+                    </div><br>
                     <footer class="w3-container w3-light-grey w3-round-large" style="text-align: center;">
                         <button type="submit" class="btn btn-success" id="download1" style="margin: 1%;" onmouseover="ganti('{{route('transkrip.kelas', ['transkrip'=>'ta'])}}')">Transkrip PA</button>
                         <button type="submit" class="btn btn-info" id="download2" style="margin: 1%;" onmouseover="ganti('{{route('transkrip.kelas', ['transkrip'=>'kp'])}}')">Transkrip KP / Kompre</button>
@@ -177,7 +177,7 @@
                 "targets": 0,
 
             } ],
-            "order": [[ 1, 'asc' ]],
+            "order": [[ 2, 'asc' ]],
         } );
 
         t.on( 'order.dt search.dt', function () {

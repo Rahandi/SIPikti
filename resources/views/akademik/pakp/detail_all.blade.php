@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('pagetitle')
-	Detail Penilaian PA/KP
+	Detail Penilaian PA
 @endsection
 
 @section('css')
@@ -26,13 +26,13 @@
 		<div class="col-sm-12">
 			<div class="white-box">
 				<div style="text-align: left;">
-					<h3 class="box-title m-b-0">Detail Penilaian PA</h3>
-					<p class="text-muted m-b-30">Proyek Akhir | 2019</p>
+					<h3 class="box-title m-b-0">Proyek Akhir</h3>
+					<p class="text-muted m-b-30">{{$data->tahun}}</p>
                 </div>
                 
                 <div class="row" id="tombol">
                     <div class="col-md-6">
-                        <a href=""><button class="btn btn-info">Tambah Mahasiswa</button></a>
+                        <a href="{{route('pakp.pilih', ['jenis' => 'pa', 'tahun' => $data->tahun])}}"><button class="btn btn-info">Tambah Mahasiswa</button></a>
                     </div>
                     <div class="col-md-6">
                         <a><button class="btn btn-danger">Download Template Penilaian</button></a>

@@ -37,11 +37,66 @@
 						<tbody style="width:100%;">
 							<tr style="width:100%;">
 								<td></td>
-								<td>2019</td>
+								<td>
+									<select class="form-control selectpicker" data-style="btn-info btn-outline" name="penilaian_pa" id="penilaian_pa" required="" onchange="changeLink_pa()">
+										<option value="">Pilih Tahun</option>
+										@foreach ($data as $thn)
+										<option value="{{$thn->tahun}}">{{$thn->tahun}}</option>
+										@endforeach
+									</select>
+								</td>
 								<td><b>Proyek Akhir (PA)</b></td>
 								<td>20</td>
 								<td>
-									<a href="{{route('takp.detail')}}"><button class="btn btn-info">Detail</button></a>
+									<a href="" id="detil_nilai_pa"><button class="btn btn-info">Detail</button></a>
+								</td>
+							</tr>
+							<tr style="width:100%;">
+								<td></td>
+								<td>
+									<select class="form-control selectpicker" data-style="btn-info btn-outline" name="penilaian_kp" id="penilaian_kp" required="" onchange="changeLink_kp()">
+										<option value="">Pilih Tahun</option>
+										@foreach ($data as $thn)
+										<option value="{{$thn->tahun}}">{{$thn->tahun}}</option>
+										@endforeach
+									</select>
+								</td>
+								<td><b>Kerja Praktek (KP)</b></td>
+								<td>20</td>
+								<td>
+									<a href="" id="detil_nilai_kp"><button class="btn btn-info">Detail</button></a>
+								</td>
+							</tr>
+							<tr style="width:100%;">
+								<td></td>
+								<td>
+									<select class="form-control selectpicker" data-style="btn-info btn-outline" name="penilaian_kom" id="penilaian_kom" required="" onchange="changeLink_kom()">
+										<option value="">Pilih Tahun</option>
+										@foreach ($data as $thn)
+										<option value="{{$thn->tahun}}">{{$thn->tahun}}</option>
+										@endforeach
+									</select>
+								</td>
+								<td><b>Komprehensif</b></td>
+								<td>20</td>
+								<td>
+									<a href="" id="detil_nilai_kom"><button class="btn btn-info">Detail</button></a>
+								</td>
+							</tr>
+							<tr style="width:100%;">
+								<td></td>
+								<td>
+									<select class="form-control selectpicker" data-style="btn-info btn-outline" name="penilaian_pakp" id="penilaian_pakp" required="" onchange="changeLink_pakp()">
+										<option value="">Pilih Tahun</option>
+										@foreach ($data as $thn)
+										<option value="{{$thn->tahun}}">{{$thn->tahun}}</option>
+										@endforeach
+									</select>
+								</td>
+								<td><b>Proyek Akhir - Kerja Praktik (PA-KP)</b></td>
+								<td>20</td>
+								<td>
+									<a href="" id="detil_nilai_pakp"><button class="btn btn-info">Detail</button></a>
 								</td>
 							</tr>
 						</tbody>
@@ -80,5 +135,34 @@
 				} );
 			} ).draw();
 		});
+		var thn;
+		function changeLink_pa(){
+			thn = document.getElementById('penilaian_pa').value;
+
+			linknya = "{{route('pakp.detail', ['jenis' => 'pa', 'tahun' => ''])}}" + '/' + thn;
+			console.log(linknya);
+			document.getElementById('detil_nilai_pa').href = linknya;
+		}
+		function changeLink_kp(){
+			thn = document.getElementById('penilaian_kp').value;
+
+			linknya = "{{route('pakp.detail', ['jenis' => 'kp', 'tahun' => ''])}}" + '/' + thn;
+			console.log(linknya);
+			document.getElementById('detil_nilai_kp').href = linknya;
+		}
+		function changeLink_kom(){
+			thn = document.getElementById('penilaian_kom').value;
+
+			linknya = "{{route('pakp.detail', ['jenis' => 'kompre', 'tahun' => ''])}}" + '/' + thn;
+			console.log(linknya);
+			document.getElementById('detil_nilai_kom').href = linknya;
+		}
+		function changeLink_pakp(){
+			thn = document.getElementById('penilaian_pakp').value;
+
+			linknya = "{{route('pakp.detail', ['jenis' => 'pakp', 'tahun' => ''])}}" + '/' + thn;
+			console.log(linknya);
+			document.getElementById('detil_nilai_pakp').href = linknya;
+		}
 	</script>
 @endsection

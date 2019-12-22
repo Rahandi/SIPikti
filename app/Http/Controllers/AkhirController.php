@@ -23,7 +23,7 @@ class AkhirController extends Controller
     public function index()
     {
         $data = jadwal::distinct()->get(['tahun']);
-        return view('akademik/pakp/index');
+        return view('akademik/pakp/index', compact('data'));
     }
 
     public function detail($jenis, $tahun)
@@ -194,9 +194,9 @@ class AkhirController extends Controller
         if($request->cekboks)
         {
             $picked = explode(',', $request->cekboks);
-            foreach ($picked as $id) {
-                if($jenis == 'pa')
-                {
+            if($jenis == 'pa')
+            {
+                foreach ($picked as $id) {
                     $mhs_jadwal = mahasiswaJadwal::where('mahasiswa_id', $id)->first();
                     $jadwal_id = $mhs_jadwal->jadwal_id;
 
@@ -204,10 +204,13 @@ class AkhirController extends Controller
                     $master->jadwal_id = $jadwal_id;
                     $master->mahasiswa_id = $id;
                     $master->tahun = $tahun;
-                    return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
+                    $master->save();
                 }
-                elseif($jenis == 'kp')
-                {
+                return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
+            }
+            elseif($jenis == 'kp')
+            {
+                foreach ($picked as $id) {
                     $mhs_jadwal = mahasiswaJadwal::where('mahasiswa_id', $id)->first();
                     $jadwal_id = $mhs_jadwal->jadwal_id;
 
@@ -215,10 +218,13 @@ class AkhirController extends Controller
                     $master->jadwal_id = $jadwal_id;
                     $master->mahasiswa_id = $id;
                     $master->tahun = $tahun;
-                    return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
+                    $master->save();
                 }
-                elseif($jenis == 'pakp')
-                {
+                return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
+            }
+            elseif($jenis == 'pakp')
+            {
+                foreach ($picked as $id) {
                     $mhs_jadwal = mahasiswaJadwal::where('mahasiswa_id', $id)->first();
                     $jadwal_id = $mhs_jadwal->jadwal_id;
 
@@ -226,10 +232,13 @@ class AkhirController extends Controller
                     $master->jadwal_id = $jadwal_id;
                     $master->mahasiswa_id = $id;
                     $master->tahun = $tahun;
-                    return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
+                    $master->save();
                 }
-                elseif($jenis == 'kompre')
-                {
+                return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
+            }
+            elseif($jenis == 'kompre')
+            {
+                foreach ($picked as $id) {
                     $mhs_jadwal = mahasiswaJadwal::where('mahasiswa_id', $id)->first();
                     $jadwal_id = $mhs_jadwal->jadwal_id;
 
@@ -237,10 +246,16 @@ class AkhirController extends Controller
                     $master->jadwal_id = $jadwal_id;
                     $master->mahasiswa_id = $id;
                     $master->tahun = $tahun;
-                    return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
+                    $master->save();
                 }
+                return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
             }
         }
+    }
+
+    public function store(Request $request, $jenis, $tahun)
+    {
+        dd($request);
     }
 
     private function get_mhs_without_akhir()
@@ -268,6 +283,20 @@ class AkhirController extends Controller
                         ->where('nrp', '!=', null)
                         ->get();
 
-        return $mahasiswa;
+        $exist= [];
+        $mhs_jadwal = mahasiswaJadwal::all();
+        // dd($mahasiswa);
+
+        for ($i=0; $i < count($mahasiswa); $i++) { 
+            for ($j=0; $j < count($mhs_jadwal); $j++) { 
+                if(intval($mahasiswa[$i]->id) == intval($mhs_jadwal[$j]->mahasiswa_id))
+                {
+                    array_push($exist, $mahasiswa[$i]);
+                    break;
+                }
+            }
+        }
+
+        return $exist;
     }
 }

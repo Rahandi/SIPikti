@@ -86,9 +86,9 @@
 								<th style="width: 10%;text-align: center;">Tahun</th>
 								<th style="width: 10%;text-align: center;">Semester</th>
 								<th style="width: 10%;text-align: center;">Kelas</th>
-								<th style="width: 30%;text-align: center;">Mata Kuliah</th>
-								<th style="width: 20%;text-align: center;">Jumlah Penilaian</th>
-								<th style="width: 15%;text-align: center;">Action</th>
+								<th style="width: 27%;text-align: center;">Mata Kuliah</th>
+								<th style="width: 18%;text-align: center;">Jumlah Penilaian</th>
+								<th style="width: 20%;text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody style="width:100%;">
@@ -102,6 +102,7 @@
 								<td>{{$row->jml}}</td>
 								<td>
 									<a href="{{route('nilai.detail', ['id'=>$row->id])}}"><button class="btn btn-info">Detail</button></a>
+									<a><button type="button" id="tombolDel" data-toggle="modal" data-target="#modalDelete" class="btn btn-danger" value="{{$row->id}}">Hapus</button></a>
 								</td>
 							</tr>
 							@endforeach
@@ -109,26 +110,6 @@
 					</table>
 				</div>
 				<!-- Modal -->
-				<div id="modalUpload" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
-					<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
-						<header class="w3-container w3-light-grey w3-round-large"> 
-							<span data-dismiss="modal" 
-							class="w3-button w3-display-topright w3-round-large">&times;</span>
-							<h2>Upload</h2>
-						</header>
-						<form action="{{route('nilai.upload')}}" method="POST" enctype="multipart/form-data">
-						{{ csrf_field() }}
-						<div class="w3-container" style="margin-top: 2%;">
-							<input type="file" name="nilai"><br>
-						</div>
-						<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
-							<input type="hidden" name="id" id="UpValueId" value="">
-							<button type="submit" class="btn btn-success" id="UploadButton" style="margin: 1%;">Submit</button>
-							<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Batal</button>
-						</footer>
-						</form>
-					</div>
-				</div>
 				<div id="modalDelete" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
 					<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
 						<header class="w3-container w3-light-grey w3-round-large"> 
@@ -137,13 +118,14 @@
 							<h2>Konfirmasi</h2>
 						</header>
 						<div class="w3-container" style="margin-top: 2%;">
-							<p>Apakah Anda yakin akan menghapus data penilaian ini?</p>
+							<p><b>Apakah Anda yakin akan menghapus data penilaian ini?</b></p>
+							<p><i>Menghapus data penilaian akan menghapus nilai dari mahasiswa yang terkait.</i></p>
 						</div>
 						<form action="{{ route('nilai.delete') }}" method="POST" enctype="multipart/form-data">
 						{{ csrf_field() }}
 						<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
 							<input type="hidden" name="id" id="DelValueId" value="">
-							<button type="submit" class="btn btn-success" id="DeleteButton" style="margin: 1%;">Submit</button>
+							<button type="submit" class="btn btn-success" id="DeleteButton" style="margin: 1%;">Ya</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Batal</button>
 						</footer>
 						</form>
@@ -203,14 +185,6 @@
 					cell.innerHTML = i+1;
 				} );
 			} ).draw();
-		});
-		var Id;
-		$(document).ready(function(){
-			$(document).on('click', '#tombolUp', function () {
-				console.log('open modal');
-				Id = $(this).val();
-				document.getElementById("UpValueId").value = Id;
-			});
 		});
 		$(document).ready(function(){
 			$(document).on('click', '#tombolDel', function () {

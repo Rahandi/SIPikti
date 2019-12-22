@@ -100,9 +100,6 @@
                     <a><button type="submit" style="width: 20%" class="btn btn-success">Simpan</button></a>
 				</div>
 				</form>
-
-				{{-- statistik --}}
-				
 			</div>
 
 			<div id="modalUpload" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
@@ -124,6 +121,17 @@
 					</footer>
 					</form>
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="white-box">
+				<div style="text-align: left;">
+					<h3 class="box-title m-b-0">Statistik Nilai</h3>
+					<p class="text-muted m-b-30">{{$info->tahun}} - Semester {{$info->semester}} - Kelas {{$info->kelas}} - {{$info->matkul}}</p>
+				</div>
+				
 			</div>
 		</div>
 	</div>
