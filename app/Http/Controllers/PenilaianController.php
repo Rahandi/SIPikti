@@ -224,14 +224,22 @@ class PenilaianController extends Controller
     {
         $master_nilai = masterNilai::find($id);
         $nilais = nilai::where('id_master_nilai', $id)->get();
+        $jadwal = jadwal::find($master_nilai->id_jadwal);
+        $mk = masterMK::find($master_nilai->id_mk);
+
+        $info = new \stdClass();
+        $info->tahun = $jadwal->tahun;
+        $info->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+        $info->matkul = $mk->nama;
+        $info->semester = $jadwal->termin;
 
         $name = explode(',',$master_nilai->nama_penilaian);
         $jumlah = intval($master_nilai->jumlah_penilaian);
-        $percentage = $master_nilai->persen_penilaian;
+        $percentage = explode(',',$master_nilai->persen_penilaian);
 
         $header = [];
         for ($i=0; $i < $jumlah; $i++) { 
-            $temp = $name[$i] . ' (' . $percentage[$i] . ')';
+            $temp = $name[$i] . ' (' . $percentage[$i] . '%)';
             array_push($header, $temp);
         }
 
@@ -240,12 +248,13 @@ class PenilaianController extends Controller
         {
             $temp = new \stdClass();
             $temp->mahasiswa = mahasiswa::find($nilai->id_mahasiswa);
-            $temp->total = $nilai->total;
+            $temp->total = $nilai->nilai_total;
             $temp->terpisah = explode(',', $nilai->nilai);
-            $temp->nilai_huruf = $this->parse_nilai($nilai->total);
+            $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
+            array_push($data, $temp);
         }
 
-        return view('akademik.nilai.detail', ['header' => $header, 'data' => $data]);
+        return view('akademik.nilai.detail', ['info' => $info, 'header' => $header, 'data' => $data]);
     }
 
     public function detail_submit(Request $request)
