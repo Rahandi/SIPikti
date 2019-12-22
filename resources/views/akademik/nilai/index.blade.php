@@ -101,7 +101,7 @@
 								<td style="text-align: left;">{{$row->mata_kuliah}}</td>
 								<td>{{$row->jml}}</td>
 								<td>
-									<a href="{{route('nilai.detail')}}"><button class="btn btn-info">Detail</button></a>
+									<a href="{{route('nilai.detail', ['id'=>$row->id])}}"><button class="btn btn-info">Detail</button></a>
 								</td>
 							</tr>
 							@endforeach

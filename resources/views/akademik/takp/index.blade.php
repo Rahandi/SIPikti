@@ -34,6 +34,7 @@
                         <div class="form-group">
                             <label for="kat">Kategori</label>
                             <select class="form-control selectpicker" data-style="btn-info btn-outline" name="kategori" id="kat" onchange="getMhs()">
+                                <option value="select">Pilih Kategori Penilaian</option>
                                 <option value="pa">Proyek Akhir (PA)</option>
                                 <option value="kp">Kerja Praktek (KP)</option>
                                 <option value="kompre">Komprehensif</option>
@@ -45,14 +46,15 @@
                         <div class="form-group">
                             <label for="thn">Tahun</label>
                             <select class="form-control selectpicker" data-style="btn-info btn-outline" name="tahun" id="thn">
+                                <option value="select">Pilih Tahun</option>
                                 <option value="2019">2019</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 
-                <p><b>Mahasiswa</b></p>
-                <div class="row">
+                <p id="labelMhs" style="display: none"><b>Mahasiswa</b></p>
+                <div class="row" id="tombol" style="display: none">
                     <div class="col-md-6">
                         <a><button class="btn btn-info">Tambah Mahasiswa</button></a>
                     </div>
@@ -61,11 +63,11 @@
                         <a><button class="btn btn-warning">Upload Penilaian</button></a>
                         <a><button class="btn btn-primary">Download Hasil</button></a>
                     </div>
-                </div>
+                </div><br>
                 
 				<table style="width:100%;" id="pa">
                     <thead>
-                        <tr name="pa">
+                        <tr name="pa" style="display: none">
                             <th style="width: 1%">No.</th>
                             <th style="width: 5%">Kelas</th>
                             <th style="width: 11%">NRP</th>
@@ -76,7 +78,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr name="pa">
+                        <tr name="pa" style="display: none">
                             <td style="text-align: center;"></td>
                             <td style="text-align: center;">A</td>
                             <td style="text-align: center;">8839949</td>
@@ -161,7 +163,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <div style="text-align: center;">
+                <div style="text-align: center; display: none" id="save">
                     <a><button type="submit" class="btn btn-success">Simpan</button></a>
                 </div>
 			</div>
@@ -175,27 +177,15 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
 	<script>
-        $(document).ready(function(){
-            var t = $('#pa').DataTable( {
-                "columnDefs": [ {
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": 0,
-                } ],
-                "order": [[ 1, 'asc' ]],
-            } );
-
-            t.on( 'order.dt search.dt', function () {
-                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
-                    cell.innerHTML = i+1;
-                } );
-            } ).draw();
-        });
         function getMhs(){
             var kat = $('#kat').val();
             console.log("change!");
             console.log(kat);
             listKat = ['pa','kp','kompre','pakp'];
+            
+            document.getElementById('labelMhs').style.display = '';
+            document.getElementById('tombol').style.display = '';
+            document.getElementById('save').style.display = '';
             
             for (i=0; i<listKat.length; i++){
                 if (kat == listKat[i]){

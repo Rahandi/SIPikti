@@ -240,10 +240,9 @@ class PenilaianController extends Controller
         {
             $temp = new \stdClass();
             $temp->mahasiswa = mahasiswa::find($nilai->id_mahasiswa);
-            $temp->terpisah = $nilai->nilai;
             $temp->total = $nilai->total;
-            $temp->terpisah = explode(',', $terpisah);
-            $temp->nilai_huruf = $this->parse_nilai($total);
+            $temp->terpisah = explode(',', $nilai->nilai);
+            $temp->nilai_huruf = $this->parse_nilai($nilai->total);
         }
 
         return view('akademik.nilai.detail', ['header' => $header, 'data' => $data]);
