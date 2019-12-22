@@ -229,6 +229,7 @@ class PenilaianController extends Controller
         $mk = masterMK::find($master_nilai->id_mk);
 
         $info = new \stdClass();
+        $info->id = $id;
         $info->tahun = $jadwal->tahun;
         $info->kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $info->matkul = $mk->nama;
@@ -260,7 +261,29 @@ class PenilaianController extends Controller
 
     public function detail_submit(Request $request)
     {
+        $master_nilai = masterNilai::find($request->id);
+        $jumlah_penilaian = intval($master_nilai->jumlah_penilaian);
+        $persen_penilaian = explode(',',$master_nilai->persen_penilaian);
 
+        for ($i=0; $i < count($request->id_mhs); $i++) { 
+            $mhs = $request->id_mhs[$i];
+            
+            $total = 0;
+            $nilais = [];
+            for ($j=0; $j < $jumlah_penilaian; $j++) { 
+                array_push($nilais, $request[$mhs.'|'.$j]);
+                $total += $persen_penilaian[$j] * $request[$mhs.'|'.$j] / 100.0;
+            }
+
+            $nilai = nilai::findOrCreate($request->id, $mhs);
+            $nilai->id_master_nilai = $request->id;
+            $nilai->id_mahasiswa = $mhs;
+            $nilai->nilai = implode(',', $nilais);
+            $nilai->nilai_total = $total;
+            $nilai->save();
+        }
+
+        return redirect()->back();
     }
 
     private function parse_nilai($nilai)

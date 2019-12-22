@@ -80,6 +80,7 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::post('/upload', 'PenilaianController@upload')->name('nilai.upload');
         Route::post('/delete', 'PenilaianController@delete')->name('nilai.delete');
         Route::post('/nilai_total', 'PenilaianController@nilai_total')->name('nilai.total');
+        Route::post('/detail_submit', 'PenilaianController@detail_submit')->name('nilai.detail.submit');
     });
 
     Route::group(['prefix' => 'takp'], function () {
