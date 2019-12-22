@@ -17,7 +17,7 @@ class CreateAkhirKompresTable extends Migration
             $table->bigIncrements('id');
             $table->string('jadwal_id');
             $table->string('mahasiswa_id');
-            $table->string('nilai');
+            $table->string('nilai')->nullable();
             $table->integer('tahun');
             $table->timestamps();
         });

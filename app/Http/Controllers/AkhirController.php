@@ -11,6 +11,7 @@ use App\akhir_pakp;
 use App\jadwal;
 use App\masterKelas;
 use App\mahasiswa;
+use App\mahasiswaJadwal;
 
 class AkhirController extends Controller
 {
@@ -51,7 +52,7 @@ class AkhirController extends Controller
                 array_push($data, $temp);
             }
 
-            return view('akademik.pakp.pa.index');
+            return view('akademik.pakp.pa.index', compact('data'));
         }
         elseif($jenis == 'kp')
         {
@@ -75,7 +76,7 @@ class AkhirController extends Controller
                 array_push($data, $temp);
             }
 
-            return view('akademik.pakp.kp.index');
+            return view('akademik.pakp.kp.index', compact('data'));
         }
         elseif($jenis == 'pakp')
         {
@@ -102,7 +103,7 @@ class AkhirController extends Controller
                 array_push($data, $temp);
             }
 
-            return view('akademik.pakp.kp.index');
+            return view('akademik.pakp.kp.index', compact('data'));
         }
         elseif($jenis == 'kompre')
         {
@@ -126,15 +127,100 @@ class AkhirController extends Controller
                 array_push($data, $temp);
             }
 
-            return view('akademik.pakp.kompre.index');
+            return view('akademik.pakp.kompre.index', compact('data'));
         }
 
         return redirect()->back();
     }
 
-    public function pilih_mhs_pa()
+    public function pilih_mhs($jenis, $tahun)
     {
+        if($jenis == 'pa')
+        {
+            $data = new \stdClass();
+            $data->jenis = $jenis;
+            $data->tahun = $tahun;
+            $data->mhs = $this->get_mhs_without_akhir();
+            return view('akademik.pakp.pa.pilih_mhs', compact('data'));
+        }
+        elseif($jenis == 'kp')
+        {
+            $data = new \stdClass();
+            $data->jenis = $jenis;
+            $data->tahun = $tahun;
+            $data->mhs = $this->get_mhs_without_akhir();
+            return view('akademik.pakp.kp.pilih_mhs', compact('data'));
+        }
+        elseif($jenis == 'pakp')
+        {
+            $data = new \stdClass();
+            $data->jenis = $jenis;
+            $data->tahun = $tahun;
+            $data->mhs = $this->get_mhs_without_akhir();
+            return view('akademik.pakp.kp.pilih_mhs', compact('data'));
+        }
+        elseif($jenis == 'kompre')
+        {
+            $data = new \stdClass();
+            $data->jenis = $jenis;
+            $data->tahun = $tahun;
+            $data->mhs = $this->get_mhs_without_akhir();
+            return view('akademik.pakp.kompre.pilih_mhs', compact('data'));
+        }
+    }
 
+    public function submit_mhs(Request $request, $jenis, $tahun)
+    {
+        if($request->cekboks)
+        {
+            $picked = explode(',', $request->cekboks);
+            foreach ($picked as $id) {
+                if($jenis == 'pa')
+                {
+                    $mhs_jadwal = mahasiswaJadwal::where('mahasiswa_id', $id)->first();
+                    $jadwal_id = $mhs_jadwal->jadwal_id;
+
+                    $master = new akhir_pa();
+                    $master->jadwal_id = $jadwal_id;
+                    $master->mahasiswa_id = $id;
+                    $master->tahun = $tahun;
+                    return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
+                }
+                elseif($jenis == 'kp')
+                {
+                    $mhs_jadwal = mahasiswaJadwal::where('mahasiswa_id', $id)->first();
+                    $jadwal_id = $mhs_jadwal->jadwal_id;
+
+                    $master = new akhir_kp();
+                    $master->jadwal_id = $jadwal_id;
+                    $master->mahasiswa_id = $id;
+                    $master->tahun = $tahun;
+                    return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
+                }
+                elseif($jenis == 'pakp')
+                {
+                    $mhs_jadwal = mahasiswaJadwal::where('mahasiswa_id', $id)->first();
+                    $jadwal_id = $mhs_jadwal->jadwal_id;
+
+                    $master = new akhir_pakp();
+                    $master->jadwal_id = $jadwal_id;
+                    $master->mahasiswa_id = $id;
+                    $master->tahun = $tahun;
+                    return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
+                }
+                elseif($jenis == 'kompre')
+                {
+                    $mhs_jadwal = mahasiswaJadwal::where('mahasiswa_id', $id)->first();
+                    $jadwal_id = $mhs_jadwal->jadwal_id;
+
+                    $master = new akhir_kompre();
+                    $master->jadwal_id = $jadwal_id;
+                    $master->mahasiswa_id = $id;
+                    $master->tahun = $tahun;
+                    return redirect()->route('pakp.detail', ['jenis' => $jenis, 'tahun' => $tahun]);
+                }
+            }
+        }
     }
 
     private function get_mhs_without_akhir()

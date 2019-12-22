@@ -17,10 +17,10 @@ class CreateAkhirPakpsTable extends Migration
             $table->bigIncrements('id');
             $table->string('jadwal_id');
             $table->string('mahasiswa_id');
-            $table->string('judul');
-            $table->string('pembimbing');
-            $table->string('nilai_pa');
-            $table->string('nilai_kp');
+            $table->string('judul')->nullable();
+            $table->string('pembimbing')->nullable();
+            $table->string('nilai_pa')->nullable();
+            $table->string('nilai_kp')->nullable();
             $table->integer('tahun');
             $table->timestamps();
         });

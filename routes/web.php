@@ -86,8 +86,9 @@ Route::group(['prefix' => 'akademik'], function () {
     Route::group(['prefix' => 'pakp'], function () {
         Route::get('/', 'AkhirController@index')->name('pakp');
         Route::get('/{jenis}/{tahun}', 'AkhirController@detail')->name('pakp.detail');
-        // Route::get
+        Route::get('/pilih/{jenis}/{tahun}', 'AkhirController@pilih_mhs')->name('pakp.pilih');
 
+        Route::post('/submitmhs/{jenis}/{tahun}', 'AkhirController@submit_mhs')->name('pakp.submitmhs');
     });
 
     Route::group(['prefix' => 'transkrip'], function () {

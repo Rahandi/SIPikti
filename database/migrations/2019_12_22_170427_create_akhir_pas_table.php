@@ -17,9 +17,9 @@ class CreateAkhirPasTable extends Migration
             $table->bigIncrements('id');
             $table->string('jadwal_id');
             $table->string('mahasiswa_id');
-            $table->string('judul');
-            $table->string('pembimbing');
-            $table->string('nilai');
+            $table->string('judul')->nullable();
+            $table->string('pembimbing')->nullable();
+            $table->string('nilai')->nullable();
             $table->integer('tahun');
             $table->timestamps();
         });
