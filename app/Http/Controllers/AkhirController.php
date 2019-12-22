@@ -52,6 +52,11 @@ class AkhirController extends Controller
                 array_push($data, $temp);
             }
 
+            $datas = new \stdClass();
+            $datas->tahun = $tahun;
+            $datas->data = $data;
+            $data = $datas;
+
             return view('akademik.pakp.pa.detail', compact('data'));
         }
         elseif($jenis == 'kp')
@@ -75,6 +80,11 @@ class AkhirController extends Controller
 
                 array_push($data, $temp);
             }
+
+            $datas = new \stdClass();
+            $datas->tahun = $tahun;
+            $datas->data = $data;
+            $data = $datas;
 
             return view('akademik.pakp.kp.detail', compact('data'));
         }
@@ -103,6 +113,11 @@ class AkhirController extends Controller
                 array_push($data, $temp);
             }
 
+            $datas = new \stdClass();
+            $datas->tahun = $tahun;
+            $datas->data = $data;
+            $data = $datas;
+
             return view('akademik.pakp.kp.detail', compact('data'));
         }
         elseif($jenis == 'kompre')
@@ -126,6 +141,11 @@ class AkhirController extends Controller
 
                 array_push($data, $temp);
             }
+
+            $datas = new \stdClass();
+            $datas->tahun = $tahun;
+            $datas->data = $data;
+            $data = $datas;
 
             return view('akademik.pakp.kompre.detail', compact('data'));
         }
