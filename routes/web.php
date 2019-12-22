@@ -87,6 +87,9 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::get('/', function () {
             return view('akademik/takp/index');
         })->name('takp');
+        Route::get('/detail', function () {
+            return view('akademik/takp/detail');
+        })->name('takp.detail');
     });
 
     Route::group(['prefix' => 'transkrip'], function () {

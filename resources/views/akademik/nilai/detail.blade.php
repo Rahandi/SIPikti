@@ -64,7 +64,7 @@
 				<form action="{{route('nilai.detail.submit')}}" method="post">
 				@csrf
 				<input type="hidden" name="id" value="{{$info->id}}">
-				<table style="width:100%" id="list">
+				<table style="width:100%" id="list" border="">
                     <thead>
                         <tr>
                             <th style="width: 5%">No.</th>
@@ -78,28 +78,31 @@
                         </tr>
                     </thead>
                     <tbody>
-						@foreach ($data as $mhs)
+						@for ($i = 0; $i < count($data); $i++)
 						<tr>
-                            <td></td>
-							<td>{{$mhs->mahasiswa['nrp']}}</td>
-							<td style="text-align: left">{{$mhs->mahasiswa['nama']}}</td>
-							<input type="hidden" name="id_mhs[]" value="{{$mhs->mahasiswa->id}}">
-							@for ($i = 0; $i < count($header); $i++)
+                            <td>{{$i+1}}.</td>
+							<td>{{$data[$i]->mahasiswa['nrp']}}</td>
+							<td style="text-align: left">{{$data[$i]->mahasiswa['nama']}}</td>
+							<input type="hidden" name="id_mhs[]" value="{{$data[$i]->mahasiswa->id}}">
+							@for ($j = 0; $j < count($header); $j++)
 								<td>
-									<input style="width:100%; text-align: center" type="number" name="{{$mhs->mahasiswa->id}}|{{$i}}" value="{{$mhs->terpisah[$i]}}">
+									<input style="width:100%; text-align: center" type="number" name="{{$data[$i]->mahasiswa->id}}|{{$j}}" value="{{$data[$i]->terpisah[$j]}}">
 								</td>
 							@endfor
-							<td>{{$mhs->total}}</td>
-                            <td>{{$mhs->nilai_huruf}}</td>
+							<td>{{$data[$i]->total}}</td>
+                            <td>{{$data[$i]->nilai_huruf}}</td>
                         </tr>
-						@endforeach
+						@endfor
                     </tbody>
-				</table>
+				</table><br>
 				
 				<div style="text-align: center" id="save">
-                    <a><button type="submit" style="width: 15%" class="btn btn-success">Simpan</button></a>
+                    <a><button type="submit" style="width: 20%" class="btn btn-success">Simpan</button></a>
 				</div>
 				</form>
+
+				{{-- statistik --}}
+				
 			</div>
 
 			<div id="modalUpload" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
@@ -138,12 +141,13 @@
 			});
 		});
 		$(document).ready(function(){
-			var t = $('#list').DataTable( {
+			var t = $('#example').DataTable( {
 				"columnDefs": [ {
+					"lengthMenu": [ [50, -1], [50, "All"] ],
 					"searchable": false,
 					"orderable": false,
 					"targets": 0,
-
+					"paging": false
 				} ],
 				"order": [[ 1, 'asc' ]],
 			} );
