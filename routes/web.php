@@ -83,13 +83,11 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::post('/detail_submit', 'PenilaianController@detail_submit')->name('nilai.detail.submit');
     });
 
-    Route::group(['prefix' => 'takp'], function () {
-        Route::get('/', function () {
-            return view('akademik/takp/index');
-        })->name('takp');
-        Route::get('/detail', function () {
-            return view('akademik/takp/detail');
-        })->name('takp.detail');
+    Route::group(['prefix' => 'pakp'], function () {
+        Route::get('/', 'AkhirController@index')->name('pakp');
+        Route::get('/{jenis}/{tahun}', 'AkhirController@detail')->name('pakp.detail');
+        // Route::get
+
     });
 
     Route::group(['prefix' => 'transkrip'], function () {

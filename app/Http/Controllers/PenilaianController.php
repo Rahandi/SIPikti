@@ -14,6 +14,7 @@ use App\masterKelas;
 use App\masterMK;
 use App\masterDosen;
 use App\masterAsisten;
+use App\mahasiswaJadwal;
 
 use App\Exports\NilaiExport;
 use App\Exports\NilaiAkhirExport;
@@ -98,6 +99,22 @@ class PenilaianController extends Controller
             $master_nilai->id_mk = explode(',',$jadwal->ids_mk)[$kelas[2]];
 
             $master_nilai->save();
+
+            $mhss = mahasiswaJadwal::where('jadwal_id', $jadwal->id);
+
+            $satuan = [];
+            for ($i=0; $i < $master_nilai->jumlah_penilaian; $i++) { 
+                array_push($satuan, 0);
+            }
+
+            foreach ($mhss as $mhs) {
+                $nilai = nilai::findOrCreate($master_nilai->id, $mahasiswa->id);
+                $nilai->id_master_nilai = $master_nilai->id;
+                $nilai->id_mahasiswa = $mhs->id;
+                $nilai->nilai = implode(',', $satuan);
+                $nilai->nilai_total = 0;
+                $nilai->save();
+            }
 
             return redirect()->back();
         }
