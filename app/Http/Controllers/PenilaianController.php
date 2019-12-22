@@ -220,10 +220,10 @@ class PenilaianController extends Controller
         return Excel::download(new NilaiAkhirExport($request->id), $filename);
     }
 
-    public function detail(Request $request)
+    public function detail($id)
     {
-        $master_nilai = masterNilai::find($request->id);
-        $nilais = nilai::where('id_master_nilai', $request->id)->get();
+        $master_nilai = masterNilai::find($id);
+        $nilais = nilai::where('id_master_nilai', $id)->get();
 
         $name = $master_nilai->nama_penilaian;
         $jumlah = intval($master_nilai->jumlah_penilaian);
@@ -247,6 +247,11 @@ class PenilaianController extends Controller
         }
 
         return view('akademik.nilai.detail', ['header' => $header, 'data' => $data]);
+    }
+
+    public function detail_submit(Request $request)
+    {
+
     }
 
     private function parse_nilai($nilai)
