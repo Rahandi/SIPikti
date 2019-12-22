@@ -52,7 +52,7 @@ class AkhirController extends Controller
                 array_push($data, $temp);
             }
 
-            return view('akademik.pakp.pa.index', compact('data'));
+            return view('akademik.pakp.pa.detail', compact('data'));
         }
         elseif($jenis == 'kp')
         {
@@ -76,7 +76,7 @@ class AkhirController extends Controller
                 array_push($data, $temp);
             }
 
-            return view('akademik.pakp.kp.index', compact('data'));
+            return view('akademik.pakp.kp.detail', compact('data'));
         }
         elseif($jenis == 'pakp')
         {
@@ -103,7 +103,7 @@ class AkhirController extends Controller
                 array_push($data, $temp);
             }
 
-            return view('akademik.pakp.kp.index', compact('data'));
+            return view('akademik.pakp.kp.detail', compact('data'));
         }
         elseif($jenis == 'kompre')
         {
@@ -127,7 +127,7 @@ class AkhirController extends Controller
                 array_push($data, $temp);
             }
 
-            return view('akademik.pakp.kompre.index', compact('data'));
+            return view('akademik.pakp.kompre.detail', compact('data'));
         }
 
         return redirect()->back();
