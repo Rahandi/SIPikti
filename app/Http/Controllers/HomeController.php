@@ -15,6 +15,7 @@ use App\mahasiswa;
 use App\angsuran;
 use App\mahasiswaangsuran;
 use App\jadwal;
+use App\masterDosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,6 +59,10 @@ class HomeController extends Controller
                             ->get();
             $data['kelas'][$element->kelasA] = count($aggregate);
         }
+        // mahasiswa
+        $data['mahasiswa'] = mahasiswa::count();
+        // dosen
+        $data['dosen'] = masterDosen::count();
 
         return view('dashboard.index', compact('data'));
     }
