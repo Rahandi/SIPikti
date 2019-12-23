@@ -125,7 +125,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-12">
+		<div class="col-sm-6">
 			<div class="white-box">
 				<div style="text-align: left;">
 					<h3 class="box-title m-b-0">Statistik Nilai</h3>
@@ -134,37 +134,37 @@
 				<ul class="dp-table m-t-30">
 					<li>
 						<div class="progress progress-md progress-vertical-bottom m-0">
-							<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:30%;"> <span class="sr-only">88% Complete</span> </div>
+							<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:{{($info->stat_nilai->A/$info->stat_nilai->total)*100}}%;"></div>
 						</div>
 						<br> <b>A</b> </li>
 					<li>
 						<div class="progress progress-md progress-vertical-bottom m-0">
-							<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:60%;"> <span class="sr-only">88% Complete</span> </div>
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:{{($info->stat_nilai->AB/$info->stat_nilai->total)*100}}%;"></div>
 						</div>
 						<br> <b>AB</b> </li>
 					<li>
 						<div class="progress progress-md progress-vertical-bottom m-0">
-							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:80%;"> <span class="sr-only">88% Complete</span> </div>
+							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:{{($info->stat_nilai->B/$info->stat_nilai->total)*100}}%;"></div>
 						</div>
 						<br> <b>B</b> </li>
 					<li>
 						<div class="progress progress-md progress-vertical-bottom m-0">
-							<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:30%;"> <span class="sr-only">88% Complete</span> </div>
+							<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:{{($info->stat_nilai->BC/$info->stat_nilai->total)*100}}%;"></div>
 						</div>
 						<br> <b>BC</b> </li>
 					<li>
 						<div class="progress progress-md progress-vertical-bottom m-0">
-							<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:40%;"> <span class="sr-only">88% Complete</span> </div>
+							<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:{{($info->stat_nilai->C/$info->stat_nilai->total)*100}}%;"></div>
 						</div>
 						<br> <b>C</b> </li>
 					<li>
 						<div class="progress progress-md progress-vertical-bottom m-0">
-							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:20%;"> <span class="sr-only">88% Complete</span> </div>
+							<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:{{($info->stat_nilai->D/$info->stat_nilai->total)*100}}%;"></div>
 						</div>
 						<br> <b>D</b> </li>
 					<li>
 						<div class="progress progress-md progress-vertical-bottom m-0">
-							<div class="progress-bar progress-bar-basic" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:50%;"> <span class="sr-only">88% Complete</span> </div>
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:{{($info->stat_nilai->E/$info->stat_nilai->total)*100}}%;"></div>
 						</div>
 						<br> <b>E</b> </li>
 				</ul>

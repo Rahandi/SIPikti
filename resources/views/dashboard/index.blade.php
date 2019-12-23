@@ -41,7 +41,7 @@
 					<li>
 						<span class="circle circle-md bg-info"><i class="ti-user"></i></span>
 					</li>
-					<li class="col-last"><h3 class="counter text-right m-t-15">-</h3></li>
+					<li class="col-last"><h3 class="counter text-right m-t-15">{{$data['mahasiswa']}}</h3></li>
 					<li class="col-middle">
 						<h4>Total Mahasiswa</h4>
 						<div class="progress">
@@ -59,7 +59,7 @@
 					<li>
 						<span class="circle circle-md bg-success"><i class="ti-clipboard"></i></span>
 					</li>
-					<li class="col-last"><h3 class="counter text-right m-t-15">-</h3></li>
+					<li class="col-last"><h3 class="counter text-right m-t-15">{{$data['dosen']}}</h3></li>
 					<li class="col-middle">
 						<h4>Total Dosen Pengajar</h4>
 						<div class="progress">
