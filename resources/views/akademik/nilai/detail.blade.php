@@ -131,7 +131,43 @@
 					<h3 class="box-title m-b-0">Statistik Nilai</h3>
 					<p class="text-muted m-b-30">{{$info->tahun}} - Semester {{$info->semester}} - Kelas {{$info->kelas}} - {{$info->matkul}}</p>
 				</div>
-				
+				<ul class="dp-table m-t-30">
+					<li>
+						<div class="progress progress-md progress-vertical-bottom m-0">
+							<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:30%;"> <span class="sr-only">88% Complete</span> </div>
+						</div>
+						<br> <b>A</b> </li>
+					<li>
+						<div class="progress progress-md progress-vertical-bottom m-0">
+							<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:60%;"> <span class="sr-only">88% Complete</span> </div>
+						</div>
+						<br> <b>AB</b> </li>
+					<li>
+						<div class="progress progress-md progress-vertical-bottom m-0">
+							<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:80%;"> <span class="sr-only">88% Complete</span> </div>
+						</div>
+						<br> <b>B</b> </li>
+					<li>
+						<div class="progress progress-md progress-vertical-bottom m-0">
+							<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:30%;"> <span class="sr-only">88% Complete</span> </div>
+						</div>
+						<br> <b>BC</b> </li>
+					<li>
+						<div class="progress progress-md progress-vertical-bottom m-0">
+							<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:40%;"> <span class="sr-only">88% Complete</span> </div>
+						</div>
+						<br> <b>C</b> </li>
+					<li>
+						<div class="progress progress-md progress-vertical-bottom m-0">
+							<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:20%;"> <span class="sr-only">88% Complete</span> </div>
+						</div>
+						<br> <b>D</b> </li>
+					<li>
+						<div class="progress progress-md progress-vertical-bottom m-0">
+							<div class="progress-bar progress-bar-basic" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="height:50%;"> <span class="sr-only">88% Complete</span> </div>
+						</div>
+						<br> <b>E</b> </li>
+				</ul>
 			</div>
 		</div>
 	</div>

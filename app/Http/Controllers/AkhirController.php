@@ -258,10 +258,10 @@ class AkhirController extends Controller
         if($jenis == 'pa')
         {
             foreach ($request->id_mhs as $id_mhs) {
-                $mhs = akhir_pa::where('mahasiswa_id', $id_mhs);
+                $mhs = akhir_pa::where('mahasiswa_id', $id_mhs)->first();
                 $mhs->judul = $request[$id_mhs.'|judul'];
                 $mhs->pembimbing = $request[$id_mhs.'|pembimbing'];
-                $mhs->nilai_pa = $request[$id_mhs.'|nilai_pa'];
+                $mhs->nilai = $request[$id_mhs.'|nilai_pa'];
                 $mhs->save();
             }
             return redirect()->back();
@@ -269,7 +269,7 @@ class AkhirController extends Controller
         elseif($jenis == 'kp')
         {
             foreach ($request->id_mhs as $id_mhs) {
-                $mhs = akhir_kp::where('mahasiswa_id', $id_mhs);
+                $mhs = akhir_kp::where('mahasiswa_id', $id_mhs)->first();
                 $mhs->judul = $request[$id_mhs.'|judul'];
                 $mhs->pembimbing = $request[$id_mhs.'|pembimbing'];
                 $mhs->nilai_pa = $request[$id_mhs.'|nilai_pa'];
@@ -280,7 +280,7 @@ class AkhirController extends Controller
         elseif($jenis == 'pakp')
         {
             foreach ($request->id_mhs as $id_mhs) {
-                $mhs = akhir_pakp::where('mahasiswa_id', $id_mhs);
+                $mhs = akhir_pakp::where('mahasiswa_id', $id_mhs)->first();
                 $mhs->judul = $request[$id_mhs.'|judul'];
                 $mhs->pembimbing = $request[$id_mhs.'|pembimbing'];
                 $mhs->nilai_pa = $request[$id_mhs.'|nilai_pa'];
@@ -291,7 +291,7 @@ class AkhirController extends Controller
         elseif($jenis == 'kompre')
         {
             foreach ($request->id_mhs as $id_mhs) {
-                $mhs = akhir_kompre::where('mahasiswa_id', $id_mhs);
+                $mhs = akhir_kompre::where('mahasiswa_id', $id_mhs)->first();
                 $mhs->judul = $request[$id_mhs.'|judul'];
                 $mhs->pembimbing = $request[$id_mhs.'|pembimbing'];
                 $mhs->nilai_pa = $request[$id_mhs.'|nilai_pa'];
