@@ -252,6 +252,7 @@ class PenilaianController extends Controller
         $info->semester = $jadwal->termin;
         $info->stat_nilai = new \stdClass();
 
+        $info->stat_nilai->total = 0;
         $info->stat_nilai->A = 0;
         $info->stat_nilai->AB = 0;
         $info->stat_nilai->B = 0;
@@ -280,6 +281,7 @@ class PenilaianController extends Controller
             $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
             array_push($data, $temp);
 
+            $info->stat_nilai->total += 1;
             if($temp->nilai_huruf == 'A')
             {
                 $info->stat_nilai->A += 1;
