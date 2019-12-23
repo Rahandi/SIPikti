@@ -250,6 +250,15 @@ class PenilaianController extends Controller
         $info->kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $info->matkul = $mk->nama;
         $info->semester = $jadwal->termin;
+        $info->stat_nilai = new \stdClass();
+
+        $info->stat_nilai->A = 0;
+        $info->stat_nilai->AB = 0;
+        $info->stat_nilai->B = 0;
+        $info->stat_nilai->BC = 0;
+        $info->stat_nilai->C = 0;
+        $info->stat_nilai->D = 0;
+        $info->stat_nilai->E = 0;
 
         $name = explode(',',$master_nilai->nama_penilaian);
         $jumlah = intval($master_nilai->jumlah_penilaian);
@@ -270,6 +279,35 @@ class PenilaianController extends Controller
             $temp->terpisah = explode(',', $nilai->nilai);
             $temp->nilai_huruf = $this->parse_nilai($nilai->nilai_total);
             array_push($data, $temp);
+
+            if($temp->nilai_huruf == 'A')
+            {
+                $info->stat_nilai->A += 1;
+            }
+            elseif($temp->nilai_huruf == 'AB')
+            {
+                $info->stat_nilai->AB += 1;
+            }
+            elseif($temp->nilai_huruf == 'B')
+            {
+                $info->stat_nilai->B += 1;
+            }
+            elseif($temp->nilai_huruf == 'BC')
+            {
+                $info->stat_nilai->BC += 1;
+            }
+            elseif($temp->nilai_huruf == 'C')
+            {
+                $info->stat_nilai->C += 1;
+            }
+            elseif($temp->nilai_huruf == 'D')
+            {
+                $info->stat_nilai->D += 1;
+            }
+            elseif($temp->nilai_huruf == 'E')
+            {
+                $info->stat_nilai->E += 1;
+            }
         }
 
         return view('akademik.nilai.detail', ['info' => $info, 'header' => $header, 'data' => $data]);
