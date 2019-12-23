@@ -255,7 +255,53 @@ class AkhirController extends Controller
 
     public function store(Request $request, $jenis, $tahun)
     {
-        dd($request);
+        if($jenis == 'pa')
+        {
+            foreach ($request->id_mhs as $id_mhs) {
+                $mhs = akhir_pa::where('mahasiswa_id', $id_mhs);
+                $mhs->judul = $request[$id_mhs.'|judul'];
+                $mhs->pembimbing = $request[$id_mhs.'|pembimbing'];
+                $mhs->nilai_pa = $request[$id_mhs.'|nilai_pa'];
+                $mhs->save();
+            }
+            return redirect()->back();
+        }
+        elseif($jenis == 'kp')
+        {
+            foreach ($request->id_mhs as $id_mhs) {
+                $mhs = akhir_kp::where('mahasiswa_id', $id_mhs);
+                $mhs->judul = $request[$id_mhs.'|judul'];
+                $mhs->pembimbing = $request[$id_mhs.'|pembimbing'];
+                $mhs->nilai_pa = $request[$id_mhs.'|nilai_pa'];
+                $mhs->save();
+            }
+            return redirect()->back();
+        }
+        elseif($jenis == 'pakp')
+        {
+            foreach ($request->id_mhs as $id_mhs) {
+                $mhs = akhir_pakp::where('mahasiswa_id', $id_mhs);
+                $mhs->judul = $request[$id_mhs.'|judul'];
+                $mhs->pembimbing = $request[$id_mhs.'|pembimbing'];
+                $mhs->nilai_pa = $request[$id_mhs.'|nilai_pa'];
+                $mhs->save();
+            }
+            return redirect()->back();
+        }
+        elseif($jenis == 'kompre')
+        {
+            foreach ($request->id_mhs as $id_mhs) {
+                $mhs = akhir_kompre::where('mahasiswa_id', $id_mhs);
+                $mhs->judul = $request[$id_mhs.'|judul'];
+                $mhs->pembimbing = $request[$id_mhs.'|pembimbing'];
+                $mhs->nilai_pa = $request[$id_mhs.'|nilai_pa'];
+                $mhs->save();
+            }
+            return redirect()->back();
+        }
+        foreach ($request->id_mhs as $id_mhs) {
+            # code...
+        }
     }
 
     private function get_mhs_without_akhir()
