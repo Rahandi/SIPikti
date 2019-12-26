@@ -32,7 +32,7 @@
                 
                 <div class="row" id="tombol">
                     <div class="col-md-6">
-                        <a href="{{route('pakp.pilih', ['jenis' => 'pa', 'tahun' => $data->tahun])}}"><button class="btn btn-info">Tambah Mahasiswa</button></a>
+                        <a href="{{route('pakp.pilih', ['jenis' => 'kompre', 'tahun' => $data->tahun])}}"><button class="btn btn-info">Tambah Mahasiswa</button></a>
                     </div>
                     <div class="col-md-6">
                         <a><button class="btn btn-danger">Download Template Penilaian</button></a>
@@ -41,18 +41,16 @@
                     </div>
                 </div><br>
                 
-                <form action="{{route('pakp.submit', ['jenis' => 'pa', 'tahun' => $data->tahun])}}" method="POST">
+                <form action="{{route('pakp.submit', ['jenis' => 'kompre', 'tahun' => $data->tahun])}}" method="POST">
                 @csrf
 				<table style="width:100%;" border="">
                     <thead>
-                        <tr name="pa">
+                        <tr name="kompre">
                             <th style="width: 1%">No.</th>
                             <th style="width: 5%">Kelas</th>
-                            <th style="width: 11%">NRP</th>
-                            <th style="width: 19%">Nama</th>
-                            <th style="width: 28%">Judul PA</th>
-                            <th style="width: 27%">Pembimbing PA</th>
-                            <th style="width: 9%">Nilai PA</th>
+                            <th style="width: 25%">NRP</th>
+                            <th style="width: 40%">Nama</th>
+                            <th style="width: 29%">Nilai Komprehensif</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,13 +61,7 @@
                             <td style="text-align: center;">{{$data->data[$i]->nrp}}</td>
                             <td>{{$data->data[$i]->nama}}</td>
                             <input type="hidden" name="id_mhs[]" value="{{$data->data[$i]->mhs_id}}">
-                            <td>
-                                <input class="form-control" name="{{$data->data[$i]->mhs_id}}|judul" type="text" placeholder="Contoh: Pengembangan Sistem Informasi" value="{{$data->data[$i]->judul}}">
-                            </td>
-                            <td>
-                                <input class="form-control" name="{{$data->data[$i]->mhs_id}}|pembimbing" type="text" placeholder="Contoh: Dini Adni Navastara S.Kom, M.Sc." value="{{$data->data[$i]->pembimbing}}">
-                            </td>
-                            <td><input style="text-align: center;" class="form-control" name="{{$data->data[$i]->mhs_id}}|nilai_pa" type="text" placeholder="*AB" value="{{$data->data[$i]->nilai_pa}}"></td>
+                            <td><input style="text-align: center;" class="form-control" name="{{$data->data[$i]->mhs_id}}|nilai_kompre" type="text" placeholder="*AB" value="{{$data->data[$i]->nilai_kompre}}"></td>
                         </tr>
                         @endfor
                     </tbody>

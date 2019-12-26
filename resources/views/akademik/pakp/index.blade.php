@@ -46,7 +46,7 @@
 									</select>
 								</td>
 								<td><b>Proyek Akhir (PA)</b></td>
-								<td>20</td>
+								<td>{{$jumlah->pa}}</td>
 								<td>
 									<a href="" id="detil_nilai_pa"><button class="btn btn-info">Detail</button></a>
 								</td>
@@ -62,7 +62,7 @@
 									</select>
 								</td>
 								<td><b>Kerja Praktek (KP)</b></td>
-								<td>20</td>
+								<td>{{$jumlah->kp}}</td>
 								<td>
 									<a href="" id="detil_nilai_kp"><button class="btn btn-info">Detail</button></a>
 								</td>
@@ -78,7 +78,7 @@
 									</select>
 								</td>
 								<td><b>Komprehensif</b></td>
-								<td>20</td>
+								<td>{{$jumlah->kompre}}</td>
 								<td>
 									<a href="" id="detil_nilai_kom"><button class="btn btn-info">Detail</button></a>
 								</td>
@@ -94,7 +94,7 @@
 									</select>
 								</td>
 								<td><b>Proyek Akhir - Kerja Praktik (PA-KP)</b></td>
-								<td>20</td>
+								<td>{{$jumlah->pakp}}</td>
 								<td>
 									<a href="" id="detil_nilai_pakp"><button class="btn btn-info">Detail</button></a>
 								</td>

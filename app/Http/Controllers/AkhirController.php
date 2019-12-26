@@ -52,7 +52,7 @@ class AkhirController extends Controller
                 $temp->nama = $mahasiswa->nama;
                 $temp->judul = $akhir->judul;
                 $temp->pembimbing = $akhir->pembimbing;
-                $temp->nilai = $akhir->nilai;
+                $temp->nilai_pa = $akhir->nilai;
 
                 array_push($data, $temp);
             }
@@ -81,7 +81,7 @@ class AkhirController extends Controller
                 $temp->mhs_id = $mahasiswa->id;
                 $temp->nrp = $mahasiswa->nrp;
                 $temp->nama = $mahasiswa->nama;
-                $temp->nilai = $akhir->nilai;
+                $temp->nilai_kp = $akhir->nilai;
 
                 array_push($data, $temp);
             }
@@ -123,7 +123,7 @@ class AkhirController extends Controller
             $datas->data = $data;
             $data = $datas;
 
-            return view('akademik.pakp.kp.detail', compact('data'));
+            return view('akademik.pakp.pakp.detail', compact('data'));
         }
         elseif($jenis == 'kompre')
         {
@@ -142,7 +142,7 @@ class AkhirController extends Controller
                 $temp->mhs_id = $mahasiswa->id;
                 $temp->nrp = $mahasiswa->nrp;
                 $temp->nama = $mahasiswa->nama;
-                $temp->nilai = $akhir->nilai;
+                $temp->nilai_kompre = $akhir->nilai;
 
                 array_push($data, $temp);
             }
@@ -275,9 +275,7 @@ class AkhirController extends Controller
         {
             foreach ($request->id_mhs as $id_mhs) {
                 $mhs = akhir_kp::where('mahasiswa_id', $id_mhs)->first();
-                $mhs->judul = $request[$id_mhs.'|judul'];
-                $mhs->pembimbing = $request[$id_mhs.'|pembimbing'];
-                $mhs->nilai_pa = $request[$id_mhs.'|nilai_pa'];
+                $mhs->nilai = $request[$id_mhs.'|nilai_kp'];
                 $mhs->save();
             }
             return redirect()->back();
@@ -289,6 +287,7 @@ class AkhirController extends Controller
                 $mhs->judul = $request[$id_mhs.'|judul'];
                 $mhs->pembimbing = $request[$id_mhs.'|pembimbing'];
                 $mhs->nilai_pa = $request[$id_mhs.'|nilai_pa'];
+                $mhs->nilai_kp = $request[$id_mhs.'|nilai_kp'];
                 $mhs->save();
             }
             return redirect()->back();
@@ -297,9 +296,7 @@ class AkhirController extends Controller
         {
             foreach ($request->id_mhs as $id_mhs) {
                 $mhs = akhir_kompre::where('mahasiswa_id', $id_mhs)->first();
-                $mhs->judul = $request[$id_mhs.'|judul'];
-                $mhs->pembimbing = $request[$id_mhs.'|pembimbing'];
-                $mhs->nilai_pa = $request[$id_mhs.'|nilai_pa'];
+                $mhs->nilai = $request[$id_mhs.'|nilai_kompre'];
                 $mhs->save();
             }
             return redirect()->back();
