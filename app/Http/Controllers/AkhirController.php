@@ -24,10 +24,10 @@ class AkhirController extends Controller
     {
         $data = jadwal::distinct()->get(['tahun']);
         $jumlah = new \stdClass();
-        $jumlah->pa = akhir_pa::where('tahun', '2019')->count();
-        $jumlah->kp = akhir_kp::where('tahun', '2019')->count();
-        $jumlah->pakp = akhir_pakp::where('tahun', '2019')->count();
-        $jumlah->kompre = akhir_kompre::where('tahun', '2019')->count();
+        $jumlah->pa = akhir_pa::count();
+        $jumlah->kp = akhir_kp::count();
+        $jumlah->pakp = akhir_pakp::count();
+        $jumlah->kompre = akhir_kompre::count();
         return view('akademik/pakp/index', ['data'=>$data, 'jumlah'=>$jumlah]);
     }
 
