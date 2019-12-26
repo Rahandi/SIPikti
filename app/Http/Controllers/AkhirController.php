@@ -23,7 +23,12 @@ class AkhirController extends Controller
     public function index()
     {
         $data = jadwal::distinct()->get(['tahun']);
-        return view('akademik/pakp/index', compact('data'));
+        $jumlah = new \stdClass();
+        $jumlah->pa = akhir_pa::count();
+        $jumlah->kp = akhir_kp::count();
+        $jumlah->pakp = akhir_pakp::count();
+        $jumlah->kompre = akhir_kompre::count();
+        return view('akademik/pakp/index', ['data'=>$data, 'jumlah'=>$jumlah]);
     }
 
     public function detail($jenis, $tahun)
