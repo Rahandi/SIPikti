@@ -12,6 +12,10 @@ use App\config;
 use App\mahasiswaJadwal;
 use App\jadwal;
 use App\masterKelas;
+use App\akhir_kompre;
+use App\akhir_kp;
+use App\akhir_pa;
+use App\akhir_pakp;
 
 class TranskripController extends Controller
 {
@@ -209,6 +213,41 @@ class TranskripController extends Controller
             $hitung += 1;
             $total_sks += $temp->sks;
         }
+
+        $pakp = $this->mahasiswa_pakp($id);
+        if($pakp->tahun)
+        {
+            if($pakp->nilai_pa)
+            {
+                $data->judul = $pakp->judul;
+                $data->pembimbing = $pakp->pembimbing;
+
+                $masterMK = masterMK::where('kode_mk', 'IF190215')->first();
+
+                $temp = new \stdClass();
+                $temp->nama = $masterMK->nama;
+                $temp->semester = $masterMK->semester;
+                $temp->sks = $masterMK->sks;
+                $temp->kode = $masterMK->kode_mk;
+                $temp->nilai_huruf = $pakp->nilai_pa;
+                $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
+                array_push($data->nilai, $temp);
+            }
+            if($pakp->nilai_kp)
+            {
+                $masterMK = masterMK::where('kode_mk', 'IF190214')->first();
+
+                $temp = new \stdClass();
+                $temp->nama = $masterMK->nama;
+                $temp->semester = $masterMK->semester;
+                $temp->sks = $masterMK->sks;
+                $temp->kode = $masterMK->kode_mk;
+                $temp->nilai_huruf = $pakp->nilai_kp;
+                $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
+                array_push($data->nilai, $temp);
+            }
+        }
+
         $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
         $data->predikat = $this->parse_predikat($data->ipk);
         $data->total_sks = $total_sks;
@@ -253,6 +292,41 @@ class TranskripController extends Controller
             $hitung += 1;
             $total_sks += $temp->sks;
         }
+
+        $pakp = $this->mahasiswa_pakp($id);
+        if($pakp->tahun)
+        {
+            if($pakp->nilai_pa)
+            {
+                $data->judul = $pakp->judul;
+                $data->pembimbing = $pakp->pembimbing;
+
+                $masterMK = masterMK::where('kode_mk', 'IF190215')->first();
+
+                $temp = new \stdClass();
+                $temp->nama = $masterMK->nama;
+                $temp->semester = $masterMK->semester;
+                $temp->sks = $masterMK->sks;
+                $temp->kode = $masterMK->kode_mk;
+                $temp->nilai_huruf = $pakp->nilai_pa;
+                $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
+                array_push($data->nilai, $temp);
+            }
+            if($pakp->nilai_kp)
+            {
+                $masterMK = masterMK::where('kode_mk', 'IF190214')->first();
+
+                $temp = new \stdClass();
+                $temp->nama = $masterMK->nama;
+                $temp->semester = $masterMK->semester;
+                $temp->sks = $masterMK->sks;
+                $temp->kode = $masterMK->kode_mk;
+                $temp->nilai_huruf = $pakp->nilai_kp;
+                $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
+                array_push($data->nilai, $temp);
+            }
+        }
+
         $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
         $data->predikat = $this->parse_predikat($data->ipk);
         $data->total_sks = $total_sks;
@@ -297,6 +371,41 @@ class TranskripController extends Controller
             $hitung += 1;
             $total_sks += $temp->sks;
         }
+
+        $pakp = $this->mahasiswa_pakp($id);
+        if($pakp->tahun)
+        {
+            if($pakp->nilai_pa)
+            {
+                $data->judul = $pakp->judul;
+                $data->pembimbing = $pakp->pembimbing;
+
+                $masterMK = masterMK::where('kode_mk', 'IF190215')->first();
+
+                $temp = new \stdClass();
+                $temp->nama = $masterMK->nama;
+                $temp->semester = $masterMK->semester;
+                $temp->sks = $masterMK->sks;
+                $temp->kode = $masterMK->kode_mk;
+                $temp->nilai_huruf = $pakp->nilai_pa;
+                $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
+                array_push($data->nilai, $temp);
+            }
+            if($pakp->nilai_kp)
+            {
+                $masterMK = masterMK::where('kode_mk', 'IF190214')->first();
+
+                $temp = new \stdClass();
+                $temp->nama = $masterMK->nama;
+                $temp->semester = $masterMK->semester;
+                $temp->sks = $masterMK->sks;
+                $temp->kode = $masterMK->kode_mk;
+                $temp->nilai_huruf = $pakp->nilai_kp;
+                $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
+                array_push($data->nilai, $temp);
+            }
+        }
+
         $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
         $data->predikat = $this->parse_predikat($data->ipk);
         $data->total_sks = $total_sks;
@@ -341,6 +450,41 @@ class TranskripController extends Controller
             $hitung += 1;
             $total_sks += $temp->sks;
         }
+
+        $pakp = $this->mahasiswa_pakp($id);
+        if($pakp->tahun)
+        {
+            if($pakp->nilai_pa)
+            {
+                $data->judul = $pakp->judul;
+                $data->pembimbing = $pakp->pembimbing;
+
+                $masterMK = masterMK::where('kode_mk', 'IF190215')->first();
+
+                $temp = new \stdClass();
+                $temp->nama = $masterMK->nama;
+                $temp->semester = $masterMK->semester;
+                $temp->sks = $masterMK->sks;
+                $temp->kode = $masterMK->kode_mk;
+                $temp->nilai_huruf = $pakp->nilai_pa;
+                $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
+                array_push($data->nilai, $temp);
+            }
+            if($pakp->nilai_kp)
+            {
+                $masterMK = masterMK::where('kode_mk', 'IF190214')->first();
+
+                $temp = new \stdClass();
+                $temp->nama = $masterMK->nama;
+                $temp->semester = $masterMK->semester;
+                $temp->sks = $masterMK->sks;
+                $temp->kode = $masterMK->kode_mk;
+                $temp->nilai_huruf = $pakp->nilai_kp;
+                $temp->nilai = $this->parse_nilai4($temp->nilai_huruf);
+                array_push($data->nilai, $temp);
+            }
+        }
+
         $data->ipk = number_format((float)($total / $hitung), 2, '.', '');
         $data->predikat = $this->parse_predikat($data->ipk);
         $data->total_sks = $total_sks;
@@ -504,5 +648,63 @@ class TranskripController extends Controller
         $parsed = $dates[2] . ' ' . $dates[1] . ' ' . $dates[0];
         
         return $parsed;
+    }
+
+    private function mahasiswa_pakp($mahasiswa_id)
+    {
+        $pa = akhir_pa::where('mahasiswa_id', $mahasiswa_id)->first();
+        $kp = akhir_kp::where('mahasiswa_id', $mahasiswa_id)->first();
+        $pakp = akhir_pakp::where('mahasiswa_id', $mahasiswa_id)->first();
+        $kompre = akhir_kompre::where('mahasiswa_id', $mahasiswa_id)->first();
+
+        $akhir = new \stdClass();
+        $akhir->judul = null;
+        $akhir->pembimbing = null;
+        $akhir->nilai_pa = null;
+        $akhir->nilai_kp = null;
+        $akhir->tahun = null;
+
+        if($pa)
+        {
+            $mahasiswa = $pa;
+
+            $akhir->judul = $mahasiswa->judul;
+            $akhir->pembimbing = $mahasiswa->pembimbing;
+            $akhir->nilai_pa = $mahasiswa->nilai;
+            $akhir->nilai_kp = null;
+            $akhir->tahun = $mahasiswa->tahun;
+        }
+        elseif($kp)
+        {
+            $mahasiswa = $kp;
+
+            $akhir->judul = null;
+            $akhir->pembimbing = null;
+            $akhir->nilai_pa = null;
+            $akhir->nilai_kp = $mahasiswa->nilai;
+            $akhir->tahun = $mahasiswa->tahun;
+        }
+        elseif($pakp)
+        {
+            $mahasiswa = $pakp;
+
+            $akhir->judul = $mahasiswa->judul;
+            $akhir->pembimbing = $mahasiswa->pembimbing;
+            $akhir->nilai_pa = $mahasiswa->nilai_pa;
+            $akhir->nilai_kp = $mahasiswa->nilai_kp;
+            $akhir->tahun = $mahasiswa->tahun;
+        }
+        elseif($kompre)
+        {
+            $mahasiswa = $kompre;
+
+            $akhir->judul = null;
+            $akhir->pembimbing = null;
+            $akhir->nilai_pa = null;
+            $akhir->nilai_kp = $mahasiswa->nilai;
+            $akhir->tahun = $mahasiswa->tahun;
+        }
+
+        return $akhir;
     }
 }
