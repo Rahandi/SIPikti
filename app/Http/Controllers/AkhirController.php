@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 use App\akhir_kompre;
 use App\akhir_kp;
@@ -12,6 +14,8 @@ use App\jadwal;
 use App\masterKelas;
 use App\mahasiswa;
 use App\mahasiswaJadwal;
+
+use App\Export\PAKPExport;
 
 class AkhirController extends Controller
 {
@@ -301,9 +305,96 @@ class AkhirController extends Controller
             }
             return redirect()->back();
         }
-        foreach ($request->id_mhs as $id_mhs) {
-            # code...
+    }
+
+    public function download_template($jenis, $tahun)
+    {
+        $filename = $jenis . '_' . $tahun . '.xlsx';
+        return Excel::download(new PAKPExport($jenis, $tahun), $filename);
+    }
+
+    public function upload_template($jenis, $tahun)
+    {
+        libxml_disable_entity_loader(false);
+        $filename = $jenis . '_' . $tahun . '.xlsx';
+        $file = $request->file('upload');
+        
+        if(!$file)
+        {
+            return redirect()->back()->with("status", "Tidak ada file yang di upload");
         }
+
+        if($filename != $file->getClientOriginalName())
+        {
+            return redirect()->back()->with("status", "File salah");
+        }
+
+        $path = \storage_path('pakp');
+        $file->move($path, $filename);
+        $filepath = \storage_path('pakp/' . $filename);
+
+        $data = (new FastExcel)->import($filepath);
+        
+        foreach ($data as $row)
+        {
+            $mahasiswa = mahasiswa::where('nrp', strval($row['NRP']))->first();
+
+            if($jenis == 'pa')
+            {
+                $akhir = akhir_pa::where('mahasiswa_id', $mahasiswa->id);
+                $akhir->judul = $row['Judul'];
+                $akhir->pembimbing = $row['Pembimbing'];
+                $akhir->nilai = $row['Nilai'];
+                $akhir->save();
+            }
+            elseif($jenis == 'kp')
+            {
+                $akhir = akhir_kp::where('mahasiswa_id', $mahasiswa->id);
+                $akhir->nilai = $row['Nilai'];
+                $akhir->save();
+            }
+            elseif($jenis == 'pakp')
+            {
+                $akhir = akhir_pakp::where('mahasiswa_id', $mahasiswa->id);
+                $akhir->judul = $row['Judul'];
+                $akhir->pembimbing = $row['Pembimbing'];
+                $akhir->nilai_pa = $row['Nilai PA'];
+                $akhir->nilai_kp = $row['Nilai KP'];
+                $akhir->save();
+            }
+            elseif($jenis == 'kompre')
+            {
+                $akhir = akhir_kompre::where('mahasiswa_id', $mahasiswa->id);
+                $akhir->nilai = $row['Nilai'];
+                $akhir->save();
+            }
+        }
+
+        return redirect()->back()->with('status', 'Upload Berhasil');
+    }
+
+    public function delete(Request $request, $jenis, $tahun)
+    {
+        if($this->jenis == 'pa')
+        {
+            $mahasiswa = akhir_pa::where('mahasiswa_id', $request->mhs_id)->first();
+        }
+        elseif($this->jenis == 'kp')
+        {
+            $mahasiswa = akhir_kp::where('mahasiswa_id', $request->mhs_id)->first();
+        }
+        elseif($this->jenis == 'pakp')
+        {
+            $mahasiswa = akhir_pakp::where('mahasiswa_id', $request->mhs_id)->first();
+        }
+        elseif($this->jenis == 'kompre')
+        {
+            $mahasiswa = akhir_kompre::where('mahasiswa_id', $request->mhs_id)->first();
+        }
+
+        $mahasiswa->delete();
+
+        return $redirect->back();
     }
 
     private function get_mhs_without_akhir()

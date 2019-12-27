@@ -87,9 +87,12 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::get('/', 'AkhirController@index')->name('pakp');
         Route::get('/{jenis}/{tahun}', 'AkhirController@detail')->name('pakp.detail');
         Route::get('/pilih/{jenis}/{tahun}', 'AkhirController@pilih_mhs')->name('pakp.pilih');
+        Route::get('/download_template/{jenis}/{tahun}', 'AkhirController@download_template')->name('pakp.download_template');
+        Route::get('/upload_template/{jenis}/{tahun}', 'AkhirController@upload_template')->name('pakp.upload_template');
 
         Route::post('/submitmhs/{jenis}/{tahun}', 'AkhirController@submit_mhs')->name('pakp.submitmhs');
         Route::post('/submit/{jenis}/{tahun}', 'AkhirController@store')->name('pakp.submit');
+        Route::post('/delete/{jenis}/{tahun}', 'AkhirController@delete')->name('pakp.delete');
     });
 
     Route::group(['prefix' => 'transkrip'], function () {
