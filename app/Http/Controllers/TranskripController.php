@@ -45,6 +45,8 @@ class TranskripController extends Controller
                 $mahasiswa->kelas = NULL;
             }
             
+            $pakp = $this->mahasiswa_pakp($mahasiswa->id);
+            $mahasiswa->jenis = $pakp->jenis;
         }
 
         $jadwals = jadwal::all();
@@ -663,6 +665,7 @@ class TranskripController extends Controller
         $akhir->nilai_pa = null;
         $akhir->nilai_kp = null;
         $akhir->tahun = null;
+        $akhir->jenis = null;
 
         if($pa)
         {
@@ -673,6 +676,7 @@ class TranskripController extends Controller
             $akhir->nilai_pa = $mahasiswa->nilai;
             $akhir->nilai_kp = null;
             $akhir->tahun = $mahasiswa->tahun;
+            $akhir->jenis = 'pa';
         }
         elseif($kp)
         {
@@ -683,6 +687,7 @@ class TranskripController extends Controller
             $akhir->nilai_pa = null;
             $akhir->nilai_kp = $mahasiswa->nilai;
             $akhir->tahun = $mahasiswa->tahun;
+            $akhir->jenis = 'kp';
         }
         elseif($pakp)
         {
@@ -693,6 +698,7 @@ class TranskripController extends Controller
             $akhir->nilai_pa = $mahasiswa->nilai_pa;
             $akhir->nilai_kp = $mahasiswa->nilai_kp;
             $akhir->tahun = $mahasiswa->tahun;
+            $akhir->jenis = 'pakp';
         }
         elseif($kompre)
         {
@@ -703,6 +709,7 @@ class TranskripController extends Controller
             $akhir->nilai_pa = null;
             $akhir->nilai_kp = $mahasiswa->nilai;
             $akhir->tahun = $mahasiswa->tahun;
+            $akhir->jenis = 'kompre';
         }
 
         return $akhir;
