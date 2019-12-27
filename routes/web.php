@@ -100,7 +100,7 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::get('/pejabat', 'TranskripController@pejabat')->name('pejabat');
 
         Route::post('/{transkrip}', 'TranskripController@transkrip')->name('transkrip.transkrip');
-        Route::post('/kelas/{transkrip}', 'TranskripController@transkrip_kelas')->name('transkrip.kelas');
+        Route::post('/kelas', 'TranskripController@transkrip_kelas')->name('transkrip.kelas');
         Route::post('/pejabat', 'TranskripController@pejabat_update')->name('pejabat.update');
         Route::post('/update_nomor', 'TranskripController@nomor_transkrip_update')->name('transkrip.update');
     });

@@ -132,50 +132,12 @@ class TranskripController extends Controller
         // dd($request->jadwal_id);
         foreach($mahasiswa_jadwal as $mahasiswa)
         {
-            if ($transkrip == 'sementara')
-            {
-                $datas = $this->sementara($mahasiswa->mahasiswa_id);
-                $datas->pejabat = $pejabat;
-                array_push($data, $datas);
-            }
-            elseif ($transkrip == 'kp')
-            {
-                $datas = $this->kp($mahasiswa->mahasiswa_id);
-                $datas->pejabat = $pejabat;
-                array_push($data, $datas);
-            }
-            elseif ($transkrip == 'ta')
-            {
-                $datas = $this->ta($mahasiswa->mahasiswa_id);
-                $datas->pejabat = $pejabat;
-                array_push($data, $datas);
-            }
-            elseif ($transkrip == 'takp')
-            {
-                $datas = $this->takp($mahasiswa->mahasiswa_id);
-                $datas->pejabat = $pejabat;
-                array_push($data, $datas);
-            }
+            $datas = $this->sementara($mahasiswa->mahasiswa_id);
+            $datas->pejabat = $pejabat;
+            array_push($data, $datas);
         }
 
-        if ($transkrip == 'sementara')
-        {
-            return view('akademik.transkrip.sementara_kelas', ['datas' => $data]);
-        }
-        elseif ($transkrip == 'kp')
-        {
-            return view('akademik.transkrip.kp_kelas', ['datas' => $data]);
-        }
-        elseif ($transkrip == 'ta')
-        {
-            return view('akademik.transkrip.ta_kelas', ['datas' => $data]);
-        }
-        elseif ($transkrip == 'takp')
-        {
-            return view('akademik.transkrip.takp_kelas', ['datas' => $data]);
-        }
-
-        return redirect()->route('transkrip');
+        return view('akademik.transkrip.kelas', ['datas' => $data]);
     }
 
     private function sementara($id)
@@ -217,6 +179,7 @@ class TranskripController extends Controller
         }
 
         $pakp = $this->mahasiswa_pakp($id);
+        $data->jenis = $pakp->jenis;
         if($pakp->tahun)
         {
             if($pakp->nilai_pa)
@@ -296,6 +259,7 @@ class TranskripController extends Controller
         }
 
         $pakp = $this->mahasiswa_pakp($id);
+        $data->jenis = $pakp->jenis;
         if($pakp->tahun)
         {
             if($pakp->nilai_pa)
@@ -375,6 +339,7 @@ class TranskripController extends Controller
         }
 
         $pakp = $this->mahasiswa_pakp($id);
+        $data->jenis = $pakp->jenis;
         if($pakp->tahun)
         {
             if($pakp->nilai_pa)
@@ -454,6 +419,7 @@ class TranskripController extends Controller
         }
 
         $pakp = $this->mahasiswa_pakp($id);
+        $data->jenis = $pakp->jenis;
         if($pakp->tahun)
         {
             if($pakp->nilai_pa)
