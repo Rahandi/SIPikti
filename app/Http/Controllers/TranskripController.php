@@ -108,6 +108,7 @@ class TranskripController extends Controller
 
     public function transkrip_kelas(Request $request)
     {
+        dd($request);
         $pejabat1 = config::where('name', 'pejabat 1')->first();
         $pejabat2 = config::where('name', 'pejabat 2')->first();
 
@@ -129,7 +130,6 @@ class TranskripController extends Controller
         $data = [];
 
         $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $request->jadwal_id)->get();
-        // dd($request->jadwal_id);
         foreach($mahasiswa_jadwal as $mahasiswa)
         {
             $datas = $this->sementara($mahasiswa->mahasiswa_id);
