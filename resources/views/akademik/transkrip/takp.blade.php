@@ -185,14 +185,14 @@
                 <td style="width:65%">
                     <p>Mengetahui,<br>
                     {{$data->pejabat->satu->jabatan}}</p>
-                    <p><br><br><br><br><br><br></p>
+                    <p><br><br><br><br></p>
                     <p>{{$data->pejabat->satu->nama}}<br>
                     NIP {{$data->pejabat->satu->nip}}</p>
                 </td>
                 <td>
                     <p>Surabaya, 31 Oktober 2019<br>
                     {{$data->pejabat->dua->jabatan}}</p>
-                    <p><br><br><br><br><br><br></p>
+                    <p><br><br><br><br></p>
                     <p>{{$data->pejabat->dua->nama}}<br>
                     NIP {{$data->pejabat->dua->nip}}</p>
                 </td>

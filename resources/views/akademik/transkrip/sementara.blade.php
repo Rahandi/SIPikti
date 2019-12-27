@@ -178,7 +178,7 @@
         <div class="row" style="margin-left: 63%; font-size: 14px; margin-top: 3%;">
             <p>Surabaya, 31 Oktober 2019<br>
             {{$data->pejabat->dua->jabatan}}</p>
-            <p><br><br><br><br><br><br></p>
+            <p><br><br><br><br></p>
             <p>{{$data->pejabat->dua->nama}}<br>
             NIP {{$data->pejabat->dua->nip}}</p>
         </div>

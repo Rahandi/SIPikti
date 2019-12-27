@@ -108,7 +108,6 @@ class TranskripController extends Controller
 
     public function transkrip_kelas(Request $request)
     {
-        dd($request);
         $pejabat1 = config::where('name', 'pejabat 1')->first();
         $pejabat2 = config::where('name', 'pejabat 2')->first();
 
