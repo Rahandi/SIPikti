@@ -106,7 +106,7 @@ class TranskripController extends Controller
         return redirect()->route('transkrip');
     }
 
-    public function transkrip_kelas(Request $request, $transkrip)
+    public function transkrip_kelas(Request $request)
     {
         $pejabat1 = config::where('name', 'pejabat 1')->first();
         $pejabat2 = config::where('name', 'pejabat 2')->first();
