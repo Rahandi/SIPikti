@@ -28,19 +28,19 @@ class PAKPExport implements FromCollection, WithHeadings
     {
         if($jenis == 'pa')
         {
-            $this->master = akhir_pa::where('tahun', $tahun);
+            $this->master = akhir_pa::where('tahun', $tahun)->get();
         }
         elseif($jenis == 'kp')
         {
-            $this->master = akhir_kp::where('tahun', $tahun);
+            $this->master = akhir_kp::where('tahun', $tahun)->get();
         }
         elseif($jenis == 'pakp')
         {
-            $this->master = akhir_pakp::where('tahun', $tahun);
+            $this->master = akhir_pakp::where('tahun', $tahun)->get();
         }
         elseif($jenis == 'kompre')
         {
-            $this->master = akhir_kompre::where('tahun', $tahun);
+            $this->master = akhir_kompre::where('tahun', $tahun)->get();
         }
 
         $this->jenis = $jenis;

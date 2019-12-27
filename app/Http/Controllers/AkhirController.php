@@ -15,7 +15,7 @@ use App\masterKelas;
 use App\mahasiswa;
 use App\mahasiswaJadwal;
 
-use App\Export\PAKPExport;
+use App\Exports\PAKPExport;
 
 class AkhirController extends Controller
 {
@@ -313,7 +313,7 @@ class AkhirController extends Controller
         return Excel::download(new PAKPExport($jenis, $tahun), $filename);
     }
 
-    public function upload_template($jenis, $tahun)
+    public function upload_template(Request $request, $jenis, $tahun)
     {
         libxml_disable_entity_loader(false);
         $filename = $jenis . '_' . $tahun . '.xlsx';
@@ -341,7 +341,7 @@ class AkhirController extends Controller
 
             if($jenis == 'pa')
             {
-                $akhir = akhir_pa::where('mahasiswa_id', $mahasiswa->id);
+                $akhir = akhir_pa::where('mahasiswa_id', $mahasiswa->id)->first();
                 $akhir->judul = $row['Judul'];
                 $akhir->pembimbing = $row['Pembimbing'];
                 $akhir->nilai = $row['Nilai'];
@@ -349,13 +349,13 @@ class AkhirController extends Controller
             }
             elseif($jenis == 'kp')
             {
-                $akhir = akhir_kp::where('mahasiswa_id', $mahasiswa->id);
+                $akhir = akhir_kp::where('mahasiswa_id', $mahasiswa->id)->first();
                 $akhir->nilai = $row['Nilai'];
                 $akhir->save();
             }
             elseif($jenis == 'pakp')
             {
-                $akhir = akhir_pakp::where('mahasiswa_id', $mahasiswa->id);
+                $akhir = akhir_pakp::where('mahasiswa_id', $mahasiswa->id)->first();
                 $akhir->judul = $row['Judul'];
                 $akhir->pembimbing = $row['Pembimbing'];
                 $akhir->nilai_pa = $row['Nilai PA'];
@@ -364,7 +364,7 @@ class AkhirController extends Controller
             }
             elseif($jenis == 'kompre')
             {
-                $akhir = akhir_kompre::where('mahasiswa_id', $mahasiswa->id);
+                $akhir = akhir_kompre::where('mahasiswa_id', $mahasiswa->id)->first();
                 $akhir->nilai = $row['Nilai'];
                 $akhir->save();
             }
@@ -375,26 +375,26 @@ class AkhirController extends Controller
 
     public function delete(Request $request, $jenis, $tahun)
     {
-        if($this->jenis == 'pa')
+        if($jenis == 'pa')
         {
             $mahasiswa = akhir_pa::where('mahasiswa_id', $request->mhs_id)->first();
         }
-        elseif($this->jenis == 'kp')
+        elseif($jenis == 'kp')
         {
             $mahasiswa = akhir_kp::where('mahasiswa_id', $request->mhs_id)->first();
         }
-        elseif($this->jenis == 'pakp')
+        elseif($jenis == 'pakp')
         {
             $mahasiswa = akhir_pakp::where('mahasiswa_id', $request->mhs_id)->first();
         }
-        elseif($this->jenis == 'kompre')
+        elseif($jenis == 'kompre')
         {
             $mahasiswa = akhir_kompre::where('mahasiswa_id', $request->mhs_id)->first();
         }
 
         $mahasiswa->delete();
 
-        return $redirect->back();
+        return redirect()->back();
     }
 
     private function get_mhs_without_akhir()
