@@ -48,7 +48,7 @@
                         class="w3-button w3-display-topright w3-round-large">&times;</span>
                         <h2>Pilih Kelas yang Akan Diunduh Transkrip</h2>
                     </header>
-                    <form action="{{route('transkrip.kelas', ['transkrip'=>''])}}" method="POST" target="_blank" enctype="multipart/form-data" id="transkrip_kelas">
+                    <form action="{{route('transkrip.kelas')}}" method="POST" target="_blank" enctype="multipart/form-data" id="transkrip_kelas">
                     {{ csrf_field() }}
                     <div class="w3-container" style="margin-top: 2%;">
                         <select class="form-control selectpicker" data-style="btn-info btn-outline" name="jadwal_id" id="jadwal_id" required="">
@@ -59,10 +59,7 @@
 						</select>
                     </div><br>
                     <footer class="w3-container w3-light-grey w3-round-large" style="text-align: center;">
-                        <button type="submit" class="btn btn-success" id="download1" style="margin: 1%;" onmouseover="ganti('{{route('transkrip.kelas', ['transkrip'=>'ta'])}}')">Transkrip PA</button>
-                        <button type="submit" class="btn btn-info" id="download2" style="margin: 1%;" onmouseover="ganti('{{route('transkrip.kelas', ['transkrip'=>'kp'])}}')">Transkrip KP / Kompre</button>
-                        <button type="submit" class="btn btn-primary" id="download3" style="margin: 1%;" onmouseover="ganti('{{route('transkrip.kelas', ['transkrip'=>'takp'])}}')">Transkrip PA - KP</button>
-                        <button type="submit" class="btn btn-danger" id="download4" style="margin: 1%;" onmouseover="ganti('{{route('transkrip.kelas', ['transkrip'=>'sementara'])}}')">Transkrip Sementara</button>
+                        <button type="submit" class="btn btn-info" id="download2" style="margin: 1%;">Download</button>
                     </footer>
                     </form>
                 </div>
@@ -102,9 +99,9 @@
                                     <form action="{{ route('transkrip.transkrip', ['transkrip' => 'kp']) }}" method="POST" target="_blank">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$individu->id}}">
-                                        <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-KP_KOMPRE">
+                                        <a data-toggle="tooltip" data-placement="top" title="Kerja Praktek / Komprehensif">
                                             <button type="submit" class="btn btn-primary"
-                                            @if ($individu->nilai == null)
+                                            @if ($individu->nilai == null or ($individu->jenis != 'kp' and $individu->jenis != 'kompre'))
                                                 disabled
                                             @endif
                                             >KP</button>
@@ -115,9 +112,9 @@
                                     <form action="{{ route('transkrip.transkrip', ['transkrip' => 'ta']) }}" method="POST" target="_blank">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$individu->id}}">
-                                        <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-Proyek Akhir">
+                                        <a data-toggle="tooltip" data-placement="top" title="Proyek Akhir">
                                             <button type="submit" class="btn btn-danger"
-                                            @if($individu->nilai == null)
+                                            @if($individu->nilai == null or $individu->jenis != 'pa')
                                                 disabled
                                             @endif
                                             >PA</button>
@@ -128,9 +125,9 @@
                                     <form action="{{ route('transkrip.transkrip', ['transkrip' => 'takp']) }}" method="POST" target="_blank">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$individu->id}}">
-                                        <a data-toggle="tooltip" data-placement="top" title="Transkrip 1819-PA-KP">
+                                        <a data-toggle="tooltip" data-placement="top" title="Proyek Akhir - Kerja Praktek">
                                             <button type="submit" class="btn btn-success"
-                                            @if($individu->nilai == null)
+                                            @if($individu->nilai == null or $individu->jenis != 'pakp')
                                                 disabled
                                             @endif
                                             >PA-KP</button>
@@ -177,7 +174,7 @@
                 "targets": 0,
 
             } ],
-            "order": [[ 2, 'asc' ]],
+            "order": [[ 3, 'asc' ]],
         } );
 
         t.on( 'order.dt search.dt', function () {

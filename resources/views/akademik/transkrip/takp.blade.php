@@ -97,8 +97,8 @@
             </table>
         </div>
         <div class="row" style="font-size: 15px;">
-            <p><b>JUDUL PROYEK AKHIR</b><br>misal: ...Edit Foto Buku Angkatan</p>
-            <p><b>PEMBIMBING PROYEK AKHIR</b><br>misal: ...Henning Titi Ciptaningtyas, S.Kom., M.Kom.</p>
+            <p><b>JUDUL PROYEK AKHIR</b><br>{{$data->judul}}</p>
+            <p><b>PEMBIMBING PROYEK AKHIR</b><br>{{$data->pembimbing}}</p>
         </div>
         <div class="row" style="font-size: 12px; margin-top: 3%;">
             <table>

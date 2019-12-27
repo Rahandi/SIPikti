@@ -24,6 +24,7 @@
 	<style>@page { size: legal potrait }</style>
 </head>
 <body onload="window.print()" class="legal potrait" style="width: 100%">
+    {{dd($datas[0])}}
     @foreach ($datas as $data)
 	<div class="container" style="width:100%; margin-top: 27%; padding-right: 14%; margin-bottom: 10%; margin-left: 12%; page-break-after: always">
 		<div class="row" style="text-align: center; font-size: 17px;">
