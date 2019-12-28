@@ -9,6 +9,7 @@ use App\masterKelas;
 use App\masterDosen;
 use App\masterAsisten;
 use App\masterMK;
+use App\jadwalS;
 use Illuminate\Http\Request;
 
 class JadwalController extends Controller
@@ -63,30 +64,52 @@ class JadwalController extends Controller
         $jadwal->termin = $request->termin;
         $jadwal->tahun = $request->tahun;
         $jadwal->id_kelas = masterKelas::where('nama','=',$request->kelas)->first()->id;
-        
-        $mk = array();
-        foreach($request->matkul as $matkul)
-        {
-            ($matkul) ? array_push($mk, $matkul) : array_push($mk, '0');
-        }
 
-        $dosen = array();
-        foreach($request->dosen as $indvdosen)
+        $matkul = [];
+        $dosen = [];
+        $asisten = [];
+        for($i=0;$i<count($request->matkul);$i++)
         {
-            ($indvdosen) ? array_push($dosen, $indvdosen) : array_push($dosen, '0');
+            if(!in_array($request->matkul[$i], $matkul))
+            {
+                ($request->matkul[$i]) ? array_push($matkul, $request->matkul[$i]) : array_push($matkul, '0');
+                ($request->dosen[$i]) ? array_push($dosen, $request->dosen[$i]) : array_push($dosen, '0');
+                ($request->asisten[$i]) ? array_push($asisten, $request->asisten[$i]) : array_push($asisten, '0');
+            }
         }
-
-        $asisten = array();
-        foreach($request->asisten as $indvasisten)
-        {
-            ($indvasisten) ? array_push($asisten, $indvasisten) : array_push($asisten, '0');
-        }
-
-        $jadwal->ids_mk = implode(',', $mk);
+        $jadwal->ids_mk = implode(',', $matkul);
         $jadwal->ids_dosen = implode(',', $dosen);
         $jadwal->ids_asisten = implode(',', $asisten);
 
+        if($request->kelas == 's' || $request->kelas == 'S')
+        {
+            $jadwals = new jadwalS();
+            $matkul = [];
+            $bagian = [];
+            $dosen = [];
+            $asisten = [];
+            $tanggal = [];
+            for($i=0;$i<count($request->matkul);$i++)
+            {
+                ($request->matkul[$i]) ? array_push($matkul, $request->matkul[$i]) : array_push($matkul, '0');
+                ($request->bagian_mk[$i]) ? array_push($bagian, $request->bagian_mk[$i]) : array_push($bagian, '0');
+                ($request->dosen[$i]) ? array_push($dosen, $request->dosen[$i]) : array_push($dosen, '0');
+                ($request->asisten[$i]) ? array_push($asisten, $request->asisten[$i]) : array_push($asisten, '0');
+                ($request->tgl_mk[$i]) ? array_push($tanggal, $request->tgl_mk[$i]) : array_push($tanggal, '0');
+            }
+            $jadwals->bagian = implode(',', $bagian);
+            $jadwals->ids_mk = implode(',', $matkul);
+            $jadwals->ids_dosen = implode(',', $dosen);
+            $jadwals->ids_asisten = implode(',', $asisten);
+            $jadwals->tanggals = implode(',', $tanggal);
+
+            $jadwals->save();
+
+            $jadwal->jadwalS_id = $jadwals->id;
+        }
+
         $jadwal->save();
+
         return redirect()->route('jadwal');
     }
 
@@ -138,27 +161,45 @@ class JadwalController extends Controller
         $jadwal->id_kelas = masterKelas::where('nama','=',$request->kelas)->first()->id;
         
         $mk = array();
-        foreach($request->matkul as $matkul)
-        {
-            ($matkul) ? array_push($mk, $matkul) : array_push($mk, '0');
-        }
-
         $dosen = array();
-        foreach($request->dosen as $indvdosen)
-        {
-            ($indvdosen) ? array_push($dosen, $indvdosen) : array_push($dosen, '0');
-        }
-
         $asisten = array();
-        foreach($request->asisten as $indvasisten)
+        for($i=0;$i<count($request->matkul);$i++)
         {
-            ($indvasisten) ? array_push($asisten, $indvasisten) : array_push($asisten, '0');
+            if(!in_array($request->matkul[$i], $matkul))
+            {
+                ($request->matkul[$i]) ? array_push($matkul, $request->matkul[$i]) : array_push($matkul, '0');
+                ($request->dosen[$i]) ? array_push($dosen, $request->dosen[$i]) : array_push($dosen, '0');
+                ($request->asisten[$i]) ? array_push($asisten, $request->asisten[$i]) : array_push($asisten, '0');
+            }
         }
-
         $jadwal->ids_mk = implode(',', $mk);
         $jadwal->ids_dosen = implode(',', $dosen);
         $jadwal->ids_asisten = implode(',', $asisten);
 
+        if($request->kelas == 's' || $request->kelas == 'S')
+        {
+            $jadwals = jadwalS::find($jadwal->jadwalS_id);
+            $matkul = [];
+            $bagian = [];
+            $dosen = [];
+            $asisten = [];
+            $tanggal = [];
+            for($i=0;$i<count($request->matkul);$i++)
+            {
+                ($request->matkul[$i]) ? array_push($matkul, $request->matkul[$i]) : array_push($matkul, '0');
+                ($request->bagian_mk[$i]) ? array_push($bagian, $request->bagian_mk[$i]) : array_push($bagian, '0');
+                ($request->dosen[$i]) ? array_push($dosen, $request->dosen[$i]) : array_push($dosen, '0');
+                ($request->asisten[$i]) ? array_push($asisten, $request->asisten[$i]) : array_push($asisten, '0');
+                ($request->tgl_mk[$i]) ? array_push($tanggal, $request->tgl_mk[$i]) : array_push($tanggal, '0');
+            }
+            $jadwals->bagian = implode(',', $bagian);
+            $jadwals->ids_mk = implode(',', $matkul);
+            $jadwals->ids_dosen = implode(',', $dosen);
+            $jadwals->ids_asisten = implode(',', $asisten);
+            $jadwals->tanggals = implode(',', $tanggal);
+
+            $jadwals->save();
+        }
         $jadwal->save();
         return redirect()->route('jadwal');
     }
@@ -173,51 +214,80 @@ class JadwalController extends Controller
             $item->delete();
         }
 
+        if($jadwal->jadwalS_id)
+        {
+            $jadwals = jadwalS::find($jadwal->jadwalS_id);
+            $jadwals->delete();
+        }
+
         $jadwal->delete();
         return redirect()->route('jadwal');
     }
 
     public function detail($id)
     {
-        $data = new \stdClass();
         $jadwal = jadwal::find($id);
-        $ids_mk = explode(',',$jadwal->ids_mk);
-        $ids_dosen = explode(',',$jadwal->ids_dosen);
-        $ids_asisten = explode(',',$jadwal->ids_asisten);
-        $mahasiswa_jadwal = \DB::table('mahasiswa_jadwal')
-                                ->select('mahasiswa_id')
-                                ->groupBy('mahasiswa_id')
-                                ->where('jadwal_id', '=', $id)
-                                ->get();
+
+        $data = new \stdClass();
+        $data->id = $id;
+        $data->termin = $jadwal->termin;
+        $data->kelas = masterKelas::find($jadwal->id_kelas);
+        
+        $data->hitung = $this->hitung_mahasiswa_jadwal($id);
         
         $mk = array();
-        foreach($ids_mk as $indvmk)
+        $dosen = array();
+        $asisten = array();
+        $tanggal = array();
+
+        if($data->kelas->nama == 's' || $data->kelas->nama == 'S')
         {
-            if($indvmk)
+            $jadwals = jadwalS::find($jadwal->jadwalS_id);
+            $ids_mk = explode(',',$jadwals->ids_mk);
+            $ids_dosen = explode(',',$jadwals->ids_dosen);
+            $ids_asisten = explode(',',$jadwals->ids_asisten);
+            $bagian = explode(',', $jadwals->bagian);
+            $tanggal = explode(',', $jadwals->tanggals);
+        }
+        else
+        {
+            $ids_mk = explode(',',$jadwal->ids_mk);
+            $ids_dosen = explode(',',$jadwal->ids_dosen);
+            $ids_asisten = explode(',',$jadwal->ids_asisten);
+        }
+
+        for($i=0;$i<count($ids_mk);$i++)
+        {
+            if($ids_mk[$i])
             {
                 $temp = new \stdClass();
-                $master_mk = masterMK::find($indvmk);
-                $temp->nama = $master_mk->nama;
+                $master_mk = masterMK::find($ids_mk[$i]);
+                $temp->nama = (isset($bagian)) ? $master_mk->nama.' '.$bagian[$i] : $master_mk->nama;
                 $temp->id = $master_mk->id;
                 array_push($mk, $temp);
             }
             else
             {
-                array_push($mk, null);
+                $temp = new \stdClass();
+                $temp->nama = null;
+                $temp->id = null;
+                array_push($mk, $temp);
+            }
+
+            ($ids_dosen[$i])?array_push($dosen, masterDosen::find($ids_dosen[$i])->nama):array_push($dosen, null);
+            ($ids_asisten[$i])?array_push($asisten, masterAsisten::find($ids_asisten[$i])->nama):array_push($asisten, null);
+
+            if(isset($tanggal))
+            {
+                array_push($tanggal, $tanggal[$i]);
             }
         }
-
-        $dosen = array();
-        foreach($ids_dosen as $indvdosen)
-        {
-            ($indvdosen)?array_push($dosen, masterDosen::find($indvdosen)->nama):array_push($dosen, null);
-        }
-
-        $asisten = array();
-        foreach($ids_asisten as $indvasisten)
-        {
-            ($indvasisten)?array_push($asisten, masterAsisten::find($indvasisten)->nama):array_push($asisten, null);
-        }
+        
+        $mahasiswa_jadwal = \DB::table('mahasiswa_jadwal')
+                                ->select('mahasiswa_id')
+                                ->groupBy('mahasiswa_id')
+                                ->where('jadwal_id', '=', $id)
+                                ->get();
 
         $mahasiswa = array();
         foreach($mahasiswa_jadwal as $row)
@@ -225,14 +295,11 @@ class JadwalController extends Controller
             array_push($mahasiswa, mahasiswa::find($row->mahasiswa_id));
         }
 
-        $data->id = $id;
-        $data->termin = $jadwal->termin;
-        $data->kelas = masterKelas::find($jadwal->id_kelas);
         $data->matkul = $mk;
         $data->dosen = $dosen;
         $data->asisten = $asisten;
         $data->mahasiswa = $mahasiswa;
-        $data->hitung = $this->hitung_mahasiswa_jadwal($id);
+        $data->tanggal = $tanggal;
 
         return view('akademik.jadwal.detail', compact('data'));
     }

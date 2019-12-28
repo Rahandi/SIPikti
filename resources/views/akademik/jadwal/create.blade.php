@@ -258,10 +258,7 @@
 <script type="text/javascript">
 	function getKelas(){
 		var kls = $('#kelas').val();
-		console.log("change!");
-		console.log(kls);
 		var nama_kls = <?php echo json_encode($data->masterKelas); ?>;
-		console.log(nama_kls);
 		for (i = 0; i < nama_kls.length; i ++){
 			if (nama_kls[i]['nama'] == kls) {
 				console.log(nama_kls[i]['jam_SK']);
@@ -275,8 +272,30 @@
 					document.getElementById('val_jml').style.display = "";
 					document.getElementById("mkperday").style.display = "none";
 					document.getElementById("tableMK_S").style.display = "";
+
+					let matkul = document.getElementsByName("matkul[]");
+					for(j=0;j<matkul.length;j++)
+					{
+						matkul[j].required = false
+						matkul[j].disabled = true
+					}
+
+					let dosen = document.getElementsByName("dosen[]");
+					for(j=0;j<dosen.length;j++)
+					{
+						dosen[j].required = false
+						dosen[j].disabled = true
+					}
+
+					let asisten = document.getElementsByName("asisten[]");
+					for(j=0;j<asisten.length;j++)
+					{
+						asisten[j].required = false
+						asisten[j].disabled = true
+					}
 				}
 				else {
+					$("#tableMK_S tbody tr").remove();
 					document.getElementById('jml').style.display = "none";
 					document.getElementById('val_jml').style.display = "none";
 					document.getElementById('judul_J').innerHTML = "Jumat (Jam)";
@@ -284,17 +303,101 @@
 					document.getElementById('jam_SK').style.display = "";
 					document.getElementById("mkperday").style.display = "block";
 					document.getElementById("tableMK_S").style.display = "none";
+
+					let matkul = document.getElementsByName("matkul[]");
+					for(j=0;j<matkul.length;j++)
+					{
+						matkul[j].required = true
+						matkul[j].disabled = false
+					}
+
+					let dosen = document.getElementsByName("dosen[]");
+					for(j=0;j<dosen.length;j++)
+					{
+						dosen[j].required = true
+						dosen[j].disabled = false
+					}
+
+					let asisten = document.getElementsByName("asisten[]");
+					for(j=0;j<asisten.length;j++)
+					{
+						asisten[j].required = true
+						asisten[j].disabled = false
+					}
 				}
 			}
 		}
 	}
 	function generateJml(){
-		var from = $('#inp_jml').val();
-		console.log("change!");
-		console.log(from);
-		
-		for (var i = 1; i <= from; i++) {
-			$('#tableMK_S tbody').append("<tr><td><input class='form-control' type='date' name='tgl_mk'></td><td><select class='form-control selectpicker' data-style='btn-info btn-outline' name='matkul[]' id='matkul' required=''><option value=''>Select Here</option>@foreach ($data->masterMK as $mmk)<option value='{{$mmk->id}}'>{{$mmk->nama}}</option>@endforeach</select></td><td><input class='form-control' type='text' name='bagian_mk' placeholder='1'></td><td><select class='form-control selectpicker' data-style='btn-primary btn-outline' name='dosen[]' id='dosen'><option value=''>Select Here</option>	@foreach ($data->masterDosen as $mdosen)<option value='{{$mdosen->id}}'>{{$mdosen->nama}}</option>	@endforeach</select>/td><td><select class='form-control selectpicker' data-style='btn-danger btn-outline' name='asisten[]' id='asisten'><option value=''>Select Here</option>@foreach ($data->masterAsisten as $masist)<option value='{{$masist->id}}'>{{$masist->nama}}</option>@endforeach</select></td></tr>");
+		$("#tableMK_S tbody tr").remove();
+		let from = $('#inp_jml').val();
+
+		let dosen = <?php echo json_encode($data->masterDosen); ?>;
+		let asisten = <?php echo json_encode($data->masterAsisten); ?>;
+		let mk = <?php echo json_encode($data->masterMK); ?>;
+
+		let table_body = document.getElementById('tableMK_S').getElementsByTagName('tbody')[0]
+		for (var i = 0; i < from; i++)
+		{
+			table_body.insertRow()
+			let row = table_body.getElementsByTagName('tr')[table_body.getElementsByTagName('tr').length - 1]
+
+			let tanggal_place = row.insertCell()
+			let tanggal_input = document.createElement("input")
+			tanggal_input.class = 'form-control'
+			tanggal_input.type = 'date'
+			tanggal_input.name = 'tgl_mk[]'
+			tanggal_input.required = true;
+			tanggal_place.appendChild(tanggal_input)
+
+			let mk_place = row.insertCell()
+			let mk_select = document.createElement("select")
+			mk_select.class = "form-control selectpicker"
+			mk_select.name = 'matkul[]'
+			mk_select.required = true;
+			for(var j = 0; j < mk.length; j++)
+			{
+				let option = document.createElement('option')
+				option.value = mk[j].id
+				option.text = mk[j].nama
+				mk_select.appendChild(option)
+			}
+			mk_place.appendChild(mk_select)
+
+			let bagian_place = row.insertCell()
+			let bagian_input = document.createElement("input")
+			bagian_input.class = 'form-control'
+			bagian_input.type = 'text'
+			bagian_input.name = 'bagian_mk[]'
+			bagian_input.placeholder = '1'
+			bagian_input.value = ''
+			bagian_place.appendChild(bagian_input)
+
+			let dosen_place = row.insertCell()
+			let dosen_select = document.createElement("select")
+			dosen_select.class = "form-control selectpicker"
+			dosen_select.name = 'dosen[]'
+			for(var j = 0; j < dosen.length; j++)
+			{
+				let option = document.createElement('option')
+				option.value = dosen[j].id
+				option.text = dosen[j].nama
+				dosen_select.appendChild(option)
+			}
+			dosen_place.appendChild(dosen_select)
+
+			let asisten_place = row.insertCell()
+			let asisten_select = document.createElement("select")
+			asisten_select.class = "form-control selectpicker"
+			asisten_select.name = 'asisten[]'
+			for(var j = 0; j < asisten.length; j++)
+			{
+				let option = document.createElement('option')
+				option.value = asisten[j].id
+				option.text = asisten[j].nama
+				asisten_select.appendChild(option)
+			}
+			asisten_place.appendChild(asisten_select)
 		}
 	};
 </script>
