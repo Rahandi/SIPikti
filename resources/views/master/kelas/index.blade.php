@@ -34,8 +34,8 @@
 								<th style="width: 5%;">No. </th>
 								<th style="width: 20%; text-align: center;">Kelas</th>
 								<th style="width: 25%; text-align: center;">Senin-Kamis</th>
-								<th style="width: 25%; text-align: center;">Jumat</th>
-								<th style="width: 25%; text-align: center;">Action</th>
+								<th style="width: 35%; text-align: center;">Jumat (Reg) / Sabtu (Eksekutif)</th>
+								<th style="width: 15%; text-align: center;">Action</th>
 							</tr>
 						</thead>
 						<tbody>

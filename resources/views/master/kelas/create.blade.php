@@ -24,7 +24,7 @@
 					<tr>
 						<th style="width: 30%; text-align: center;border-right: 1px solid black;">Kelas</th>
 						<th colspan="3" style="width: 35%; text-align: center;border-right: 1px solid black;">Senin-Kamis</th>
-						<th colspan="3" style="width: 35%; text-align: center;">Jumat</th>
+						<th colspan="3" style="width: 35%; text-align: center;">Jumat (Reg) / Sabtu (Eksekutif)</th>
 					</tr>
 					<tr>
 						<td style="border-right: 1px solid black;">
@@ -34,13 +34,13 @@
 						</td>
 						<td>
 							<div class="form-group" style="width: 100%;">
-								<input type="time" class="form-control" name="start_SK" required>
+								<input type="time" class="form-control" name="start_SK">
 							</div>
 						</td>
 						<td style="vertical-align: top;">s/d</td>
 						<td style="border-right: 1px solid black;">
 							<div class="form-group">
-								<input type="time" class="form-control" name="end_SK" required>
+								<input type="time" class="form-control" name="end_SK">
 							</div>
 						</td>
 						<td>

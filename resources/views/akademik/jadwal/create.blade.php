@@ -54,19 +54,21 @@
 				<br><br>
 				<table style="width: 100%; text-align: center; margin-top: 5%;">
 					<tr>
-						<th style="text-align: center;">Senin-Kamis (Jam)</th>
-						<th style="text-align: center;">Jumat (Jam)</th>
+						<th style="text-align: center; display: none" id="jml">Jumlah Pertemuan</th>
+						<th style="text-align: center;" id="judul_SK">Senin-Kamis (Jam)</th>
+						<th style="text-align: center;" id="judul_J">Jumat (Jam)</th>
 					</tr>
 					<tr>
+						<td style="display: none" id="val_jml"><input style="text-align: center;" id="inp_jml" type="text" value="" placeholder="16" onchange="generateJml()"></td>
 						<td id="jam_SK">--:-- s/d --:--</td>
 						<td id="jam_J">--:-- s/d --:--</td>
 					</tr>
 				</table>
-
-				<div id="mkperday">
+				
 				<h4 class="box-title m-b-0" style="margin-top: 2%;">Pilih Mata Kuliah</h4>
 				<p class="text-muted m-b-30">Tambahkan Mata Kuliah</p>
 
+				<div id="mkperday">
 				<table style="width: 100%;text-align: center;" id="tableMK" border="">
 					<tr>
 						<th style="text-align: center; width: 10%;">Hari</th>
@@ -211,7 +213,15 @@
 					</tr>
 				</table>
 				</div>
-
+				<table style="width: 100%;text-align: center; display:none;" id="tableMK_S" border="">
+					<tr>
+						<th style="text-align: center; width: 10%;">Tanggal</th>
+						<th style="text-align: center; width: 30%;">Mata Kuliah</th>
+						<th style="text-align: center; width: 10%;">Bagian</th>
+						<th style="text-align: center; width: 25%;">Dosen (Optional)</th>
+						<th style="text-align: center; width: 25%;">Asisten (Optional)</th>
+					</tr>
+				</table>
 				<div style="margin-top: 3%; width: 100%; text-align: center;">
 					<button type="submit" style="width: 15%;" class="btn btn-success">Submit</button>
 				</div>
@@ -258,13 +268,34 @@
 				document.getElementById("jam_SK").innerHTML = nama_kls[i]['jam_SK'];
 				document.getElementById("jam_J").innerHTML = nama_kls[i]['jam_J'];
 				if (kls.includes("S") || kls.includes("s")) {
+					document.getElementById('judul_SK').style.display = "none";
+					document.getElementById('judul_J').innerHTML = "Sabtu (Jam)";
+					document.getElementById('jam_SK').style.display = "none";
+					document.getElementById('jml').style.display = "";
+					document.getElementById('val_jml').style.display = "";
 					document.getElementById("mkperday").style.display = "none";
+					document.getElementById("tableMK_S").style.display = "";
 				}
 				else {
+					document.getElementById('jml').style.display = "none";
+					document.getElementById('val_jml').style.display = "none";
+					document.getElementById('judul_J').innerHTML = "Jumat (Jam)";
+					document.getElementById('judul_SK').style.display = "";
+					document.getElementById('jam_SK').style.display = "";
 					document.getElementById("mkperday").style.display = "block";
+					document.getElementById("tableMK_S").style.display = "none";
 				}
 			}
 		}
 	}
+	function generateJml(){
+		var from = $('#inp_jml').val();
+		console.log("change!");
+		console.log(from);
+		
+		for (var i = 1; i <= from; i++) {
+			$('#tableMK_S tbody').append("<tr><td><input class='form-control' type='date' name='tgl_mk'></td><td><select class='form-control selectpicker' data-style='btn-info btn-outline' name='matkul[]' id='matkul' required=''><option value=''>Select Here</option>@foreach ($data->masterMK as $mmk)<option value='{{$mmk->id}}'>{{$mmk->nama}}</option>@endforeach</select></td><td><input class='form-control' type='text' name='bagian_mk' placeholder='1'></td><td><select class='form-control selectpicker' data-style='btn-primary btn-outline' name='dosen[]' id='dosen'><option value=''>Select Here</option>	@foreach ($data->masterDosen as $mdosen)<option value='{{$mdosen->id}}'>{{$mdosen->nama}}</option>	@endforeach</select>/td><td><select class='form-control selectpicker' data-style='btn-danger btn-outline' name='asisten[]' id='asisten'><option value=''>Select Here</option>@foreach ($data->masterAsisten as $masist)<option value='{{$masist->id}}'>{{$masist->nama}}</option>@endforeach</select></td></tr>");
+		}
+	};
 </script>
 @endsection
