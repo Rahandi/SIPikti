@@ -155,6 +155,7 @@ class JadwalController extends Controller
 
         $data->id = $request->id;
         $data->termin = $jadwal->termin;
+        $data->tahun = $jadwal->tahun;
         $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
         $data->matkul = $mk;
         $data->dosen = $dosen;
