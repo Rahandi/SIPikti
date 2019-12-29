@@ -347,14 +347,14 @@
 			tanggal_input.class = 'form-control'
 			tanggal_input.type = 'date'
 			tanggal_input.name = 'tgl_mk[]'
-			tanggal_input.required = true;
+			tanggal_input.required = true
 			tanggal_place.appendChild(tanggal_input)
 
 			let mk_place = row.insertCell()
 			let mk_select = document.createElement("select")
 			mk_select.class = "form-control selectpicker"
 			mk_select.name = 'matkul[]'
-			mk_select.required = true;
+			mk_select.required = true
 			for(var j = 0; j < mk.length; j++)
 			{
 				let option = document.createElement('option')
@@ -371,6 +371,7 @@
 			bagian_input.name = 'bagian_mk[]'
 			bagian_input.placeholder = '1'
 			bagian_input.value = ''
+			bagian_input.required = true
 			bagian_place.appendChild(bagian_input)
 
 			let dosen_place = row.insertCell()
