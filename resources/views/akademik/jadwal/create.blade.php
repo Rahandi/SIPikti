@@ -25,6 +25,19 @@
 @endsection
 
 @section('content')
+@if (session('status'))
+	<div id="modalSuccess" class="modal fade" role="dialog" style="z-index: 9999; width:100%;">
+		<div class="modal-dialog" style="width: 75%;">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" style="text-align: center"><b>{{session('status')}}</b></h4>
+				</div>
+			</div>
+		</div>
+	</div>
+@endif
 <div class="row">
 	<div class="col-sm-12">
 		<div class="white-box">
@@ -242,6 +255,11 @@
 <script src="{{ URL::asset('plugins/bower_components/bootstrap-select/bootstrap-select.min.js') }}" type="text/javascript"></script>
 <script src="{{ URL::asset('plugins/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
 <script>
+	$(document).ready(function() {
+		$("#modalSuccess").modal({
+			fadeDuration: 100
+		});
+	});
 	jQuery(document).ready(function () {
 		// Switchery
 		var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
