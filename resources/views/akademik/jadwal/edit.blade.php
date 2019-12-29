@@ -18,14 +18,13 @@
 		i.material-icons {
 			vertical-align: middle;
 		}
-		#tableMK tr th, td{
+		table tr th, td{
 			padding: 8px;
 		}
 	</style>
 @endsection
 
 @section('content')
-{{dd($data)}}
 <div class="row">
 	<div class="col-sm-12">
 		<div class="white-box">
@@ -36,7 +35,7 @@
 				<div class="form-group" style="width: 100%;">
 					<div class="col-md-3">
 						<label for="inp1" class="control-label">Tahun</label>
-						<input type="text" class="form-control text" data-style="btn-info btn-outline" id="inp1" name="tahun" placeholder="2019" required>
+						<input type="text" class="form-control text" data-style="btn-info btn-outline" id="inp1" name="tahun" placeholder="2019" value="{{$data->tahun}}" required>
 					</div>
 					<div class="col-md-3">
 						<label for="inp1" class="control-label">Semester</label>
@@ -45,13 +44,10 @@
 					<div class="col-md-6">
 						<label for="kelas" class="control-label">Kelas</label>
 						<select class="form-control selectpicker" name="kelas" id="kelas" required="" onchange="getKelas()">
-							<option value="0">Select Here</option>
 							@foreach ($data->masterKelas as $mkelas)
-							<option value="{{$mkelas->nama}}"
-								@if ($mkelas->nama == $data->kelas)
-									selected=""
-								@endif
-							>{{$mkelas->nama}}</option>
+							@if ($mkelas->nama == $data->kelas)
+							<option value="{{$mkelas->nama}}" selected="">{{$mkelas->nama}}</option>
+							@endif
 							@endforeach
 						</select>
 					</div>
@@ -59,19 +55,81 @@
 				<br><br>
 				<table style="width: 100%; text-align: center; margin-top: 5%;">
 					<tr>
-						<th style="text-align: center;">Senin-Kamis (Jam)</th>
-						<th style="text-align: center;">Jumat (Jam)</th>
+						@if (strpos($data->kelas, 'S') !== false)
+						<th style="text-align: center;" id="jml">Jumlah Pertemuan</th>
+						@endif
 					</tr>
 					<tr>
-						<td id="jam_SK">--:-- s/d --:--</td>
-						<td id="jam_J">--:-- s/d --:--</td>
+						@if (strpos($data->kelas, 'S') !== false)
+						<td id="val_jml"><input style="text-align: center;" id="inp_jml" type="text" value="{{$data->jumlah_pertemuan}}" placeholder="16" onchange="generateJml()"></td>
+						@endif
 					</tr>
 				</table>
 
 				<div id="mkperday">
 				<h4 class="box-title m-b-0" style="margin-top: 2%;">Pilih Mata Kuliah</h4>
 				<p class="text-muted m-b-30">Tambahkan Mata Kuliah</p>
-
+				@if (strpos($data->kelas, 'S') !== false)
+				<table style="width: 100%;text-align: center;" id="tableMK_S" border="">
+					<thead>
+						<tr>
+							<th style="text-align: center; width: 10%;">Tanggal</th>
+							<th style="text-align: center; width: 30%;">Mata Kuliah</th>
+							<th style="text-align: center; width: 10%;">Bagian</th>
+							<th style="text-align: center; width: 25%;">Dosen (Optional)</th>
+							<th style="text-align: center; width: 25%;">Asisten (Optional)</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for ($i = 0; $i < $data->jumlah_pertemuan; $i++)
+						<tr>
+							<td style="text-align: center;">
+								<input style="width:100%" type="date" name="tgl_mk[]" value="{{$data->tanggal[$i]}}">
+							</td>
+							<td style="text-align: center;">
+								<select class="form-control selectpicker" data-style="btn-info btn-outline" name="matkul[]" id="matkul" required="">
+									<option value="">Select Here</option>
+									@foreach ($data->masterMK as $mmk)
+									<option value="{{$mmk->id}}"
+									@if ($mmk->id == $data->matkul[$i])
+										selected=""
+									@endif
+									>{{$mmk->nama}}</option>
+									@endforeach
+								</select>
+							</td>
+							<td style="text-align: center;">
+								<input style="width:100%; text-align: center;" type="text" name="bagian_mk[]" placeholder="1" value="{{$data->bagian[$i]}}">
+							</td>
+							<td style="text-align: center;">
+								<select class="form-control selectpicker" data-style="btn-primary btn-outline" name="dosen[]" id="dosen">
+									<option value="">Select Here</option>
+									@foreach ($data->masterDosen as $mdosen)
+									<option value="{{$mdosen->id}}"
+									@if ($mdosen->id == $data->dosen[$i])
+										selected=""
+									@endif
+									>{{$mdosen->nama}}</option>
+									@endforeach
+								</select>
+							</td>
+							<td style="text-align: center;">
+								<select class="form-control selectpicker" data-style="btn-danger btn-outline" name="asisten[]" id="asisten">
+									<option value="">Select Here</option>
+									@foreach ($data->masterAsisten as $masist)
+									<option value="{{$masist->id}}"
+									@if ($masist->id == $data->asisten[$i])
+										selected=""
+									@endif
+									>{{$masist->nama}}</option>
+									@endforeach
+								</select>
+							</td>
+						</tr>
+						@endfor
+					</tbody>
+				</table>
+				@else
 				<table style="width: 100%;text-align: center;" id="tableMK" border="">
 					<tr>
 						<th style="text-align: center; width: 10%;">Hari</th>
@@ -276,7 +334,7 @@
 					</tr>
 				</table>
 				</div>
-
+				@endif
 				<div style="margin-top: 3%; width: 100%; text-align: center;">
 					<input type="hidden" name="id" value="{{$data->id}}">
 					<button type="submit" style="width: 15%;" class="btn btn-success">Submit</button>
@@ -312,45 +370,176 @@
 </script>
 <script src="{{ URL::asset('plugins/bower_components/styleswitcher/jQuery.style.switcher.js') }}"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		var kls = $('#kelas').val();
-		console.log("change!");
-		console.log(kls);
-		var nama_kls = <?php echo json_encode($data->masterKelas); ?>;
-		console.log(nama_kls);
-		for (i = 0; i < nama_kls.length; i ++){
-			if (nama_kls[i]['nama'] == kls) {
-				console.log(nama_kls[i]['jam_SK']);
-				document.getElementById("jam_SK").innerHTML = nama_kls[i]['jam_SK'];
-				document.getElementById("jam_J").innerHTML = nama_kls[i]['jam_J'];
-				if (kls.includes("S") || kls.includes("s")) {
-					document.getElementById("mkperday").style.display = "none";
-				}
-				else {
-					document.getElementById("mkperday").style.display = "block";
-				}
-			}
-		}
-	});
 	function getKelas(){
 		var kls = $('#kelas').val();
-		console.log("change!");
-		console.log(kls);
 		var nama_kls = <?php echo json_encode($data->masterKelas); ?>;
-		console.log(nama_kls);
 		for (i = 0; i < nama_kls.length; i ++){
 			if (nama_kls[i]['nama'] == kls) {
 				console.log(nama_kls[i]['jam_SK']);
 				document.getElementById("jam_SK").innerHTML = nama_kls[i]['jam_SK'];
 				document.getElementById("jam_J").innerHTML = nama_kls[i]['jam_J'];
 				if (kls.includes("S") || kls.includes("s")) {
+					document.getElementById('judul_SK').style.display = "none";
+					document.getElementById('judul_J').innerHTML = "Sabtu (Jam)";
+					document.getElementById('jam_SK').style.display = "none";
+					document.getElementById('jml').style.display = "";
+					document.getElementById('val_jml').style.display = "";
 					document.getElementById("mkperday").style.display = "none";
+					document.getElementById("tableMK_S").style.display = "";
+
+					let matkul = document.getElementsByName("matkul[]");
+					for(j=0;j<matkul.length;j++)
+					{
+						matkul[j].required = false
+						matkul[j].disabled = true
+					}
+
+					let dosen = document.getElementsByName("dosen[]");
+					for(j=0;j<dosen.length;j++)
+					{
+						dosen[j].required = false
+						dosen[j].disabled = true
+					}
+
+					let asisten = document.getElementsByName("asisten[]");
+					for(j=0;j<asisten.length;j++)
+					{
+						asisten[j].required = false
+						asisten[j].disabled = true
+					}
+
+					generateJml();
 				}
 				else {
+					$("#tableMK_S tbody tr").remove();
+					document.getElementById('jml').style.display = "none";
+					document.getElementById('val_jml').style.display = "none";
+					document.getElementById('judul_J').innerHTML = "Jumat (Jam)";
+					document.getElementById('judul_SK').style.display = "";
+					document.getElementById('jam_SK').style.display = "";
 					document.getElementById("mkperday").style.display = "block";
+					document.getElementById("tableMK_S").style.display = "none";
+
+					let matkul = document.getElementsByName("matkul[]");
+					for(j=0;j<matkul.length;j++)
+					{
+						matkul[j].required = true
+						matkul[j].disabled = false
+					}
+
+					let dosen = document.getElementsByName("dosen[]");
+					for(j=0;j<dosen.length;j++)
+					{
+						dosen[j].required = true
+						dosen[j].disabled = false
+					}
+
+					let asisten = document.getElementsByName("asisten[]");
+					for(j=0;j<asisten.length;j++)
+					{
+						asisten[j].required = true
+						asisten[j].disabled = false
+					}
 				}
 			}
 		}
 	}
+	function generateJml(){
+		$("#tableMK_S tbody tr").remove();
+		let from = $('#inp_jml').val();
+
+		let dosen = <?php echo json_encode($data->masterDosen); ?>;
+		let asisten = <?php echo json_encode($data->masterAsisten); ?>;
+		let mk = <?php echo json_encode($data->masterMK); ?>;
+
+		let table_body = document.getElementById('tableMK_S').getElementsByTagName('tbody')[0]
+		for (var i = 0; i < from; i++)
+		{
+			table_body.insertRow()
+			let row = table_body.getElementsByTagName('tr')[table_body.getElementsByTagName('tr').length - 1]
+
+			let tanggal_place = row.insertCell()
+			let tanggal_input = document.createElement("input")
+			tanggal_input.class = 'form-control'
+			tanggal_input.type = 'date'
+			tanggal_input.name = 'tgl_mk[]'
+			tanggal_input.style.width = '100%'
+			tanggal_input.required = true
+			tanggal_place.appendChild(tanggal_input)
+
+			let mk_place = row.insertCell()
+			let mk_select = document.createElement("select")
+			// mk_select.className = "form-control selectpicker"
+			mk_select.class = "form-control selectpicker"
+			mk_select.name = 'matkul[]'
+			mk_select.style.width = '100%'
+			mk_select.required = true
+
+			let option = document.createElement('option')
+			option.value = '-'
+			option.text = 'Select Here'
+			mk_select.appendChild(option)
+
+			for(var j = 0; j < mk.length; j++)
+			{
+				option = document.createElement('option')
+				option.value = mk[j].id
+				option.text = mk[j].nama
+				mk_select.appendChild(option)
+			}
+			mk_place.appendChild(mk_select)
+
+			let bagian_place = row.insertCell()
+			let bagian_input = document.createElement("input")
+			bagian_input.class = 'form-control'
+			bagian_input.type = 'text'
+			bagian_input.name = 'bagian_mk[]'
+			bagian_input.placeholder = '1'
+			bagian_input.value = ''
+			bagian_input.style.width = '100%'
+			bagian_input.style.textAlign = 'center'
+			bagian_input.required = true
+			bagian_place.appendChild(bagian_input)
+
+			let dosen_place = row.insertCell()
+			let dosen_select = document.createElement("select")
+			dosen_select.class = "form-control selectpicker"
+			dosen_select.name = 'dosen[]'
+			dosen_select.style.width = '100%'
+
+			let option2 = document.createElement('option')
+			option2.value = '-'
+			option2.text = 'Select Here'
+			dosen_select.appendChild(option2)
+
+			for(var j = 0; j < dosen.length; j++)
+			{
+				option2 = document.createElement('option')
+				option2.value = dosen[j].id
+				option2.text = dosen[j].nama
+				dosen_select.appendChild(option2)
+			}
+			dosen_place.appendChild(dosen_select)
+
+			let asisten_place = row.insertCell()
+			let asisten_select = document.createElement("select")
+			asisten_select.class = "form-control selectpicker"
+			asisten_select.name = 'asisten[]'
+			asisten_select.style.width = '100%'
+			let option3 = document.createElement('option')
+			option3.value = '-'
+			option3.text = 'Select Here'
+			asisten_select.appendChild(option3)
+
+			for(var j = 0; j < asisten.length; j++)
+			{
+				option3 = document.createElement('option')
+				option3.value = asisten[j].id
+				option3.text = asisten[j].nama
+				asisten_select.appendChild(option3)
+			}
+			asisten_place.appendChild(asisten_select)
+		}
+	};
 </script>
 @endsection

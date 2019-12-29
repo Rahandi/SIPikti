@@ -48,7 +48,13 @@
 								<td class="sorting_1">{{$datas->tahun}}</td>
 								<td>{{$datas->termin}}</td>
 								<td>{{$datas->kelas}}<br><span class="label label-danger">{{ $datas->hitung }}/30</span></td>
-								<td>{{$datas->jam_sk}}</td>
+								<td>
+									@if (strpos($datas->kelas, 'S') !== false)
+									{{$datas->jam_j}}
+									@else
+									{{$datas->jam_sk}}
+									@endif
+								</td>
 								<td>{{$datas->mk}}</td>
 								<td>
 									<div class="row" style="margin: 0px;">

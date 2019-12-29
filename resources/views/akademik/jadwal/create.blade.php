@@ -18,7 +18,7 @@
 		i.material-icons {
 			vertical-align: middle;
 		}
-		#tableMK tr th, td{
+		table tr th, td{
 			padding: 8px;
 		}
 	</style>
@@ -214,6 +214,7 @@
 				</table>
 				</div>
 				<table style="width: 100%;text-align: center; display:none;" id="tableMK_S" border="">
+				<thead>
 					<tr>
 						<th style="text-align: center; width: 10%;">Tanggal</th>
 						<th style="text-align: center; width: 30%;">Mata Kuliah</th>
@@ -221,6 +222,8 @@
 						<th style="text-align: center; width: 25%;">Dosen (Optional)</th>
 						<th style="text-align: center; width: 25%;">Asisten (Optional)</th>
 					</tr>
+				</thead>
+				<tbody></tbody>
 				</table>
 				<div style="margin-top: 3%; width: 100%; text-align: center;">
 					<button type="submit" style="width: 15%;" class="btn btn-success">Submit</button>
@@ -349,17 +352,26 @@
 			tanggal_input.class = 'form-control'
 			tanggal_input.type = 'date'
 			tanggal_input.name = 'tgl_mk[]'
+			tanggal_input.style.width = '100%'
 			tanggal_input.required = true
 			tanggal_place.appendChild(tanggal_input)
 
 			let mk_place = row.insertCell()
 			let mk_select = document.createElement("select")
+			// mk_select.className = "form-control selectpicker"
 			mk_select.class = "form-control selectpicker"
 			mk_select.name = 'matkul[]'
+			mk_select.style.width = '100%'
 			mk_select.required = true
+
+			let option = document.createElement('option')
+			option.value = '-'
+			option.text = 'Select Here'
+			mk_select.appendChild(option)
+
 			for(var j = 0; j < mk.length; j++)
 			{
-				let option = document.createElement('option')
+				option = document.createElement('option')
 				option.value = mk[j].id
 				option.text = mk[j].nama
 				mk_select.appendChild(option)
@@ -373,6 +385,8 @@
 			bagian_input.name = 'bagian_mk[]'
 			bagian_input.placeholder = '1'
 			bagian_input.value = ''
+			bagian_input.style.width = '100%'
+			bagian_input.style.textAlign = 'center'
 			bagian_input.required = true
 			bagian_place.appendChild(bagian_input)
 
@@ -380,12 +394,19 @@
 			let dosen_select = document.createElement("select")
 			dosen_select.class = "form-control selectpicker"
 			dosen_select.name = 'dosen[]'
+			dosen_select.style.width = '100%'
+
+			let option2 = document.createElement('option')
+			option2.value = '-'
+			option2.text = 'Select Here'
+			dosen_select.appendChild(option2)
+
 			for(var j = 0; j < dosen.length; j++)
 			{
-				let option = document.createElement('option')
-				option.value = dosen[j].id
-				option.text = dosen[j].nama
-				dosen_select.appendChild(option)
+				option2 = document.createElement('option')
+				option2.value = dosen[j].id
+				option2.text = dosen[j].nama
+				dosen_select.appendChild(option2)
 			}
 			dosen_place.appendChild(dosen_select)
 
@@ -393,12 +414,18 @@
 			let asisten_select = document.createElement("select")
 			asisten_select.class = "form-control selectpicker"
 			asisten_select.name = 'asisten[]'
+			asisten_select.style.width = '100%'
+			let option3 = document.createElement('option')
+			option3.value = '-'
+			option3.text = 'Select Here'
+			asisten_select.appendChild(option3)
+
 			for(var j = 0; j < asisten.length; j++)
 			{
-				let option = document.createElement('option')
-				option.value = asisten[j].id
-				option.text = asisten[j].nama
-				asisten_select.appendChild(option)
+				option3 = document.createElement('option')
+				option3.value = asisten[j].id
+				option3.text = asisten[j].nama
+				asisten_select.appendChild(option3)
 			}
 			asisten_place.appendChild(asisten_select)
 		}
