@@ -312,6 +312,8 @@ class PenilaianController extends Controller
             }
         }
 
+        $info->stat_nilai->total = ($info->stat_nilai->total != 0)?$info->stat_nilai->total:1;
+
         return view('akademik.nilai.detail', ['info' => $info, 'header' => $header, 'data' => $data]);
     }
 
