@@ -293,6 +293,8 @@
 						asisten[j].required = false
 						asisten[j].disabled = true
 					}
+
+					generateJml();
 				}
 				else {
 					$("#tableMK_S tbody tr").remove();
