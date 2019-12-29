@@ -26,6 +26,7 @@
 
 @section('content')
 <div class="row">
+	@endif
 	<div class="col-sm-12">
 		<div class="white-box">
 			<h3 class="box-title m-b-0">Form Jadwal</h3>

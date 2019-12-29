@@ -185,9 +185,16 @@ class JadwalController extends Controller
         {
             if(!in_array($request->matkul[$i], $mk))
             {
-                ($request->matkul[$i]) ? array_push($mk, $request->matkul[$i]) : array_push($mk, '0');
-                ($request->dosen[$i]) ? array_push($dosen, $request->dosen[$i]) : array_push($dosen, '0');
-                ($request->asisten[$i]) ? array_push($asisten, $request->asisten[$i]) : array_push($asisten, '0');
+                if($request->kelas == 's' || $request->kelas == 'S')
+                {
+                    ($request->matkul[$i]) ? array_push($mk, $request->matkul[$i]) : array_push($mk, '0');
+                    ($request->dosen[$i]) ? array_push($dosen, $request->dosen[$i]) : array_push($dosen, '0');
+                    ($request->asisten[$i]) ? array_push($asisten, $request->asisten[$i]) : array_push($asisten, '0');
+                }
+                else
+                {
+                    return redirect()->back()->with("status", "Tidak boleh ada mata kuliah yang sama");
+                }
             }
         }
         $jadwal->ids_mk = implode(',', $mk);
