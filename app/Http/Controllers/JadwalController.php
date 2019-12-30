@@ -472,16 +472,17 @@ class JadwalController extends Controller
             $data->asisten->nama = ($asisten)?$asisten->nama:null;
 
             $data->mahasiswa = array();
-            $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get();
+            $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get()->toArray();
+            $mahasiswa_jadwal = array_map(function($a){return $a['mahasiswa_id'];}, $mahasiswa_jadwal);
+            $mahasiswa_jadwal = mahasiswa::whereIn('id', $mahasiswa_jadwal)->orderBy('nrp', 'asc')->get();
             $urut = 0;
             foreach($mahasiswa_jadwal as $item)
             {
                 $urut += 1;
                 $temp = new \stdClass();
-                $mahasiswa = mahasiswa::find($item->mahasiswa_id);
                 $temp->urut = $urut;
-                $temp->nama = $mahasiswa->nama;
-                $temp->nrp = $mahasiswa->nrp;
+                $temp->nama = $item->nama;
+                $temp->nrp = $item->nrp;
                 array_push($data->mahasiswa, $temp);
             }
 
@@ -518,15 +519,15 @@ class JadwalController extends Controller
             }
 
             $mahasiswas = [];
-            $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get();
+            $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get()->toArray();
+            $mahasiswa_jadwal = array_map(function($a){return $a['mahasiswa_id'];}, $mahasiswa_jadwal);
+            $mahasiswa_jadwal = mahasiswa::whereIn('id', $mahasiswa_jadwal)->orderBy('nrp', 'asc')->get();
             for($i=0;$i<count($mahasiswa_jadwal);$i++)
             {
-                $mahasiswa = mahasiswa::find($mahasiswa_jadwal[$i]->mahasiswa_id);
-
                 $temp = new \stdClass();
                 $temp->urut = $i + 1;
-                $temp->nama = $mahasiswa->nama;
-                $temp->nrp = $mahasiswa->nrp;
+                $temp->nama = $mahasiswa_jadwal[$i]->nama;
+                $temp->nrp = $mahasiswa_jadwal[$i]->nrp;
                 array_push($mahasiswas, $temp);
             }
 
