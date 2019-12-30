@@ -91,7 +91,7 @@
 									<td style="text-align: left;">{{$data->dosen[$i]}}</td>
 									<td style="text-align: left;">{{$data->asisten[$i]}}</td>
 									<td style="text-align: center;">
-										<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => $data->matkul[$i]->id])}}"><button type="button" class="btn btn-primary">Download</button></a>
+										<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => $data->matkul[$i]->id])}}" target="_blank"><button type="button" class="btn btn-primary">Download</button></a>
 									</td>
 								</tr>
 							@endfor
@@ -101,7 +101,7 @@
 				</div>
 				<div class="row row-in" style="text-align: center">
 					@if ($data->kelas->nama == 's' || $data->kelas->nama == 'S')
-						<a href=""><button type="button" class="btn btn-primary">Download Absensi</button></a>
+						<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => 0])}}" target="_blank"><button type="button" class="btn btn-primary">Download Absensi</button></a>
 					@endif
 				</div>
 				<br>
