@@ -78,10 +78,10 @@ class JadwalController extends Controller
                     ($request->dosen[$i]) ? array_push($dosen, $request->dosen[$i]) : array_push($dosen, '0');
                     ($request->asisten[$i]) ? array_push($asisten, $request->asisten[$i]) : array_push($asisten, '0');
                 }
-                else
-                {
-                    return redirect()->back()->with("status", "Tidak boleh ada mata kuliah yang sama");
-                }
+            }
+            else
+            {
+                return redirect()->back()->with("status", "Tidak boleh ada mata kuliah yang sama");
             }
         }
         $jadwal->ids_mk = implode(',', $matkul);
@@ -198,10 +198,10 @@ class JadwalController extends Controller
                     ($request->dosen[$i]) ? array_push($dosen, $request->dosen[$i]) : array_push($dosen, '0');
                     ($request->asisten[$i]) ? array_push($asisten, $request->asisten[$i]) : array_push($asisten, '0');
                 }
-                else
-                {
-                    return redirect()->back()->with("status", "Tidak boleh ada mata kuliah yang sama");
-                }
+            }
+            else
+            {
+                return redirect()->back()->with("status", "Tidak boleh ada mata kuliah yang sama");
             }
         }
         $jadwal->ids_mk = implode(',', $mk);
