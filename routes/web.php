@@ -61,7 +61,7 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::get('/pilihkelas/{id}', 'JadwalController@PageSelectJadwal')->name('jadwal.pilihkelas');
         Route::get('/absensi/{id}', 'JadwalController@absensi')->name('jadwal.absensi');
         Route::get('/pilihmhs/{id}', 'JadwalController@pilihmhs')->name('jadwal.pilihmhs');
-        Route::get('/download/{id_jadwal}/{id_mk}/{bagian?}', 'JadwalController@DownloadJadwal')->name('jadwal.download');
+        Route::get('/download/{id_jadwal}/{id_mk}', 'JadwalController@DownloadJadwal')->name('jadwal.download');
 
         Route::post('/store', 'JadwalController@store')->name('jadwal.store');
         Route::post('/update', 'JadwalController@update')->name('jadwal.update');

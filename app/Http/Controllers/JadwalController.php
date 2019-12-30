@@ -449,60 +449,96 @@ class JadwalController extends Controller
         return redirect()->route('jadwal.detail', ['id' => $request->jadwal]);
     }
 
-    public function DownloadJadwal($id_jadwal, $id_mk, $bagian = null)
+    public function DownloadJadwal($id_jadwal, $id_mk)
     {
         $data = new \stdClass();
 
         $jadwal = jadwal::find($id_jadwal);
-        $here = $jadwal;
-        if(!$bagian)
+        $mk = explode(',', $jadwal->ids_mk);
+        if($id_mk)
         {
-            $mk = explode(',', $jadwal->ids_mk);
             $index_mk = array_search($id_mk, $mk);
+
+            $data->termin = $jadwal->termin;
+            $data->mata_kuliah = masterMK::find($id_mk)->nama;
+            $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+
+            $dosen = masterDosen::find(explode(',', $jadwal->ids_dosen)[$index_mk]);
+            $data->dosen = ($dosen)?$dosen->nama:null;
+
+            $asisten = masterAsisten::find(explode(',', $jadwal->ids_asisten)[$index_mk]);
+            $data->asisten = new \stdClass();
+            $data->asisten->nrp = ($asisten)?$asisten->nrp:null;
+            $data->asisten->nama = ($asisten)?$asisten->nama:null;
+
+            $data->mahasiswa = array();
+            $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get();
+            $urut = 0;
+            foreach($mahasiswa_jadwal as $item)
+            {
+                $urut += 1;
+                $temp = new \stdClass();
+                $mahasiswa = mahasiswa::find($item->mahasiswa_id);
+                $temp->urut = $urut;
+                $temp->nama = $mahasiswa->nama;
+                $temp->nrp = $mahasiswa->nrp;
+                array_push($data->mahasiswa, $temp);
+            }
+
+            return view('akademik.jadwal.download', compact('data'));
         }
         else
         {
-            $jadwals = jadwalS::find($jadwal->jadwalS_id);
-            $mk = explode(',', $jadwals->ids_mk);
-            $bagians = explode(',', $jadwals->bagian);
-            for($i=0;$i<count($mk);$i++)
+            $absen_dosen = [];
+            $jadwal_S = jadwalS::find($jadwal->jadwalS_id);
+            $tanggals = explode(',', $jadwal_S->tanggals);
+            $bagians = explode(',', $jadwal_S->bagian);
+            $ids_mk = explode(',', $jadwal_S->ids_mk);
+            $ids_dosen = explode(',', $jadwal_S->ids_dosen);
+            $ids_asisten = explode(',', $jadwal_S->ids_asisten);
+
+            for($i=0;$i<count($ids_mk);$i++)
             {
-                if($mk[$i] == $id_mk && $bagians[$i] == $bagian)
-                {
-                    $index_mk = $i;
-                    $here = $jadwals;
-                    break;
-                }
+                $temp = new \stdClass();
+                $temp->matkul = masterMK::find($ids_mk[$i])->nama . ' ' . $bagians[$i];
+                $temp->dosen = ($ids_dosen[$i]) ? masterDosen::find($ids_dosen[$i])->nama : null;
+                $temp->asisten = ($ids_asisten[$i]) ? masterAsisten::find($ids_asisten[$i])->nama : null;
+                $temp->tanggal = $this->parse_date_to_indo($tanggals[$i]);
+
+                array_push($absen_dosen, $temp);
             }
+
+            $absen_mahasiswa = [];
+            $mk_count = array_count_values($ids_mk);
+            foreach ($mk_count as $key => $value) {
+                $temp = new \stdClass();
+                $temp->nama = masterMK::find($key)->nama;
+                $temp->bagian = $value;
+                array_push($absen_mahasiswa, $temp);
+            }
+
+            $mahasiswas = [];
+            $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get();
+            for($i=0;$i<count($mahasiswa_jadwal);$i++)
+            {
+                $mahasiswa = mahasiswa::find($mahasiswa_jadwal[$i]->mahasiswa_id);
+
+                $temp = new \stdClass();
+                $temp->urut = $i + 1;
+                $temp->nama = $mahasiswa->nama;
+                $temp->nrp = $mahasiswa->nrp;
+                array_push($mahasiswas, $temp);
+            }
+
+            $data->semester = $jadwal->termin;
+            $data->tahun = $jadwal->tahun;
+            $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+            $data->absen_dosen = $absen_dosen;
+            $data->absen_mahasiswa = $absen_mahasiswa;
+            $data->mahasiswa = $mahasiswas;
+
+            return view('akademik.jadwal.download_eksekutif', compact('data'));
         }
-
-        $data->termin = $jadwal->termin;
-        $data->mata_kuliah = ($bagian) ? masterMK::find($id_mk)->nama . ' ' . $bagian : masterMK::find($id_mk)->nama;
-        $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
-
-        $dosen = masterDosen::find(explode(',', $here->ids_dosen)[$index_mk]);
-        $data->dosen = ($dosen)?$dosen->nama:null;
-
-        $asisten = masterAsisten::find(explode(',', $here->ids_asisten)[$index_mk]);
-        $data->asisten = new \stdClass();
-        $data->asisten->nrp = ($asisten)?$asisten->nrp:null;
-        $data->asisten->nama = ($asisten)?$asisten->nama:null;
-
-        $data->mahasiswa = array();
-        $mahasiswa_jadwal = mahasiswaJadwal::where('jadwal_id', $id_jadwal)->get();
-        $urut = 0;
-        foreach($mahasiswa_jadwal as $item)
-        {
-            $urut += 1;
-            $temp = new \stdClass();
-            $mahasiswa = mahasiswa::find($item->mahasiswa_id);
-            $temp->urut = $urut;
-            $temp->nama = $mahasiswa->nama;
-            $temp->nrp = $mahasiswa->nrp;
-            array_push($data->mahasiswa, $temp);
-        }
-
-        return view('akademik.jadwal.download', compact('data'));
     }
 
     private function get_mahasiswa_no_jadwal()
@@ -532,5 +568,60 @@ class JadwalController extends Controller
                     ->groupBy('mahasiswa_id')
                     ->get();
         return count($data);
+    }
+
+    private function parse_date_to_indo($date)
+    {
+        $parted = explode('-', $date);
+        if ($parted[1] == '01')
+        {
+            $parted[1] = 'Januari';
+        }
+        elseif ($parted[1] == '02')
+        {
+            $parted[1] = 'Februari';
+        }
+        elseif ($parted[1] == '03')
+        {
+            $parted[1] = 'Maret';
+        }
+        elseif ($parted[1] == '04')
+        {
+            $parted[1] = 'April';
+        }
+        elseif ($parted[1] == '05')
+        {
+            $parted[1] = 'Mei';
+        }
+        elseif ($parted[1] == '06')
+        {
+            $parted[1] = 'Juni';
+        }
+        elseif ($parted[1] == '07')
+        {
+            $parted[1] = 'Juli';
+        }
+        elseif ($parted[1] == '08')
+        {
+            $parted[1] = 'Agustus';
+        }
+        elseif ($parted[1] == '09')
+        {
+            $parted[1] = 'September';
+        }
+        elseif ($parted[1] == '10')
+        {
+            $parted[1] = 'Oktober';
+        }
+        elseif ($parted[1] == '11')
+        {
+            $parted[1] = 'November';
+        }
+        elseif ($parted[1] == '12')
+        {
+            $parted[1] = 'Desember';
+        }
+        $diwalik = [$parted[2], $parted[1], $parted[0]];
+        return implode(' ', $diwalik);
     }
 }

@@ -20,6 +20,7 @@
 	</style>
 	<style>@page { size: A4 landscape }</style>
 </head>
+{{dd($data)}}
 <body onload="window.print()" class="A4 landscape">
 	<div class="container" style="margin: 5% 6% 3% 6%;font-size: 12px;
 	font-family: Tahoma;
