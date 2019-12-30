@@ -20,72 +20,141 @@
 	</style>
 	<style>@page { size: A4 landscape }</style>
 </head>
-{{dd($data)}}
 <body onload="window.print()" class="A4 landscape">
-	<div class="container" style="margin: 5% 6% 3% 6%;font-size: 12px;
+	<div class="container" style="font-size: 12px;
 	font-family: Tahoma;
 	/*font-weight: 1000;*/
-	">
-		<div class="row" style="text-align: center;">
-			<b>PIKTI - ITS</b><br>
-			<b>Pendidikan Informatika dan Komputer Terapan</b><br>
-			<b>Institut Teknologi Sepuluh Nopember Surabaya</b><br>
-			Gedung Teknik Informatika Lt. 1 Jl. Raya ITS, Kampus ITS Sukolilo, Surabaya 60111
-		</div><hr>
-		<div class="row" style="text-align: left;">
-			<table style="margin-top: 1%;">
+    ">
+        @for ($i = 0; $i < count($data->absen_dosen); $i++)
+        <div style="margin: 5% 6% 3% 6%;
+        @if (($i+1)%2 == 0)
+            page-break-after: always;
+        @endif
+        ">
+        @if (($i)%2 == 0)
+            <div class="row" id="presensi_dosen" style="text-align: center; font-size: 18px;">
+                PRESENSI DOSEN<br>
+                SEMESTER {{$data->semester}} TA. {{$data->tahun}}-{{$data->tahun+1}}<br>
+            </div>
+        @endif
+        <div class="row" style="text-align: left;">
+			<table style="margin-top: 3%; width: 100%">
 				<tr>
-					<td style="width: 25%;">Kelas</td>
-					<td>:</td>
-					<td></td>
+					<td style="width: 10%;">Kelas</td>
+					<td style="width: 55%;">: Eksekutif Sabtu</td>
+                    <td style="width: 10%;">Jam Kuliah</td>
+                    <td style="width: 25%;">: 08.00 - 16.00</td>
 				</tr>
 				<tr>
-					<td>Mata Kuliah</td>
-					<td>:</td>
-					<td><strong></strong></td>
+					<td>Hari Kuliah</td>
+					<td>: Sabtu</td>
+                    <td>Mata Kuliah</td>
+                    <td>: {{$data->absen_dosen[$i]->matkul}}</td>
 				</tr>
 				<tr>
-					<td>Dosen</td>
-					<td>:</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Asisten</td>
-					<td>:</td>
-					<td></td>
+					<td>Dosen Pengajar</td>
+					<td>: {{$data->absen_dosen[$i]->dosen}}</td>
+                    <td>Asisten Dosen</td>
+                    <td>: {{$data->absen_dosen[$i]->asisten}}</td>
 				</tr>
 			</table>
-		</div>
-		<br>
-		<div class="row" style="text-align: center;width: 100%;">
-			<table id="list" class="bordering" style="width: 100%;">
-				<thead>
-				<tr>
-					<th style="width: 3%;">No.</th>
-					<th style="width: 15%;">NRP</th>
-					<th style="width: 30%;">Nama Mahasiswa</th>
-					@for ($i = 1; $i <= 16; $i++)
-						<th style="width: 3%;">{{$i}}</th>
-					@endfor
-				</tr>
-				</thead>
-				<tbody>
-				{{-- @foreach ($data->mahasiswa as $individu) --}}
-					<tr 
-					{{-- @if ($individu->urut == 15) --}}
-						style="page-break-after: always;">
-					{{-- @endif> --}}
-						<td>{</td>
-						<td></td>
-						<td style="text-align: left;"></td>
-						@for ($i = 1; $i <= 16; $i++)
-						<td></td>
-						@endfor
-					</tr>
-				{{-- @endforeach --}}
-				</tbody>
-			</table>
-		</div>
+        </div><br>
+        <div class="row">
+            <table style="width: 100%" class="bordering">
+                <thead>
+                    <tr>
+                        <th rowspan="2" style="width: 5%">Kuliah ke</th>
+                        <th rowspan="2" style="width: 15%">Hari, Tanggal</th>
+                        <th rowspan="2" style="width: 13%">Materi</th>
+                        <th colspan="2" style="width: 19%">Tanda Tangan</th>
+                        <th colspan="2" style="width: 19%">Pengganti Dosen</th>
+                        <th colspan="2" style="width: 19%">Pengganti Asisten</th>
+                        <th rowspan="2" style="width: 10%">Keterangan</th>
+                    </tr>
+                    <tr>
+                        <th style="width: 11%">Dosen Pengajar</th>
+                        <th style="width: 8%">Asisten</th>
+                        <th style="width: 10%">Nama Dosen</th>
+                        <th style="width: 9%">Tanda Tangan</th>
+                        <th style="width: 10%">Nama Asisten</th>
+                        <th style="width: 9%">Tanda Tangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; vertical-align: middle"><br><br><br><br>{{$i+1}}<br><br><br><br><br></td>
+                        <td style="text-align: center; vertical-align: middle"><br><br><br><br>{{$data->absen_dosen[$i]->tanggal}}<br><br><br><br><br></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        @endfor
+        <br>
+        @foreach ($data->absen_mahasiswa as $item)
+        <div style="margin: 5% 6% 3% 6%; page-break-after: always">
+            <div class="row" id="presensi" style="text-align: center; font-size: 18px;">
+                <b>PRESENSI AKADEMIK<br>
+                TAHUN AJARAN {{$data->tahun}}/{{$data->tahun+1}}<br>
+                Semester {{$data->semester}}<br></b>
+            </div>
+            <div class="row" style="text-align: left;">
+                <table style="margin-top: 3%; width: 100%;">
+                    <tr>
+                        <td style="width: 10%;"><b>Kelas</b></td>
+                        <td><b>: Eksekutif Sabtu</b></td>
+                    </tr>
+                    <tr>
+                        <td><b>Mata Kuliah</b></td>
+                        <td><b>: {{$item->nama}}</b></td>
+                    </tr>
+                </table>
+            </div><br>
+            <div class="row" style="text-align: center;width: 100%;">
+                <table class="bordering" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;" rowspan="2">No</th>
+                            <th style="width: 15%;" rowspan="2">NRP</th>
+                            <th style="width: 30%;" rowspan="2">NAMA</th>
+                            <th style="width: 50%" colspan="{{$item->bagian}}">Pertemuan ke-</th>
+                        </tr>
+                        <tr>
+                            @for ($i = 1; $i <= $item->bagian; $i++)
+                                <th>{{$i}}</th>
+                            @endfor
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data->mahasiswa as $mhs)
+                        <tr>
+                            <td>{{$mhs->urut}}</td>
+                            <td>{{$mhs->nrp}}</td>
+                            <td style="text-align: left">{{$mhs->nama}}</td>
+                            @for ($i = 1; $i <= $item->bagian; $i++)
+                                <td></td>
+                            @endfor
+                        </tr>
+                        @endforeach
+                        <tr>
+                            <td colspan="3">Jumlah  Mhs  Tidak  Hadir  Kuliah</td>
+                            @for ($i = 1; $i <= $item->bagian; $i++)
+                                <td></td>
+                            @endfor
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @endforeach
 	</div>
 
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('js/bootstrap.js') }}">
