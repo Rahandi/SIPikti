@@ -304,14 +304,12 @@
 					let dosen = document.getElementsByName("dosen[]");
 					for(j=0;j<dosen.length;j++)
 					{
-						dosen[j].required = false
 						dosen[j].disabled = true
 					}
 
 					let asisten = document.getElementsByName("asisten[]");
 					for(j=0;j<asisten.length;j++)
 					{
-						asisten[j].required = false
 						asisten[j].disabled = true
 					}
 
@@ -337,14 +335,12 @@
 					let dosen = document.getElementsByName("dosen[]");
 					for(j=0;j<dosen.length;j++)
 					{
-						dosen[j].required = true
 						dosen[j].disabled = false
 					}
 
 					let asisten = document.getElementsByName("asisten[]");
 					for(j=0;j<asisten.length;j++)
 					{
-						asisten[j].required = true
 						asisten[j].disabled = false
 					}
 				}
