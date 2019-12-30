@@ -494,7 +494,7 @@
 			mk_select.required = true
 
 			let option = document.createElement('option')
-			option.value = '-'
+			option.value = ''
 			option.text = 'Select Here'
 			mk_select.appendChild(option)
 
@@ -526,7 +526,7 @@
 			dosen_select.style.width = '100%'
 
 			let option2 = document.createElement('option')
-			option2.value = '-'
+			option2.value = ''
 			option2.text = 'Select Here'
 			dosen_select.appendChild(option2)
 
@@ -545,7 +545,7 @@
 			asisten_select.name = 'asisten[]'
 			asisten_select.style.width = '100%'
 			let option3 = document.createElement('option')
-			option3.value = '-'
+			option3.value = ''
 			option3.text = 'Select Here'
 			asisten_select.appendChild(option3)
 

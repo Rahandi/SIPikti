@@ -72,13 +72,7 @@ class JadwalController extends Controller
         {
             if(in_array($request->matkul[$i], $matkul))
             {
-                if($request->kelas == 's' || $request->kelas == 'S')
-                {
-                    ($request->matkul[$i]) ? array_push($matkul, $request->matkul[$i]) : array_push($matkul, '0');
-                    ($request->dosen[$i]) ? array_push($dosen, $request->dosen[$i]) : array_push($dosen, '0');
-                    ($request->asisten[$i]) ? array_push($asisten, $request->asisten[$i]) : array_push($asisten, '0');
-                }
-                else
+                if($request->kelas != 's' && $request->kelas != 'S')
                 {
                     return redirect()->back()->with("status", "Tidak boleh ada mata kuliah yang sama");
                 }
@@ -198,13 +192,7 @@ class JadwalController extends Controller
         {
             if(in_array($request->matkul[$i], $mk))
             {
-                if($request->kelas == 's' || $request->kelas == 'S')
-                {
-                    ($request->matkul[$i]) ? array_push($mk, $request->matkul[$i]) : array_push($mk, '0');
-                    ($request->dosen[$i]) ? array_push($dosen, $request->dosen[$i]) : array_push($dosen, '0');
-                    ($request->asisten[$i]) ? array_push($asisten, $request->asisten[$i]) : array_push($asisten, '0');
-                }
-                else
+                if($request->kelas != 's' && $request->kelas != 'S')
                 {
                     return redirect()->back()->with("status", "Tidak boleh ada mata kuliah yang sama");
                 }
