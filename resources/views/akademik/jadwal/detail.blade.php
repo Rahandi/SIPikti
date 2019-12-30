@@ -55,50 +55,56 @@
 					</div>
 				</div>
 				<div class="row row-in">
-						<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
-							<thead>
+					<table id="list" class="table table-striped table-hover table-bordered" style="text-align: center; width: 100%;">
+						<thead>
+							<tr>
+								@if ($data->kelas->nama == 's' || $data->kelas->nama == 'S')
+								<th style="width: 20%;text-align: center;">Tanggal</th>
+								<th style="width: 25%;text-align: center;">Mata Kuliah</th>
+								<th style="width: 30%;text-align: center;">Dosen</th>
+								<th style="width: 25%;text-align: center;">Asisten</th>
+								@else
+								<th style="width: 10%;text-align: center;">Hari</th>
+								<th style="width: 25%;text-align: center;">Mata Kuliah</th>
+								<th style="width: 25%;text-align: center;">Dosen</th>
+								<th style="width: 25%;text-align: center;">Asisten</th>
+								<th style="width: 15%;text-align: center;">Absensi</th>
+								@endif
+							</tr>
+						</thead>
+						<tbody>
+						@if ($data->kelas->nama == 's' || $data->kelas->nama == 'S')
+							@for ($i = 0; $i < count($data->matkul); $i++)
 								<tr>
-									@if ($data->kelas->nama == 's' || $data->kelas->nama == 'S')
-									<th style="width: 10%;text-align: center;">Tanggal</th>
-									@else
-									<th style="width: 10%;text-align: center;">Hari</th>
-									@endif
-									<th style="width: 25%;text-align: center;">Mata Kuliah</th>
-									<th style="width: 25%;text-align: center;">Dosen</th>
-									<th style="width: 25%;text-align: center;">Asisten</th>
-									<th style="width: 15%;text-align: center;">Absensi</th>
+									<td class="sorting_1"><label class="control-label">{{$data->tanggal[$i]}}</label></td>
+									<td style="text-align: left;">{{$data->matkul[$i]->nama}}</td>
+									<td style="text-align: left;">{{$data->dosen[$i]}}</td>
+									<td style="text-align: left;">{{$data->asisten[$i]}}</td>
 								</tr>
-							</thead>
-							<tbody>
-							@if ($data->kelas->nama == 's' || $data->kelas->nama == 'S')
-								@for ($i = 0; $i < count($data->matkul); $i++)
-									<tr>
-										<td class="sorting_1"><label class="control-label">{{$data->tanggal[$i]}}</label></td>
-										<td style="text-align: left;">{{$data->matkul[$i]->nama}}</td>
-										<td style="text-align: left;">{{$data->dosen[$i]}}</td>
-										<td style="text-align: left;">{{$data->asisten[$i]}}</td>
-										<td style="text-align: center;">
-											<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => $data->matkul[$i]->id, 'bagian' => $data->matkul[$i]->bagian])}}"><button type="button" class="btn btn-primary">Download</button></a>
-										</td>
-									</tr>
-								@endfor
-							@else
-								<?php $hari = array('SENIN','SELASA','RABU','KAMIS','JUMAT') ?>
-								@for ($i = 0; $i < 5; $i++)
-									<tr>
-										<td class="sorting_1"><label class="control-label">{{$hari[$i]}}</label></td>
-										<td style="text-align: left;">{{$data->matkul[$i]->nama}}</td>
-										<td style="text-align: left;">{{$data->dosen[$i]}}</td>
-										<td style="text-align: left;">{{$data->asisten[$i]}}</td>
-										<td style="text-align: center;">
-											<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => $data->matkul[$i]->id])}}"><button type="button" class="btn btn-primary">Download</button></a>
-										</td>
-									</tr>
-								@endfor
-							@endif
-							</tbody>
-						</table>
-				</div><br>
+							@endfor
+						@else
+							<?php $hari = array('SENIN','SELASA','RABU','KAMIS','JUMAT') ?>
+							@for ($i = 0; $i < 5; $i++)
+								<tr>
+									<td class="sorting_1"><label class="control-label">{{$hari[$i]}}</label></td>
+									<td style="text-align: left;">{{$data->matkul[$i]->nama}}</td>
+									<td style="text-align: left;">{{$data->dosen[$i]}}</td>
+									<td style="text-align: left;">{{$data->asisten[$i]}}</td>
+									<td style="text-align: center;">
+										<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => $data->matkul[$i]->id])}}"><button type="button" class="btn btn-primary">Download</button></a>
+									</td>
+								</tr>
+							@endfor
+						@endif
+						</tbody>
+					</table>
+				</div>
+				<div class="row row-in" style="text-align: center">
+					@if ($data->kelas->nama == 's' || $data->kelas->nama == 'S')
+						<a href=""><button type="button" class="btn btn-primary">Download Absensi</button></a>
+					@endif
+				</div>
+				<br>
 				<h4 class="box-title m-b-0">List Mahasiswa</h4><br>
 				<div class="row row-in">
 					<div>
