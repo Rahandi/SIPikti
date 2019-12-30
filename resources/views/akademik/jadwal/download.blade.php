@@ -82,6 +82,12 @@
 						@endfor
 					</tr>
 				@endforeach
+				<tr>
+					<td colspan="3">Jumlah  Mhs  Tidak  Hadir  Kuliah</td>
+					@for ($i = 1; $i <= 16; $i++)
+						<td></td>
+					@endfor
+				</tr>
 				</tbody>
 			</table>
 		</div>
