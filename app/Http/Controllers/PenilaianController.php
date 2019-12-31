@@ -47,9 +47,9 @@ class PenilaianController extends Controller
             $ids_asisten = explode(',', $item->ids_asisten);
 
             for ($i=0; $i < count($ids_mk) ; $i++) { 
-                array_push($temp->mk, masterMK::find($ids_mk[$i])->nama);
-                array_push($temp->dosen, masterDosen::find($ids_dosen[$i])->nama);
-                array_push($temp->asisten, masterAsisten::find($ids_asisten[$i])->nama);
+                array_push($temp->mk, ($ids_mk[$i])?masterMK::find($ids_mk[$i])->nama:null);
+                array_push($temp->dosen, ($ids_dosen[$i])?masterDosen::find($ids_dosen[$i])->nama:null);
+                array_push($temp->asisten, ($ids_asisten[$i])?masterAsisten::find($ids_asisten[$i])->nama:null);
             }
             
             array_push($data, $temp);
