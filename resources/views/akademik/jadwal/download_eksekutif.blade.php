@@ -18,21 +18,21 @@
             border: 1px black solid;
         }
 	</style>
-	<style>@page { size: A4 landscape }</style>
+	<style>@page { size: legal landscape }</style>
 </head>
-<body onload="window.print()" class="A4 landscape">
-	<div class="container" style="font-size: 12px;
+<body onload="window.print()" class="legal landscape">
+	<div class="container" style="font-size: 14px;
 	font-family: Tahoma;
 	/*font-weight: 1000;*/
     ">
         @for ($i = 0; $i < count($data->absen_dosen); $i++)
-        <div style="margin: 5% 6% 3% 6%;
         @if (($i+1)%2 == 0)
-            page-break-after: always;
+            <div style="margin-right: 6%; margin-left: 6%; page-break-after: always;">
+        @else
+            <div style="margin-top: 5%; margin-right: 6%; margin-left: 6%;">
         @endif
-        ">
         @if (($i)%2 == 0)
-            <div class="row" id="presensi_dosen" style="text-align: center; font-size: 18px;">
+            <div class="row" id="presensi_dosen" style="text-align: center; font-size: 20px;">
                 PRESENSI DOSEN<br>
                 SEMESTER {{$data->semester}} TA. {{$data->tahun}}-{{$data->tahun+1}}<br>
             </div>

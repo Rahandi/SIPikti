@@ -18,9 +18,9 @@
             border: 1px black solid;
         }
 	</style>
-	<style>@page { size: A4 landscape }</style>
+	<style>@page { size: legal landscape }</style>
 </head>
-<body onload="window.print()" class="A4 landscape">
+<body onload="window.print()" class="legal landscape">
 	<div class="container" style="margin: 5% 6% 3% 6%;font-size: 12px;
 	font-family: Tahoma;
 	/*font-weight: 1000;*/
