@@ -450,6 +450,66 @@ class JadwalController extends Controller
             $data->termin = $jadwal->termin;
             $data->mata_kuliah = masterMK::find($id_mk)->nama;
             $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
+            $data->tahun = $jadwal->tahun;
+
+            if($data->kelas == 'A'){
+                $data->jam = '08:00 - 10:00';
+                if($index_mk == 4)
+                {
+                    $data->jam = '07:00 - 09:00';
+                }
+            }
+            elseif($data->kelas == 'B'){
+                $data->jam = '10:00 - 12:00';
+                if($index_mk == 4)
+                {
+                    $data->jam = '09:00 - 11:00';
+                }
+            }
+            elseif($data->kelas == 'C'){
+                $data->jam = '12:00 - 14:00';
+                if($index_mk == 4)
+                {
+                    $data->jam = '12:30 - 14:30';
+                }
+            }
+            elseif($data->kelas == 'D'){
+                $data->jam = '14:00 - 16:00';
+                if($index_mk == 4)
+                {
+                    $data->jam = '14:30 - 16:30';
+                }
+            }
+            elseif($data->kelas == 'E'){
+                $data->jam = '16:00 - 18:00';
+                if($index_mk == 4)
+                {
+                    $data->jam = '16:30 - 18:30';
+                }
+            }
+            elseif($data->kelas == 'F'){
+                $data->jam = '18:30 - 20:30';
+                if($index_mk == 4)
+                {
+                    $data->jam = '18:30 - 20:30';
+                }
+            }
+
+            if($index_mk == 0){
+                $data->hari = 'Senin';
+            }
+            elseif($index_mk == 1){
+                $data->hari = 'Selasa';
+            }
+            elseif($index_mk == 2){
+                $data->hari = 'Rabu';
+            }
+            elseif($index_mk == 3){
+                $data->hari = 'Kamis';
+            }
+            elseif($index_mk == 4){
+                $data->hari = 'Jumat';
+            }
 
             $dosen = masterDosen::find(explode(',', $jadwal->ids_dosen)[$index_mk]);
             $data->dosen = ($dosen)?$dosen->nama:null;
