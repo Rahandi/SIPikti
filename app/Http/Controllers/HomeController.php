@@ -60,7 +60,7 @@ class HomeController extends Controller
             $data['kelas'][$element->kelasA] = count($aggregate);
         }
         // mahasiswa
-        $data['mahasiswa'] = mahasiswa::count();
+        $data['mahasiswa'] = mahasiswa::whereNotNull('nrp')->count();
         // dosen
         $data['dosen'] = masterDosen::count();
 
