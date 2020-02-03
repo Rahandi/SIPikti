@@ -614,15 +614,24 @@ class JadwalController extends Controller
         $data->tanggal = $this->parse_date_to_indo($tanggal);
         $data->hari = $this->translate_date_to_day($tanggal);
         
-        $mks = explode(',', $jadwal->ids_mk);
         if($kelas->nama != 'S')
         {
+            $mks = explode(',', $jadwal->ids_mk);
             $index_mk = array_search($id_mk, $mks);
 
             $mk = masterMK::find($id_mk);
             $data->mata_kuliah = $mk->nama;
 
             $dosen = masterDosen::find(explode(',', $jadwal->ids_dosen)[$index_mk]);
+            $data->dosen = ($dosen)?$dosen->nama:null;
+        }
+        else
+        {
+            $jadwals = jadwalS::find($jadwal->jadwalS_id);
+            $mks = masterMK::find(explode(',', $jadwals->ids_mk)[$id_mk]);
+            $bagian = explode(',', $jadwals->bagian)[$id_mk];
+            $data->mata_kuliah = $mks . ' ' . $bagian;
+            $dosen = masterDosen::find(explode(',', $jadwals->ids_dosen)[$id_mk]);
             $data->dosen = ($dosen)?$dosen->nama:null;
         }
 
