@@ -452,7 +452,7 @@ class JadwalController extends Controller
             $data->termin = $jadwal->termin;
             $data->mata_kuliah = masterMK::find($id_mk)->nama;
             $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
-            $data->tahun = $jadwal->tahun;
+        $data->tahun = $webjadwal->tahun;
 
             if($data->kelas == 'A'){
                 $data->jam = '08:00 - 10:00';
@@ -589,6 +589,33 @@ class JadwalController extends Controller
             $data->mahasiswa = $mahasiswas;
 
             return view('akademik.jadwal.download_eksekutif', compact('data'));
+        }
+    }
+
+    public function beritaAcara(Request $request)
+    {
+        $id_jadwal = $request->id_jadwal;
+        $id_mk = $request->id_mk;
+        $tanggal = $request->tanggal;
+        $waktu_start = $request->waktu_start;
+        $waktu_end = $request->waktu_end;
+        $jenis = $request->jenis;
+
+        $data = new \stdClass();
+
+        $jadwal = jadwal::find($id_jadwal);
+        $kelas = masterKelas::find($jadwal->id_kelas);
+
+        $data->semester = $jadwal->termin;
+        $data->kelas = $kelas->nama;
+
+        $mks = explode(',', $jadwal->ids_mk);
+        if($id_mk)
+        {
+            $index_mk = array_search($id_mk, $mks);
+
+            $mk = masterMK::find($id_mk);
+            $data->mata_kuliah = $mk->nama;
         }
     }
 

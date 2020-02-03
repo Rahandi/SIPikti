@@ -77,7 +77,7 @@ Route::group(['prefix' => 'akademik'], function () {
 
         Route::get('/beritaacara', function () {
             return view('akademik.jadwal.beritaacara');
-        });
+        })->name('akademik.jadwal.beritaacara');
 
         Route::post('/store', 'JadwalController@store')->name('jadwal.store');
         Route::post('/update', 'JadwalController@update')->name('jadwal.update');
