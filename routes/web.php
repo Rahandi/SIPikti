@@ -21,6 +21,18 @@ Route::post('/daftar', 'PendaftarController@store')->name('daftar.store');
 // authorized
 Route::get('/dashboard', 'HomeController@statistic')->name('dashboard');
 
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/', 'UserController@index')->name('user.index');
+    Route::get('/create', 'UserController@create')->name('user.create');
+    
+    Route::post('/store', 'UserController@store')->name('user.store');
+    Route::post('/edit', 'UserController@edit')->name('user.edit');
+    Route::post('/update', 'UserController@update')->name('user.update');
+    Route::post('/editPassword', 'UserController@editPassword')->name('user.editPassword');
+    Route::post('/updatePassword', 'UserController@updatePassword')->name('user.updatePassword');
+    Route::post('/delete', 'UserController@delete')->name('user.delete');
+});
+
 Route::group(['prefix' => 'pendaftaran'], function () {
     Route::get('/', 'HomeController@index')->name('pendaftaran');
     Route::get('/detail2/{id}', 'HomeController@detail2')->name('detail2');
@@ -62,6 +74,10 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::get('/absensi/{id}', 'JadwalController@absensi')->name('jadwal.absensi');
         Route::get('/pilihmhs/{id}', 'JadwalController@pilihmhs')->name('jadwal.pilihmhs');
         Route::get('/download/{id_jadwal}/{id_mk}', 'JadwalController@DownloadJadwal')->name('jadwal.download');
+
+        Route::get('/beritaacara', function () {
+            return view('akademik.jadwal.beritaacara');
+        });
 
         Route::post('/store', 'JadwalController@store')->name('jadwal.store');
         Route::post('/update', 'JadwalController@update')->name('jadwal.update');
@@ -187,8 +203,6 @@ Route::group(['prefix'=>'master'], function(){
 });
 
 Route::post('/harga_toga', 'TogaController@update_harga_toga')->name('update_harga_toga');
-
-
 
 // unrelevant
 Route::get('/coba', 'HomeController@generateNoPendaftaran');
