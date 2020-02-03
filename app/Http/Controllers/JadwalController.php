@@ -611,8 +611,9 @@ class JadwalController extends Controller
         $data->kelas = $kelas->nama;
         $data->waktu = $waktu_start . ' - ' . $waktu_end;
         $data->jenis = ($jenis == 'ets')?'EVALUASI TENGAH SEMESTER':'EVALUASI AKHIR SEMESTER';
-        $data->tamggal = $this->parse_date_to_indo($tanggal);
-
+        $data->tanggal = $this->parse_date_to_indo($tanggal);
+        $data->hari = $this->translate_date_to_day($tanggal);
+        
         $mks = explode(',', $jadwal->ids_mk);
         if($kelas->nama != 'S')
         {
@@ -623,22 +624,6 @@ class JadwalController extends Controller
 
             $dosen = masterDosen::find(explode(',', $jadwal->ids_dosen)[$index_mk]);
             $data->dosen = ($dosen)?$dosen->nama:null;
-
-            if($index_mk == 0){
-                $data->hari = 'Senin';
-            }
-            elseif($index_mk == 1){
-                $data->hari = 'Selasa';
-            }
-            elseif($index_mk == 2){
-                $data->hari = 'Rabu';
-            }
-            elseif($index_mk == 3){
-                $data->hari = 'Kamis';
-            }
-            elseif($index_mk == 4){
-                $data->hari = 'Jumat';
-            }
         }
 
         return view('akademik.jadwal.beritaacara', compact('data'));
@@ -672,6 +657,44 @@ class JadwalController extends Controller
                     ->groupBy('mahasiswa_id')
                     ->get();
         return count($data);
+    }
+
+    private function translate_date_to_day($date)
+    {
+        $timestamp = strtotime($date);
+        $day = date('l', $timestamp);
+        if($day == 'Monday')
+        {
+            return 'Senin';
+        }
+        else if($day == 'Tuesday')
+        {
+            return 'Selasa';
+        }
+        else if($day == 'Wednesday')
+        {
+            return 'Rabu';
+        }
+        else if($day == 'Thursday')
+        {
+            return 'Kamis';
+        }
+        else if($day == 'Friday')
+        {
+            return "Jum'at";
+        }
+        else if($day == 'Satuday')
+        {
+            return 'Sabtu';
+        }
+        else if($day == 'Sunday')
+        {
+            return 'Minggu';
+        }
+        else
+        {
+            return $day;
+        }
     }
 
     private function parse_date_to_indo($date)
