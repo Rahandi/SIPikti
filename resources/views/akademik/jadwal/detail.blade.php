@@ -99,10 +99,62 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="row row-in" style="text-align: center">
+				<div class="row row-in" style="text-align: center; width: 100%">
 					@if ($data->kelas->nama == 's' || $data->kelas->nama == 'S')
 						<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => 0])}}" target="_blank"><button type="button" class="btn btn-primary">Download Absensi</button></a>
+						<a><button type="button" id="BA" class="btn btn-success" data-toggle="modal" data-target="#modalBA" value="">Berita Acara</button></a>
+					@else
+						<a><button type="button" id="BA" class="btn btn-success" data-toggle="modal" data-target="#modalBA" value="" style="width: 20%;">Berita Acara</button></a>
 					@endif
+				</div>
+				<!-- Modal -->
+				<div id="modalBA" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
+					<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
+						<header class="w3-container w3-light-grey w3-round-large"> 
+							<span 
+							class="w3-button w3-display-topright w3-round-large" data-dismiss="modal">&times;</span>
+							<h2>Berita Acara Evaluasi</h2>
+						</header>
+						<form action="{{route('akademik.jadwal.beritaacara')}}" method="POST">
+						{{ csrf_field() }}
+						<div class="w3-container" style="margin-top: 2%;">
+							<p style="text-align: center">Kelas <b>{{ $data->kelas->nama }}</b> - Semester <b>{{ $data->termin }}</b></p>
+							<input type="hidden" name="id_jadwal" value="{{$data->id}}">
+							<label for="jenis">Jenis Evaluasi:</label>
+							<select name="jenis" id="jenis" class="form-group form-control">
+								<option value="ets">Evaluasi Tengah Semester</option>
+								<option value="eas">Evaluasi Akhir Semester</option>
+							</select>
+							<label for="id_mk">Mata Kuliah:</label>
+							<select name="id_mk" id="id_mk" class="form-group form-control">
+								@if ($data->kelas->nama == 's' || $data->kelas->nama == 'S')
+									@for ($i = 0; $i < count($data->matkul); $i++)
+										<option value="{{$i}}">{{$data->matkul[$i]->nama}}</option>
+									@endfor
+								@else
+									@for ($i = 0; $i < count($data->matkul); $i++)
+										<option value="{{$data->matkul[$i]->id}}">{{$data->matkul[$i]->nama}}</option>
+									@endfor
+								@endif
+							</select>
+							<label for="tanggal">Tanggal Evaluasi:</label>
+							<input type="date" name="tanggal" id="tanggal" class="form-control"><br>
+							<label>Waktu Evaluasi:</label>
+							<table style="width:100%; text-align: center">
+								<tr>
+									<td><input type="time" name="waktu_start" id="waktu_start" class="form-control" style="text-align: center"></td>
+									<td ><b>-</b></td>
+									<td><input type="time" name="waktu_end" id="waktu_end" class="form-control" style="text-align: center"></td>
+								</tr>
+							</table>
+							<br>
+						</div>
+						<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
+								<button type="submit" id="DeleteButton" class="btn btn-success" style="margin: 1%;">Submit</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Batal</button>	
+						</footer>
+						</form>
+					</div>
 				</div>
 				<br>
 				<h4 class="box-title m-b-0">List Mahasiswa</h4><br>
