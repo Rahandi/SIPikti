@@ -101,8 +101,8 @@
 				</div>
 				<div class="row row-in" style="text-align: center; width: 100%">
 					@if ($data->kelas->nama == 's' || $data->kelas->nama == 'S')
-						<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => 0])}}" target="_blank"><button type="button" class="btn btn-primary">Download Absensi</button></a>
-						<a><button type="button" id="BA" class="btn btn-success" data-toggle="modal" data-target="#modalBA" value="">Berita Acara</button></a>
+						<a href="{{route('jadwal.download', ['id_jadwal' => $data->id, 'id_mk' => 0])}}" target="_blank"><button type="button" class="btn btn-primary">Download Absensi</button></a>&nbsp;&nbsp;
+						<a><button type="button" id="BA" class="btn btn-success" data-toggle="modal" data-target="#modalBA" value="" style="width: 15%;">Berita Acara</button></a>
 					@else
 						<a><button type="button" id="BA" class="btn btn-success" data-toggle="modal" data-target="#modalBA" value="" style="width: 20%;">Berita Acara</button></a>
 					@endif

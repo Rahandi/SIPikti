@@ -628,7 +628,7 @@ class JadwalController extends Controller
         else
         {
             $jadwals = jadwalS::find($jadwal->jadwalS_id);
-            $mks = masterMK::find(explode(',', $jadwals->ids_mk)[$id_mk]);
+            $mks = masterMK::find(explode(',', $jadwals->ids_mk)[$id_mk])->nama;
             $bagian = explode(',', $jadwals->bagian)[$id_mk];
             $data->mata_kuliah = $mks . ' ' . $bagian;
             $dosen = masterDosen::find(explode(',', $jadwals->ids_dosen)[$id_mk]);
