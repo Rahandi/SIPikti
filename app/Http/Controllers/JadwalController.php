@@ -600,7 +600,7 @@ class JadwalController extends Controller
         {
             $id_jadwal = $mhs->jadwal_id;
             $jadwal = jadwal::find($id_jadwal);
-            if($termin != $jadwal->termin && $tahun != $tahun)
+            if($termin != $jadwal->termin && $tahun != $jadwal->tahun)
             {
                 array_push($mahasiswa_ids, $mhs->mahasiswa_id);
             }
