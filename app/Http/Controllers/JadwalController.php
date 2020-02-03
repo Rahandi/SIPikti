@@ -452,7 +452,7 @@ class JadwalController extends Controller
             $data->termin = $jadwal->termin;
             $data->mata_kuliah = masterMK::find($id_mk)->nama;
             $data->kelas = masterKelas::find($jadwal->id_kelas)->nama;
-        $data->tahun = $webjadwal->tahun;
+            $data->tahun = $jadwal->tahun;
 
             if($data->kelas == 'A'){
                 $data->jam = '08:00 - 10:00';
