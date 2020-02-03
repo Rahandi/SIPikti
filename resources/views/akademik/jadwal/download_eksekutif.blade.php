@@ -17,6 +17,21 @@
             border-collapse: collapse;
             border: 1px black solid;
         }
+        #list td{
+            padding: 1%;
+        }
+        #list th {
+            padding: 0.5%;
+        }
+        @page {
+			margin-top: 5%;
+			margin-left: 6%;
+			margin-right: 6%;
+			margin-bottom: 5%;
+		}
+        #list0 th {
+            padding: 0.5%;
+        }
 	</style>
 	<style>@page { size: legal landscape }</style>
 </head>
@@ -27,9 +42,9 @@
     ">
         @for ($i = 0; $i < count($data->absen_dosen); $i++)
         @if (($i+1)%2 == 0)
-            <div style="margin-right: 6%; margin-left: 6%; page-break-after: always;">
+            <div style="page-break-after: always;">
         @else
-            <div style="margin-top: 5%; margin-right: 6%; margin-left: 6%;">
+            <div style="">
         @endif
         @if (($i)%2 == 0)
             <div class="row" id="presensi_dosen" style="text-align: center; font-size: 20px;">
@@ -60,7 +75,7 @@
 			</table>
         </div><br>
         <div class="row">
-            <table style="width: 100%" class="bordering">
+            <table style="width: 100%" class="bordering" id="list0">
                 <thead>
                     <tr>
                         <th rowspan="2" style="width: 5%">Kuliah ke</th>
@@ -98,9 +113,8 @@
         </div>
         </div>
         @endfor
-        <br>
         @foreach ($data->absen_mahasiswa as $item)
-        <div style="margin: 5% 6% 3% 6%; page-break-after: always">
+        <div style="page-break-after: always">
             <div class="row" id="presensi" style="text-align: center; font-size: 18px;">
                 <b>PRESENSI AKADEMIK<br>
                 TAHUN AJARAN {{$data->tahun}}/{{$data->tahun+1}}<br>
@@ -119,7 +133,7 @@
                 </table>
             </div><br>
             <div class="row" style="text-align: center;width: 100%;">
-                <table class="bordering" style="width: 100%;">
+                <table class="bordering" style="width: 100%;" id="list">
                     <thead>
                         <tr>
                             <th style="width: 5%;" rowspan="2">No</th>

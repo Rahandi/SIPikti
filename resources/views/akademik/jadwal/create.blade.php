@@ -72,7 +72,7 @@
 						<th style="text-align: center;" id="judul_J">Jumat (Jam)</th>
 					</tr>
 					<tr>
-						<td style="display: none" id="val_jml"><input style="text-align: center;" id="inp_jml" type="text" value="" placeholder="16" onchange="generateJml()"></td>
+						<td style="display: none" id="val_jml"><input style="text-align: center;" id="inp_jml" type="text" value="" placeholder="0" onchange="generateJml()" required></td>
 						<td id="jam_SK">--:-- s/d --:--</td>
 						<td id="jam_J">--:-- s/d --:--</td>
 					</tr>
@@ -380,7 +380,7 @@
 
 			let option = document.createElement('option')
 			option.value = ''
-			option.text = 'Select Here'
+			option.text = 'Pilih Mata Kuliah'
 			mk_select.appendChild(option)
 
 			for(var j = 0; j < mk.length; j++)
@@ -397,7 +397,7 @@
 			bagian_input.class = 'form-control'
 			bagian_input.type = 'text'
 			bagian_input.name = 'bagian_mk[]'
-			bagian_input.placeholder = '1'
+			bagian_input.placeholder = '0'
 			bagian_input.value = ''
 			bagian_input.style.width = '100%'
 			bagian_input.style.textAlign = 'center'
@@ -412,7 +412,7 @@
 
 			let option2 = document.createElement('option')
 			option2.value = ''
-			option2.text = 'Select Here'
+			option2.text = 'Pilih Dosen'
 			dosen_select.appendChild(option2)
 
 			for(var j = 0; j < dosen.length; j++)
@@ -431,7 +431,7 @@
 			asisten_select.style.width = '100%'
 			let option3 = document.createElement('option')
 			option3.value = ''
-			option3.text = 'Select Here'
+			option3.text = 'Pilih Asisten'
 			asisten_select.appendChild(option3)
 
 			for(var j = 0; j < asisten.length; j++)

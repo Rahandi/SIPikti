@@ -116,9 +116,7 @@
 									<td>
 										{{ $data_bayar['tanggal_bayar'] }}
 										&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="hidden" id="mahasiswa_angsuran" value="{{$data['pembayaran']->id}}">
-										<input type="hidden" id="jenis_bayar" value="{{$index}}">
-										<a><button type="button" class="btn btn-basic" data-toggle="modal" data-target="#modalUbah" id="tombolEdit" value="{{$index}}"
+										<a><button type="button" class="btn btn-basic" data-toggle="modal" data-target="#modalUbah" id="tombolEdit" value="{{$data['pembayaran']->id}}|{{$index}}|{{ $data_bayar['tanggal_asli'] }}"
 										@if ($data_bayar['tanda'] != 1)
 											style="display: none"
 										@endif
@@ -171,31 +169,31 @@
 										</div>
 									</td>
 								</tr>
-								<!-- Modal -->
-								<div id="modalUbah" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
-									<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
-										<header class="w3-container w3-light-grey w3-round-large"> 
-											<span data-dismiss="modal" class="w3-button w3-display-topright w3-round-large">&times;</span>
-											<h2>Ubah Tanggal Bayar</h2>
-										</header>
-										<div class="w3-container" style="margin-top: 2%;">
-											<form action="{{route('pembayaran.ubahtanggal')}}" method="post">
-												@csrf
-												<input type="date" name="tglbayar" value="{{ $data_bayar['tanggal_asli'] }}">
-										</div>
-										<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
-												<input type="hidden" name="mahasiswa_angsuran" id="mhsId" value="">
-												<input type="hidden" name="jenis_bayar" id="jenisAng" value="">
-												<button type="submit" class="btn btn-success" id="UbahTanggal" style="margin: 1%;">Simpan</button>
-											</form>
-											<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Batal</button>
-										</footer>
-									</div>
-								</div>
 							@endforeach
 							</tbody>
 						</table>
 					@endif
+					<!-- Modal -->
+					<div id="modalUbah" class="w3-modal w3-round-xlarge" style="z-index: 99999;">
+						<div class="w3-modal-content w3-animate-zoom w3-card-4 w3-round-large" style="width: 40%;">
+							<header class="w3-container w3-light-grey w3-round-large"> 
+								<span data-dismiss="modal" class="w3-button w3-display-topright w3-round-large">&times;</span>
+								<h2>Ubah Tanggal Bayar</h2>
+							</header>
+							<div class="w3-container" style="margin-top: 2%;">
+								<form action="{{route('pembayaran.ubahtanggal')}}" method="post">
+									@csrf
+									<input type="date" name="tglbayar" id="tglbayar" value="">
+							</div>
+							<footer class="w3-container w3-light-grey w3-round-large" style="text-align: right;">
+									<input type="hidden" name="mahasiswa_angsuran" id="mhsId" value="">
+									<input type="hidden" name="jenis_bayar" id="jenisAng" value="">
+									<button type="submit" class="btn btn-success" id="UbahTanggal" style="margin: 1%;">Simpan</button>
+								</form>
+								<button type="button" class="btn btn-danger" data-dismiss="modal" style="margin: 1%;">Batal</button>
+							</footer>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -237,12 +235,13 @@
 		$(document).ready(function(){
 			$(document).on('click', '#tombolEdit', function () {
 				console.log('id yg passing');
-				mhsId = $('#mahasiswa_angsuran').val();
-				ang = $('#jenis_bayar').val();
-				console.log(mhsId);
-				console.log(ang);
-				document.getElementById("mhsId").value = mhsId;
-				document.getElementById("jenisAng").value = ang;
+				Id = $(this).val();
+				console.log(Id);
+				sent = Id.split('|');
+				console.log(sent);
+				document.getElementById("mhsId").value = sent[0];
+				document.getElementById("jenisAng").value = sent[1];
+				document.getElementById("tglbayar").value = sent[2];
 			});
 		});
 	</script>
