@@ -413,8 +413,10 @@ class JadwalController extends Controller
     {
         $data = new \stdClass();
         $jadwal = jadwal::find($id);
+        $termin = $jadwal->termin;
+        $tahun = $jadwal->tahun;
         $kelas = masterKelas::find($jadwal->id_kelas);
-        $mahasiswa = $this->get_mahasiswa_no_jadwal();
+        $mahasiswa = $this->get_mahasiswa_no_jadwal($termin, $tahun);
         $data->jadwal = $jadwal;
         $data->mahasiswa = $mahasiswa;
         $data->kelas = $kelas;
@@ -590,16 +592,18 @@ class JadwalController extends Controller
         }
     }
 
-    private function get_mahasiswa_no_jadwal()
+    private function get_mahasiswa_no_jadwal($termin, $tahun)
     {
-        $mahasiswa_punya_jadwal = \DB::table('mahasiswa_jadwal')
-                                        ->select('mahasiswa_id')
-                                        ->groupBy('mahasiswa_id')
-                                        ->get();
+        $mahasiswa_punya_jadwal = mahasiswaJadwal::all();
         $mahasiswa_ids = array();
-        foreach($mahasiswa_punya_jadwal as $id)
+        foreach($mahasiswa_punya_jadwal as $mhs)
         {
-            array_push($mahasiswa_ids, $id->mahasiswa_id);
+            $id_jadwal = $mhs->jadwal_id;
+            $jadwal = jadwal::find($id_jadwal);
+            if($termin != $jadwal->termin && $tahun != $tahun)
+            {
+                array_push($mahasiswa_ids, $mhs->mahasiswa_id);
+            }
         }
         $mahasiswa = \DB::table('mahasiswa')
                         ->select('*')
