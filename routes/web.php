@@ -75,16 +75,13 @@ Route::group(['prefix' => 'akademik'], function () {
         Route::get('/pilihmhs/{id}', 'JadwalController@pilihmhs')->name('jadwal.pilihmhs');
         Route::get('/download/{id_jadwal}/{id_mk}', 'JadwalController@DownloadJadwal')->name('jadwal.download');
 
-        Route::get('/beritaacara', function () {
-            return view('akademik.jadwal.beritaacara');
-        })->name('akademik.jadwal.beritaacara');
-
         Route::post('/store', 'JadwalController@store')->name('jadwal.store');
         Route::post('/update', 'JadwalController@update')->name('jadwal.update');
         Route::post('/delete', 'JadwalController@delete')->name('jadwal.delete');
         Route::post('/cancel', 'JadwalController@cancel')->name('jadwal.cancel');
         Route::post('/select', 'JadwalController@SelectJadwal')->name('jadwal.select');
         Route::post('/tambah', 'JadwalController@tambah')->name('jadwal.tambah');
+        Route::post('/beritaacara', 'JadwalController@beritaAcara')->name('akademik.jadwal.beritaacara');
     });
 
     Route::group(['prefix' => 'nilai'], function () {

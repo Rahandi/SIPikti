@@ -607,16 +607,41 @@ class JadwalController extends Controller
         $kelas = masterKelas::find($jadwal->id_kelas);
 
         $data->semester = $jadwal->termin;
+        $data->tahun = $jadwal->tahun . ' - ' . ($jadwal->tahun + 1);
         $data->kelas = $kelas->nama;
+        $data->waktu = $waktu_start . ' - ' . $waktu_end;
+        $data->jenis = ($jenis == 'ets')?'EVALUASI TENGAH SEMESTER':'EVALUASI AKHIR SEMESTER';
+        $data->tamggal = $this->parse_date_to_indo($tanggal);
 
         $mks = explode(',', $jadwal->ids_mk);
-        if($id_mk)
+        if($kelas->nama != 'S')
         {
             $index_mk = array_search($id_mk, $mks);
 
             $mk = masterMK::find($id_mk);
             $data->mata_kuliah = $mk->nama;
+
+            $dosen = masterDosen::find(explode(',', $jadwal->ids_dosen)[$index_mk]);
+            $data->dosen = ($dosen)?$dosen->nama:null;
+
+            if($index_mk == 0){
+                $data->hari = 'Senin';
+            }
+            elseif($index_mk == 1){
+                $data->hari = 'Selasa';
+            }
+            elseif($index_mk == 2){
+                $data->hari = 'Rabu';
+            }
+            elseif($index_mk == 3){
+                $data->hari = 'Kamis';
+            }
+            elseif($index_mk == 4){
+                $data->hari = 'Jumat';
+            }
         }
+
+        return view('akademik.jadwal.beritaacara', compact('data'));
     }
 
     private function get_mahasiswa_no_jadwal($termin, $tahun)
