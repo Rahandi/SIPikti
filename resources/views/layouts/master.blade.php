@@ -146,6 +146,8 @@
 							<li><a href="{{ route('master.gelombang.index') }}"><i class="material-icons">date_range</i><span class="hide-menu">  Gelombang</span></a></li>
 						</ul>
 					</li>
+					<li><a href="{{ route('user.index') }}" class="waves-effect"><i class="material-icons">description</i> <span class="hide-menu">User</span></span></a>
+					</li>
 					<li class="devider"></li>
 					<li><a href="documentation.html" class="waves-effect"><i class="fa fa-circle-o text-danger"></i> <span class="hide-menu">Documentation</span></a></li>
 					<li><a href="gallery.html" class="waves-effect"><i class="fa fa-circle-o text-info"></i> <span class="hide-menu">Faqs</span></a></li>
