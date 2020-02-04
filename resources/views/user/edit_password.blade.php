@@ -16,7 +16,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="white-box">
-			<form action="{{route('user.update')}}" method="POST" data-toggle="validator" style="text-align: center">
+			<form action="{{route('user.updatePassword')}}" method="POST" data-toggle="validator" style="text-align: center">
                 {{csrf_field()}}
                 <input type="hidden" name="id" value="{{$data->id}}">
                 <table style="width: 70%">
