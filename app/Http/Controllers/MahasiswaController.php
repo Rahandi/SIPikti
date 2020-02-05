@@ -205,13 +205,13 @@ class MahasiswaController extends Controller
         $pendaftar->status = 0;
         $pendaftar->save();
 
-        $mahasiswa_jadwal = mahasiswaJadwal::where('mahasiswa_id', $request->id);
+        $mahasiswa_jadwal = mahasiswaJadwal::where('mahasiswa_id', $request->id)->get();
         foreach($mahasiswa_jadwal as $item)
         {
             $item->delete();
         }
 
-        $mahasiswa_angsuran = mahasiswaAngsuran::where('mahasiswa_id', $request->id);
+        $mahasiswa_angsuran = mahasiswaAngsuran::where('mahasiswa_id', $request->id)->get();
         foreach($mahasiswa_angsuran as $item)
         {
             $item->delete();

@@ -117,7 +117,7 @@ class AngsuranController extends Controller
     {
         $angsuran = angsuran::find($request->id);
 
-        $mahasiswa_angsuran = mahasiswaAngsuran::where('angsuran_id', $request->id);
+        $mahasiswa_angsuran = mahasiswaAngsuran::where('angsuran_id', $request->id)->get();
         foreach($mahasiswa_angsuran as $item)
         {
             $item->delete();
