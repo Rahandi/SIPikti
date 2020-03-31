@@ -84,7 +84,9 @@ class PenilaianController extends Controller
     {
         $kelas = explode(',', $request->kelas);
 
-        $master_nilai = masterNilai::where('id_jadwal', $kelas[1])->where('id_mk', $kelas[2])->first();
+        $jadwal = jadwal::find($kelas[1]);
+        $id_mk = explode(',', $jadawl->ids_mk)[$kelas[2]];
+        $master_nilai = masterNilai::where('id_jadwal', $kelas[1])->where('id_mk', $id_mk)->first();
         if (!$master_nilai)
         {
             $master_nilai = new masterNilai();
